@@ -840,7 +840,7 @@
 !end  matprp
 
 !call datchk
-      common/datchk/ndtchk   !                                          /datchk/
+      common/datchk/ndtchk   !         /datchk/
 !end  datchk
 
       parameter (ncmax=50)
@@ -868,11 +868,11 @@
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
-      common /rlcplx/ ityprc   !                                        /rlcplx/
+      common /rlcplx/ ityprc   !       /rlcplx/
 !end  rlcplx
 
 !call vercom
-      common /vercom/ versn   !                                         /vercom/
+      common /vercom/ versn   !        /vercom/
       character*45 versn
 !end  vercom
       CHARACTER(LEN=80):: fileName
@@ -898,8 +898,8 @@
 
 
 !
-!                                    define sizes of integers and reals
-!                                    relative to what loc returns
+!   define sizes of integers and reals
+!   relative to what loc returns
 !!!      kkloci  =  locfcn(ilocdm(2)) - locfcn(ilocdm(1))
 !!!      kklocr  =  locfcn(rlocdm(2)) - locfcn(rlocdm(1))
 !!! above statements commented out and replaced with the following
@@ -922,7 +922,7 @@
 !!!      call inisec   ! removed by RLC   1 Jan 97
 
       nc      =  0
-!                                    initialize /dictms/
+!   initialize /dictms/
       lldmax  =  800000
       lldict  =  0
       do 100 k = 1,100
@@ -943,7 +943,7 @@
       open (unit=89,file='ft89',form='unformatted',status='REPLACE')
       open (unit=98,file='ft98',form=  'formatted',status='REPLACE')
       open (unit=99,file='ft99',form='unformatted',status='REPLACE')
-!                                   pvinfc files, nsqg, nsqb
+!  pvinfc files, nsqg, nsqb
       open (unit=31,file='ft31',form='unformatted',status='REPLACE')
       open (unit=32,file='ft32',form='unformatted',status='REPLACE')
       call wopen( 1, 10,0,ierr)
@@ -1076,9 +1076,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          kz1     =  kzedg + (imp1-1)*kncedg
          kz2     =  kzedg + (imp2-1)*kncedg
          call avg2pt (z(1,kz1),z(1,kz2),zfgk)
-!                                   find fine grid point on ledg nearest
-!                                   to  zfgk.  if the match is close,
-!                                   enter equivalence relation
+!  find fine grid point on ledg nearest
+!  to  zfgk.  if the match is close,
+!  enter equivalence relation
          call nredge (zfgk,  z(1,lzfsg),lncedg,lnfsg                    &
      &               ,1,0.d0,  zy,ty,dy)
          ty      =  ty + i1lseg - 1
@@ -1092,7 +1092,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          if ( abs(yfg1-tty) .lt. 1.d-5 ) goto 320
          if ( abs(yfg2-tty) .lt. 1.d-5 ) goto 340
          goto 360
-!                                   jfg1 looks close. make final check
+!  jfg1 looks close. make final check
   320    continue
          jmp1    =  (jfg1+1)/2
          jmp2    =  (jfg1+2)/2
@@ -1104,7 +1104,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call edgfgi (jul,ledg,jfg1,  nm,nn,nefgsa,  llmp)
          call mpteqc (kptefg,nefgst,  kkmp,llmp)
          goto 400
-!                                   jfg2 looks close. make final check
+!  jfg2 looks close. make final check
   340    continue
          jmp1    =  (jfg2+1)/2
          jmp2    =  (jfg2+2)/2
@@ -1116,8 +1116,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call edgfgi (jul,ledg,jfg2,  nm,nn,nefgsa,  llmp)
          call mpteqc (kptefg,nefgst,  kkmp,llmp)
          goto 400
-!                                  fine grid point does not match up,
-!                                  add entry to (kkvlst,wtvlst).
+! fine grid point does not match up,
+! add entry to (kkvlst,wtvlst).
   360    continue
          iptr    =  iptr + 1
          if ( iptr.gt.ipmx ) then
@@ -1225,17 +1225,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       logical  ident
       logical anedge, sided6, pesed6
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -1247,8 +1247,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  iduser
       character*6 poslbl(3)
       data poslbl / 'first ', 'second', 'both  ' /
-!                                  print the descriptions of all the
-!                                  abutments
+! print the descriptions of all the
+! abutments
       iabt    =  iabs( iabtx )
           iedg1   =  nedaba(iabt) + 1
           iedg2   =  nedaba(iabt+1)
@@ -1259,7 +1259,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           jfsgwk  =  mtchab(2,iabt)
           jfsgvd  =  mtchab(3,iabt)
           idcpm   =  mtchab(4,iabt)
-!                                  print a header for the abutment
+! print a header for the abutment
           kpos    =  kposab(iabt)
           iwarn   =  0
           if ( ne.gt.1 ) go to 500
@@ -1302,7 +1302,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                                              )  anedge = .true.
                if ( ntdk.ne.6 ) go to 600
                if ( ksd.eq.1 .or. ksd.eq.3 ) go to 600
-!                                  side edge, type 6 nw
+! side edge, type 6 nw
                sided6  =  .true.
                call edgind (ksd,nm(knet),nn(knet)                       &
      &                     ,kzedg,kncedg,kncint,knedg)
@@ -1517,7 +1517,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension  ipnod(80), lnod(80), knod(80)
       dimension  encrn(3), emcrn(3), ux(3), vx(3)
 !call symcnd
-!                                                            /symcnd/
+!                           /symcnd/
       common /symcnd/ isympa
 !end  symcnd
 !call indxsp
@@ -1525,12 +1525,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , ngsptt, ngspa(151), locgsp(1200)
 !end  indxsp
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -1551,8 +1551,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       data  chmatc / '<---', '--->', 'aero', 'null' /
       data chrpos / '   ', '1st', '2nd', '1&2' /
       data poslbl / '        ', '1-st pos', '2-nd pos', 'both pos' /
-!                                  generate the  (nbraia,ifsgai)  data-
-!                                  structure describing the abutment
+! generate the  (nbraia,ifsgai)  data-
+! structure describing the abutment
       if ( iabsum.ge.2 ) write (6,9100)
       nbraia(1)  =  0
       nxsptt   =  0
@@ -1560,8 +1560,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 5500 iabint = 1,nabint
           kpt1    =  nmpaia(iabint) + 1
           kpt2    =  nmpaia(iabint+1)
-!                                  find the unique (kfsg1,kfsg2) pairs
-!                                  associated with each equivalence clas
+! find the unique (kfsg1,kfsg2) pairs
+! associated with each equivalence clas
           nfsgpk  =  0
           do 5200 kpt = kpt1,kpt2
                kmp     =  kemkey(kpt)
@@ -1585,27 +1585,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5200     continue
           nbrbas  =  nbraia(iabint)
           nbraia(iabint+1)  =  nbrbas + nfsgpk
-!                                  assemble information about current
-!                                  AI for ABTINT analysis
+! assemble information about current
+! AI for ABTINT analysis
           nnod    =  0
           nbr     =  0
           pesed6  =  .false.
 !
           do 5250 ifsgpk = 1,nfsgpk
-!                                  extract and save fundamental sgmt
-!                                  indices (node type indices) for
-!                                  current branch
+! extract and save fundamental sgmt
+! indices (node type indices) for
+! current branch
                kfsg12  =  kfsgpk(ifsgpk)
                kfsg1   =  kfsg12 / 10000
                kfsg2   =  mod( kfsg12, 10000 )
                ifsgai(1,ifsgpk+nbrbas) = kfsg1
                ifsgai(2,ifsgpk+nbrbas) = kfsg2
-!                                  define the abutment ends:
-!                                  initial pt: -iabt
-!                                  final pt  : +iabt
+! define the abutment ends:
+! initial pt: -iabt
+! final pt  : +iabt
                kabtx   =  kfdsgn( kfsg1 )
                labtx   = -kfdsgn( kfsg2 )
-!                                  get usual info for 2 fund. segments
+! get usual info for 2 fund. segments
                call icopy (4,  kfdseg(4*kfsg1-3),1, kokseg,1)
                call icopy (4,  kfdseg(4*kfsg2-3),1, lokseg,1)
                kedg    =  kedseg
@@ -1618,15 +1618,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call edgind (lsd,nm(lnet),nn(lnet)                       &
      &                     ,lzedg,lncedg,lncint,lnedg)
                lzedg   =  lzedg + nza(lnet)
-!                                  increment the branch counter
+! increment the branch counter
           nbr     =  nbr + 1
           ibr     =  nbr
                ipqbr(1,ibr) =  kabtx
                ipqbr(2,ibr) =  labtx
-!                                  put the abutment-end indices for
-!                                  the current control point into
-!                                  a single packed index in order
-!                                  to check for duplicates
+! put the abutment-end indices for
+! the current control point into
+! a single packed index in order
+! to check for duplicates
                kkabtx  =  2*iabs(kabtx)
                if ( kabtx.lt.0 ) kkabtx = kkabtx - 1
                llabtx  =  2*iabs(labtx)
@@ -1634,28 +1634,28 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                kkabt   =  min(kkabtx,llabtx)
                llabt   =  max(kkabtx,llabtx)
                ipaben(ibr)  =  kkabt*10000 + llabt
-!                                  record if current branch corresponds
-!                                  to an extra control point
+! record if current branch corresponds
+! to an extra control point
                ixtaib(ibr)  =  0
                if ( ksd.eq.lsd ) ixtaib(ibr) = 1
-!                                  kzprv = previous   pt on nw bdry
-!                                  kzcrn = corner     pt on nw bdry
-!                                  kznxt = subsequent pt on nw bdry
+! kzprv = previous   pt on nw bdry
+! kzcrn = corner     pt on nw bdry
+! kznxt = subsequent pt on nw bdry
                ndmbr(ibr)   =  0
 !
                kzprv   =  kzedg + (i2kseg-2)*kncedg
                kzcrn   =  kzedg + (i2kseg-1)*kncedg
                kznxt   =  lzedg + i1lseg*lncedg
-!                                  define the branch type
+! define the branch type
                if ( kedg .eq. ledg ) go to 5220
-!                                  regular corner
+! regular corner
                     kzint   =  kznxt + lncint
                     kznrm   =  kzprv
                     ledgp   =  mod(lsd,4) + 1 + 4*(lnet-1)
                     if ( iedgtp(ledgp).eq.1 ) kznrm = kzint
                     kbr(ibr)=  icrntp(ledg)
                     go to 5230
-!                                  extra control point corner
+! extra control point corner
  5220          continue
                     kzint   =  kzcrn + kncint
                     kznrm   =  kzint
@@ -1663,11 +1663,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     if ( ntd(knet).eq.6 .and. ksd.ne.1 ) kbr(ibr) = 2
                     if ( ntd(knet).eq.6 .and. ksd.ne.1 ) pesed6 = .true.
  5230          continue
-!                                  set p-o-s info while doing 1st branch
+! set p-o-s info while doing 1st branch
                if ( ifsgpk .eq. 1 )                                     &
 !!     &              call abtpos ( z(1,kzcrn),epsgeo,nsymm,  kpos )        ! Removed by Martin Hegedus, 4/21/09
      &              call abtpos ( z(1,kzcrn),epsgeo,nisym,njsym,  kpos )  ! Added by Martin Hegedus, 4/21/09
-!                                  generate error msg on dud branches
+! generate error msg on dud branches
                if ( kbr(ibr) .ge. 2 ) go to 5232
                     call abtmsg(' dud branch encountered in a.i. scan')
                     write (6,'(1x,a10,1x, 5i10)')                       &
@@ -1677,7 +1677,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     write (6,'(1x,a10,1x, 4i10)')                       &
      & '2-nd fes',lnet,lsd,i1lseg,i2lseg
  5232          continue
-!                                  define an extra v-parm point
+! define an extra v-parm point
                if ( ksd.eq.lsd ) then
                     ngsptt  =  ngsptt + 1
                     locxex(1) = knet
@@ -1690,12 +1690,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     locxex(4) = ijfn
                     call icopy (4,  locxex,1, locgsp(4*ngsptt-3),1)
                endif
-!                                  detect if an extra c.p. must be added
+! detect if an extra c.p. must be added
                if ( ksd.ne.lsd .or. kbr(ibr).lt.4 ) go to 5235
-!                                  no extra c.p.'s on type 6 nw,
-!                                  edges 2, 3, 4
+! no extra c.p.'s on type 6 nw,
+! edges 2, 3, 4
                if ( ntd(knet).eq.6 .and. ksd.ne.1 ) go to 5235
-!                                  extra c.p. is defined and included
+! extra c.p. is defined and included
                     nxsptt  =  nxsptt + 1
                     locxex(1) =  knet
                     locxex(2) =  ksd
@@ -1713,27 +1713,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     locxex(4) =  ifn + (jfn-1)*(2*nm(knet)-1)
                     call icopy (4,  locxex,1, locxsp(4*(nxsptt)-3),1)
  5235          continue
-!                                  compute nw normal at A.I. point
+! compute nw normal at A.I. point
                call vadd (z(1,kzcrn), -1.d0, z(1,kznrm), ux, 3)
                call vadd (z(1,kznxt), -1.d0, z(1,kzcrn), vx, 3)
                call cross (ux,vx,encrn)
                call uvect (encrn)
-!                                  set the weight using an interior
-!                                  pointing tangent
+! set the weight using an interior
+! pointing tangent
                call vadd ( z(1,kzint), -1.d0, z(1,kzcrn), emcrn, 3)
                call uvect (emcrn)
                call vip ( comprs,1,  emcrn,1,  3,  cbr(ibr) )
-!                                  set p-o-s info for the nodes (abmts)
-!                                  of this branch
+! set p-o-s info for the nodes (abmts)
+! of this branch
                lbr(ibr)  =  0
                if ( mod(kpos,2) .eq. 1     .and.                        &
      &              encrn(1)**2 +encrn(3)**2 .le. epsgeo**2 ) lbr(ibr)=1
                if ( kpos  .ge.  2     .and.                             &
      &              encrn(1)**2 +encrn(2)**2 .le. epsgeo**2 ) lbr(ibr)=2
-!                                  encode a nw branch identifier
+! encode a nw branch identifier
                nwkbr(ibr) =  1000000 * knet    + 1000 * ksd   + i2kseg
-!                                  develop the list of unique nodes in
-!                                  the AI graph (nodes=abutment ends)
+! develop the list of unique nodes in
+! the AI graph (nodes=abutment ends)
                do 5240 i = 1,2
                     call addin2 ( nnod, ipnod,   ipqbr(i,ibr) )
  5240          continue
@@ -1743,7 +1743,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                knod(inod)  =  0
                lnod(inod)  =  kposab(  iabs(  ipnod(inod)  )  )
  5270     continue
-!                                  set symmetry condition indicator
+! set symmetry condition indicator
           isym    =  isympa
           call abtint (isym,kpos                                        &
      &                ,nbr,ipqbr,cbr,kbr,lbr,ndmbr,nwkbr                &
@@ -1753,23 +1753,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( nfail.ne.0 ) call abtmsg                                 &
      &           ('abtaio: failure detected in call abtint')
           if ( nfail.ne.0 ) iabsum = max  (2,iabsum)
-!                                  sort the packed abutment-end list
-!                                  and look for the same pair of
-!                                  abutment ends appearing twice in
-!                                  the list.  note that this is
-!                                  considered a problem only if the
-!                                  same pair of abutment ends bracket
-!                                  more than 1 NON-EXTRA control points
+! sort the packed abutment-end list
+! and look for the same pair of
+! abutment ends appearing twice in
+! the list.  note that this is
+! considered a problem only if the
+! same pair of abutment ends bracket
+! more than 1 NON-EXTRA control points
           call sortak (nbr,ipaben,ixtaib)
           iplast  =  0
           ixtlst  =  0
           ipforc  =  0
           nonext  =  0
           do 5280 ibr = 1,nbr
-!                                  initialize for counting the non-extra
-!                                  control points in a run
+! initialize for counting the non-extra
+! control points in a run
              if ( ipaben(ibr).ne.iplast ) nonext = 0
-!                                  if c.p. is non-extra, increase nonext
+! if c.p. is non-extra, increase nonext
              if ( ixtaib(ibr).eq.0 ) nonext = nonext + 1
              if ( ipaben(ibr).eq.iplast ) then
                 if ( nonext.gt.1 ) ipforc = 1
@@ -1782,7 +1782,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
              call remarx                                                &
      &          ('abtaio: probable overlap at abmt int, see print out')
           endif
-!                                  print the results of the AI analysis
+! print the results of the AI analysis
           if ( iabsum.ge.2  .or.  ipforc.gt.0 )                         &
      &         write (6,9007) iabint, poslbl(kpos)
           do 5400 ifsgpk = 1,nfsgpk
@@ -1822,8 +1822,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                mcmpai(ifsgpk+nbrbas) =  imatch
                ntdk    =  ntd(knet)
                if ( iabsum.lt.2 .and. ipforc.le.0 ) goto 5400
-!                                  generate the description of the
-!                                  current branch in the abmt int
+! generate the description of the
+! current branch in the abmt int
           kpos    =  kposab(  iabs(kabtx)  )
           lpos    =  kposab(  iabs(labtx)  )
           kpos    =  min ( 3, max ( 0, kpos))
@@ -1834,10 +1834,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                  ,iduser(knet)
  5400     continue
  5500 continue
-!                                  done with AI analysis
+! done with AI analysis
       call jzero (ngspa,nnett+1)
       call jzero (nxspa,nnett+1)
-!                                  print summ of extra control points
+! print summ of extra control points
       if ( nxsptt .le. 0 ) go to 6010
       call shlsr2 (nxsptt,locxsp)
       if ( iabsum .gt. 0 ) call bmark ('extra-cp')
@@ -1857,7 +1857,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 continue
       if ( iabsum .gt. 0 ) call emark ('extra-cp')
  6010 continue
-!                                  print summary of extra v-parm points
+! print summary of extra v-parm points
       if ( ngsptt .le. 0 ) goto 6060
       call shlsr2 (ngsptt,locgsp)
       if ( iabsum .gt. 0 ) call bmark ('extra-vp')
@@ -1877,8 +1877,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6050 continue
       if ( iabsum .gt. 0 ) call emark ('extra-vp')
  6060 continue
-!                                  wrap up processing of extra c.p.'s
-!                                  and extra v-parameters
+! wrap up processing of extra c.p.'s
+! and extra v-parameters
       do 6100 k = 1,nnett
           nxspa(k+1) = nxspa(k+1) + nxspa(k)
           ngspa(k+1) = ngspa(k+1) + ngspa(k)
@@ -1924,7 +1924,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension kposab(750)
 !
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
@@ -2095,7 +2095,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         cm tables at abort time.
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -2193,27 +2193,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension  z1p(3), z2p(3), zm1(3), zm2(3), ledgid(4)
       logical  abut
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
 !end  abtflg
-!                                  define equivalence classes of
-!                                  fundamental segments
+! define equivalence classes of
+! fundamental segments
 !
-!                                  initialize pointers and signs
+! initialize pointers and signs
       do 2050 ifsg = 1,nfdseg
           kfdpnt(ifsg) =  ifsg
           kfdsgn(ifsg) = 1
  2050 continue
-!                                  for each subject edge segment in the
-!                                  kabut list, find all the fundamental
-!                                  segments of which it is the union
+! for each subject edge segment in the
+! kabut list, find all the fundamental
+! segments of which it is the union
       do 3000 iseglo = 1,nseglo
           call icopy (4,  kabut(4*(iseglo)-3),1, kokseg,1)
           kedg    =  kedseg
@@ -2251,12 +2251,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call edgind (lsd,nm(lnet),nn(lnet)                            &
      &                ,lzedg,lncedg,lncint,lnedg)
           lzedg   =  lzedg + nza(lnet)
-!                                  for each fundamental edge segment in
-!                                  the given edge segment on edge  kedg
-!                                  find the corresponding fundamental
-!                                  edge segment on edge ledg and enter
-!                                  the associated equivalence relation
-!                                  into the  kfdpnt  data structure
+! for each fundamental edge segment in
+! the given edge segment on edge  kedg
+! find the corresponding fundamental
+! edge segment on edge ledg and enter
+! the associated equivalence relation
+! into the  kfdpnt  data structure
           do 2500 ifsg = ifsg1,ifsg2
                call icopy (4,  kfdseg(4*ifsg-3),1, kokseg,1)
                kz1     =  kzedg + (i1kseg-1)*kncedg
@@ -2276,12 +2276,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call nrmesh (z2p,  z(1,lzedg),lncedg,lnedg,   isgn, tmid &
      &                     ,zm2,i2l,d2p)
 ! ***                              if any trouble develops here, conside
-!                                  making these nrmesh calls with:
+! making these nrmesh calls with:
 !
-!                                  (1) -isgn1,  isgn1 = sgn(tint-t1p)
-!                                       tmid1,  tmid1 = .5*(tint+t1p)
-!                                  (2)  isgn2,  isgn2 = sgn(t2p-tint)
-!                                       tmid2,  tmid2 = .5*(tint+t2p)
+! (1) -isgn1,  isgn1 = sgn(tint-t1p)
+!      tmid1,  tmid1 = .5*(tint+t1p)
+! (2)  isgn2,  isgn2 = sgn(t2p-tint)
+!      tmid2,  tmid2 = .5*(tint+t2p)
 !
                ledseg  =  ledg
                lokseg  =  0
@@ -2291,8 +2291,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                i1lseg  =  min (i1l,i2l)
                i2lseg  =  max (i1l,i2l)
                call icopy (4,  lokseg,1, ledgid(1),1)
-!                                  look for the object edge segment
-!                                  to be fundamental
+! look for the object edge segment
+! to be fundamental
                jfsg1   =  nfsga(ledg) + 1
                jfsg2   =  nfsga(ledg+1)
                if ( jfsg1.gt.jfsg2 ) go to 2310
@@ -2306,11 +2306,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  2310          continue
                lokseg  =  1
                go to 2400
-!                                  found an equivalence, enter it.
+! found an equivalence, enter it.
  2350          continue
                call abteqc (kfdpnt,kfdsgn,nfdseg,  ifsg,jfsg,isgn)
                go to 2500
-!                                  bad object edge.  issue message and p
+! bad object edge.  issue message and p
  2400          continue
                     call abtmsg                                         &
      &                     ('abtdab: bad object edge segment found')
@@ -2318,9 +2318,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                            ,lnet,lsd,i1lseg,i2lseg
  2500     continue
  3000 continue
-!                                  equivalence classes of fundamental
-!                                  segments defined.  reorganize
-!                                  kfdpnt  to define abutments
+! equivalence classes of fundamental
+! segments defined.  reorganize
+! kfdpnt  to define abutments
       init    =  1
       neqcla  =  0
 !
@@ -2329,10 +2329,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ifsgx   =  ifsg
           if ( kfdpnt(ifsg).gt.0 ) go to 3200
  3150 continue
-!                                  all equivalence classes processed,
-!                                  exit to sorting
+! all equivalence classes processed,
+! exit to sorting
       go to 3300
-!                                  new equivalence class found.
+! new equivalence class found.
  3200 continue
       init    =  ifsgx
       kx      =  ifsgx
@@ -2344,16 +2344,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kfdpnt(kxsv) =  -neqcla
           if ( kx.ne.init ) go to 3250
           go to 3100
-!                                  kfdpnt(ifsg) = -(eq. class number)
+! kfdpnt(ifsg) = -(eq. class number)
  3300 continue
       do 3400 ifsg = 1,nfdseg
           kfdpnt(ifsg) = -kfdpnt(ifsg)
  3400 continue
 !
       call jshell (nfdseg,kfdpnt,kfdkey)
-!                                  define the pointers  nedaba  into the
-!                                  kfdkey array defining the fundamental
-!                                  segments of each abutment.
+! define the pointers  nedaba  into the
+! kfdkey array defining the fundamental
+! segments of each abutment.
       kfdsv   =  kfdpnt(1) - 1
       nabt    =  0
       do 3500 ifsg = 1,nfdseg
@@ -2445,19 +2445,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       dimension  iedmpx(2)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
 !end  abtflg
-!                                  assign indices to the mesh point
-!                                  equivalence classes that are also
-!                                  abutment intersections.
+! assign indices to the mesh point
+! equivalence classes that are also
+! abutment intersections.
       do 4050 iedmp = 1,nedmp
           kempec(iedmp) = 0
  4050 continue
@@ -2477,7 +2477,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     if ( kempec(iedmp) .ne. 0 ) go to 4120
                     nuqemp  =  nuqemp + 1
                     kmp     =  iedmp
-!                                  loop over entries in an equivalence c
+! loop over entries in an equivalence c
                     nloop   =  0
  4100               continue
                          nloop   =  nloop + 1
@@ -2499,8 +2499,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
  6001 format (' number of abutment intersections =',i5                  &
      &       ,' exceeds program limit of ',i5)
-!                                  assign indices to all remaining
-!                                  equivalence classes of edge mesh poin
+! assign indices to all remaining
+! equivalence classes of edge mesh poin
       init    =  1
 !
  4300 continue
@@ -2508,8 +2508,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           iedmp   =  ix
           if ( kempec(ix).eq.0 ) go to 4370
  4350 continue
-!                                  when you get here, all equivalence
-!                                  classes have been marked
+! when you get here, all equivalence
+! classes have been marked
       go to 4500
 !
  4370 continue
@@ -2527,10 +2527,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( kmp .ne. iedmp ) go to 4400
 !
       go to 4300
-!                                  sort the equivalence class index arra
-!                                  generating a key array.  generate a p
-!                                  array into the key array for each
-!                                  equivalence class.
+! sort the equivalence class index arra
+! generating a key array.  generate a p
+! array into the key array for each
+! equivalence class.
  4500 continue
       call jshell (nedmp,kempec,kemkey)
       iempec  =  kempec(1) - 1
@@ -2689,18 +2689,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /anwlst/ nnwlst
 !end  nwlst
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
 !end  abtflg
 !call symcnd
-!                                                            /symcnd/
+!                           /symcnd/
       common /symcnd/ isympa
 !end  symcnd
 !call nwkrgn
@@ -2722,7 +2722,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*5 csurf
       character*10 cmatrl
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
 !call ncons
@@ -2736,7 +2736,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer ablcp2
 !end  cp2aul
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -2755,16 +2755,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       data cdbtyp /'no-doublet','analysis  ','nt=18 wake','nt=20 wake'  &
      &            ,'dsgn-wake '/
       data indsym / 3, 2, 0, 1 /
-!                                  plane of symmetry normals
+! plane of symmetry normals
       data en1 / 0.d0, 1.d0, 0.d0/
       data en2 / 0.d0, 0.d0, 1.d0/
       data  charul / '+', '-' /
 !
       nwtrf   =  0
-!                                  initialize the pointer structure used
-!                                  to find the independent regions by
-!                                  examining equivalence classes of
-!                                  surfaces.
+! initialize the pointer structure used
+! to find the independent regions by
+! examining equivalence classes of
+! surfaces.
       nnett2  =  nnett*2
       do 100 k = 1,nnett
       do 90 ii = 1,2
@@ -2773,10 +2773,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kptrgn(kk)   = kk
    90 continue
   100 continue
-!                                  for each abutment, define the meshpoi
-!                                  of the universal edge and adjust all
-!                                  meshpoints of the abutment to lie on
-!                                  that universal edge
+! for each abutment, define the meshpoi
+! of the universal edge and adjust all
+! meshpoints of the abutment to lie on
+! that universal edge
       ncp2ab  =  0
       neztot  =  0
       do 5000 iabt = 1,nabt
@@ -2784,11 +2784,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           iedgbs  =  nedaba(iabt)
           ne      =  nedaba(iabt+1) - nedaba(iabt)
           nezaba(iabt) =  neztot
-!                                  determine if the abutment involves
-!                                  only a single trailing edge of a wake
-!                                  if it does, and if (iwkfil.ne.0), set
-!                                  the filament flag for the network
-!                                  and do some error checking.
+! determine if the abutment involves
+! only a single trailing edge of a wake
+! if it does, and if (iwkfil.ne.0), set
+! the filament flag for the network
+! and do some error checking.
           frwkte  =  .false.
           if ( ne.gt.1 ) goto 400
 !
@@ -2820,7 +2820,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     imp     =  impx
                     if ( isgn.lt.0 ) imp = i1kseg + i2kseg - impx
                     call edgmpi (kedseg,imp,nedmpa,  iedmp)
-!                                  count and collect the points in this
+! count and collect the points in this
                     kmp     =  iedmp
                     npt     =  0
 !
@@ -2832,13 +2832,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                        call abtend ('zpt buffer exceeded')
                          kmp     =  kptemp(kmp)
                          if ( kmp.ne.iedmp ) go to 4550
-!                                  counting and collecting done,
-!                                  check for error conditions
+! counting and collecting done,
+! check for error conditions
                     if ( ie.gt.1 ) go to 4570
                     if ( impx.ne.i1kseg .and. impx.ne.i2kseg )          &
      &                             go to 4560
 !
-!                                  first edge, end points
+! first edge, end points
 !
                          if ( npt.lt.ne ) call abtend                   &
      &                        ('end point class not full')
@@ -2846,7 +2846,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                          if (impx.eq.i2kseg) kec2=iabs(kempec(iedmp))
                          go to 4600
 !
-!                                  first edge, interior
+! first edge, interior
 !
  4560               continue
                          if ( npt.gt.ne ) call abtend                   &
@@ -2854,13 +2854,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                          if (npt.lt.ne) go to 4700
                          go to 4600
 !
-!                                  subsequent edges
+! subsequent edges
 !
  4570               continue
                     if ( impx.ne.i1kseg .and. impx.ne.i2kseg )          &
      &                   go to 4580
 !
-!                                  subsequent edge, end points
+! subsequent edge, end points
 !
                          if ( impx.eq.i1kseg              .and.         &
      &                        iabs(kempec(iedmp)).ne.iabs(kec1))        &
@@ -2874,7 +2874,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                        ('end mesh pt not already processed')
                          go to 4700
 !
-!                                  subsequent edge, interior point
+! subsequent edge, interior point
 !
  4580               continue
                          if ( npt.gt.ne ) call abtend                   &
@@ -2887,7 +2887,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                            ('falsely processed interior point')
                          go to 4700
 !
-!                                  first edge, merge points and save
+! first edge, merge points and save
 !
  4600               continue
                     call zmerge (npt,zpt,zavg)
@@ -2909,8 +2909,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  4700          continue
  4800     continue
-!                                  compute individual and cumulative
-!                                  segment lengths for the common edge
+! compute individual and cumulative
+! segment lengths for the common edge
           dzsum(1)=  0.d0
           nzcseg  =  nzcom - 1
           do 4810 izcom = 1,nzcseg
@@ -2921,11 +2921,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! #   call outmat ("zcom",3,3,nzcom,zcom)
 ! #   call outvec ("dzcom",nzcom,dzcom)
 ! #   call outvec ("dzsum",nzcom,dzsum)
-!                                  universal edge defined, adjust the
-!                                  remaining points of the abutment
-!                                  up to it.
-!                                  while doing this, perform the matchin
-!                                  assignments for the current abutment.
+! universal edge defined, adjust the
+! remaining points of the abutment
+! up to it.
+! while doing this, perform the matchin
+! assignments for the current abutment.
           izmid   =  nzcom/2
           call vadd (zcom(1,izmid+1), -1.d0, zcom(1,izmid), dz, 3)
           call cpip (dz,dz,dzsq)
@@ -2943,10 +2943,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call icopy (4,  kfdseg(4*ifsg-3),1, kokseg,1)
                kedg    =  kedseg
                izcom   =  0
-!                                  update the best guess at a matching
-!                                  fundamental segment (jfsgmx) while
-!                                  determining if the current segment
-!                                  is on edge 1 of a type 18 nw.
+! update the best guess at a matching
+! fundamental segment (jfsgmx) while
+! determining if the current segment
+! is on edge 1 of a type 18 nw.
                call mnmod (kedg,4,ksd,knet)
                npps    =  i2kseg - i1kseg + 1
                jupdwn  =  .5d0 * ( sdnst(kedg)+1.d0 ) * 99999.d0
@@ -2983,12 +2983,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                          kmp     =  kptemp (kmp)
                          if ( kmp .ne. iedmp ) go to 4820
 !
-!                                  count the common mesh points of
-!                                  all edges in the abutment
+! count the common mesh points of
+! all edges in the abutment
                     if ( npt.ge.ne ) izcom = izcom+1
-!                                  define the  tauedg  values for the
-!                                  common mesh points when processing
-!                                  the first edge.
+! define the  tauedg  values for the
+! common mesh points when processing
+! the first edge.
                     if ( .not. ( npt.ge.ne .and. ie.eq.1 ) ) go to 4835
                          tauedg  =  dzsum(izcom)/dzsum(nzcom)
                          kmp     =  iedmp
@@ -3002,8 +3002,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                               if ( kmp .ne. iedmp ) go to 4830
                          go to 4880
 !
-!                                  define  tau  values and adjust coordi
-!                                  of points that are not common mesh po
+! define  tau  values and adjust coordi
+! of points that are not common mesh po
  4835               continue
                     if ( kempec(iedmp).lt.0 ) go to 4880
                     call zmerge (npt,zpt,zavg)
@@ -3016,7 +3016,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     if ( tauz.lt.0.d0  .or.  tauz.gt.1.d0 ) call abtend &
      &                   ('tauz out of range')
 !
-!                                  change points
+! change points
                     kmp     =  iedmp
                     nloop   =  0
  4840               continue
@@ -3031,11 +3031,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                          if ( kmp.ne.iedmp ) go to 4840
  4880          continue
  4900     continue
-!                                  check that the material properties
-!                                  have been properly specified
+! check that the material properties
+! have been properly specified
 !
-!                                  evaluate the position and the tangent
-!                                  to the common edge at the logical mid
+! evaluate the position and the tangent
+! to the common edge at the logical mid
           call dcopy (3,     zcom(1,izmid),  1,  zmid,1)
           call daxpy (3, 1.d0, zcom(1,izmid+1),1,  zmid,1)
           call dscal (3, .5d0,  zmid,1)
@@ -3045,10 +3045,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
           iedmp   =  iedcom(izmid)
           kbad    =  0
-!                                  evaluate tangents pointing into each
-!                                  at the point zmid
+! evaluate tangents pointing into each
+! at the point zmid
           do 2100 ie = 1,ne
-!                                  standard loop setup (save isgn, knet)
+! standard loop setup (save isgn, knet)
                iedg    =  iedgbs + ie
                ifsg    =  kfdkey(iedg)
                call icopy (4,  kfdseg(4*(ifsg)-3),1, kokseg,1)
@@ -3063,11 +3063,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                kzedg   =  nza(knet) + kzedg
                kzfsg   =  kzedg + (i1kseg-1)*kncedg
                knfsg   =  i2kseg - i1kseg + 1
-!                                  find point on edge close to zmid
+! find point on edge close to zmid
                call nredge (zmid,   z(1,kzfsg),kncedg,knfsg             &
      &                     ,1,0.d0,  zx,tx,dx)
                tx      =  tx + i1kseg - 1
-!                                  perform various error checks
+! perform various error checks
                ibad    =  0
                itx     =  tx + .5d0
                if ( itx.lt.i1kseg .or. itx.gt.i2kseg ) ibad = ibad + 1
@@ -3101,8 +3101,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                          ,zx(1),zx(2),zx(3),zy(1),zy(2),zy(3)
                     goto 2100
                endif
-!                                  get a tangent vector pointing into
-!                                  nw knet at the point zmid
+! get a tangent vector pointing into
+! nw knet at the point zmid
                it1     =  tx
                it2     =  it1 + 1
                tau     =  tx - it1
@@ -3120,10 +3120,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kposx   =  kposab(iabt)
           nex     =  ne
           if ( mod(kposx,2).ne.1 ) goto 2130
-!                                  on 1st pos, add in a fake vector, set
-!                                  knet = -1.  a negative value of knet
-!                                  will signal special calculation and
-!                                  handling of material properties.
+! on 1st pos, add in a fake vector, set
+! knet = -1.  a negative value of knet
+! will signal special calculation and
+! handling of material properties.
                nex     =  nex + 1
                call cross (en1,tg,tgnet(1,nex))
                knwnet(nex)  = -1
@@ -3134,8 +3134,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                isgnet(nex) =  1
  2130     continue
           if ( kposx.lt.2 ) goto 2140
-!                                  on 2nd pos, add in a fake vector, set
-!                                  knet = -2
+! on 2nd pos, add in a fake vector, set
+! knet = -2
                nex     =  nex + 1
                call cross (en2,tg,tgnet(1,nex))
                knwnet(nex)  = -2
@@ -3155,8 +3155,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                knwnet(nex) = -2                                           ! Added by Martin Hegedus, 4/21/09
                isgnet(nex) =  1
  2140     continue
-!                                  calculate phase angles relative to
-!                                  the tangent on the first network
+! calculate phase angles relative to
+! the tangent on the first network
           do 2200 ie = 1,nex
                call vip (tg,1,  tgnet(1,ie),1,  3,  fac)
                fac     =  -fac
@@ -3173,7 +3173,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              goto 2200
                phnet(ie) = atan2( sphi, cphi)
  2200     continue
-!                                  validation printout
+! validation printout
           goto 2210
           write (6,'(1x,a10,1x,  i12)')                                 &
      & 'mat prp co',iabt
@@ -3184,7 +3184,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call outvci ('knwnet',nex,knwnet)
           call outmat ('tgnet',3,3,nex,tgnet)
  2210     continue
-!                                  sort the angles and make the check
+! sort the angles and make the check
           call dshell (nex,phnet,kphnet)
           ie      =  kphnet(nex)
           knet    =  knwnet(ie)
@@ -3209,9 +3209,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                iulm    =  (3+isgn)/2
                matnew  =  knet
                if ( knet.gt.0 ) matnew = matnet(iulp,knet)
-!                                  accumulate the lists of opposing
-!                                  surfaces associated with each
-!                                  abutment
+! accumulate the lists of opposing
+! surfaces associated with each
+! abutment
                if ( kprv.gt.0 .or. knet.gt.0 ) then
                   neztot  =  neztot + 1
                   kkfsgp  =  kprv
@@ -3231,11 +3231,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                   keqvel(2,neztot) = kkfsg
                endif
                if ( frwkte ) goto 2250
-!                                  if both facing surfaces are real surf
-!                                  and the abutment is not along a free
-!                                  trailing edge of a wake (see frwkte
-!                                  test above), enter the equivalence re
-!                                  of surfaces into kptrgn
+! if both facing surfaces are real surf
+! and the abutment is not along a free
+! trailing edge of a wake (see frwkte
+! test above), enter the equivalence re
+! of surfaces into kptrgn
                if ( kprv.gt.0 .and. knet.gt.0 ) then
                     isrfpv  =  iulprv + 2*(kprv-1)
                     isrf    =  iulp   + 2*(knet-1)
@@ -3246,13 +3246,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                 ,nm,nn,nza,z,epsgeo                              &
      &                 )
                endif
-!                                  if either surface is on a plane of sy
-!                                  (signalled by matnew or matprv .lt.0)
-!                                  material properties are consistent by
-!                                  definition.
+! if either surface is on a plane of sy
+! (signalled by matnew or matprv .lt.0)
+! material properties are consistent by
+! definition.
                if ( matprv.lt.0 .or. matnew.lt.0 ) goto 2250
                if ( matprv.eq.matnet(iulp,knet) ) goto 2250
-!                                  error detected, complain
+! error detected, complain
                     write (6,6003) iabt,kprv,nwname(kprv)               &
      &                                 ,knet,nwname(knet)
                     call abtmsg                                         &
@@ -3265,17 +3265,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                kedgpv  =  kedg
                iulprv  =  iulm
  2300     continue
-!                                  transfer point for error detection
+! transfer point for error detection
  2310     continue
  6003 format (' ** fatal error **  on abutment',i4,'. inconsistent'     &
      & ,' material properties were given for nw-s'                      &
      & ,1x,i3,'=',a10,', ',i3,'=',a10)
-!                                  fundamental segment  jfsgmx  is the b
-!                                  matching segment, while  kwfsg  is th
+! fundamental segment  jfsgmx  is the b
+! matching segment, while  kwfsg  is th
 !                                leading edge of a type 6 or 18 nw (if n
-!                                  record this information and find a
-!                                  suitable edge for vorticity matching
-!                                  necessary.
+! record this information and find a
+! suitable edge for vorticity matching
+! necessary.
           kpos    =  iandfn( kposab(iabt), indsym(isympa))
           mtchab(1,iabt) =  0
           call icopy (4,  kfdseg(4*(jfsgmx)-3),1, kokseg,1)
@@ -3374,7 +3374,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kwake   =  knwie(iewake)
           idcp2(2,ncp2ab) = -isgnie(iewake)*isgnie(ieup)*kup
           idcp2(3,ncp2ab) = +isgnie(iewake)*isgnie(ielo)*klo
-!                                               check ipot consistency
+!              check ipot consistency
           call abtipc (iabt,ncp2ab,ne)
           go to 5000
  9001 format (' abut',i3,' mtchab',3i4,' prior',/,  (10x,10i12) )
@@ -3400,8 +3400,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,/,'  nw:',i3,'  abutment:',i4,'  initial pt:',i4,'  final pt:'  &
      &   ,i4,'  network size:',i3,' x ',i3)
       nezaba(nabt+1) = neztot
-!                                  print out pairing of surfaces
-!                                  associated with each abutment
+! print out pairing of surfaces
+! associated with each abutment
       write (6,5253)
       do 5250 iabt = 1,nabt
          nez     =  nezaba(iabt+1) - nezaba(iabt)
@@ -3430,12 +3430,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                chul    =  charul(iulp)
             endif
 !
-!                                  set doublet types for facing nw's
+! set doublet types for facing nw's
             ntdkpv  =  0
             ntdk    =  0
             if ( knetpv.gt.0 ) ntdkpv = ntd(knetpv)
             if ( knet  .gt.0 ) ntdk   = ntd(knet)
-!                                  ktdk = index into cdbtyp for knet
+! ktdk = index into cdbtyp for knet
             ktdk    =  0
             if ( ntdk.eq.12 ) ktdk = 1
             if ( ntdk.eq.18 ) ktdk = 2
@@ -3443,9 +3443,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             if ( ntdk.eq. 6 ) ktdk = 4
             if ( knet.gt.0 ) ktk = kttype(knet)
             wakenw  =  (ktdk.ge.2)
-!                                  kt = kt type for nw knet
+! kt = kt type for nw knet
             ktk     =  0
-!                                  determine if abutment looks bad
+! determine if abutment looks bad
             badabt  =  .false.
             if ( knet.eq.knetpv .and.  chul.ne.chulpv .and.             &
      &                ktk.ne.2  .and.  ktk.ne.12 )  then
@@ -3455,7 +3455,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             if ( badabt ) badmsg =                                      &
      &                      'probable error: unabutted free edge'
 !                            12345678901234567890123456789012345
-!                                  get netwk names for facing surfaces
+! get netwk names for facing surfaces
             nwknet  =  ' '
             if ( knet  .eq.(-1) ) nwknet = '1st p-o-s'
             if ( knet  .eq.(-2) ) nwknet = '2nd p-o-s'
@@ -3482,10 +3482,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,/,   1x,'abutment',3x                                           &
      &      ,'nw-ident  ntd  knet.edge',4x                              &
      &      ,'nw-ident  ntd  knet.edge',4x,a)
-!                                  put out a header for the region defin
+! put out a header for the region defin
       write (6,6004)
-!                                  initialize zctrgn(*,1:2,k) to the log
-!                                  center of network k
+! initialize zctrgn(*,1:2,k) to the log
+! center of network k
       do 5300 k = 1,nnett
           ictr    =  (nm(k)+1)/2
           jctr    =  (nn(k)+1)/2
@@ -3493,7 +3493,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call dcopy (3,  z(1,lz),1,  zctrgn(1,1,k),1)
           call dcopy (3,  z(1,lz),1,  zctrgn(1,2,k),1)
  5300 continue
-!                                  identify the disjoint regions
+! identify the disjoint regions
       init    =  1
       ntrgn   =  0
  5310 continue
@@ -3501,7 +3501,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           initnw  =  kk
           if ( kptrgn(kk).gt.0 ) goto 5340
  5320 continue
-!                                  all cycles processed, reset pointers,
+! all cycles processed, reset pointers,
       do 5330 kk = 1,nnett2
           kptrgn(kk) = iabs( kptrgn(kk) )
  5330 continue
@@ -3517,10 +3517,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (3,  0.d0,0,  zctr,1)
       nctr    =  0
       kctr    =  0
-!                                  loop over the current cycle.
-!                                  as we go, we sum the logical centers
-!                                  of all non-wake networks into zctr
-!                                  for subsequent averaging.
+! loop over the current cycle.
+! as we go, we sum the logical centers
+! of all non-wake networks into zctr
+! for subsequent averaging.
  5350 continue
           k       =  (kk-1)/2 + 1
           iul     =  kk - 2*(k-1)
@@ -3546,7 +3546,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call dscal (3,  xctr,  zctr,1)
       call shlsrt (nctr,kkrgn)
-!                                  copy zctr into zctrgn
+! copy zctr into zctrgn
       kk      =  init
       nloop   =  0
  5360 continue
@@ -3561,7 +3561,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kptrgn(kk) = -kknw
           kk      =  kknw
           if ( kk.ne.init ) goto 5360
-!                                  generate a report on the region
+! generate a report on the region
       kprv    =  0
       nboth   =  0
       do 5370 ictr = 1,nctr
@@ -3688,17 +3688,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , zp(3), qpqp(3,3), tvec(3), qmid(3)
       logical  epsequ, badedg, abut, connec
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
 !end  abtflg
 !
-!                                   do NOT exclude source alone nw's
-!                                   from the abutment search by
-!                                   setting xsrcab = .false.   The
-!                                   value .true. is to be used for
-!                                   conventional processing.
+!  do NOT exclude source alone nw's
+!  from the abutment search by
+!  setting xsrcab = .false.   The
+!  value .true. is to be used for
+!  conventional processing.
       xsrcab  =  .true.
       nedgt   =  4*nnett
       call zero (sdnst,nedgt)
@@ -3711,7 +3711,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kedg    =  ksd + 4*(knet-1)
           iedgtp(kedg) = 0
           if ( ntd(knet).eq.0  .and.  xsrcab ) goto 200
-!                                  check for collapsed edge
+! check for collapsed edge
           ncolps  =  0
           do 10 ij = 2,knedg
                kz1     =  kzedg + (ij-2)*kncedg
@@ -3733,14 +3733,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                               ,ij ,(z(i,kz2),i=1,3)
    12          continue
    20     continue
-!                                  check that edge does not have
-!                                  to many meshpoints
+! check that edge does not have
+! to many meshpoints
           if ( knedg .le. mxedmp ) go to 30
                call abtmsg ('*fatal* too many points in nw edge')
                write (6,'(1x,a10,1x, 2i12)')                            &
      & 'net,edge',knet,ksd
    30     continue
-!                                  set edge type
+! set edge type
           iedgtp(kedg) = 0
           if ( ntd(knet).eq.0  .and.  xsrcab ) goto 200
           iedgtp(kedg) = 1
@@ -3754,33 +3754,33 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ntd(knet) .eq. 18 ) go to 118
           if ( ntd(knet) .eq. 20 ) go to 120
           call abtend ('200 loop, abtidn')
-!                                   doublet type = 0, no doublet at all
+!  doublet type = 0, no doublet at all
   100     continue
                goto 150
-!                                  doublet type = 4
+! doublet type = 4
   104     continue
                if ( ksd.eq.1 .or. ksd.eq.4 ) iedgtp(kedg) = 5
                go to 150
-!                                  doublet type = 6, design wake (lev):m
+! doublet type = 6, design wake (lev):m
   106     continue
                if ( ksd.eq.1 ) iedgtp(kedg) = 5
                if ( ksd.eq.2 ) iedgtp(kedg) = 4
                if ( ksd.eq.4 ) iedgtp(kedg) = 4
                go to 150
-!                                  doublet type = 12, doublet analysis
+! doublet type = 12, doublet analysis
   112     continue
                iedgtp(kedg) = 4
                go to 150
-!                                  doublet type = 18, doublet wake 1
+! doublet type = 18, doublet wake 1
   118     continue
                if ( ksd.eq.1 ) iedgtp(kedg) = 5
                go to 150
-!                                  doublet type = 20, doublet wake 2
+! doublet type = 20, doublet wake 2
   120     continue
                go to 150
 !
-!                                  characterize the middle elementary
-!                                  edge segment
+! characterize the middle elementary
+! edge segment
   150     continue
           ij      =  knedg/2 + 1
           kz1     =  kzedg + (ij-2)*kncedg
@@ -3795,7 +3795,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call cpip (dz,dz,smach(kedg))
   200 continue
       if ( ierabt.gt.0 ) call abtend ('abtecd: stopped, due to errors')
-!                                  characterize corners
+! characterize corners
       do 400 knet = 1,nnett
       do 400 kcn = 1,4
           kcorn   =  kcn + 4*(knet-1)
@@ -3808,7 +3808,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( iedgtp(kcornp).eq.1 ) kcnp = mod(kcn+1,4) + 1
           kcornp  =  kcnp + 4*(knet-1)
           icrntp(kcorn) = 2
-!                                  set corner type
+! set corner type
           if ( ntd(knet) .eq. 0 ) go to 300
           if ( ntd(knet) .eq.  4 ) go to 304
           if ( ntd(knet) .eq.  6 ) go to 306
@@ -3816,30 +3816,30 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ntd(knet) .eq. 18 ) go to 318
           if ( ntd(knet) .eq. 20 ) go to 320
           call abtend ('400 loop, abtidn')
-!                                   ntd(knet) = 0
+!  ntd(knet) = 0
   300     continue
                goto 350
-!                                  ntd(knet) = 4
+! ntd(knet) = 4
   304     continue
                if ( kcn.eq.1 .or. kcnp.eq.4 ) icrntp(kcorn) = 5
                if ( kcn.eq.2 .or. kcnp.eq.1 ) icrntp(kcorn) = 4
                if ( kcn.eq.4 .or. kcnp.eq.3 ) icrntp(kcorn) = 4
                go to 350
-!                                  ntd(knet) = 6
+! ntd(knet) = 6
   306     continue
                if ( kcn.eq.1 .or. kcnp.eq.4 ) icrntp(kcorn) = 5
                if ( kcn.eq.2 .or. kcnp.eq.1 ) icrntp(kcorn) = 5
                go to 350
-!                                  ntd(knet) = 12
+! ntd(knet) = 12
   312     continue
                icrntp(kcorn) = 4
                go to 350
-!                                  ntd(knet) = 18
+! ntd(knet) = 18
   318     continue
                if ( kcn.eq.1 .or. kcnp.eq.4 ) icrntp(kcorn) = 5
                if ( kcn.eq.2 .or. kcnp.eq.1 ) icrntp(kcorn) = 5
                go to 350
-!                                  ntd(knet) = 20
+! ntd(knet) = 20
   320     continue
                if ( kcn.eq.1 .or. kcnp.eq.4 ) icrntp(kcorn) = 5
                go to 350
@@ -3848,8 +3848,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   350     continue
   400 continue
-!                                  compute quantities  (ztedg,dstedg) fo
-!                                  use in a fast abutment test.
+! compute quantities  (ztedg,dstedg) fo
+! use in a fast abutment test.
       call zero (ztedg,6*nedgt)
       call zero (dstedg,nedgt)
       do 650 knet = 1,nnett
@@ -3956,16 +3956,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       dimension imp(2), jmp(2)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !
 !
-!                                   find iek, iel, where kedg and ledg
-!                                   appear in iabt's sublist and get
-!                                   full information about the 2 edges
-!                                   that oppose on another
+!  find iek, iel, where kedg and ledg
+!  appear in iabt's sublist and get
+!  full information about the 2 edges
+!  that oppose on another
       iedgbs  =  nedaba(iabt)
       ne      =  nedaba(iabt+1) - nedaba(iabt)
       iek     =  0
@@ -3997,8 +3997,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lzedg   =  lzedg + nza(lnet)
       kzfsg   =  kzedg + (i1kseg-1)
       lzfsg   =  lzedg + (i1lseg-1)
-!                                   define the endpoints of the
-!                                   opposing segments, respecting sign
+!  define the endpoints of the
+!  opposing segments, respecting sign
       if ( ksgn.gt.0 ) then
          imp(1)  =  i1kseg
          imp(2)  =  i2kseg
@@ -4014,10 +4014,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          jmp(1)  =  i2lseg
          jmp(2)  =  i1lseg
       endif
-!                                   enter the equivalence relations ass-
-!                                   ociated with the abutment ends,
-!                                   which always occur at abutment
-!                                   intersections
+!  enter the equivalence relations ass-
+!  ociated with the abutment ends,
+!  which always occur at abutment
+!  intersections
       do 200 iend = 1,2
          impx    =  2*imp(iend) - 1
          jmpx    =  2*jmp(iend) - 1
@@ -4025,10 +4025,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call edgfgi (jul,ledg,jmpx,  nm,nn,nefgsa,  llmp)
          call mpteqc (kptefg,nefgst,  kkmp,llmp)
   200 continue
-!                                   loop over the interior of each of
-!                                   the two edge segments, entering
-!                                   equivalence relations or generating
-!                                   pointers into (kkvlst,wtvlst)
+!  loop over the interior of each of
+!  the two edge segments, entering
+!  equivalence relations or generating
+!  pointers into (kkvlst,wtvlst)
       call abt2fg (iul,kedg,i1kseg,i2kseg,kzedg,kncedg,knfsg            &
      &            ,jul,ledg,i1lseg,i2lseg,lzedg,lncedg,lnfsg            &
      &            ,nefgst,nefgsa,kptefg,  ipmx,iptr,kkvlst,wtvlst       &
@@ -4078,7 +4078,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call nredge (p1,  ze,ince,ne, -isgn,t13,  z1,t1,d1)
       call nredge (p2,  ze,ince,ne,  isgn,t23,  z2,t2,d2)
       if ( d1.gt.epsgeo .or. d2.gt.epsgeo ) go to 950
-!                                  all tests passed, set abut = .true.
+! all tests passed, set abut = .true.
           abut    =  .true.
           te1     =  t1
           te2     =  t2
@@ -4142,15 +4142,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       integer pqsv
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !
       if ( ne.le.1 ) return
       if ( ne.gt.mxeiab ) goto 8000
-!                                  compute all edge lengths and the mini
-!                                  and maximum values of edge length.
+! compute all edge lengths and the mini
+! and maximum values of edge length.
       do 100 ie = 1,ne
           call icopy (4,  kfds(4*ie-3),1, kokseg,1)
           imp1    =  i1kseg
@@ -4177,10 +4177,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! #   call outvec ("dzedg",ne,dzedg)
       if ( dzmin .lt. .9d0*dzmax ) go to 8100
       epstau  =  epsgeo/dzmin
-!                                  define the equivalence relations for
-!                                  the abutment endpoints and collect ca
-!                                  equivalence relations for the abutmen
-!                                  interior
+! define the equivalence relations for
+! the abutment endpoints and collect ca
+! equivalence relations for the abutmen
+! interior
       nemp    =  0
       do 500 ie = 1,ne
           call icopy (4,  kfds(4*ie-3),1, kokseg,1)
@@ -4206,8 +4206,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call mpteqc (kptemp,nedmp,  kedmp2,k2s)
                call mpteqc (kptemp,nedmp,  kedmp1,k1s)
   180     continue
-!                                  done with the end points, now examine
-!                                  the interior points for candidate eq.
+! done with the end points, now examine
+! the interior points for candidate eq.
           kmp1    =  i1kseg + 1
           kmp2    =  i2kseg - 1
           kzseg   =  kzedg + (i1kseg-1)*kncedg
@@ -4255,9 +4255,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! #   call outmat ("pqemp",2,2,nemp,pqemp)
 ! #   call outvec ("dpqemp",nemp,dpqemp)
-!                                  all candidate equivalence relations f
-!                                  give sequential names to the entries
-!                                  pqemp, saving their full names in pqm
+! all candidate equivalence relations f
+! give sequential names to the entries
+! pqemp, saving their full names in pqm
       call jshell (2*nemp,pqemp,keyemp)
       pqsv    =  0
       npq     =  0
@@ -4286,9 +4286,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 650 ipq = 1,npq
           kpntpq(ipq) = ipq
   650 continue
-!                                  now carefully examine all the candida
-!                                  equivalence relations, in order, for
-!                                  ible inclusion
+! now carefully examine all the candida
+! equivalence relations, in order, for
+! ible inclusion
       do 700 iemp = 1,nemp
           ip      =  pqemp(iemp)
           iq      =  pqemp(iemp+nemp)
@@ -4325,8 +4325,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call mpteqc (kptemp,nedmp,  kedmpx,ledmpx)
           dpq     =  dpqemp( iemp )
           if ( dpq.le.epsgeo ) go to 700
-!                                  equivalenced points further apart tha
-!                                  epsgeo, the geometric tolerance
+! equivalenced points further apart tha
+! epsgeo, the geometric tolerance
           call mnmod (kedg,4,ksd,knet)
           call mnmod (ledg,4,lsd,lnet)
       write (6,6400) knet,ksd,kmp,  lnet,lsd,lmp,  dpq,epsgeo
@@ -4357,7 +4357,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*50 xmsg
 !         print an error message from the abutment analyzer
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -4387,24 +4387,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50 continue
       if ( kpt(jx).ne.jx ) go to 400
       go to 300
-!                                  kpt(ix) = ix,  kpt(jx) = jx
+! kpt(ix) = ix,  kpt(jx) = jx
   100 continue
       kpt(ix) =  jx
       kpt(jx) =  ix
       ksgn(jx)=  ijsgn
       go to 950
-!                                  kpt(ix) = ix,  kpt(jx) $ jx
+! kpt(ix) = ix,  kpt(jx) $ jx
   200 continue
       kpt(ix) =  kpt(jx)
       kpt(jx) =  ix
       ksgn(ix)=  ijsgn*ksgn(jx)
       go to 950
-!                                  kpt(ix) $ ix,  kpt(jx) = jx
+! kpt(ix) $ ix,  kpt(jx) = jx
   300 continue
       kpt(jx) = kpt(ix)
       kpt(ix) = jx
       ksgn(jx)=  ijsgn*ksgn(ix)
-!                                  kpt(ix) $ ix,  kpt(jx) $ jx
+! kpt(ix) $ ix,  kpt(jx) $ jx
   400 continue
       nloop   =  0
       kx      =  ix
@@ -4603,12 +4603,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , i2seg(mxedmp), imesh(mxedmp)
       logical  epsequ, abut, connec
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -4619,33 +4619,33 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  abtprt
 !
       nedgt    =  4*nnett
-!                                  define abutments
+! define abutments
       nlsegf  =  0
       nseglo  =  0
       ncall   =  0
       kerr    =  0
-!                                  loop on subject edges, kedg
+! loop on subject edges, kedg
       do 1000 kedg = 1,nedgt
       if ( iedgtp(kedg).le.1 ) go to 1000
       call mnmod (kedg,4,ksd,knet)
       call edgind (ksd,nm(knet),nn(knet),  kzedg,kncedg,kncint,knedg)
       kzedg   =  kzedg + nza(knet)
       nsegk   =  0
-!                                  loop on object edges, ledg
+! loop on object edges, ledg
       do 900 ledg = 1,nedgt
       if ( iedgtp(ledg).le.1  .or.  kedg.eq.ledg ) go to 900
       call mnmod (ledg,4,lsd,lnet)
       call edgind (lsd,nm(lnet),nn(lnet),  lzedg,lncedg,lncint,lnedg)
       lzedg   =  lzedg + nza(lnet)
-!                                  perform the rapid abutment test
+! perform the rapid abutment test
       call d2line (ztedg(1,kedg),ztedg(1,ledg),dist)
       ncall   =  ncall + 1
       nobutt = 0
       if ( dist .gt. dstedg(kedg)+dstedg(ledg)+3.d0*epsgeo ) nobutt=1
       if ( nobutt.eq.1 ) go to 900
-!                                  examine each elementary edge segment
-!                                  of edge  kedg  for abutment to edge
-!                                  ledg.
+! examine each elementary edge segment
+! of edge  kedg  for abutment to edge
+! ledg.
       kelseg  =  0
       do 500 kmp = 2,knedg
           kz1     =  kzedg + (kmp-2)*kncedg
@@ -4662,8 +4662,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   500 continue
       if ( kelseg.le.0 ) go to 900
-!                                  aggregate elementary segments into
-!                                  connected segments
+! aggregate elementary segments into
+! connected segments
       iseg1   =  1
       iseg2   =  1
       kagseg  =  0
@@ -4685,7 +4685,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   550     continue
           if ( connec ) go to 590
-!                                  (iseg1.iseg2)
+! (iseg1.iseg2)
           kagseg  =  kagseg + 1
           indseg  =  nseglo + nsegk + kagseg
           if(indseg.gt.mxiabt) call abtend('abtidn: mxiabt overflow, 1')
@@ -4715,7 +4715,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       t1abut(indseg) = t1pseg(iseg1)
       t2abut(indseg) = t2pseg(iseg2)
       if ( kagseg.gt.1 ) write (6,6002) knet,ksd,  lnet,lsd
-!                                  generate object segment descriptions
+! generate object segment descriptions
       do 700 iagseg = 1,kagseg
           indseg  =  nseglo + nsegk + iagseg
           t1p     =  t1abut(indseg)
@@ -4742,19 +4742,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           write (6,6001) knet,ksd,i1kseg,i2kseg                         &
      &                  ,lnet,lsd,i1lseg,i2lseg
   700 continue
-!                                  include the count of new segments
+! include the count of new segments
       if ( nobutt.eq.1 .and.kagseg.gt.0 .and.ncall.lt.500 )             &
      &    write (6,'(1x,a10,1x, 4i12)')                                 &
      & '==abut err',ncall,ledg,kedg,dist
       if ( nobutt.eq.1 .and. kagseg.gt.0 )                              &
      &     kerr = kerr + 1
       nsegk   =  nsegk + kagseg
-!                                  end, loop on candidate object edges
+! end, loop on candidate object edges
   900 continue
-!                                  done with examining all candidate
-!                                  object segments,  if no segments were
-!                                  found for edge  kedg,  enter the
-!                                  whole edge.
+! done with examining all candidate
+! object segments,  if no segments were
+! found for edge  kedg,  enter the
+! whole edge.
       if ( nsegk .gt. 0 ) go to 950
 !
       indseg  =  nseglo + nsegk + 1
@@ -4792,8 +4792,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1020 continue
  1030 continue
 !
-!                                  identify the fundamental edge
-!                                  segments
+! identify the fundamental edge
+! segments
       nfdseg  =  0
       call icopy (4*nseglo,  kabut,1,  klabut,            1)
       call icopy (4*nseglo,  labut,1,  klabut(4*nseglo+1),1)
@@ -4826,8 +4826,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1070 continue
       imesh(1) = 1
       imesh(knedg) = 1
-!                                  add fundamental segments associated
-!                                  with p-o-s abutment ends
+! add fundamental segments associated
+! with p-o-s abutment ends
       if ( 3.gt.knedg ) go to 1110
 !!      call abtpos (z(1,kzedg       ),epsgeo,nsymm,  ksym1)                ! Removed by Martin Hegedus, 4/21/09
 !!      call abtpos (z(1,kzedg+kncedg),epsgeo,nsymm,  ksym2)                ! Removed by Martin Hegedus, 4/21/09
@@ -4848,8 +4848,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ksym1   =  ksym2
  1100 continue
  1110 continue
-!                                  get the end points of the fundamental
-!                                  segments
+! get the end points of the fundamental
+! segments
       kseg    =  0
       kokseg  =  0
       kedseg  =  kedg
@@ -4907,7 +4907,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  declare local arrays
+! declare local arrays
 !
 !
 !call skrch1
@@ -4962,7 +4962,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension   nga(mxnett+1), mapn2f(2*maxcp), mapb2n(2*maxcp)       &
      &        , mapn2b(2*maxcp), mapb2f(2*maxcp), keyb2f(2*maxcp)       &
      &        , iptcns(mxcns+1), ibxcns(3*mxcns), wgtcns(3*mxcns)
-!                                     nga should probably go in /index/
+!    nga should probably go in /index/
       dimension kposab(mxnabt), nedaba(mxnabt+1), mtchab(4,mxnabt)
       dimension    iedgtp(4*mxnett), icrntp(4*mxnett), smach(4*mxnett)  &
      &         , sdnst(4*mxnett)                                        &
@@ -4991,7 +4991,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !ca abtprm
-!                                                         /abtprm/
+!                        /abtprm/
 !     nabt      number of abutments
 !     nabint    number of abutment intersections
 !     nfdseg    number of fundamental segments
@@ -5027,11 +5027,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , iabsum
 !end  abtprt
 !call symcnd
-!                                                            /symcnd/
+!                           /symcnd/
       common /symcnd/ isympa
 !end  symcnd
 !call lfqprm
-!                                                       /lfqprm/
+!                      /lfqprm/
 !     major flags for controlling the low-frequency features
 !     mlofrq = 0, normal run
 !            = 1, ph/0 run, low frequency theory
@@ -5058,12 +5058,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !end  lfqprm
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -5076,17 +5076,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  prnt
       logical tmark
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
 !ca trfdat
-!                                                            /trfdat/
+!                           /trfdat/
 !     /trfdat/ contains the list of wake networks with free trailing
 !              edges (edge 3).  these networks are determined during
 !              the abutment analysis and used during the trefftz plane
@@ -5115,7 +5115,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nfinal  =  0
       nvpcns  =  0
       iptr    =  0
-!                                  define cumulative mesh point counts
+! define cumulative mesh point counts
       nza(1)  =  0
       if ( nnett .gt. mxnett ) call abtend('abtidn: too many networks')
       do 5 k = 1,nnett
@@ -5125,7 +5125,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nzmesh.gt.maxpts ) call a502er ('abtidn'                     &
      &     ,' number of mesh points exceeds the program limit')
       call xfera (z,zsv,3*nzmesh)
-!                                  characterize edges
+! characterize edges
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====setup',ta
@@ -5162,8 +5162,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   420 continue
       call emark ('geobfadj')
   430 continue
-!                                  perform the definition of the
-!                                  fundamental edge segments
+! perform the definition of the
+! fundamental edge segments
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtecd',ta
@@ -5179,12 +5179,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outvci ('nfsga',nedgt+1,nfsga)
       call outpkv ('kfdseg',nfdseg,kfdseg)
   510 continue
-!                                  fundamental segments defined in
-!                                  kfdseg(1:nfdseg)
+! fundamental segments defined in
+! kfdseg(1:nfdseg)
 !
-!                                  given these fundamental segments,
-!                                  define the abutments as equivalence
-!                                  classes of fundamental edge segments
+! given these fundamental segments,
+! define the abutments as equivalence
+! classes of fundamental edge segments
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtfsd',ta
@@ -5198,8 +5198,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         call outvci ('kfdkey',nfdseg,kfdkey)
         call outvci ('kfdpnt',nfdseg,kfdpnt)
   610 continue
-!                                  for each abutment, define a plane of
-!                                  symmetry indicator for that abutment.
+! for each abutment, define a plane of
+! symmetry indicator for that abutment.
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtdab',ta
@@ -5215,8 +5215,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outvci ('kfdsgn',nfdseg,kfdsgn)
       call outvci ('kposab',nabt,kposab)
   710 continue
-!                                  count edge mesh points and establish
-!                                  the edge mesh point pointer array
+! count edge mesh points and establish
+! the edge mesh point pointer array
       nedmp   =  0
       nefgst  =  0
       nvlst   =  0
@@ -5238,7 +5238,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3820 continue
       if ( nedmp .gt. mxempt ) call abtend                              &
      &               ('abtidn: edge mesh point buffer exceeded      ')
-!                                  define pointers for mesh points
+! define pointers for mesh points
       do 3850 iedmp = 1,nedmp
           kptemp(iedmp) = iedmp
  3850 continue
@@ -5248,8 +5248,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 3860 i = 1,nefgst
           kptefg(i) = i
  3860 continue
-!                                  include effect of equivalence
-!                                  relations due to collapsed edges
+! include effect of equivalence
+! relations due to collapsed edges
       do 3900 kedg = 1,nedgt
           if ( iedgtp(kedg).ne.1 ) go to 3900
           call mnmod (kedg,4,ksd,knet)
@@ -5261,9 +5261,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call mpteqc (kptemp,nedmp,  iedmp1,iedmp2)
                iedmp1  =  iedmp2
  3870     continue
-!                                    enter equivalence relations for a
-!                                    collapsed edge into the fine grid
-!                                    (surface) pointer array, kptefg
+!   enter equivalence relations for a
+!   collapsed edge into the fine grid
+!   (surface) pointer array, kptefg
           do 3885 iul = 1,2
                call edgfgi (iul,kedg,1,  nm,nn,nefgsa,  kkmp1)
                knfg    =  2*knedg - 1
@@ -5273,11 +5273,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3880          continue
  3885     continue
  3900 continue
-!                                  now include the effect of all
-!                                  abutments into the edge mesh point
-!                                  pointer array
-!                                  for each abutment, identify equivalen
-!                                  classes of points
+! now include the effect of all
+! abutments into the edge mesh point
+! pointer array
+! for each abutment, identify equivalen
+! classes of points
       do 4000 iabt = 1,nabt
           iedg1   =  nedaba(iabt) + 1
           iedg2   =  nedaba(iabt+1)
@@ -5300,17 +5300,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iabutd .eq. 0 ) go to 4100
       call outvci ('kptemp',nedmp,kptemp)
  4100 continue
-!                                  the pointer array  kptemp(1:nedmp)
-!                                  that defines the equivalence classes
-!                                  of edge mesh points (the cycles of
-!                                  kptemp) is now defined.  number
-!                                  these equivalence classes, giving
-!                                  the lowest index values to those
-!                                  equivalence classes that are also
-!                                  abutment intersections.  for each
-!                                  edge mesh point,  kmp,
-!                                  iabs( kempec( kmp ) )  is the index
-!                                  of its equivalence class.
+! the pointer array  kptemp(1:nedmp)
+! that defines the equivalence classes
+! of edge mesh points (the cycles of
+! kptemp) is now defined.  number
+! these equivalence classes, giving
+! the lowest index values to those
+! equivalence classes that are also
+! abutment intersections.  for each
+! edge mesh point,  kmp,
+! iabs( kempec( kmp ) )  is the index
+! of its equivalence class.
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtemp',ta
@@ -5325,15 +5325,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outvci ('kempec-u',nedmp,kempec)
       call outvci ('nmpaia',nmpec+1,nmpaia)
  4150 continue
-!                                  for each abutment, define the univers
-!                                  edge associated with that abutment an
-!                                  adjust all mesh points involved in th
-!                                  abutment up to that universal edge.
-!                                  also, define the tau values for each
-!                                  edge mesh point interior to an abutme
-!                                  relative to the abutment's universal
-!                                  abtdue also assigns edge matching con
-!                                  which are then save in  mtchab(1:3,1:
+! for each abutment, define the univers
+! edge associated with that abutment an
+! adjust all mesh points involved in th
+! abutment up to that universal edge.
+! also, define the tau values for each
+! edge mesh point interior to an abutme
+! relative to the abutment's universal
+! abtdue also assigns edge matching con
+! which are then save in  mtchab(1:3,1:
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtdai',ta
@@ -5356,8 +5356,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtdue',ta
-!                                  check that all edge mesh points have
-!                                  been processed.
+! check that all edge mesh points have
+! been processed.
       nsrchk  =  0
       do 5050 iedmp = 1,nedmp
           ksav    =  kempec(iedmp)
@@ -5366,7 +5366,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call ibsrch (nedmpa, nedgt+1, iedmp, kedg)
           if ( iedmp.ge.nedmpa(kedg)+1 .and. iedmp.le.nedmpa(kedg+1) )  &
      &         go to 5020
-!                                  error condition :  iedmp not found
+! error condition :  iedmp not found
                write (6,'(1x,a10,1x, 3i12)')                            &
      & 'kedg,iedmp',kedg,iedmp,ksav
                if ( nsrchk.eq.0 ) call outvci ('nedmpa',nedgt+1,nedmpa)
@@ -5381,7 +5381,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & 'kempec err',iedmp,ksav
           ierabt  =  ierabt + 1
  5050 continue
-!                                  print out tau values upon request
+! print out tau values upon request
       if ( iabutd .eq. 0 ) go to 5070
       call outvec ('tauemp',nedmp,tauemp)
  5070 continue
@@ -5397,14 +5397,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5100 continue
       call emark ('geoafadj')
  5110 continue
-!                                  generate the (nbraia,ifsgai) data str
-!                                  defining the abutment intersections
-!                                  together with the array  mcmpai  defi
-!                                  the matching conditions for the corne
-!                                  points involved in each abutment
-!                                  intersection.
-!                                  here also, a description of each abut
-!                                  intersection is printed
+! generate the (nbraia,ifsgai) data str
+! defining the abutment intersections
+! together with the array  mcmpai  defi
+! the matching conditions for the corne
+! points involved in each abutment
+! intersection.
+! here also, a description of each abut
+! intersection is printed
       if ( iabsum.ge.2 ) call bmark ('abut int')
 !!      call abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza            & ! Removed by Martin Hegedus, 4/21/09
       call abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym,nza      & ! Added by Martin Hegedus, 4/21/09
@@ -5421,7 +5421,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outmti ('ifsgai',2,2,nbraia(nabint+1),ifsgai)
       call outvci ('mcmpai',nbraia(nabint+1),mcmpai)
  5200 continue
-!                                  print a full description of each abut
+! print a full description of each abut
       ntabo   =  1
       call bmark ('abutment')
       write (6,9107)
@@ -5437,9 +5437,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 continue
       call emark ('abutment')
  6010 continue
-!                                  print a description of the abutments
-!                                  and abutment intersections of each
-!                                  network.
+! print a description of the abutments
+! and abutment intersections of each
+! network.
       if ( nwxref .eq. 0 ) go to 6060
       call bmark ('abnwxref')
       write (6,9108)
@@ -5454,9 +5454,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kedg    =  kedseg
           call mnmod (kedg,4,ksd,knet)
           if ( knet .eq. knprev ) go to 6020
-!                                  this is the first abutment of a new
-!                                  network.  print a header and describe
-!                                  the first abutment intersection.
+! this is the first abutment of a new
+! network.  print a header and describe
+! the first abutment intersection.
           knprev  =  knet
           write (6,9201) knet
  9201 format (//,'0 abutments and abutment intersections for network'   &
@@ -5485,14 +5485,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtprt',ta
-!                                  do a scan of the geometry to determin
-!                                  which mesh points have moved.
+! do a scan of the geometry to determin
+! which mesh points have moved.
       call abtdzo (nnett,nm,nn,z,epsgeo,nza,zsv)
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
      & '====abtdzo',ta
-!                                  do a scan to determine motion of
-!                                  mean plane panel normals.
+! do a scan to determine motion of
+! mean plane panel normals.
       call abtdnc (nnett,nm,nn,z,zsv)
       call CPU_TIME (ta)
       if ( tmark ) write (6,'(1x,a10,1x,  f12.6)')                      &
@@ -5505,9 +5505,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           write (6,9112) k, iduser(k), iabt
  6030 continue
       write (6,9301)
-!                                   sort the trefftz nw list, squeeze
-!                                   out duplicates, apply user overides,
-!                                   and print a summary
+!  sort the trefftz nw list, squeeze
+!  out duplicates, apply user overides,
+!  and print a summary
       call shlsrt (nwtrf,nwltrf)
       kwtrf   =  0
       nwlprv  =  -1
@@ -5533,7 +5533,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nvpbsc  =  nbasic
       nvpfin  =  nfinal
       nvpcns  =  ncns
-!                                  save the abutment tables
+! save the abutment tables
       call ixtrns (1,nbraia,nmpec+1)
       call ixtrns (2,ifsgai,2*naicp)
       call ixtrns (3,mcmpai,naicp)
@@ -5565,7 +5565,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ixtrns (65,nezaba,nabt+1)
       call ixtrns (66,keqvel,2*neztot)
       call ixtrns (67,kpteqc,nedmp)
-!                                  check for fatal errors having occurre
+! check for fatal errors having occurre
       if ( ierabt.gt.0 ) call a502ms ('abtidn'                          &
      &           ,' errors in abmt identification')
       return
@@ -5620,14 +5620,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer  nodseg(nseg)
       dimension     amatch(40,40)
 !
-!                                  nsegmx
+! nsegmx
       integer pqseg(2,100), key(100), nbtra(101), point(200)
       integer pq(100,2), p(100), q(100), brnm(100), kb(100)
       equivalence (pq,p), (pq(1,2),q)
       dimension w(100)
-!                                  max( nsegmx, nnodmx)
+! max( nsegmx, nnodmx)
       integer netwk(100)
-!                                  nnodmx
+! nnodmx
       integer mnod(100), head(100), count(100), pnod(100)
 !
       logical lsym(2), grnded, gdasgn
@@ -5640,10 +5640,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  check input dimensions
+! check input dimensions
       ier     =  1
       if ( nseg.gt.nsegmx .or. nnod.gt.nnodmx ) go to 6000
-!                                  initialize
+! initialize
       iwarn   =  0
 ! ***************
 !     decode (1,9981,  w(74b-loc(w))  )  ch
@@ -5660,7 +5660,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nodpos  =  0
       nfail   =  0
       if ( nseg.le.0 ) return
-!                                  put local node numbers into  pq
+! put local node numbers into  pq
       ier     =  2
       nnodx   =  nnod
       do 20 iseg = 1,nseg
@@ -5681,22 +5681,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           go to 6000
    20 continue
 !
-!                                  put local node numbers into pqseg
+! put local node numbers into pqseg
       do 30 iseg = 1,nseg
       do 30 i = 1,2
           pqseg(i,iseg) =  pq(iseg,i)
    30 continue
-!                                  set flags for active planes of symmet
+! set flags for active planes of symmet
       lsym(1) =  ( isym.eq.1  .or.  isym.eq.4 )   .and.                 &
      &           ( labt.eq.1  .or.  labt.eq.3 )
       lsym(2) =  ( isym.eq.1  .or.  isym.eq.2 )   .and.                 &
      &           ( labt.eq.2  .or.  labt.eq.3 )
-!                                  construct graph of all branches/
-!                                  corner points that have a doublet
-!                                  distribution and do not lie in an
-!                                  active plane of symmetry.
-!                                  also, set  nodseg  for control points
-!                                  lying in an active p-o-s
+! construct graph of all branches/
+! corner points that have a doublet
+! distribution and do not lie in an
+! active plane of symmetry.
+! also, set  nodseg  for control points
+! lying in an active p-o-s
       nb      =  0
       do 100 iseg = 1,nseg
           nodseg(iseg) =  0
@@ -5720,10 +5720,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                if ( q(nb).le.nnod ) knod(q(nb)) = knod(q(nb)) + 1
   100 continue
       if ( nb .le. 0 ) go to 1000
-!                                  set  mnod  to prevent assignment of
-!                                  matching conditions associated with
-!                                  with abutments lying in active planes
-!                                  of symmetry
+! set  mnod  to prevent assignment of
+! matching conditions associated with
+! with abutments lying in active planes
+! of symmetry
       nreqd   =  0
       nmtchd  =  0
       do 200 inod = 1,nnod
@@ -5736,14 +5736,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( mnod(inod) .gt. 0 ) nmtchd= nmtchd + 1
   200 continue
       nreqd   =  min ( nnod-1, nreqd)
-!                                  scan the tree and determine spanning
-!                                  trees for each disjoint subgraph
+! scan the tree and determine spanning
+! trees for each disjoint subgraph
       ier     =  3
       call gphscn(nb,nnodx,p,q,brnm,w,kb,netwk,ntr,nbtra,key,iprnt,ierr)
       if ( ierr .ne. 0 ) go to 6000
       if ( labt.eq.0  .and.  ntr.gt.1 ) iwarn = max (1,iwarn)
-!                                  check for matching wake branches
-!                                  missing from the spanning tree.
+! check for matching wake branches
+! missing from the spanning tree.
       l1      =  nbtra(ntr+1) + 1
       l2      =  nb
       if ( l1 .gt. l2 ) go to 211
@@ -5751,9 +5751,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( kb(l) .eq. 1 ) iwarn = max (20000,iwarn)
   210 continue
   211 continue
-!                                  defoliate subgraphs and perform
-!                                  assignment of nodes/abutments to
-!                                  branches/corner points
+! defoliate subgraphs and perform
+! assignment of nodes/abutments to
+! branches/corner points
       if ( ntr.le.0 ) go to 510
       do 500 itr = 1,ntr
           nbtr    =  nbtra(itr+1) - nbtra(itr)
@@ -5765,7 +5765,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           l1      =  nbtra(itr) + 1
           l2      =  nbtra(itr+1)
           igrd    =  q(l2)
-!                                  check for bad assignments
+! check for bad assignments
           ngrasn  =  0
           grnded  =  mnod(igrd) .ne. 0
           gdasgn  =  .true.
@@ -5779,8 +5779,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   220     continue
           if ( ngrasn.gt.0  .and.  .not.grnded ) gdasgn = .false.
           if ( gdasgn ) go to 280
-!                                  assignment scheme did not work.
-!                                  try all possible ground nodes.
+! assignment scheme did not work.
+! try all possible ground nodes.
           iwarn   =  max (3,iwarn)
           write (iutfil,7001) itr, nnodx
           do 250 igrdx = 1,nnodx
@@ -5819,7 +5819,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nmtchd  =  nmtchd + nodpos
       if ( nmtchd .gt. nreqd ) iwarn = max ( 4, iwarn)
       if ( nmtchd .lt. nreqd ) go to 6000
-!                                  define matching coefficients
+! define matching coefficients
       do 600 iseg = 1,nseg
       do 600 jseg = 1,nseg
           amatch(iseg,jseg) = 0.d0
@@ -5833,12 +5833,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                amatch(iseg,jseg) = amatch(iseg,jseg) + (-1)**i
   700     continue
   800 continue
-!                                  exit
+! exit
  1000 continue
       ier     =  0
       if ( ntr.eq.0 ) iwarn = 0
       if ( iwarn .eq. 0 ) return
-!                                  error exit
+! error exit
  6000 continue
       write (iutfil,6050)
  6050 format ('1   abtint execution summary (see above for possible mess&
@@ -5985,7 +5985,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iermsg  =  0
       rul(1)  =  1.d0
       rul(2)  =  1.d0
-!                                  define iptabt and perform some error
+! define iptabt and perform some error
       do 2000 iul = 1,2
           kedgsg  =  idcp2(iul+1,icp2ab)
           isgnsf  =  isign(1,kedgsg)
@@ -5999,7 +5999,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ipotx(iul) = ipotnw
           isgnul(iul) = isgnsf
           if ( ipotnw.eq.0 ) goto 1800
-!                                  ipotnw # 0, 2 nw case
+! ipotnw # 0, 2 nw case
                if (  mod(iabs(ipotnw),2) .eq. 1 )                       &
      &                       ipotnw = ipotnw + isign( 1, ipotnw)
 !
@@ -6009,7 +6009,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                endif
 !
                goto 1900
-!                                  ipotnw = 0, 1 nw case
+! ipotnw = 0, 1 nw case
  1800     continue
 !
                if ( npnmtc.gt.2 ) then
@@ -6080,7 +6080,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*50 xmsg
 !         print an error message from the abutment analyzer
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
@@ -6160,22 +6160,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension nedaba(751)
 !
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call abtflg
-!                                                            /abtflg/
+!                           /abtflg/
 !         fatal error flag posted during abutment processing
       common /abtflg/ ierabt, xsrcab
       logical xsrcab
 !end  abtflg
       dimension  indsym(4)
       data indsym / 3, 2, 0, 1 /
-!                                  generate symmetry information for
-!                                  each abutment.  also store the
-!                                  abutment index in  kfdsgn  along
-!                                  with the orientation.
+! generate symmetry information for
+! each abutment.  also store the
+! abutment index in  kfdsgn  along
+! with the orientation.
       do 3700 iabt = 1,nabt
           iedg1   =  nedaba(iabt) + 1
           iedg2   =  nedaba(iabt+1)
@@ -6200,8 +6200,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3600     continue
 !
           kposab(iabt) =  kpos
-!                                  now, check that all points lie
-!                                  on the apparent planes of symmetry
+! now, check that all points lie
+! on the apparent planes of symmetry
           do 3650 iedg = iedg1,iedg2
                ifsg    =  kfdkey(iedg)
                call icopy (4,  kfdseg(4*ifsg-3),1, kokseg,1)
@@ -6216,7 +6216,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     call abtpos (z(1,kz1),epsgeo,nisym,njsym,  ipos)      ! Added by Martin Hegedus, 4/21/09
                     iposx  =  iandfn( ipos, kpos)
                     if ( iposx .eq. kpos ) go to 3630
-!                                  error -- issue warning
+! error -- issue warning
                          write (6,9001) iabt,knet,ksd,imp,ipos,kpos
                     call abtmsg ('abtsym: bad abutment on p-o-s')
  3630          continue
@@ -6279,7 +6279,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( n.le.0 ) go to 200
       call ibsrch (ia,n,iax,l)
       if ( l.ge.n ) go to 60
-!                                  l .lt. n, thus  iax .le. ia(n)
+! l .lt. n, thus  iax .le. ia(n)
       if ( iax.eq.ia(l+1) ) return
       lp1    =  l + 1
       do 50 ibk = lp1,n
@@ -6324,28 +6324,28 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     formal parameters:
 !
 !        iend     integer  in/out   input - end of the segment to
-!                                   connect to the current string
-!                                   1 - connect trace start to string
-!                                   2 - connect trace end to string
-!                                   output - connected end number
+!  connect to the current string
+!  1 - connect trace start to string
+!  2 - connect trace end to string
+!  output - connected end number
 !        iother   integer  output   free end of the segment after
-!                                   the segment is added to trace
+!  the segment is added to trace
 !        ipanno   integer  input    panel number to add to trace
 !        ips      vector   in/out   list containing the panel numbers
-!                                   in current trace
+!  in current trace
 !        nout     integer  input    standard output unit
 !        numpan   integer  in/out   panel counter for this string
 !        array    vector   in/out   contains panel segment information
-!                                   such as the x,y,z location of
-!                                   where the segment enters and
-!                                   exits the panel
+!  such as the x,y,z location of
+!  where the segment enters and
+!  exits the panel
 !        where    char.    input    string telling where to put new
-!                                   trace in cut
-!                                   'new'    - this is the first entry
-!                                              in a new string
-!                                   'top'    - add trace to top of str
-!                                   'bottom' - add trace to bottom of
-!                                              string
+!  trace in cut
+!  'new'    - this is the first entry
+!             in a new string
+!  'top'    - add trace to top of str
+!  'bottom' - add trace to bottom of
+!             string
 !
 !
 !     --------------------- formal parameter list ---------------------
@@ -6449,36 +6449,36 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     formal parameters:
 !
 !        isinfo   matrix   in/out - list containing the information
-!                                   about the current string
-!                                   col 1 - trace number
-!                                   col 2 - beginning index in the
-!                                           ips (panel stack) vector
-!                                   col 3 - end index in the ips vector
-!                                   col 4 - increment for loop along
-!                                           individual trace
-!                                           (if beg > end; incr=-1)
+!  about the current string
+!  col 1 - trace number
+!  col 2 - beginning index in the
+!          ips (panel stack) vector
+!  col 3 - end index in the ips vector
+!  col 4 - increment for loop along
+!          individual trace
+!          (if beg > end; incr=-1)
 !        iend    integer   input    end of the trace to connect to
-!                                   the current string
-!                                   1 - connect trace start to string
-!                                   2 - connect trace end to string
+!  the current string
+!  1 - connect trace start to string
+!  2 - connect trace end to string
 !        itcsa    vector    input   trace stack accumulator
-!                                   this vector contains the accum.
-!                                   sum of the number of panels in
-!                                   each trace.
-!                                   itcsa(itra) + 1 = beginning index
-!                                        in ips for trace
-!                                   itcsa(itra+1) = end index in ips
-!                                        for trace
+!  this vector contains the accum.
+!  sum of the number of panels in
+!  each trace.
+!  itcsa(itra) + 1 = beginning index
+!       in ips for trace
+!  itcsa(itra+1) = end index in ips
+!       for trace
 !        itra     integer   input   current trace number
 !        nout     integer   input   standard output unit
 !        numtra   integer   in/out  trace counter for this string
 !        where    char.     input   string telling where to put new
-!                                   trace in cut
-!                                   'new'    - this is the first entry
-!                                              in a new string
-!                                   'top'    - add trace to top of str
-!                                   'bottom' - add trace to bottom of
-!                                              string
+!  trace in cut
+!  'new'    - this is the first entry
+!             in a new string
+!  'top'    - add trace to top of str
+!  'bottom' - add trace to bottom of
+!             string
 !
 !
 !     --------------------- formal parameter list ---------------------
@@ -6687,12 +6687,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5002   format('m',i2.2,'c',i3.3)
 !
         do 550 irow = 1, nmk
-!                                  put out header on nw 1, row 1, col 1
+! put out header on nw 1, row 1, col 1
       if ( netwrk.eq.1  .and.  irow.eq.1  .and.  jcol.eq.1 )            &
      &    write (iagpsf,6001) (ia,ia=1,nacase)
  6001 format (' irow'  ,12x,'x'  ,12x,'y'  ,12x,'z', 4(10x,'cp',i1,:))
 !
-!                                  define indices of adjacent panels
+! define indices of adjacent panels
           ipxmm    =  irow-1+(nmk-1)*(jcol-2)
           ipxpm    =  irow  +(nmk-1)*(jcol-2)
           ipxmp    =  irow-1+(nmk-1)*(jcol-1)
@@ -7014,7 +7014,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -7115,12 +7115,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*10 qratio, qnetls, qsrfls, qmatls
 !end  matprp
 !call cvtrns
-!                                               /cvtrns/
+!              /cvtrns/
       common /cvtrns/ nejc
 !end  cvtrns
       common /skrchy/ scry(200,28)
 !call compsp
-!                                                           /compsp/
+!                          /compsp/
 !         contains info relating mu on edges 2 or 4 of ntdk=6 nw's
 !         to panel interior values
       common /compsp/ bpsp(6,200,2)                                     &
@@ -7149,16 +7149,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       wkanal  =  .false.
       ntdk    =  ntd(kc)
       if ( ntdk.eq.18 .or. ntdk.eq.20 ) wkanal = .true.
-!                                  determine if the boundary condition s
-!                                  be replaced by setting a provisional
-!                                  to a value defined by an extrapolatio
-!                                  spline
+! determine if the boundary condition s
+! be replaced by setting a provisional
+! to a value defined by an extrapolatio
+! spline
       setpsp  =  .false.
       if ( ntd(kc).ne.6 ) goto 30
       call mnmod (ijfgc,2*nm(kc)-1,ifn,jfn)
       if ( jfn.ne.1 .and. jfn.ne.(2*nn(kc)-1) ) goto 30
       if ( nlopt.eq.0  .or.  nbin.eq.nbinmc ) goto 30
-!                                  set flag to generate a specified mu b
+! set flag to generate a specified mu b
           setpsp  =  .true.
    30 continue
       if ( nbin.eq.nbinmc ) go to 1000
@@ -7403,17 +7403,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call outmtx ('aic row',ityprc,ityprc,nsngt,row)
       endif
       return
-!                                  matching conditions
+! matching conditions
  1000 continue
       nrhtyp  =  6
-!                                  calculate hypothetical c.p. location
+! calculate hypothetical c.p. location
       jc      =  jci
       nwrit   =  1
       call mnmod (ijfgc,2*nm(kc)-1,ifn,jfn)
       call enrchg (kc,ifn,jfn,zch)
       sclzch  =  senrch
-!                                  determine if the abutment is a cp2
-!                                  matching abutment.
+! determine if the abutment is a cp2
+! matching abutment.
       icp2ab  =  0
       if ( idcpmc.eq.0 ) go to 1160
       kabt    =  iabs(kabmtc)
@@ -7442,7 +7442,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rul(1)  =  1.d0
       rul(2)  =  1.d0
       if ( idcpmc.ne.2 .and. idcpmc.ne.3 ) goto 1176
-!                                  define iptabt and perform some error
+! define iptabt and perform some error
       if ( icp2ab.eq.0 ) CALL AbortPanair('aical-1')
       do 1155 iul = 1,2
           kedgsg  =  idcp2( iul+1, icp2ab)
@@ -7457,12 +7457,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ipotnw  =  ipot(knet)
           isgnul(iul) = isgnsf
           if ( ipotnw.eq.0 ) goto 1151
-!                                  ipotnw # 0, 2 nw case
+! ipotnw # 0, 2 nw case
                if (  mod(iabs(ipotnw),2) .eq. 1 )                       &
      &                       ipotnw = ipotnw + isign( 1, ipotnw)
                if ( isgnsf*ipotnw .le. 0 ) CALL AbortPanair('aical-2')
                goto 1154
-!                                  ipotnw = 0, 1 nw case
+! ipotnw = 0, 1 nw case
  1151     continue
                if ( nejc.eq.4 .and. npnmtc.le.2 ) goto 1154
                write (6,'(1x,a10,1x, 10i12)')                           &
@@ -7514,15 +7514,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call zero (dvs,3)
           call zero (dvd,9)
           if ( kabmtc.lt.0 ) go to 1300
-!                                  ordinary doublet matching
+! ordinary doublet matching
                call bqbfun (svar,tvar,  phi,phis,phit)
                call vmul (phi,sgn,dvd,9)
                go to 1465
  1300     continue
-!                                  cp matching condition.  if  idcpmc=1,
-!                                  do ordinary vorticity (velocity jump)
-!                                  matching.  if  idcpmc=2  and  icp2ab.
-!                                  do cp2 matching
+! cp matching condition.  if  idcpmc=1,
+! do ordinary vorticity (velocity jump)
+! matching.  if  idcpmc=2  and  icp2ab.
+! do cp2 matching
           call dvcalc (zch,svar,tvar,  dvsrc,dvdbl)
           call vmul (znc,sgn,zncsgn,3)
           if ( icp2ab .eq. 0 ) go to 1400
@@ -7540,7 +7540,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                if ( knedge.ne.knlo .and. knedge.ne.knup ) goto 1400
 !
                if ( iptabt.eq.0 ) goto 1350
-!                                  iptabt = 2,4,  3 nw, thick surface ma
+! iptabt = 2,4,  3 nw, thick surface ma
                     if ( knedge.eq.knup ) iul = 1
                     if ( knedge.eq.knlo ) iul = 2
                     if ( knedge.eq.knup ) sgn =  sgup
@@ -7550,7 +7550,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     zncsgn(2) = fac*vfsul(2,1,iul)
                     zncsgn(3) = fac*vfsul(3,1,iul)
                     goto 1400
-!                                  iptabt = 0, 2 nw, thin surface matchi
+! iptabt = 0, 2 nw, thin surface matchi
  1350          continue
                     fac = -sgup/fsvm(1)**2
                     zncsgn(1)= fac *( rul(1)*vfsul(1,1,1)               &
@@ -7597,7 +7597,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1470     continue
  1475     continue
  1500 continue
-!                                    skip if vfsul data undefined
+!   skip if vfsul data undefined
       if ( iptabt.ne.0 ) goto 1510
       ia     =  1
       tg(1)  =  rul(1)*vfsul(1,ia,1) - rul(2)*vfsul(1,ia,2)
@@ -7629,8 +7629,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1600 continue
       if ( jc.eq.ipraic ) call outmtx ('ipraic',ityprc,ityprc,nsngt,row)
       return
-!                                  set the value of mu on a type 6 nw ed
-!                                  by extrapolation
+! set the value of mu on a type 6 nw ed
+! by extrapolation
  1700 continue
       nrhtyp  =  8
       call mnmod (ijfgc,2*nm(kc)-1,ifn,jfn)
@@ -7638,7 +7638,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       jx      =  1
       if ( jfn.gt.1 ) jx = 2
       if ( kntpsp.eq.kc ) goto 1740
-!                                  read psp data for current network
+! read psp data for current network
           kntpsp  =  kc
           m       =  nm(kc)
           nw      =  m*28
@@ -7648,17 +7648,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call upkpsp (200,m,  npsp,kkpsp,iipsp,bpsp,  4*nsngk,scry)
 !
  1740 continue
-!                                  check that the psp has not been nulle
+! check that the psp has not been nulle
       if ( kkpsp(icrs,jx).eq.0 ) then
           call a502ms ('aical','mu set to 0 w/o nulling nlopt')
           write (6,'(1x,a10,1x, 3i12)')                                 &
      & 'k,ifn,jfn',kc,ifn,jfn
           goto 1810
       endif
-!                                  put in the bc:
-!                                                 nspsp
-!                                   mu(sp point) = sum bpsp(k)*mu( iipsp
-!                                                  k=1
+! put in the bc:
+!                nspsp
+!  mu(sp point) = sum bpsp(k)*mu( iipsp
+!                 k=1
       nwrit   =  1
       is      =  kkpsp(icrs,jx)
       isa     =  iabs(is)
@@ -7785,7 +7785,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
       END Subroutine AicErr
-! **deck aicsup
+      
+
       subroutine aicsup (q,saic,daic)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -7805,7 +7806,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                                                               *
 !c    *                    * * * m e t h o d * * *                    *
 !     *                          - - - - - -                          *
-!     *   aicsup uses formulae developed by m. epton at the boeing    *
+!     *   aicsup uses formulae developed by m. epton at the boeing    * ! Yay a familiar name!
 !     *   company.   these formulae give the source and doublet       *
 !     *   aics as follows                                             *
 !     *                                                               *
@@ -8025,23 +8026,26 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   yval      local     - - - -   a  y argument for atan2       *
 !     *                                                               *
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+      ! Throughout a go to 3000 will simply exit the function
+      ! A go to 7000 will print an error function and stop execution
 !
       dimension  q(2,16), saic(4,6), daic(4,10)
-!                                  input data
+! input data
 !call supdta
-!                                                            /supdta/
+!                           /supdta/
       common /supdta/ p(2), x, n, doublt, btinv, nf
 !end  supdta
       logical  doublt
       common /aicscm/                                                   &
      &                vm(16), vp(16), rhosq(16)                         &
      &              , nm(2,16), edge(16), corner(16), d(16)             &
-     &              ,  hb(14)
+     &              , hb(14)
       double precision     nm
       dimension   h(2,2,2), bv(2), btw(2,2)
       equivalence (h,hb), (bv,hb(9)), (btw,hb(11))
       dimension tg(2,16),rho(2,16),r(16),phi(16),aipsrr(2,2)
-!                                  local arrays and variables
+! local arrays and variables
       logical  edge, corner, within, intsct, xeqzro, convex, subset
 !call ncons
       common /ncons/ pi,pi2,pi4i,twopi,pio2
@@ -8053,10 +8057,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & l3,7h  x =  ,e16.8 ,/, 20x,31h field and panel corner points ,/, &
      &    (2x,i2,1h.,3x,e16.8,6x,4e16.8))
    30 continue
-!                                  set some constants
+
+! set some constants
       xeqzro  =  x.eq.0.d0
       xsq     =  x*x
-!                                  initialize aic"s to zero
+
+! initialize aic"s to zero
       call zero (hb,14)
       aipsrr(1,1) =  0.d0
       aipsrr(1,2) =  0.d0
@@ -8066,51 +8072,62 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ng      =  3*( 1 + nf/10 )
       call zero ( saic, 4*ng)
       call zero (daic,4*nf)
-!                                  check for null integral
+
+! check for null integral
       if ( x.lt.0.d0 ) go to 3000
       if ( n.lt.3 ) go to 3000
-!                                  check for too many corners
+
+! check for too many corners
       if ( n.gt.20 ) go to 7000
-!                                  determine panel orientation
+
+! determine panel orientation
       area    =  0.d0
       km1     =  n
       do 250 k = 1,n
           area    =  area + q(1,km1)*q(2,k) - q(2,km1)*q(1,k)
           km1     =  mod(km1,n)+1
   250 continue
-      if ( area.gt.0.d0 ) go to 270
+
+      if ( area.gt.0.d0 ) go to 270 ! This is so bad....
           go to 3000
   270 continue
-!                                  get  rho(*,k), rhosq(k), corner(k)
-!                                  and  tg(*,k), nm(*,k), d(k)
-!
+
+! get  rho(*,k), rhosq(k), corner(k)
+! and  tg(*,k), nm(*,k), d(k)
       km1     =  n
       do 300 k = 1,n
-!                                  rho(*,k)
+! rho(*,k) Displacement vector
           rho(1,k)=  q(1,k) - p(1)
           rho(2,k)=  q(2,k) - p(2)
-!                                  rhosq(k)
+
+! rhosq(k) Magnitude of the displacement vector (this works because rs = 1)
           rhosq(k)=  rho(1,k)**2 + rho(2,k)**2
-!                                  corner(k)
+
+! corner(k) (whether corner k is in the Mach cone)
           corner(k) = .true.
           if ( xeqzro .or. rhosq(k).ge.xsq ) corner(k) = .false.
-!                                  tangent to edge k,  tg(*,k)
+
+! tangent to edge k,  tg(*,k)
           dy      =  q(1,k) - q(1,km1)
           dz      =  q(2,k) - q(2,km1)
-          dnm     =  sqrt( dy*dy + dz*dz )
+          dnm     =  sqrt( dy*dy + dz*dz ) ! Normalizing denominator
           tg(1,k) =  dy/dnm
           tg(2,k) =  dz/dnm
-!                                  normal to edge k,  nm(*,k)
+
+! normal to edge k,  nm(*,k)
           nm(1,k) =  tg(2,k)
           nm(2,k) = -tg(1,k)
-!                                  distance of edge k, d(k)
+
+! in-plane perpendicular distance to edge k, d(k)
           d(k)    =  rho(1,k)*nm(1,k) + rho(2,k)*nm(2,k)
-!                                  update  km1
+
+! update  km1
       km1     =  mod(km1,n) + 1
   300 continue
-!                                  output partial results
-!                                  get  vp(k), vm(k), intsct, within, ar
-!                                       edge(k), convex
+
+! output partial results
+! get  vp(k), vm(k), intsct, within, ar
+!      edge(k), convex
       intsct  =  .false.
       within  = .true.
       convex  =  .true.
@@ -8119,28 +8136,35 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subset  =  .true.
       ic2     =  2
       do 400 k = 1,n
-!                                  update subset
+
+! update subset
           subset  =  subset .and. corner(k)
-!                                  vp(k) = ( tg(k), rho(k))
+          
+! vp(k) = ( tg(k), rho(k)) edge integration distance
           vp(k)   =  tg(1,k)*rho(1,k  ) + tg(2,k)*rho(2,k  )
-!                                  vm(k) = ( tg(k), rho(k-1) )
+
+! vm(k) = ( tg(k), rho(k-1) )
           vm(k)   =  tg(1,k)*rho(1,km1) + tg(2,k)*rho(2,km1)
-!                                  edge(k)
+
+! edge(k) whether the edge intersects the Mach cone
           edge(k) =  corner(km1) .or. corner(k)
           vpvm    =  vp(k)*vm(k)
           if ( abs(d(k)).lt.x  .and.  x.ne.0.d0  .and.  vpvm.le.0.d0 )  &
      &         edge(k) = .true.
-!                                  update intsct
+
+! update intsct
           intsct  =  intsct .or. edge(k)
-!                                  update area
+
+! update area
           areak   =  rho(1,km1)*rho(2,k) - rho(2,km1)*rho(1,k)
           area    =  area + areak
-!                                  update convex.  the sine of the
-!                                  turning angle alpha is given
-!                                  sin(alpha) = tg(k-1) x tg(k)
-!                                             = tg(k-1) . nm(k)
-!                                  if sin(alpha) .ge. 0, corner  k-1
-!                                  is convex
+
+! update convex.  the sine of the
+! turning angle alpha is given
+! sin(alpha) = tg(k-1) x tg(k)
+!            = tg(k-1) . nm(k)
+! if sin(alpha) .ge. 0, corner  k-1
+! is convex
           snalfa  =  tg(1,km1)*nm(1,k) + tg(2,km1)*nm(2,k)
           if ( snalfa .lt. 0.d0 ) convex = .false.
           isgn    =  1
@@ -8157,31 +8181,37 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           go to 7000
   415 continue
       if ( area .le. 0.d0 ) go to 3000
+
 !              if the boundary of sigma has a point lying within c
 !              (intsct =.t. ) or if the center of c lies within sigma
 !              (within =.t. ) their intersection is non-null and we
 !              must compute aic"s
-      if (.not.intsct  .and.  .not.within ) go to 3000
-!                                  get functions  r, qprm
-      kp1     =  2
-      psi     =  pi2
-      do 500 k = 1,n
-      r(k)    =  0.d0
-      if ( corner(k) ) psi = psi + pi
-      if (   edge(k) ) psi = psi - pi
-      if ( .not.corner(k) ) go to 490
-!                                  r(k) = sqrt( x*x - rho**2 )
-          r(k)    =  sqrt ( xsq - rhosq(k) )
-!                                  qprm(k)
-          tktkp1  =  tg(1,k)*tg(1,kp1) + tg(2,k)*tg(2,kp1)
-          tcross  =  tg(1,k)*tg(2,kp1) - tg(2,k)*tg(1,kp1)
-          xval    =  d(k)*d(kp1) - xsq*tktkp1
-          yval    =  x*r(k)*tcross
-          psi     =  psi - atan2( yval, -xval)
-  490 continue
-      kp1    =  mod(kp1,n)+1
-  500 continue
-!                                  phi(k)
+      if (.not.intsct  .and.  .not.within ) go to 3000 ! No influence need be calculated
+
+    ! get functions  r, qprm
+    kp1     =  2
+    psi     =  pi2
+    do 500 k = 1,n
+        r(k)    =  0.d0
+        if ( corner(k) ) psi = psi + pi
+        if (   edge(k) ) psi = psi - pi
+        if ( .not.corner(k) ) go to 490
+
+            ! r(k) = sqrt( x*x - rho**2 )
+            r(k)    =  sqrt ( xsq - rhosq(k) )
+
+          ! qprm(k)
+            tktkp1  =  tg(1,k)*tg(1,kp1) + tg(2,k)*tg(2,kp1)
+            tcross  =  tg(1,k)*tg(2,kp1) - tg(2,k)*tg(1,kp1)
+            xval    =  d(k)*d(kp1) - xsq*tktkp1
+            yval    =  x*r(k)*tcross
+            psi     =  psi - atan2( yval, -xval)
+
+        490 continue
+        kp1    =  mod(kp1,n)+1
+    500 continue
+
+    ! phi(k)
       km1     =  n
       do 550 k = 1,n
           phi(k)  =  0.d0
@@ -8199,12 +8229,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   550 continue
       psix    =  psi*x
       psixx2  =  .5d0 * x * psix
-!                                  initialize  s  and  d
+
+! initialize  s  and  d
+      ! This is a very interesting way to show which elements of the array you're setting
       saic(1,1)=    psi
       saic(2,2)=         psix
       saic(3,3)=              psix
       saic(4,1)=    psix
-!                                  check for doublet terms
+
+! check for doublet terms
       if (.not.doublt) go to 700
       daic(1,4)=                   psix
       daic(1,6)=                             psix
@@ -8219,7 +8252,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   700 continue
 !
       if ( .not. intsct ) go to 1100
-!                                  add in edge contributions
+
+! add in edge contributions
       km1     =  n
       do 1000 k = 1,n
       if (.not.edge(k)) go to 990
@@ -8230,7 +8264,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           phvsqh  =  .5d0 * phi(k) * ( xsq - d(k)**2 )
           delr    =  r(k) - r(km1)
           drdmn2  =  - delr * d(k) * .5d0
-!                                  get source terms, phi(k)
+
+! get source terms, phi(k)
       saic(1,2)=saic(1,2) +        phny*x
       saic(1,3)=saic(1,3) +             phnz*x
 !
@@ -8245,7 +8280,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       saic(4,1)=saic(4,1) +   phdmns
       saic(4,2)=saic(4,2) +        phvsqh*nm(1,k)
       saic(4,3)=saic(4,3) +             phvsqh*nm(2,k)
-!                                                 add in delr terms
+
+!                add in delr terms
       saic(2,2)=saic(2,2) +        delr*tg(1,k)*nm(1,k)
       saic(2,3)=saic(2,3) +             delr*tg(1,k)*nm(2,k)
 !
@@ -8254,7 +8290,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       saic(4,2)=saic(4,2) +        drdmn2*tg(1,k)
       saic(4,3)=saic(4,3) +             drdmn2*tg(2,k)
-!                                  check for phi(k) doublet terms
+
+! check for phi(k) doublet terms
           phdxm2  =  phdmns*x*.5d0
           delrx2  =  delr * x * .5d0
           tyy     =  tg(1,k)**2
@@ -8263,7 +8300,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           tzz     =  tg(2,k)**2
           tskw    =  tzz - tyy
           if ( .not. doublt ) go to 900
-!                                  get doublet terms, phi(k)
+
+! get doublet terms, phi(k)
       daic(1,2)=daic(1,2) +   phny
       daic(1,3)=daic(1,3) +        phnz
       daic(1,4)=daic(1,4) +             phdmns*tyy
@@ -8281,7 +8319,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       daic(4,4)=daic(4,4) +             phdxm2*tyy
       daic(4,5)=daic(4,5) +                  phdxm2*tyz2
       daic(4,6)=daic(4,6) +                       phdxm2*tzz
-!                                  add in  delr  doublet terms
+
+! add in  delr  doublet terms
       daic(1,4)=daic(1,4) +             delr*tyz
       daic(1,5)=daic(1,5) +                  delr*tskw
       daic(1,6)=daic(1,6) +                    (-delr*tyz)
@@ -8289,55 +8328,67 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       daic(4,4)=daic(4,4) +             delrx2*tyz
       daic(4,5)=daic(4,5) +                  delrx2*tskw
       daic(4,6)=daic(4,6) +                     (-delrx2*tyz)
-!                                  check for cubic terms
+
+! check for cubic terms
   900     continue
           if (  nf.lt.10 ) go to 990
-!                                  coefficients for  n(*)n(*),
-!                                  ( n(*)t(*)+t(*)n(*) ),  t(*)t(*)
+! coefficients for  n(*)n(*),
+! ( n(*)t(*)+t(*)n(*) ),  t(*)t(*)
           cnn     =  -phi(k)*d(k)*d(k)
           cnt     =  -d(k)*delr
           ctt     =  -phvsqh - .5d0*( r(k)*vp(k) - r(km1)*vm(k) )
-!                                  compute  int( rho(*) rho(*) psi dv )
+
+! compute  int( rho(*) rho(*) psi dv )
           btw(1,1)=  cnn*tzz + cnt*tyz2 + ctt*tyy
           btw(1,2)= -cnn*tyz + cnt*tskw + ctt*tyz
           btw(2,2)=  cnn*tyy - cnt*tyz2 + ctt*tzz
           btw(2,1)=  btw(1,2)
-!                                  update  h-accumulation
+
+! update  h-accumulation
           do 950 l = 1,2
                do 950 i = 1,2
                do 950 j = 1,2
                     h(i,j,l) = h(i,j,l) + btw(i,j)*nm(l,k)
   950     continue
+
 !
 !         accumulate  -  sum a(k) *  int( rho * rho * (1/r) dv )
 !                         k
           aipsrr(1,1) = aipsrr(1,1) + d(k) * btw(1,1)
           aipsrr(1,2) = aipsrr(1,2) + d(k) * btw(1,2)
           aipsrr(2,2) = aipsrr(2,2) + d(k) * btw(2,2)
-!                                  update km1
+
+! update km1
   990 km1     =  mod(km1,n) + 1
  1000 continue
  1100 continue
-!                                  get doublet cubic terms if required
+
+! get doublet cubic terms if required
       if ( nf .lt. 10 ) go to 1310
-!                                  int ( rho(*) grad(psi) ) ds
+
+! int ( rho(*) grad(psi) ) ds
           btw(1,1)=     -saic(2,2)
           btw(1,2)=                -saic(2,3)
           btw(2,1)=     -saic(3,2)
           btw(2,2)=                -saic(3,3)
-!                                  int ( rho(*) psi )  ds
+          
+! int ( rho(*) psi )  ds
           bv(1)   =   saic(4,2)
           bv(2)   =             saic(4,3)
-!                                  update h
+
+! update h
           do 1210 ik = 1,2
           do 1210 j = 1,2
                h(ik,j,ik) = h(ik,j,ik) - bv(j)
  1210     continue
+
           do 1220 jk = 1,2
           do 1220 i = 1,2
                     h(i,jk,jk) = h(i,jk,jk) - bv(i)
  1220     continue
+
           if( .not. doublt ) go to 1305
+
           daic(1,7)=     -.5d0*h(1,1,1)
           daic(1,8)=          -.5d0*( h(1,1,2) + h(1,2,1) + h(2,1,1) )
           daic(1,9)=             -.5d0*( h(2,2,1) + h(2,1,2) + h(1,2,2))
@@ -8353,7 +8404,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           do 1300 j = 7,10
  1300     daic(4,j) = (x/3.d0)*daic(1,j)
  1305     continue
-!                                  quadratic source terms
+
+! quadratic source terms
           saic(1,4) =  .5d0*x*saic(2,2)
           saic(1,5) =     x*saic(2,3)
           saic(1,6) =  .5d0*x*saic(3,3)
@@ -8370,22 +8422,26 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           saic(4,5) =  p33  * ( aipsrr(1,2) - xsq*btw(1,2) )
           saic(4,6) =  p166 * ( aipsrr(2,2) - xsq*btw(2,2) )
  1310 continue
-!                                  apply factor of  1/(2*pi)
-!                                  (use   1/(4*pi) if on panel)
+
+! apply factor of  1/(2*pi)
+! (use   1/(4*pi) if on panel)
       fn      =  twopin
       if ( xeqzro  .and.  within )  fn = .5d0*fn
-!                                  apply source factor,  -1/beta
+
+! apply source factor,  -1/beta
       sn      =  -fn*btinv
       call vmul (saic,sn,saic,4*ng)
       call vmul (daic,fn,daic,4*nf)
-!                                  translate aic"s from the mach cone
-!                                  centered coordinate system to the
-!                                  panel*s origin
-!                                  sources
+
+! translate aic"s from the mach cone
+! centered coordinate system to the
+! panel*s origin
+! sources
       ideg    =  1
       if ( nf.gt.6 ) ideg = 2
       call shftic (saic,4,ideg,p(1),p(2))
-!                                  doublets
+
+! doublets
       if ( .not.doublt ) go to 1810
       ideg    =  2
       if ( nf .gt. 6 ) ideg = 3
@@ -8393,6 +8449,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1810 continue
  3000 continue
       return
+
 !
 !              fatal error encountered.  dump input and abort
  7000 continue
@@ -8401,9 +8458,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,20) n,doublt,x,(i,p(i),(q(i,j),j=1,4),i=1,2)
       stop 1505
 !
-!                                  variable definitions
+! variable definitions
 !
-!                                  input variables, /supdta/
+! input variables, /supdta/
 !         doublt    logical variable, if true, compute  daic
 !         n         number of corner points on the panel sigma
 !         p(*)      coordinates of the field point"s projection on the
@@ -8412,18 +8469,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                        (local coordinates)
 !         x         downstream distance of field point, local coordinate
 !
-!                                  output variables, s and d aic*s
+! output variables, s and d aic*s
 !         daic      doublet aic matrix
 !         saic      source aic matrix
 !
-!                                  local real variables
+! local real variables
 !         d(k)      distance from center to edge k.
 !                        d(k) = ( rho(*,k), nm(*,k))
 !         nm(*,k)   normal vector for edge k, equal to (tg(2,k),-tg(1,k)
 !         phi(k)    =  phase( (vp(k)*vm(k)+r(k)*r(k-1)),
-!                                       (r(k)*vm(k)-r(k-1)*vp(k))   )
+!      (r(k)*vm(k)-r(k-1)*vp(k))   )
 !         qprm(k)   =  phase( d(k)*d(k+1)- x*x*(tg(*,k),tg(*,k+1)),
-!                                       x*r(k)*( tg(*,k) x tg(*,k+1) ) )
+!      x*r(k)*( tg(*,k) x tg(*,k+1) ) )
 !         r(k)      =  sqrt ( x**2 - rhosq(k) )  when defined
 !         rho(*,k)  vector from center of mach cone to corner k
 !                        rho(*,k) = q(*,k) - p(*)
@@ -8435,7 +8492,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         vp(k)     distance along edge k  of its end point
 !                        vp(k) = (  tg(*,k), rho(*,k)  )
 !
-!                                  local logical variables
+! local logical variables
 !         convex    =  true if sigma is convex.  sigma will be convex
 !                      if all turning angles alfa(k) are positive.
 !                      sin(alfa(k)) =  tg(*,k)  x  tg(*,k+1)
@@ -8446,7 +8503,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         within    =  true if p lies inside sigma
 !         xeqzro    =  true if x (q.v.) is identically zero
       END Subroutine AicSup
-! **deck avg2pt
+
+
       subroutine avg2pt (za,zb,zavg)
       implicit double precision (a-h,o-z)
       dimension za(3), zb(3), zavg(3)
@@ -8458,7 +8516,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       zavg(3)  =  .5d0*( za(3) + zb(3) )
       return
       END subroutine avg2pt
-! **deck bconcl
+
+
       subroutine bconcl (mapbc,locsrt,keyloc,maps                       &
      &                  ,locs,mapb,iflgsp,nedaba                        &
      &                  ,kfdseg,kfdkey,kfdsgn,iedgtp                    &
@@ -8778,12 +8837,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        , icpmap,  ibcmap
 !end  prnt
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !ca lfqprm
-!                                                       /lfqprm/
+!                      /lfqprm/
 !     major flags for controlling the low-frequency features
 !     mlofrq = 0, normal run
 !            = 1, ph/0 run, low frequency theory
@@ -8813,7 +8872,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension locpak(4), zk(3), zl(3)
       dimension locw(4)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
@@ -8825,22 +8884,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/mspnts/zm(3,maxpts)
 !end  mspnts
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
       common /rlcplx/ ityprc
 !end  rlcplx
 !ca jrwi
-!                                                  /jrwi/
+!                 /jrwi/
       common /jrwi/ njdq, ntj, nnj, nij(maxcp+2)
 !end  jrwi
 !ca stparm
-!                                                  /stparm/
+!                 /stparm/
       common /stparm/ smach, salpha, sbeta, tscst(5), wst(4)
 !end  stparm
 !ca outdat
-!                                                  /outdat/
+!                 /outdat/
       logical lstdy
       common/outdat/iflag,lstdy
 !end  outdat
@@ -8853,10 +8912,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !call vicovr
 !         override vic specifications                       /vicovr/
       common /vicovr/ nedflt(mxnett)
-!                                                           /vicovr/
+!                          /vicovr/
 !end  vicovr
 !call cumabc
-!                                                            /cumabc/
+!                           /cumabc/
 !         cumulative bc count, used in bconcl
       common /cumabc/ nabca(151)
 !end  cumabc
@@ -9060,8 +9119,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       else
       endif
       call icopy (nbcd2,  cu,1,  cu2,1)
-!                                  determine which bc any matching condi
-!                                  should over-ride
+! determine which bc any matching condi
+! should over-ride
       if ( kabmtc.ne.0 .and. zdc.le.0.d0 ) call a502er ('bconcl'        &
      &                      ,'kabmtc.ne.0 and zdc.le.0: incompatible')
       if ( kabmtc.eq.0 .and. zdc.gt.0.d0 ) call a502er ('bconcl'        &
@@ -9073,14 +9132,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                      ,'no bc available for override by matching')
       if ( nbinmc.eq.0 ) go to 220
       if ( nbinmc.eq.2 ) go to 215
-!                                  nbinmc = 1, override bc no. 1
+! nbinmc = 1, override bc no. 1
           nlopt1  =  8
           if ( zdc.eq. 5.d0 ) nlopt1 = 9
           nropt1  =  2
           nct1    =  4
           call zero (bet1,ityprc*nacase)
           go to 220
-!                                  nbinmc = 2, override bc no. 2
+! nbinmc = 2, override bc no. 2
   215 continue
           nlopt2  =  8
           if ( zdc.eq. 5.d0 ) nlopt2 = 9
@@ -9090,13 +9149,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           go to 220
 !
   220 continue
-!                                  delete redundant singularity paramete
-!                                  associated with exact matching of one
-!                                  or two networks.
+! delete redundant singularity paramete
+! associated with exact matching of one
+! or two networks.
       call sngdel (nedaba,kfdseg,kfdkey,kfdsgn                          &
      &            ,locsrt,keyloc,maps,iflgsp                            &
      &            ,kptlm,ksgnlm)
-!                                  count required ic rows: nec
+! count required ic rows: nec
       indphi  =  0
       indvel  =  0
       ipotk   =  ipot(kc)
@@ -9106,13 +9165,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( nbin.eq.2 ) call icopy (nbcd2,  cu2,1,  cu,1)
           if ( nlopt.eq.0 ) go to 240
           if ( nbin.ne.nbinmc ) go to 230
-!                                  nbin = nbinmc
+! nbin = nbinmc
 ! *********    if ( (idcpmc.ge.1 .and.idcpmc.le.3)  .and.
                if ( (idcpmc.eq.2 .or. idcpmc.eq.3)  .and.               &
      &             (iapotk.eq.0 .or. iapotk.eq.1 .or. iapotk.eq.3)  )   &
      &                                                      indvel = 1
                go to 240
-!                                  nbin.ne.nbinmc
+! nbin.ne.nbinmc
   230     continue
                if ( nlopt.eq.5 .or. nlopt.eq.9 ) go to 240
                indphi  =  1
@@ -9177,10 +9236,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                    ,4x,'---',2x,'----',3x,'---------------'      &
      &                                          ,'--------------'       &
      &  )
-!                                  loop over the multi-network bc's
-!                                  extracting the betn values from
-!                                  the appropriate bet values specified
-!                                  for the wake network
+! loop over the multi-network bc's
+! extracting the betn values from
+! the appropriate bet values specified
+! for the wake network
       do 350 imult = 1,ncmult
       jc      =  jcmult(imult)
       call ctrns (jc,zc)
@@ -9188,8 +9247,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       jccrt   =  jc
       nbcrt   =  nbinmc
       iabt    =  iabs(kabmtc)
-!                                  get fund. seg. and other properties
-!                                  of the wake network involved
+! get fund. seg. and other properties
+! of the wake network involved
       kwfsg   =  mtchab(2,iabt)
       call icopy (4,  kfdseg(4*(kwfsg)-3),1, kokseg,1)
       kfn1    =  2*i1kseg-1
@@ -9203,9 +9262,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       indb    =  0
       mfn     =  2*nm(kwnet) - 1
       nfn     =  2*nn(kwnet) -1
-!                                  loop over wake control points looking
-!                                  for control points along appropriate
-!                                  fundamental segment
+! loop over wake control points looking
+! for control points along appropriate
+! fundamental segment
       do 330 jc = jc1,jc2
       call ctrns (jc,zc)
       call mnmod (ijfgc,mfn,ifn,jfn)
@@ -9218,8 +9277,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( kwsd.eq.3 ) kfn = nfn + 1 - jfn
       if ( kwsd.eq.4 ) kfn = mfn + 1 - ifn
       if ( kfn.le.kfn1 .or. kfn.ge.kfn2 ) go to 330
-!                                  found a control pt on target fund.
-!                                  seg.  bracket taucrt.
+! found a control pt on target fund.
+! seg.  bracket taucrt.
       call btrns (jc,cu1)
 !                            if tauc .le. taucrt, set lower limit
       if ( tauc.gt.taucrt ) go to 325
@@ -9242,13 +9301,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           indb    =  jc
   327 continue
   330 continue
-!                                  cp's inda & inda on wk bracket jccrt
+! cp's inda & inda on wk bracket jccrt
       write (6,6012) imult,jccrt,taucrt,inda,taua,betxa,indb,taub,betxb
  6012 format (1x,i3,1h.,i5,f6.3,2x,i5,f6.3,4f8.3,2x,i5,f6.3,4f8.3)
       if ( inda.eq.0 .and. indb.eq.0 ) call a502ms ('bconcl'            &
      &               ,'multi-nw boundary condition error')
-!                                  reset bet values for cp jccrt via
-!                                  copying or via linear interpolation
+! reset bet values for cp jccrt via
+! copying or via linear interpolation
       call btrns (jccrt,cu1)
       call dcopy (ityprc*nacase,  betxa,1,  betn,1)
       if ( inda.eq.0 ) call dcopy (ityprc*nacase,  betxb,1,  betn,1)
@@ -9265,19 +9324,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ibtrns (jccrt,cu1)
   350 continue
 !
-!                                  count the various types of s.p.'s
-!                                  also, flag equivalence classes of
-!                                  null singularity parameters by settin
-!                                  iflgsp(lbasic) = 3 for each basic s.p
-!                                  that is null
+! count the various types of s.p.'s
+! also, flag equivalence classes of
+! null singularity parameters by settin
+! iflgsp(lbasic) = 3 for each basic s.p
+! that is null
       init    =  1
   390 continue
       do 400 i = init,nsngt
           isv     =  i
           if ( kptlm(i) .gt. 0 ) go to 410
   400 continue
-!                                  all done.  restore kptlm and proceed
-!                                  to next phase
+! all done.  restore kptlm and proceed
+! to next phase
       do 405 i = 1,nsngt
           kptlm(i) =  iabs(kptlm(i))
   405 continue
@@ -9338,7 +9397,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  now account for all known s.p.'s
+! now account for all known s.p.'s
 !
 !
 !
@@ -9362,7 +9421,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iflgsp(lbasic) = -( 16*jc + 4*nbin + isd )
   650 continue
   700 continue
-!                                  account for known s.p.'s of type mu/x
+! account for known s.p.'s of type mu/x
       do 710 knet = 1,nnett
          ntdk    =  ntd(knet)
          if ( ntdk.ne.18 .and. ntdk.ne.20 ) goto 710
@@ -9380,9 +9439,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   710 continue
 !
 !
-!                                  create  isngpk(lbasic)  containing
-!                                  (type . nw . smallest-ijfn . isd )
-!                                  for each basic s.p.
+! create  isngpk(lbasic)  containing
+! (type . nw . smallest-ijfn . isd )
+! for each basic s.p.
 !
       call jzero (isngpk,4*nsngt)
       do 750 lnaif = 1,nsngn
@@ -9412,10 +9471,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   750 continue
 !
 !
-!                                  define the map,  mapb  of basic s.p.
-!                                  indices to final s.p. indices.  updat
-!                                  the  nlopt  data on the btrns file
-!                                  to account for known s.p.'s
+! define the map,  mapb  of basic s.p.
+! indices to final s.p. indices.  updat
+! the  nlopt  data on the btrns file
+! to account for known s.p.'s
 !
       call ishel2 (nsngt,isngpk,keyloc)
       call ukysr2 (nsngt,isngpk,keyloc)
@@ -9433,7 +9492,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       icntyp(ityp+1) =  icntyp(ityp+1) + 1
       itf     =  ityp + 1
       go to (800,810,820,830), itf
-!                                  unknown: type = 0
+! unknown: type = 0
   800 continue
           mapb(lbasic) = is
           call icopy (4,  isngpk(4*(lbasic)-3),1, itnwfg,1)
@@ -9443,7 +9502,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( isd.eq.2 ) ndu(lnet) = ndu(lnet) + 1
           go to 900
 !
-!                                  known: type = 1
+! known: type = 1
   810 continue
           mapb(lbasic) = is
           call icopy (4,  isngpk(4*(lbasic)-3),1, itnwfg,1)
@@ -9451,14 +9510,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           isd     =  mod( iknown, 4)
           isngk   =  isngk + 1
           if ( isd.ne.3 ) goto 815
-!                                  special mu/x = const basic s.p.
+! special mu/x = const basic s.p.
                jc      =  nctrt+1
                jcnb(isngk) = 3 + 4*( jc-1 + (lnet-1)*(nctrt+1) )
                ijfnk(isngk)= itnwfg(3)
                amux    =  0.d0
                call dcopy (nacase,  amux,0,  bet1,1)
                write (93) bet1
-!                                  check for errors
+! check for errors
                nbinz   =  mod( jcnb(isngk), 4)
                jcnet   =  jcnb(isngk)/4
                call mnmod (jcnet,nctrt+1,jczm,lnetz)
@@ -9480,7 +9539,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( nbin .eq. 1 ) nlopt1 = 0
           if ( nbin .eq. 2 ) nlopt2 =  0
           call ibtrns (jc,cu1)
-!                                  check for errors
+! check for errors
           nbinz   =  mod( jcnb(isngk), 4)
           jcnet   =  jcnb(isngk)/4
           call mnmod (jcnet,nctrt+1,jczm,lnetz)
@@ -9489,7 +9548,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         call a502er ('bconcl','error in jcnb packing')
           go to 900
 !
-!                                  equivalenced: type = 2
+! equivalenced: type = 2
   820 continue
           kpt     =  lbasic
           nloop   =  0
@@ -9499,7 +9558,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                if ( itnwfg(1).eq.0 .or. itnwfg(1).eq.1 ) go to 827
                nloop   =  nloop + 1
                if ( kpt.ne.lbasic .and. nloop.lt.nsngt+2 ) go to 825
-!                                  error detected
+! error detected
                write (6,'(1x,a10,1x, 3i12)')                            &
      & 'bconcl/4',kpt,lbasic,iflgsp(lbasic)
                CALL AbortPanair('bconcl-2')
@@ -9511,7 +9570,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           mapb(lbasic) =  isnew
           go to 900
 !
-!                                  zeroed: type = 3
+! zeroed: type = 3
   830 continue
           mapb(lbasic) = 0
           go to 900
@@ -9520,17 +9579,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &    ,'count of known singularity parms inconsistent')
 !
 !
-!                                  define the various counts of singular
+! define the various counts of singular
       izdc    =  zdc
-!                                  parameter types,  nsgn*  * = (u,k,e,z
+! parameter types,  nsgn*  * = (u,k,e,z
 !
-!                                  u  =  unknown, final (and basic) s.p.
-!                                  k  =  known, final (and basic) s.p.'s
-!                                  t  =  total, final s.p.'s   t = u + k
-!                                  n  =  number of naive s.p.'s
-!                                  b  =  number of basic s.p.'s  b = u+k
-!                                  e  =  number of equivalenced basic s.
-!                                  z  =  number of zeroed basic s.p.'s
+! u  =  unknown, final (and basic) s.p.
+! k  =  known, final (and basic) s.p.'s
+! t  =  total, final s.p.'s   t = u + k
+! n  =  number of naive s.p.'s
+! b  =  number of basic s.p.'s  b = u+k
+! e  =  number of equivalenced basic s.
+! z  =  number of zeroed basic s.p.'s
 !
       nsngu   =  icntyp(1)
       nsngk   =  icntyp(2)
@@ -9549,11 +9608,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/,'  final s.p. count ( known + unknown )      '   ,i6         &
      & )
 !
-!                                  define the map,  maps  of naive s.p.
-!                                  indices to final s.p. indices.  this
-!                                  map is used in  ffgen  to update the
-!                                  s.p. index arrays  iis  and  iid
-!                                  defining the spline dependencies.
+! define the map,  maps  of naive s.p.
+! indices to final s.p. indices.  this
+! map is used in  ffgen  to update the
+! s.p. index arrays  iis  and  iid
+! defining the spline dependencies.
 !
 !---  call outvec ('naif/basic',nsngn,maps)
       do 910 lnaif = 1,nsngn
@@ -9584,8 +9643,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (89) (locsrt(i),i=1,4*nsngt)
       call ixtrns (35,locsrt,4*nsngt)
 !
-!                                  generate summaries of b.c., aic, and
-!                                  information for each network
+! generate summaries of b.c., aic, and
+! information for each network
 !
       ibctot  =  0
       ibcsav   =  0
@@ -9644,24 +9703,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       if ( .not.genmap ) go to 918
       if ( ibcmap.eq.0 ) go to 918
-!                                  print bc map header
+! print bc map header
       write (6,6007) k
           call outmti ('aic(bc1)',mfn,mfn,nfn,map1)
           call outmti ('aic(bc2)',mfn,mfn,nfn,map2)
   918 continue
       if ( .not.genmap ) go to 940
-!                                  control point map
+! control point map
       call jzero (map1,nfingr)
       do 925 jc = jc1,jc2
           call ctrns (jc,zc)
           map1(ijfgc) = jc
   925 continue
       if ( icpmap.eq.0 ) go to 926
-!                                  print cp map header
+! print cp map header
        write (6,6008) k
       call outmti ('c.p. map',mfn,mfn,nfn,map1)
   926 continue
-!                                  singularity parameter maps
+! singularity parameter maps
       call jzero (map1,nfingr)
       call jzero (map2,nfingr)
        if ( genmap ) call jzero (map3,nfingr)
@@ -9682,7 +9741,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( isd.eq.3 ) kmap3 = kmap3 + 1
   930 continue
       if ( ispmap.eq.0 ) go to 935
-!                                  print sp map header
+! print sp map header
       write (6,6009) k
       lndb    =  0
       if ( lndb.ne.0 ) write (6,'(1x,a10,1x,i12,f12.6)')                &
@@ -9727,7 +9786,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-!                                  error conditions
+! error conditions
 !
  1200 continue
  1400 continue
@@ -9909,14 +9968,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/curpan/cpnorm(150)
 !end  curpan
 !ca rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
       common /rlcplx/ ityprc
 !end  rlcplx
 !ca glopar
-!                                                  /glopar/
+!                 /glopar/
       common /glopar/ omgbin, kontrl, inplot, ilstdy, ktype             &
      &             , icamax                                             &
      &              , kutflg(150)
@@ -10007,14 +10066,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension tg(3)
       dimension vfs(3,4), zmctr(3)
 !
-!                                  express:  znc = almnu*znu + tgv
+! express:  znc = almnu*znu + tgv
       call dcip (znc,znc,znznu)
       call cmpscl (betams,compd,znc,znu)
       almnu    =  ddot(3,  znc,1,  znc,1)/znznu
       tgv(1)  =  znc(1) - almnu*znu(1)
       tgv(2)  =  znc(2) - almnu*znu(2)
       tgv(3)  =  znc(3) - almnu*znu(3)
-!                                  define upper and lower surface coeffi
+! define upper and lower surface coeffi
       imatup  =  matnet(1,kc)
       imatlo  =  matnet(2,kc)
       akvu    =  vfmat(imatup)
@@ -10224,13 +10283,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       du      =  .5d0
       dl      =  .5d0
       go to 500
-!                                  delta (cp/isen) = beta
+! delta (cp/isen) = beta
   260 continue
       nct     =  4
       du      =  .5d0
       dl      =  .5d0
       go to 500
-!                                  delta (cp) = beta
+! delta (cp) = beta
   270 continue
   280 continue
   290 continue
@@ -10257,19 +10316,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           endif
   295 continue
       go to 500
-!                                       nlopt =  21
+!      nlopt =  21
   300 continue
       goto 500
-!                                       nlopt =  22
+!      nlopt =  22
   310 continue
       goto 500
-!                                       nlopt =  23
+!      nlopt =  23
   320 continue
       goto 500
-!                                       nlopt =  24
+!      nlopt =  24
   330 continue
       goto 500
-!                                       nlopt =  25
+!      nlopt =  25
   340 continue
       goto 500
 !
@@ -10468,7 +10527,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension s(ns), nhdat(6)
       logical lprnt
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -10477,7 +10536,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !call facdat
-!                                                            /facdat/
+!                           /facdat/
       common /facdat/ ierh, nsh, nh, nrhsh, pph, qqh
       integer pph, qqh
 !end  facdat
@@ -10487,8 +10546,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ierh   =  0
       if ( ns.le.n ) go to 9100
       call blksze (ns,n,nrhs,  pp,qq,s)
-!                                     insert code here to force an overr
-!                                     of the blksze choice of  pp and qq
+!    insert code here to force an overr
+!    of the blksze choice of  pp and qq
       if ( lprblk )                                                     &
      &write (6,6400) ns,n,nrhs,pp,qq
  6400 format ('0 ***** bkfact *****      ns',i8,'    n',i4              &
@@ -10502,12 +10561,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ifera (ierh,nhdat,6)
       if ( pp.eq.0 ) go to 9200
       if ( qq.eq.0 ) go to 1000
-!                                  normal case, out of core factorizatio
+! normal case, out of core factorizatio
       p      =  (n+pp-1)/pp
       q      =  (n+qq-1)/qq
       kint   =  p*q + 1
       klu    =  p*p + 2
-!                                  map stage (1)
+! map stage (1)
       ll      =  1
 !
       llint  =  ll
@@ -10521,7 +10580,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       last1  =  ll - 1
       if ( last1.gt.ns ) go to 9300
-!                                  map stage (2)
+! map stage (2)
       ll      =  llaq
 !
       llbpp  =  ll
@@ -10532,7 +10591,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       llilu  =  ns - klu + 1
       if ( llilu.lt.ll ) go to 9400
-!                                  map stage (3)
+! map stage (3)
       ll     =  1
 !
       llaa   =  ll
@@ -10584,9 +10643,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/,'  2nd stage blocking ',f12.6                                &
      &  ,/,'  l-u factorization  ',f12.6   )
       go to 2000
-!                                  direct factorization
+! direct factorization
  1000 continue
-!                                  direct code =====================
+! direct code =====================
       write (6,6000)
  6000 format ('  direct (i.e., unblocked) option not available')
       CALL AbortPanair('bkfact')
@@ -10594,7 +10653,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  2000 continue
       go to 9999
-!                                  error returns
+! error returns
  9100 continue
       ierh = 1
       go to 9999
@@ -10631,19 +10690,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     into blocks of nominal size (pp x qq)
 !
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
       logical lprblk
 !
 !call facdat
-!                                                            /facdat/
+!                           /facdat/
       common /facdat/ ierh, nsh, nh, nrhsh, pph, qqh
       integer pph, qqh
 !end  facdat
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -10653,8 +10712,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lprblk  =  lprnt
       ierh   =  0
       if ( ns.le.n ) goto 9100
-!                                  insert code here to force an override
-!                                  of the blksze choice of  pp and qq
+! insert code here to force an override
+! of the blksze choice of  pp and qq
       if ( lprblk )                                                     &
      &write (6,6400) ns,n,nrhs,pp,qq
  6400 format ('0 ***** bkfclu *****      ns',i8,'    n',i4              &
@@ -10667,10 +10726,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       qqh     =  qq
       call ifera (ierh,nhdat,6)
       if ( pp.eq.0 ) goto 9200
-!                                  p = number of row/column blocks
+! p = number of row/column blocks
       p      =  (n+pp-1)/pp
       klu    =  p*p + 2
-!                                  map stage (1)
+! map stage (1)
       ll     =  1
 !
       llilu  =  ll
@@ -10704,7 +10763,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6004 format ('0 ==== timing for bkfclu ===== '                         &
      &  ,/,'  l-u factorization  ',f12.6   )
       goto 9999
-!                                  error returns
+! error returns
  9100 continue
       ierh = 1
       goto 9999
@@ -10748,24 +10807,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     shares much of its structure with bksolv.
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
       common /rlcplx/ ityprc
 !end  rlcplx
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
 !call facdat
-!                                                            /facdat/
+!                           /facdat/
       common /facdat/ ierh, nsh, nh, nrhsh, pph, qqh
       integer pph, qqh
 !end  facdat
 !call cmsolv
-!                                                            /cmsolv/
+!                           /cmsolv/
 !         data for 'blk' pkg to do in-memory solution
       common /cmsolv/ bxcmsv, ppsv, llbxsv,  nrhssv
 !end  cmsolv
@@ -10803,7 +10862,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       llbpm  =  ll
       ll      =  ll + pp*nbpp*ityprc
-!                                  w = (a,bpm), size:  pp*pp+pp + pp*nbp
+! w = (a,bpm), size:  pp*pp+pp + pp*nbp
       nw      =  pp*pp + pp   + pp*nbpp
 !---  nw = pp*pp + pp
 !---  call outlin ('nbrhs,nw',2,nbrhs,nw)
@@ -10818,8 +10877,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       bxcmsv  =  .false.
       if ( ll + nrhs*n*ityprc .gt. ns ) go to 400
       goto 400
-!                                  put rhs into memory buffer when enoug
-!                                  space is available
+! put rhs into memory buffer when enoug
+! space is available
           bxcmsv  =  .true.
           ppsv    =  pp
 !-----          llbxsv  =  loc(s(ll))
@@ -10893,20 +10952,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension s(ns), nhdat(6)
       logical lprnt
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
       logical lprblk
 !call facdat
-!                                                            /facdat/
+!                           /facdat/
       common /facdat/ ierh, nsh, nh, nrhsh, pph, qqh
       integer pph, qqh
 !end  facdat
       integer pp, qq, p, q
 !
 !call cmsolv
-!                                                            /cmsolv/
+!                           /cmsolv/
 !         data for 'blk' pkg to do in-memory solution
       common /cmsolv/ bxcmsv, ppsv, llbxsv,  nrhssv
 !end  cmsolv
@@ -10941,7 +11000,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       llbpm  =  ll
       ll      =  ll + pp*nbpp
-!                                  w = (a,bpm), size:  pp*pp+pp + pp*nbp
+! w = (a,bpm), size:  pp*pp+pp + pp*nbp
       nw      =  pp*pp + pp   + pp*nbpp
 !---  nw = pp*pp + pp
 !---  call outlin ('nbrhs,nw',2,nbrhs,nw)
@@ -10956,8 +11015,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       bxcmsv  =  .false.
       if ( ll+nrhs*n .gt. ns ) go to 400
       goto 400
-!                                  put rhs into memory buffer when enoug
-!                                  space is available
+! put rhs into memory buffer when enoug
+! space is available
           bxcmsv  =  .true.
           ppsv    =  pp
 !-----          llbxsv  =  loc(s(ll))
@@ -11313,7 +11372,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , ggcp(3,3), ggcpit(3,3), btsqi, akap, akapin
 !end  comprs
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
       dimension zm(3,5,5),z(3,4,4),b(3,16)
@@ -11641,7 +11700,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     aic     r*8  in   row of aic matrix to be included into wic
 !     wic     r*8  i/o  buffer used for blocking of the aic matrix
 !     nwic    i*4  in   size of wic, max( 2*krowsa*krowsa + krowsa,
-!                                          krowta*nsngu )
+!         krowta*nsngu )
 !
 !     irowra  i*4  in   cumulative row count [0..nsngu-1]
 !     irowsa  i*4  loc  cumulative block row count [0..krows-1]
@@ -11667,32 +11726,32 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     kcolf   i*4  loc  size of last column block ( = krowsf)
 !
 !     ityprc  i*4  in   ityprc = 1 (real), 2 (complex)
-!                                  check scratch memory
+! check scratch memory
       nwicx   =  ityprc*max( nsngu*krowta, 2*krowsa*krowsa + krowsa )
       if ( nwic.lt.nwicx ) call a502er ('blkaic','nwic < nwicx')
-!                                  get row block (irowsa) and
-!                                  sub-block (irowta) cum. counts
+! get row block (irowsa) and
+! sub-block (irowta) cum. counts
       irowsa  =  mod(irowra,krowsa)
       irowta  =  mod(irowsa,krowta)
-!                                  get row block index and size
+! get row block index and size
       irowx   =  irowra/krowsa
       nrowx   =  (nsngu-1)/krowsa
       krowsf  =  nsngu - nrowx*krowsa
       krows   =  krowsa
       if ( irowx.eq.nrowx ) krows = krowsf
-!                                  get row sub-block index and size
+! get row sub-block index and size
       irowz   =  irowsa/krowta
       nrowz   =  (krows-1)/krowta
       krowtf  =  krows - nrowz*krowta
       krowt   =  krowta
       if ( irowz.eq.nrowz ) krowt = krowtf
-!                                  get final column block size
+! get final column block size
       ncolx   =  (nsngu-1)/krowsa
       kcolf   =  nsngu - ncolx*krowsa
-!                                  get initial subblock size
+! get initial subblock size
       kcol    =  krowsa
       if ( ncolx.eq.0 ) kcol = kcolf
-!                                  copy aic row into wic buffer
+! copy aic row into wic buffer
       laic    =  1
       lwicb   =  1
       do 100 icolx = 0,ncolx
@@ -11704,7 +11763,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          laic    =  laic   + incaic
          lwicb   =  lwicb + incaic*krowt
   100 continue
-!                                  if subblock is full, write it out
+! if subblock is full, write it out
       if ( irowta.lt.(krowt-1) ) goto 210
 !
       lwic     =  1
@@ -11717,9 +11776,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          lwic    =  lwic + kblksz
   200 continue
       if ( lwic.gt.(nwic+1) ) call a502er ('blkaic-1','nwic too small')
-!                                  if block has been filled, read
-!                                  all the records and rewrite to
-!                                  unit llu
+! if block has been filled, read
+! all the records and rewrite to
+! unit llu
   210 continue
       if ( irowsa.lt.(krows-1) ) goto 410
       do 400 icolx = 0,ncolx
@@ -11735,8 +11794,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             lwic    =  lwic + kblksz
   300    continue
          if(lwic.gt.(nwic+1)) call a502er ('blkaic-2','nwic too small')
-!                                  put the matrix of size (krows x kcol)
-!                                  out to unit llu
+! put the matrix of size (krows x kcol)
+! out to unit llu
          llurec  =  irowx + icolx*(ncolx+1) + 2
          krow    =  krowsa
          if ( irowx.eq.nrowx ) krow = krowsf
@@ -11747,7 +11806,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          if (ityprc.eq.2)                                               &
      &        call mccopy (krow,kcol, wic,kcol,1, wic(lwic),1,krow)
          kllusz  =  ityprc*krow*kcol
-!                                  allocate space for permutation vector
+! allocate space for permutation vector
          if ( irowx.eq.icolx ) kllusz = kllusz + ityprc*krow
          call writmd (llu,wic(lwic),kllusz,llurec,-1,0)
 !
@@ -11765,7 +11824,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer pp
       dimension bpm(1), b(1)
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -11785,22 +11844,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ncw     =  m
       nbrhs   =  (m + pp - 1)/pp
       do 200 ip = 1,p
-!                                  number of rows in b's ip-th row block
+! number of rows in b's ip-th row block
           nr      =  pp
           if ( ip.eq.p ) nr = ppl
-!                                  number of row blocks of size <= nrw
-!                                  needed to handle  nr  rows
+! number of row blocks of size <= nrw
+! needed to handle  nr  rows
           npass   =  (nr+nrw-1)/nrw
           lb      =  1
           do 100 ipass = 1,npass
-!                                  number of rows in w for this pass
+! number of rows in w for this pass
                nrwx    =  nrw
                if ( ipass.eq.npass ) nrwx = nr - (ipass-1)*nrw
                jp      =  ip
                lw      =  1
                do 50 ibrhs = 1,nbrhs
-!                                  number of columns in the block of b
-!                                  to be read
+! number of columns in the block of b
+! to be read
                     ncb     =  pp
                     if ( ibrhs.eq.nbrhs ) ncb = m - pp*(nbrhs-1)
                     call CPU_TIME (ta)
@@ -11809,13 +11868,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     time(1)  =  time(1) + tb-ta
                     kevent(1)=  kevent(1) + 1
                     koprns(1)=  koprns(1) + nr*ncb
-!                                  copy rows [lb..lb+nrwx-1] into w,
-!                                  transposing on the fly
+! copy rows [lb..lb+nrwx-1] into w,
+! transposing on the fly
                     call mcopy (nrwx,ncb,   bpm(lb),1,nr,  w(lw),m,1)
                     lw      =  lw + ncb
                     jp      =  jp + p
    50          continue
-!                                  now write out the full rows stored in
+! now write out the full rows stored in
                lw      =  1
                do 80 i = 1,nrwx
                     call CPU_TIME (ta)
@@ -11851,7 +11910,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension aqp(1), app(kpp,kpp)
       integer pp,qq,p,q
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -11945,7 +12004,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension a(1), aq(1)
       integer pp,qq,p,q
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12096,7 +12155,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension a(1), b(1), c(1), s(1)
       integer pp,p,ppl
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12327,7 +12386,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       implicit double precision (a-h,o-z)
       dimension a(na)
 !call cmsolv
-!                                                            /cmsolv/
+!                           /cmsolv/
 !         data for 'blk' pkg to do in-memory solution
       common /cmsolv/ bxcmsv, ppsv, llbxsv,  nrhssv
 !end  cmsolv
@@ -12351,7 +12410,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer pp
       dimension b(1), bpm(pp,m)
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12444,7 +12503,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer pp
       dimension bpm(1), xpm(1), a(1)
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12756,7 +12815,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     [   I      A(2,1)    A(3,1)   .  .  .  .  A(p,1)  ] [x(1)]  [b(1)]
 !                                t                    t
 !     [            I       A(3,2)   .  .  .  .  A(p,2)  ] [x(2)]  [b(2)]
-!                                                     t
+!                    t
 !     [                      I      .  .  .  .  A(p,3)  ]*[x(3)] =[b(3)]
 !
 !     [   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .   ]
@@ -12764,14 +12823,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     [                                            I    ] [x(p)]  [b(p)]
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
       common /rlcplx/ ityprc
 !end  rlcplx
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12806,7 +12865,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kevent(1)=  kevent(1) + 1
           koprns(1)=  koprns(1) + nw
           do 300 jp = 1,ip-1
-!                                   read x(jp)  [ pp x ncb ]
+!  read x(jp)  [ pp x ncb ]
                nrx    =  pp
                ncx     =  ncb
                nwx    =  nrx*ncx
@@ -12816,7 +12875,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                time(2)  =  time(2) + tb-ta
                kevent(2)=  kevent(2) + 1
                koprns(2)=  koprns(2) + nwx
-!                                   read A(jp,ip) [ pp x nr ]
+!  read A(jp,ip) [ pp x nr ]
                nca    =  nr
                nra    =  pp
                nwa    =  nra*nca
@@ -12875,7 +12934,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kevent(6)=  kevent(6) + 1
           koprns(6)=  koprns(6) + nw
           do 700 jp = ip+1,p
-!                                   read  x(jp)
+!  read  x(jp)
                nrx    =  pp
                if ( jp.eq.p ) nrx = ppl
                ncx     =  ncb
@@ -12886,8 +12945,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                time(7)  =  time(7) + tb-ta
                kevent(7)=  kevent(7) + 1
                koprns(7)=  koprns(7) + nwx
-!                                   read A(jp,ip) [ pp x nr ] or
-!                                                 [ ppl x nr ]
+!  read A(jp,ip) [ pp x nr ] or
+!                [ ppl x nr ]
                nca    =  nr
                nra    =  pp
                if ( jp.eq.p ) nra = ppl
@@ -12945,7 +13004,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer si,ni,nxi,  ppi,qqi,qval(1)
 !
 !call blkprt
-!                                                            /blkprt/
+!                           /blkprt/
 !         print flag for 'blk' pkg, out-of-core solver
       common /blkprt/ lprblk
 !end  blkprt
@@ -12967,7 +13026,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( n*(n+nx) .gt. s ) go to 100
 !        ===========   force out of core solution  =================
       go to 100
-!                                  in core solution is possible
+! in core solution is possible
           ppi     =  n
           qqi     =  0
           go to 900
@@ -12993,7 +13052,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           xpp     =  pp
           p       =  (n+pp-1)/pp
           ne      =  3*pp*pp + p*p+2  +  2*pp
-!                                  find a bound on scratch req'd of bkso
+! find a bound on scratch req'd of bkso
           nrhs    =  n+10
           nbrhs   =  (nrhs+pp-1)/pp
           neslv   =  3*pp*pp + pp + nrhs + 3 + p*p + p*nbrhs
@@ -13076,7 +13135,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       implicit double precision (a-h,o-z)
       dimension a(na)
 !call cmsolv
-!                                                            /cmsolv/
+!                           /cmsolv/
 !         data for 'blk' pkg to do in-memory solution
       common /cmsolv/ bxcmsv, ppsv, llbxsv,  nrhssv
 !end  cmsolv
@@ -13154,7 +13213,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /yrwi/ ntyrwi, nnyrwi, nwyrwi(200), niyrwi(202)
 !end  yrwi
 !ca vfgrwi
-!                                                        /vfgrwi/
+!                       /vfgrwi/
 !     File for containing fine grid velocity data, 1 record/network
 !     ntvfg   unit number [45]
 !     nnvfg   number of records [nnett+1], 1 per nw + index record
@@ -13163,7 +13222,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /vfgrwi/ ntvfg, nnvfg, nivfg(mxnett+1)
 !end  vfgrwi
 !ca vsprwi
-!                                                        /vsprwi/
+!                       /vsprwi/
 !     File for containing interior grid pt v-splines
 !     ntvsp   unit number [46]
 !     nnvsp   number of records [nnett+1], 1 per nw + index record
@@ -13172,7 +13231,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /vsprwi/ ntvsp, nnvsp, nivsp(mxnett+1)
 !end  vsprwi
 !ca almrwi
-!                                                        /almrwi/
+!                       /almrwi/
 !     File containing lambda fcns at panel centers, 1 record/network
 !     ntalm   unit number [46]
 !     nnalm   number of records [nnett+1], 1 per nw + index record
@@ -13181,7 +13240,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /almrwi/ ntalm, nnalm, nialm(3*mxnett+1)
 !end  almrwi
 !ca c2grwi
-!                                                        /c2grwi/
+!                       /c2grwi/
 !     File containing spline info for dsnfmc to generate surface
 !     velocity distributions from panel center velocity data.
 !
@@ -13192,7 +13251,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /c2grwi/ ntc2g, nnc2g, nic2g(5*mxnett+1)
 !end  c2grwi
 !ca dcprwi
-!                                                        /dcprwi/
+!                       /dcprwi/
 !     File containing U&L d(cp)/d(n~) at panel centers, 1 record/network
 !     ntdcp   unit number [47]
 !     nndcp   number of records [nnett+1], 1 per nw + index record
@@ -13201,7 +13260,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /dcprwi/ ntdcp, nndcp, nidcp(mxnett+1)
 !end  dcprwi
 !ca phxrwi
-!                                                          /phxrwi/
+!                         /phxrwi/
 !     File containing phx sensitivity influence coefficients
 !
 !     ndqphx  number of floating point words per record
@@ -13212,7 +13271,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /phxrwi/ ndqphx, ntphx, nnphx, niphx(maxcp+1)
 !end  phxrwi
 !ca dsnrwi
-!                                                          /dsnrwi/
+!                         /dsnrwi/
 !     File containing /pandsn/ data for a reference singularity set
 !
 !     ndqdsn  number of floating point words per record
@@ -13290,22 +13349,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , ngsptt, ngspa(151), locgsp(1200)
 !end  indxsp
 !call cm03
-!                                                            /cm03/
-!                                  i/o units, unit position info, amp
+!                           /cm03/
+! i/o units, unit position info, amp
       common /cm03/ iout, idmunt(5)
 !end  cm03
 !call cm05
-!                                                            /cm05/
-!                                  case title info, used by ggp
+!                           /cm05/
+! case title info, used by ggp
       character*80 tid
       common /cm05/ tid
 !end  cm05
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
 !call cm49
-!                                                            /cm49/
+!                           /cm49/
 !         message number for old tinver package
       common/cm49/jobmes
 !end  cm49
@@ -13333,7 +13392,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer ablcp2
 !end  cp2aul
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !call titles
@@ -13341,15 +13400,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*4 title1, title2
 !end  titles
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call exdign
-!                                                            /exdign/
+!                           /exdign/
       common/exdign/nexdgn
 !end  exdign
 !call factrd
-!                                                            /factrd/
+!                           /factrd/
       common /factrd/ ifact
 !end  factrd
 !call nflowv
@@ -13414,8 +13473,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !call skrchs
 !!!      common/skrchs/cntq(512),bcdq(512),panq(1024)           RLC
 !end  skrchs
-!                                    force integer data type here to
-!                                    match r*4 in ctrns and btrns
+!   force integer data type here to
+!   match r*4 in ctrns and btrns
 !!!      integer cntq, bcdq, panq                               RLC
 
 
@@ -13451,7 +13510,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*10 qratio, qnetls, qsrfls, qmatls
 !end  matprp
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -13485,7 +13544,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /cp2flg/ istcp2, iexcp2, nitcp2
 !end  cp2flg
 !call prtnor
-!                                                            /prtnor/
+!                           /prtnor/
       common /prtnor/ nprten
 !end  prtnor
 !call pandq
@@ -13508,13 +13567,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !end  agps
 !call sginvc
-!                                                            /sginvc/
+!                           /sginvc/
       common /sginvc/ eps,tol,q(6),v(96),b(36),qp(6),irank,mrank
 !end  sginvc
 !call vicovr
 !         override vic specifications                       /vicovr/
       common /vicovr/ nedflt(mxnett)
-!                                                           /vicovr/
+!                          /vicovr/
 !end  vicovr
 !call nwkrgn
 !         /nwkrgn/   region information for the upper/lower nw surfaces
@@ -13553,14 +13612,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       ncs     = 3
       ncd     = 9
-!                                  /cm05/
+! /cm05/
       error   = .true.
-!                                  /cm49/
+! /cm49/
       jobmes  = 1
-!                                  /cm03/
+! /cm03/
       ntsin   = 5
       ntsout  = 6
-!                                  /solnt/
+! /solnt/
       naic    = 25
       nrhs    = 8
       nans    = 9
@@ -13578,7 +13637,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iray(8) = 12
       iray(9) = 8
       iray(10)= 0
-!                                  /acase/
+! /acase/
       do 10 i  = 1,4
          alpha(i) = 0.d0
          beta(i)  = 0.d0
@@ -13589,7 +13648,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    10 continue
       nacase  = 1
       iacase  = 1
-!                                  /bcon/
+! /bcon/
       do 20 i  = 1,14
           cu1x(i)  = 0.d0
           cu2x(i)  = 0.d0
@@ -13603,29 +13662,29 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nlopt2  = 0
       nropt2  = 0
       necpt2  = 0
-!                                  /brwi/
+! /brwi/
       nbdq    = locfcn(ndbcon) - locfcn(cu1)
       call dlocfx (nbdq)
       nbuffb  = 512
       nsb     = nbuffb/nbdq
       nrb     = 0
       ntb     = 1
-!                                  /comprs/
+! /comprs/
       amach   = 0.d0
       alpc    = 0.d0
       betc    = 0.d0
-!                                  /curpan/
+! /curpan/
       do 30 i  = 1,mxnett
          cpnorm(i)  = 0.d0
    30 continue
-!                                  /crwi/
+! /crwi/
       ncdq    = locfcn(ndcntq) - locfcn(zc(1))
       call dlocfx (ncdq)
       nbuffc  = 512
       nsc     = nbuffc/ncdq
       nrc     = 0
       ntc     = 3
-!                                  write msg about blocking of ntb,ntc
+! write msg about blocking of ntb,ntc
       if ( ntc.gt.0 ) goto 35
       write (6,6001)  nbuffb, nbdq, nsb, nsbp                           &
      &              , nbuffc, ncdq, nsc, nscp
@@ -13636,9 +13695,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,/,'  bndry-cond   ',i6,'     ',i6,'        ',i6,'       ',i6    &
      & ,/,'  control-pt   ',i6,'     ',i6,'        ',i6,'       ',i6    &
      &  )
-!                                  /datchk/
+! /datchk/
       ndtchk  = 0
-!                                  /fmcof/
+! /fmcof/
       xref    = 0.d0
       yref    = 0.d0
       zref    = 0.d0
@@ -13647,13 +13706,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       cref    = 1.d0
       dref    = 1.d0
       nprcof  = 3
-!                                  /kutta/
-!                                  /index/
+! /kutta/
+! /index/
       do 40 i  = 1,mxnett
           ipot(i)  = 0
    40 continue
       nnwofb  = 0
-!                                  /ncons/
+! /ncons/
       pi      = 3.1415926535898d0
       pi2     = 6.2831853071796d0
       pi4i    = 7.9577471545948d-2
@@ -13676,7 +13735,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ispmap  = 0
       icpmap  = 0
       ibcmap  = 0
-!                                  /frwi/
+! /frwi/
       nfdq    = 146
       ntf     = 16
       nrf     = 0
@@ -13684,69 +13743,69 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nref    = 247
       ninf    = 36
       nunf    = 27
-!                                  /irwi/
+! /irwi/
       nti     = 15
       nni     = 21
-!                                  /xrwi
+! /xrwi
       ntxrwi  = 24
       nnxrwi  = 202
-!                                  /yrwi/
+! /yrwi/
       ntyrwi  = 38
       nnyrwi  = 202
-!                                  /vfgrwi/
+! /vfgrwi/
       ntvfg   =  45
       nnvfg   =  mxnett + 1
-!                                  /vsprwi/
+! /vsprwi/
       ntvsp   =  46
       nnvsp   =  mxnett + 1
-!                                  /almrwi/
+! /almrwi/
       ntalm   =  47
       nnalm   =  3*mxnett + 1
-!                                  /c2grwi/
+! /c2grwi/
       ntc2g   =  49
       nnc2g   =  5*mxnett + 1
-!                                  /dcprwi/
+! /dcprwi/
       ntdcp   =  48
       nndcp   =  mxnett + 1
-!                                  /phxrwi/: aic sensitivities
+! /phxrwi/: aic sensitivities
       ndqphx  =  3*maxpts
       ntphx   =  68
       nnphx   =  maxcp + 1
-!                                  /dsnrwi/: panel data for dsn calc
+! /dsnrwi/: panel data for dsn calc
       ndqdsn  =  3*9 + 3*3*8 + 18*12*9 + 3*12*9  + 8
       ntdsn   =  67
       nndsn   =  mxnett + 1
-!                                  /pincl/
+! /pincl/
       enx1    = 1.d0
       enx2    = 1.d0
       al1     = 0.d0
       al2     = 0.d0
-!                                  /srwi/
+! /srwi/
       nsdq    = 1024
       nts     = 2
-!                                  /symm/
+! /symm/
       nsymm   = 0
       nisym   = 0                                                         ! Added by Martin Hegedus, 4/21/09
       njsym   = 0                                                         ! Added by Martin Hegedus, 4/21/09
       misym   = 0
       mjsym   = 0
-!                                  /lamrwi/
+! /lamrwi/
       ntlam   = 26
       nnlam   = 302
-!                                  /vrwi/
+! /vrwi/
       ntv     = 4
-!                                  /exdign/
+! /exdign/
       nexdgn  = 0
-!                                  /gsqrwi/
+! /gsqrwi/
       nsqg    = 31
-!                                  /bsqrwi/
+! /bsqrwi/
       nsqb    = 32
-!                                  /hsqrwi/
+! /hsqrwi/
       nsqh    = 14
-!                                  /chkpnt/
+! /chkpnt/
       nckaic  = 0
       nckusp  = 0
-!                                  /epsff/
+! /epsff/
       eps1    = 12.d0
       eps2    =  4.d0
       eps3    = 2.5d0
@@ -13755,11 +13814,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       phc1    =   .174d0
       phc2    =   .572d0
       phc3    =  1.100d0
-!                                  /lofdat/
+! /lofdat/
       nloft   = 0
-!                                  /nflowv/
+! /nflowv/
       nflowv  = 0
-!                                  /kstmln/
+! /kstmln/
       nstmln  = 0
       numpts  = 0
       hmin    = 0.0000001d0
@@ -13771,17 +13830,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       isprnt  = 0
       tpsl    = 0.d0
       ntsmln  = 33
-!                                  /rrwi/
-!                                  /ofbod/
+! /rrwi/
+! /ofbod/
       nof     = 0
 !
-!                                  /boundl/
+! /boundl/
 !
       itapbl  = 0
       ivcorr  = 0
 !
 !
-!                                  /titles/
+! /titles/
 !
 !
       do 50 i  = 1,20
@@ -13794,26 +13853,26 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       title2(1)  = 'your'
       title2(2)  = ' nam'
       title2(3)  = 'e   '
-!                                  /abtnew/
+! /abtnew/
       epsgeo  = 0.d0
       newabt  = .false.
       xtrint  = .false.
-!                                  /abtprt/
+! /abtprt/
       igeoin  = 1
       igeout  = 0
       nwxref  = 0
       nwprop  = 0
       iabutd  = 0
       iabsum  = 1
-!                                  /cp2flg/
+! /cp2flg/
       istcp2  = 1
       iexcp2  = 0
       nitcp2  = 15
-!                                  /factrd/
+! /factrd/
       ifact   = 0
-!                                  /prtnor/
+! /prtnor/
       nprten  = 0
-!                                  /vicovr/
+! /vicovr/
       do 60 i  = 1,mxnett
          nedflt(i)  = 0
    60 continue
@@ -13826,16 +13885,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nnc=(maxcp+nscp-1)/nscp+1
       nns=maxpan+1
       nnv=maxcp+2
-!                                  /cm05/
+! /cm05/
       rwmstr  =  .false.
-!                                  /solnt/
+! /solnt/
       iray(2) = 27
       iray(4) =  nans
       iray(6) = 19
       iray(7) = 20
       iray(8) =  nsc3
       iray(9) =  nrhs
-!                                  /matprp/
+! /matprp/
       call icopy (2*mxnett,  0,0,  matnet,1)
       nprop   =  0
       call dcopy (11,  1.d0,0,  tratio,0)
@@ -13848,7 +13907,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (11,  1.d0,0,  pcnmat,1)
       call dcopy (11,  1.d0,0,  rcnmat,1)
       qratio(0)  =  'air       '
-!                                  /lndblx/
+! /lndblx/
       nlndbl  =  0
       iwkfil  =  1
       call icopy (mxnett,  0,0,  ilndbl,1)
@@ -14766,7 +14825,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nza(k+1)=nza(k)+n*m
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'circ', qline, ((lll,lll=1,10),kkk=1,8)
@@ -14839,7 +14898,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       mcp     =  nm(knet) + 1
       ncp     =  nn(knet) + 1
       if ( nts(knet).ne.0 ) go to  950
-!                                  doublet alone
+! doublet alone
           ntdk    =  ntd(knet)
           if ( ntdk.eq.8.or.ntdk.eq.10.or.ntdk.eq.18.or.ntdk.eq.20 )    &
      &         mcp = 1
@@ -15039,20 +15098,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       np      =  nq
       if ( nq.le.0  .or.  nq.gt.40 ) go to 800
-!                                  copy geometry into working array, p,
-!                                  taking care to delete a collapsed sid
+! copy geometry into working array, p,
+! taking care to delete a collapsed sid
       call mcopy (2,nq,  q,1,3,  p,1,2)
       if ( ics.eq.0 ) go to 10
           if ( ics.ne.np ) call mcopy (2,nq-ics, q(1,ics+1),1,3         &
      &                                         , p(1,ics),1,2)
           np      =  np - 1
-!                                  init. npd = tot # of pts deleted
+! init. npd = tot # of pts deleted
    10 continue
       npd     =  0
-!                                  top of recursive loop
+! top of recursive loop
    50 continue
-!                                  find non-convex corners in current
-!                                  polygon
+! find non-convex corners in current
+! polygon
       npdx    =  0
       im1     =  np
       do 100 i = 1,np
@@ -15068,7 +15127,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           im1     =  i
   100 continue
       if ( npdx .eq. 0 ) go to 250
-!                                  eliminate concave corners
+! eliminate concave corners
       npn     =  0
       do 200 i = 1,np
           if ( ind(i).ne.0 ) go to 200
@@ -15078,16 +15137,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
       np      =  npn
       if ( npn.gt.2 ) go to 50
-!                                  no points eliminated this pass,
-!                                  return if no concave corners
-!                                  were found on any pass
+! no points eliminated this pass,
+! return if no concave corners
+! were found on any pass
   250 continue
       if ( npd.gt.0 ) goto 800
-!                                  normal exit
+! normal exit
   700 continue
       return
-!                                  error condition: dump inputs,
-!                                  set np=0 and return.
+! error condition: dump inputs,
+! set np=0 and return.
   800 continue
       write (6,810) nq,np,npd
   810 format ('  error in cnvxhl.   nq, np, npd =',3i10)
@@ -15110,15 +15169,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !         michael epton, 30 november 1988
 !
-!                                  find the first appearance of a commen
-!                                  symbol
+! find the first appearance of a commen
+! symbol
       jmax = 0
       do 100 j = 1,80
           if ( line(j:j).eq.'=' .or. line(j:j).eq.'!' ) goto 110
           jmax = j
   100 continue
   110 continue
-!                                  clear it out, at and beyond the cmt s
+! clear it out, at and beyond the cmt s
       do 200 j = jmax+1,80
           line(j:j) = ' '
   200 continue
@@ -15517,11 +15576,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           keyinv(icold) =  icnew
   600 continue
 !
-!                                  store basic c.p. indices in the mapc
-!                                  array.  if a naive c.p. is not a basi
-!                                  c.p., mapc contains  -(alt. basic cp
-!                                  for the basic c.p. that is equivalent
-!                                  to the naive c.p.
+! store basic c.p. indices in the mapc
+! array.  if a naive c.p. is not a basi
+! c.p., mapc contains  -(alt. basic cp
+! for the basic c.p. that is equivalent
+! to the naive c.p.
       do 700 icnaif = 1,ncnaif
           icold   =  iamapc(icnaif)
           jcbsc   =  keyinv( iabs( icold ) )  +  nca
@@ -15548,7 +15607,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kc      =  kn
       ijfgc   =  lfngrd
       if ( icnaif .gt. mcpnet*ncpnet ) go to 770
-!                                  regular control points
+! regular control points
       icp     =  (ifn+3)/2
       if ( ifn.eq.1 ) icp = 1
       jcp     =  (jfn+3)/2
@@ -15569,7 +15628,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call dcopy (3,  en(1,ireg),1,  znc,1)
           zdc     =  0.d0
           go to 790
-!                                  edge or corner, regular control point
+! edge or corner, regular control point
   750 continue
           call dcopy (3, za(1,lzagrd),1, zc,1)
           call cpabt (ifn,jfn,kn, kabmtc,kfsgc,tauc,znc,nedg,ksd,idcpmc &
@@ -15596,7 +15655,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  extra control point
+! extra control point
   770 continue
       lxsp    =  nxspa(kn) + icnaif - mcpnet*ncpnet
       jzc     =  -lxsp
@@ -15734,7 +15793,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
@@ -15760,7 +15819,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( jfn.eq.1 ) go to 40
       call errmsg ('edge control pt not on edge')
 !
-!                                  edge 1
+! edge 1
    10 continue
       kpt     =  (jfn+2)/2
       kedg    =  4*(kn-1) + 1
@@ -15772,7 +15831,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kz2     =  j2
       go to 50
 !
-!                                  edge 2
+! edge 2
    20 continue
       kpt     =  (ifn+2)/2
       kedg    =  4*(kn-1) + 2
@@ -15784,7 +15843,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kz2     =  i2
       go to 50
 !
-!                                  edge 3
+! edge 3
    30 continue
       kpt     =  (2*nnk + 2 - jfn) / 2
       kedg    =  4*(kn-1) + 3
@@ -15796,7 +15855,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kz2     =  kz1 + 1
       go to 50
 !
-!                                  edge 4
+! edge 4
    40 continue
       kpt     =  (2*nmk + 2 - ifn) / 2
       kedg    =  4*(kn-1) + 4
@@ -15811,8 +15870,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50 continue
       if ( iedgtp(kedg) .le. 0 ) go to 900
       if ( iedgtp(kedg) .ge. 2 ) go to 70
-!                                  edge type = 1 (collapsed)
-!                                  check that neighboring edges have typ
+! edge type = 1 (collapsed)
+! check that neighboring edges have typ
           ksdx    =  kedg - 4*(kn-1)
           ksdprv  =  mod(ksdx+2,4) + 1
           ksdnxt  =  mod(ksdx,4) + 1
@@ -15836,7 +15895,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kfsg1x  =  kfsg1
       kfsg2x  =  kfsg2
       if ( mod(ifn,2).eq.1 .and. mod(jfn,2).eq.1 ) go to 200
-!                                  edge interior control point
+! edge interior control point
                if ( kfsg1x.ne.kfsg1 ) then
                   write (7,8002) iabint,kfsg1,kfsg1x,kfsg2,kfsg2x       &
      &              , (kfdseg(l+4*kfsg1 -2),l=1,3)                      &
@@ -15867,7 +15926,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       idcpmc  =  0
       if ( kfsg.eq.jfsgvd ) idcpmc = idcpm
       if ( kabmtc .ge. 0 ) go to 900
-!                                  vorticity matching, define znc.
+! vorticity matching, define znc.
       l1      =  i1 + (j1-1)*nmk + nza(kn)
       l2      =  i2 + (j2-1)*nmk + nza(kn)
       if ( iextrp.eq.0 ) go to 90
@@ -15890,8 +15949,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call icopy (4,  kfdseg(4*lfsg-3),1, lokseg,1)
       lnet    =  (ledseg+3)/4
       lsd     =  ledseg - (lnet-1)*4
-!                                  find the point on the wake nw opposit
-!                                  the current control point.
+! find the point on the wake nw opposit
+! the current control point.
       lz1     =  i1lseg
       if ( lsgn.lt.0 ) lz1 = i2lseg
       taul1   =  0.d0
@@ -15906,7 +15965,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           taul1   =  taul2
           lz1     =  lz2
   180 continue
-!                                  didn't find it.
+! didn't find it.
       call errmsg ('missing opposing point for kutta cond')
       call outvci ('kokseg',4,kokseg)
       call outvci ('lokseg',4,lokseg)
@@ -15933,7 +15992,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   195 continue
       call uvect (znc)
       go to 900
-!                                  corner control point
+! corner control point
   200 continue
                if ( kfsg1x.ne.kfsg1 .or. kfsg2x.ne.kfsg2 ) then
                   write (7,8001) iabint,kfsg1,kfsg1x,kfsg2,kfsg2x       &
@@ -16000,16 +16059,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         influence.
 !
 !ca gbnejc
-!                                                            /gbnejc/
+!                           /gbnejc/
       common /gbnejc/ icpgpk, icpbkk, ne, jc
 !end  gbnejc
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
 !ca rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -16031,27 +16090,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        lla,llind,lldiff,lldtru,kklocr,mxcls
           call a502er ('cpbcum','addressing assumption violated')
    40 continue
-!                                  add up number of aic rows in the
-!                                  current control point block.
+! add up number of aic rows in the
+! current control point block.
       nesum   =  0
       do 100 icp = kcp1,kcp2
          nesum   =  nesum + nwv(3,icp)
   100 continue
-!                                  zero out accumulator array
+! zero out accumulator array
       call dcopy (ityprc*nesum*nsngt,  0.d0,0,  b,1)
-!                                  loop over panel groups, accumulating
+! loop over panel groups, accumulating
       do 500 jpagp = 1,npagp
           irec    =  inirec + (jpagp-1)*increc
           nsp     =  nspgrp(jpagp)
-!                                  the following read assumes that
-!                                  loc(ind) + mxcls = loc(a)
+! the following read assumes that
+! loc(ind) + mxcls = loc(a)
           call readmd (lun,ind,nwpb,irec)
           if (ityprc.eq.1) call disct2(nsp,nesum ,a,mxcls ,ind ,b,nsngt)
           if (ityprc.eq.2) call zisct2(nsp,nesum ,a,mxcls ,ind ,b,nsngt)
   500 continue
-!                                  for each control point in the current
-!                                  block, transpose the data and write
-!                                  out using vtrns
+! for each control point in the current
+! block, transpose the data and write
+! out using vtrns
       lb      =  1
       do 700 icp = kcp1,kcp2
           jc      =   nwv(4,icp)
@@ -16214,7 +16273,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       cp(1)   =  -2.d0*pvf
       cp(2)   =  -2.d0*pvf - pvs + pvf**2
       cp(3)   =  -2.d0*pvf - pvs + amachs*pvf**2
-!                                  isentropic, v --> 0
+! isentropic, v --> 0
       fac     =  vfmat(kmat)**2 / tratio(kmat)
       cp(4)   =  1.d0 - fac*( 1.d0 + 2.d0*pvf + pvs )
       if ( amach.gt.0.d0 ) cp(4) = (1.42857142857d0/amachs) *           &
@@ -16321,22 +16380,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rcon    =  cpfmat(kmat)
       amach2  =  amach**2
       fsvin2  =  1.d0/fsvm(ia)**2
-!                                  pvs = ( pert-v / v-infinity )**2
+! pvs = ( pert-v / v-infinity )**2
       call vip (pv,1,  pv,1,  3,  pvs)
       pvs     =  pvs * fsvin2
-!                                  pvf = ( pert-v . v-fs-air )/ (v-inf
+! pvf = ( pert-v . v-fs-air )/ (v-inf
       call vip (pv,1,  fsvhat(1,ia),1,  3,  pvfhat)
       pvf     =  pvfhat/fsvm(ia)
-!                                  pw = ( i - amach**2  f f' / fmag**2 )
+! pw = ( i - amach**2  f f' / fmag**2 )
       fac     =  amach2*pvfhat
       pw(1)   = pv(1) - fac*fsvhat(1,ia)
       pw(2)   = pv(2) - fac*fsvhat(2,ia)
       pw(3)   = pv(3) - fac*fsvhat(3,ia)
-!                                  ind = 1 ==> linear
-!                                  ind = 2 ==> second order
-!                                  ind = 3 ==> isentropic
+! ind = 1 ==> linear
+! ind = 2 ==> second order
+! ind = 3 ==> isentropic
       go to (100,200,300), ind
-!                                  linear cp rule
+! linear cp rule
   100 continue
       cp      =  -2.d0*rcon*pvf
       if ( .not. jacob ) go to 500
@@ -16472,7 +16531,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
 !call mspnts
@@ -16635,13 +16694,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  mspntz
       dimension cp(3,9)
 !
-!                                  compute the panel's row and column in
+! compute the panel's row and column in
       ipk     =  ipc - npa(kc)
       nmk     =  nm(kc)
       nnk     =  nn(kc)
       call mnmod (ipk, nmk-1, ipan,jpan)
 !
-!                                  get the locations of the panel's corn
+! get the locations of the panel's corn
       nzak    =  nza(kc)
       i1      =  ipan + (jpan-1)*nmk + nzak
       i2      =  i1 + nmk
@@ -16653,7 +16712,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (3,  zmzero(1,i3),1,  cp(1,3),1)
       call dcopy (3,  zmzero(1,i4),1,  cp(1,4),1)
 !
-!                                  compute the remaining 9 std points
+! compute the remaining 9 std points
       do 100 is = 1,4
           isp1    =  mod(is,4) + 1
           cp(1,is+4)   =  .5d0*( cp(1,is) + cp(1,isp1) )
@@ -16665,13 +16724,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       cp(2,9) =  .5d0*( cp(2,5) + cp(2,7) )
       cp(3,9) =  .5d0*( cp(3,5) + cp(3,7) )
       if ( icc.gt.4 ) go to 150
-!                                  control point on an outer triangle
+! control point on an outer triangle
           ic1     =  icc
           ic2     =  mod(icc,4)+1
           ic3     =  mod(icc+2,4)+1
           call norcal (cp(1,ic1), cp(1,ic2), cp(1,ic3), en)
           go to 250
-!                                  control point on inner parallelogram
+! control point on inner parallelogram
   150 continue
           call norcal (cp(1,9), cp(1,5), cp(1,6), en)
 !
@@ -16844,7 +16903,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension result(128)
       parameter (ncmax=50)
 !call jobsum
-!                                                            /jobsum/
+!                           /jobsum/
       common /jobsum/ nc, ncdum, tdata(12,ncmax)
       common /jobsch/ ttljob(ncmax)
       character*8 ttljob
@@ -16925,7 +16984,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  prnt
       parameter (ncmax=50)
 !ca jobsum
-!                                                            /jobsum/
+!                           /jobsum/
       common /jobsum/ nc, ncdum, tdata(12,ncmax)
       common /jobsch/ ttljob(ncmax)
       character*8 ttljob
@@ -17167,7 +17226,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  cp2flg
 !
 !
-!                                  evaluate various useful inner product
+! evaluate various useful inner product
       call vip (fz,1,  fz,1,  n,h00)
       call vip (fz,1,  f1,1,  n,h01)
       call vip (f1,1,  f1,1,  n,h11)
@@ -17179,14 +17238,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           fg   =  fg + gi*fz(i)
           gg   =  gg + gi*gi
    10 continue
-!                                  calculate the coefficients of
-!                                  [ phi(t), phi(t)]
+! calculate the coefficients of
+! [ phi(t), phi(t)]
       c4 = gg
       c3 = -2.d0*fg
       c2 = 2.d0*fg + h00
       c1 = -2.d0*h00
       c0 = h00
-!                                  optional printout
+! optional printout
       if ( iexcp2.lt.2 ) goto 15
       write (6,'(1x,a10,1x, 1p,5e12.4)')                                &
      & 'cub/c0-4',c0,c1,c2,c3,c4
@@ -17195,27 +17254,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,'(1x,a10,1x, 1p,e12.4)')                                 &
      & 'cub/alf',alf
    15 continue
-!                                  coefficients of (d/dt) [ phi, phi]
+! coefficients of (d/dt) [ phi, phi]
       d(3)  =  4.d0*c4
       d(2)  =  3.d0*c3
       d(1)  =  2.d0*c2
       d(0)  =  c1
-!                                  preset real parts of roots for later
+! preset real parts of roots for later
       x(1)  =  1.d38
       x(2)  =  2.d38
       x(3)  =  3.d38
       dtest   =  abs(d(0)) + abs(d(1)) + abs(d(2))
       if ( abs(d(3)) .gt. 1.d-8*dtest ) goto 100
-!                                  d(3)  .=.  0
+! d(3)  .=.  0
           if ( abs(d(2)).gt. 1.d-8*dtest ) goto 50
-!                                  case: linear
-!                                  d(2) .=. 0, d(3) .=. 0
+! case: linear
+! d(2) .=. 0, d(3) .=. 0
           x(1)  =  -d(0)/d(1)
           if ( iexcp2.ge.2 ) write (6,'(1x,a10,1x, 1p,e12.4)')          &
      & 'path 00',x(1)
           goto 200
-!                                  case: quadratic
-!                                  d(2) # 0,  d(3) .=. 0
+! case: quadratic
+! d(2) # 0,  d(3) .=. 0
    50     continue
           disc    =  d(1)**2 - 4.d0*d(0)*d(2)
           if ( iexcp2.ge.2 ) write (6,'(1x,a10,1x, 1p,e12.4)')          &
@@ -17224,8 +17283,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           x(1)    =  ( -d(1) - sign(1.d0,d(1))*sqrt(disc) )/(2.d0*d(0))
           x(2)    =  d(0)/( d(2)*x(1) )
           goto 200
-!                                  case: true cubic
-!                                  d(3) # 0
+! case: true cubic
+! d(3) # 0
   100     continue
           np = 3
           ier  =  0
@@ -17248,16 +17307,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( y(1).ne.0.d0 ) x(1) = 4.d38
           if ( y(2).ne.0.d0 ) x(2) = 4.d38
           if ( y(3).ne.0.d0 ) x(3) = 4.d38
-!                                  roots have been found.  examine
-!                                  all actual roots for the global min.
+! roots have been found.  examine
+! all actual roots for the global min.
   200 continue
       pmin    =  1.d38
       kmin    =  0
       do 300 k = 1,3
           if ( abs(x(k)).gt. 1.d36 ) goto 300
-!                                  root k was a true root, evaluate the
-!                                  quartic polynomial at z = x(k), and
-!                                  check if it is global minimum so far.
+! root k was a true root, evaluate the
+! quartic polynomial at z = x(k), and
+! check if it is global minimum so far.
           z = x(k)
           p(k) = c0 + z*( c1 + z*( c2 + z*( c3 + z*c4 )))
           if ( abs(x(k)) .gt. 10.d0 ) goto 300
@@ -17351,22 +17410,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       en(3)   =  t1(1)*t2(2) - t1(2)*t2(1)
       ensq    =  en(1)**2 + en(2)**2 + en(3)**2
       if ( ensq .lt. epsq*t1sq*t2sq ) go to 200
-!                                  usual case, intersection possible
-!                                  in unit square and t1 not parallel
-!                                  to t2
+! usual case, intersection possible
+! in unit square and t1 not parallel
+! to t2
       v(1)    =  en(2)*dz(3) - en(3)*dz(2)
       v(2)    =  en(3)*dz(1) - en(1)*dz(3)
       v(3)    =  en(1)*dz(2) - en(2)*dz(1)
 !
       tau1    =  ( v(1)*t2(1) + v(2)*t2(2) + v(3)*t2(3) ) / ensq
       tau2    =  ( v(1)*t1(1) + v(2)*t1(2) + v(3)*t1(3) ) / ensq
-!                                  check that close passage actually occ
-!                                  in the unit square
+! check that close passage actually occ
+! in the unit square
       if ( tau1.le.0.d0 .or. tau1.ge.1.d0 ) go to 500
       if ( tau2.le.0.d0 .or. tau2.ge.1.d0 ) go to 500
       dsq     =  (  ( dz(1)*en(1)+dz(2)*en(2)+dz(3)*en(3) )**2  )/ensq
       go to 950
-!                                  t1 essentially parallel to t2
+! t1 essentially parallel to t2
   200 continue
       f       =  dzt1/t1sq
       dz(1)   =  dz(1) - f*t1(1)
@@ -17390,7 +17449,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dsq     =  dz(1)**2 + dz(2)**2 + dz(3)**2
       go to 950
 !
-!                                  shortest distance on boundary of unit
+! shortest distance on boundary of unit
   500 continue
       f1 = max( 0.d0, min ( 1.d0, dzt1/t1sq ))
       f2 = max( 0.d0, min ( 1.d0, (dzt1+t1t2)/t1sq ))
@@ -17650,12 +17709,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*10 qratio, qnetls, qsrfls, qmatls
 !end  matprp
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !ca lfqprm
-!                                                       /lfqprm/
+!                      /lfqprm/
 !     major flags for controlling the low-frequency features
 !     mlofrq = 0, normal run
 !            = 1, ph/0 run, low frequency theory
@@ -17690,7 +17749,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /acase/ alpha(4), beta(4), fsvm(4), fsv(3,4)               &
      &             , iacase, nacase, fsvhat(3,4), pvdry(3,4)
 !end  acase
-!                                  formerly in /skrch1/
+! formerly in /skrch1/
       dimension zc(3,4,4),zmc(3,5,5),icp(4),imap(4)
 !
       dimension  iijjar(3,3), zij(3), zle(3)
@@ -17848,8 +17907,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nt.eq.18 .and. ipan.eq.1 ) goto 643
       if ( nt.eq.20 .and. ipan.eq.1 .and. jpan.eq.1 ) goto 643
           goto 645
-!                                    normal wakes are constant in
-!                                    the row direction.  enforce this.
+!   normal wakes are constant in
+!   the row direction.  enforce this.
   643     continue
           do 644 k=1,ind
              l=9*(k-1)
@@ -17865,16 +17924,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           indwk   =  ind
           call dcopy (ncdwk*indwk,  astdp,1,  astdwk,1)
           call icopy (indwk,         iidp,1,   iidwk,1)
-!                                    copy baseline leading edge panel
-!                                    data into current panel's data
+!   copy baseline leading edge panel
+!   data into current panel's data
   645     continue
           call dcopy (ncdwk*indwk,  astdwk,1,  astdp,1)
           call icopy (indwk,         iidwk,1,   iidp,1)
           ncd     =  ncdwk
           ind     =  indwk
           if ( lfqind.eq.0 ) goto 650
-!                                    put in linear dependency upon
-!                                    known mu/x terms
+!   put in linear dependency upon
+!   known mu/x terms
           do 647 ii = 1,3
           do 647 jj = 1,3
              iijj    =  iijjar(ii,jj)
@@ -17911,13 +17970,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call dcopy (ncd*ind,astdp,1,astd,1)
       call icopy (ind,iidp,1,iid,1)
-!                                   extract astmux information from astd
-!                                   The dependence of the mu/x params
-!                                   at panel point [3,7,4] (t.e. pts
-!                                   [1,2,3]) is the same as the
-!                                   dependence of mu at panel points
-!                                   [2,5,3], the leading edge points
-!                                   upstream of [3,7,4].
+!  extract astmux information from astd
+!  The dependence of the mu/x params
+!  at panel point [3,7,4] (t.e. pts
+!  [1,2,3]) is the same as the
+!  dependence of mu at panel points
+!  [2,5,3], the leading edge points
+!  upstream of [3,7,4].
       if ( nt.ne.18 .and. nt.ne.20  ) goto 661
       if ( lfqind.eq.0 ) goto 661
 !=      write (6,'(''  daspl, astmux construction'',3i6)')knet,ipan,jpan
@@ -17928,7 +17987,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call icopy (5,  0,0,  iimux,1)
       do 660 j = 1,ind
          if ( iid(j).gt.nssa+nstk ) goto 660
-!                                  found a regular (non mu/x) parm
+! found a regular (non mu/x) parm
          jbase   =  9*(j-1)
          inmux   =  inmux + 1
          if ( inmux.gt.5 ) then
@@ -17936,8 +17995,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call a502ms ('daspl','astmux overflow')
             goto 661
          endif
-!                                   mu/x parameters are displaced by
-!                                   nstk from corresponding mu parms
+!  mu/x parameters are displaced by
+!  nstk from corresponding mu parms
          iimux(inmux) = iid(j) + nstk
          astmux(1,inmux) = astd(2+jbase)
          astmux(2,inmux) = astd(5+jbase)
@@ -17979,7 +18038,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       locpak(4)  =  2
       if ( nt.eq.18 ) go to 750
       if ( nt.eq.20 ) go to 780
-!                                  nt = 12, maps generation
+! nt = 12, maps generation
       do 720 j = 1,nna
       do 720 i = 1,nma
           ij     =  i + nma*(j-1)
@@ -17993,7 +18052,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nss    =  nma*nna
       ns     =  nia
       go to 800
-!                                  nt = 18, maps generation
+! nt = 18, maps generation
   750 continue
       do 760 j = 1,nna
           maps(nssa+j) = nsa + ia(j)
@@ -18005,7 +18064,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nss    =  nna
       ns     =  ia(nna)
       go to 800
-!                                  nt = 20, maps generation
+! nt = 20, maps generation
   780 continue
       maps(nssa+1) = nsa + 1
       locpak(2)  =  1
@@ -18014,7 +18073,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nss     =  1
       ns      =  1
       go to 800
-!                                  add in extra control points to maps
+! add in extra control points to maps
   800 continue
       if ( nxspk .le. 0 ) go to 850
       nxspak  =  nxspa(knet)
@@ -18029,7 +18088,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nss    =  nss + nxspk
       ns     =  ns  + nxspk
   850 continue
-!                                  put linear dependency in wake maps
+! put linear dependency in wake maps
       if ( nt.ne.18 .and. nt.ne.20 ) goto 870
       if ( lfqind.eq.0 ) goto 870
       do 860 i = 1,nss
@@ -18058,7 +18117,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !         build an 8 character data:  mm/dd/yy
 !
-!                                   put installation date in
+!  put installation date in
       int(1) = 02
       int(2) = 12
       int(3) = 92
@@ -18102,15 +18161,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       dimension   a(na,1), d(n), sa(n), jq(n)
 !
-!                                  initialize pivot vector  jq  and
-!                                  compute column norms  d(j)
+! initialize pivot vector  jq  and
+! compute column norms  d(j)
       do 10 j = 1,n
           jq(j)   =  j
       d(j)=ddot(m,a(1,j),1,a(1,j),1)
    10 continue
 !
       do 100 k = 1,n
-!                                  find a pivot column
+! find a pivot column
           dmax    =  d(k)
           l       =  k
           do 20 j = k,n
@@ -18118,7 +18177,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     dmax    =  d(j)
                     l       =  j
    20     continue
-!                                  if l.ne.k, interchange col*s  k and l
+! if l.ne.k, interchange col*s  k and l
           if ( l.eq.k ) go to 40
                jsv     =  jq(l)
                jq(l)   =  jq(k)
@@ -18148,8 +18207,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           beta    =  -1.d0/( a(k,k) * d(k) )
           kp1     =  k+1
           if ( k.eq.n ) go to 100
-!                                  apply householder transpormations
-!                                  to columns  k+1  throgh  n
+! apply householder transpormations
+! to columns  k+1  throgh  n
       call mxma (a(k,kp1),na,1  ,a(k,k),1,nrem  ,sa,1,n-k  ,n-k,nrem,1)
           call vmul ( sa, beta, sa, n-k)
           call hsmmp3 (nrem,1,n-k ,a(k,k),1,nrem ,sa,1,1 ,a(k,kp1),1,na)
@@ -18274,14 +18333,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !call compsp
-!                                                           /compsp/
+!                          /compsp/
 !         contains info relating mu on edges 2 or 4 of ntdk=6 nw's
 !         to panel interior values
       common /compsp/ bpsp(6,200,2)                                     &
      &              , kntpsp, npsp(200,2), kkpsp(200,2), iipsp(6,200,2)
 !end  compsp
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
       logical ident
@@ -18317,7 +18376,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( ntk.lt.0 ) its = 3
       ncd     =  9
 !
-!                                  loop over the 9 canonical points on t
+! loop over the 9 canonical points on t
 !
       do 800 jpt = 1,3
       do 800 ipt = 1,3
@@ -18328,11 +18387,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ipar    =  mod(ifn,2)
       jpar    =  mod(jfn,2)
       klass   =  ipar + 2*jpar + 1
-!                                  use klass=5 for all of edges 2 and 4
+! use klass=5 for all of edges 2 and 4
       if ( ifn.eq.1 .or. ifn.eq.mfn ) klass = 6
       if ( jfn.eq.1 .or. jfn.eq.nfn ) klass = 5
       go to (100, 200, 300, 400, 500, 600), klass
-!                                  panel center
+! panel center
   100 continue
       imin    =  max(1, min(nma, ipan-1))
       imax    =  max(1, min(nma, ipan+2))
@@ -18374,7 +18433,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (npk,  ak(1,1),6,  bdp(1,lij),1)
       npkp(lij) = npk
       go to 800
-!                                  interior, on mesh row, between mesh c
+! interior, on mesh row, between mesh c
   200 continue
       i       =  (ifn+1)/2
       j       =  jpan+1
@@ -18383,7 +18442,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iidp(1,lij) = nssa + ij
       bdp(1,lij)  = 1.d0
       go to 800
-!                                  interior, between mesh rows, on mesh
+! interior, between mesh rows, on mesh
   300 continue
       imin    =  max(1, min (nma, ifn/2 - 1 ))
       imax    =  max(1, min (nma, ifn/2 + 2 ))
@@ -18420,7 +18479,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (npk,ak(1,1),6,bdp(1,lij),1)
       npkp(lij) = npk
       go to 800
-!                                  interior, on mesh row and column
+! interior, on mesh row and column
   400 continue
       icrs    =  (ifn+1)/2
       jcrs    =  (jfn+1)/2
@@ -18454,10 +18513,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (npk,  ak,6,  bdp(1,lij),1)
       npkp(lij) =  npk
       go to 800
-!                                  first or last column
+! first or last column
   500 continue
       if ( ipar.eq.0 ) go to 550
-!                                  singularity parameter location, edge
+! singularity parameter location, edge
       i       =  (ifn+1)/2
       j       =  1
       if ( jfn.eq.nfn ) j = nna
@@ -18465,9 +18524,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       npkp(lij) = 1
       iidp(1,lij)=  nssa + ij
       bdp(1,lij) =  1.d0
-!                                  calculate special splines for edge 2
-!                                  s.p. locations to override aero bc's
-!                                  their corresponding control points
+! calculate special splines for edge 2
+! s.p. locations to override aero bc's
+! their corresponding control points
       icrs    =  (ifn+1)/2
       jcrs    =  (jfn+1)/2
       jx      =  1
@@ -18508,7 +18567,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       go to 800
 !
 !
-!                                  not a s.p. location (usual edge splin
+! not a s.p. location (usual edge splin
   550 continue
       imin    =  max( 1, min( nma, ifn/2-1 ))
       imax    =  max( 1, min( nma, ifn/2+2 ))
@@ -18567,7 +18626,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   590 continue
       go to 800
 !
-!                                  first or last row
+! first or last row
   600 continue
       if ( jpar.eq.0 ) go to 680
       if ( jfn.eq.1 .or. jfn.eq.nfn ) go to 680
@@ -18637,8 +18696,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call icopy (4,  iide,1,  iidp(1,lij),1)
       npkp(lij) = 4
       go to 695
-!                                  natural singularity parameter,
-!                                  first or last row
+! natural singularity parameter,
+! first or last row
   680 continue
       j       =  (jfn+2)/2
       if ( jfn.eq.nfn ) j = nna
@@ -18648,7 +18707,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iidp(1,lij)= i + (j-1)*nma + nssa
       bdp(1,lij) = 1.d0
       go to 695
-!                                  extra s.p., first or last row
+! extra s.p., first or last row
   690 continue
       npkp(lij) = 1
       iidp(1,lij)=  nna*nma + nssa + lextra - nxspa(knet)
@@ -18660,7 +18719,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   800 continue
 !
-!                                  pack up the spline matrix
+! pack up the spline matrix
 !
       k       =  0
       do 820 ii = 1,9
@@ -18704,7 +18763,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  maps generation
+! maps generation
       locpak(1) = knet
       locpak(4) = 2
       nss     =  nma*nna
@@ -18781,13 +18840,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       character*90 line
       character*10 lk1, lk2
-!                                  read nw info as character data, plus
-!                                  data as floating point
+! read nw info as character data, plus
+! data as floating point
       read (line,6001,err=9950) lk1,sd1,lk2,sd2
  6001 format (a,f10.0,a,f10.0)
       isd1    =  sd1
       isd2    =  sd2
-!                                  attempt a match of the network name
+! attempt a match of the network name
       k1      =  0
       if ( lk1 .eq. '          ' ) goto 101
       call ljbf10 (lk1)
@@ -18801,7 +18860,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (f10.0)
       k1      =  ak1
   110 continue
-!                                  attempt a match for the 2nd nw name
+! attempt a match for the 2nd nw name
       k2      =  0
       if ( lk2.eq.'          ' ) goto 201
       call ljbf10 (lk2)
@@ -18815,7 +18874,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6003 format (20x,f10.0)
       k2      =  ak2
   210 continue
-!                                  write out input and interpretted data
+! write out input and interpretted data
       write (6,6004) line, k1,isd1,k2,isd2
  6004 format (' $abu:',a,' nw.e-1',i4,1h.,i1,'  nw.e-2',i4,1h.,i1)
 !
@@ -18823,7 +18882,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'dfnabu', line, ((lll,lll=1,10),kkk=1,8)
@@ -18845,8 +18904,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       character*90 line
       character*10 lk
-!                                  read nw info as character data, plus
-!                                  data as floating point
+! read nw info as character data, plus
+! data as floating point
       read (line,6001,err=9950) lk,sd,pt1,pt2
  6001 format (a,3f10.0)
       isd     =  sd
@@ -18856,7 +18915,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ipt1   =  pt2
           ipt2   =  pt1
       endif
-!                                  attempt a match of the network name
+! attempt a match of the network name
       kk      =  0
       if ( lk .eq. '          ' ) goto 101
       call ljbf10 (lk)
@@ -18870,7 +18929,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (f10.0)
       kk      =  akk
   110 continue
-!                                  write out input and interpretted data
+! write out input and interpretted data
       return
       write (6,6004) line, kk,isd,ipt1,ipt2
  6004 format (' $pea:',a,' nw.e',i4,1h.,i1,'  start pt',i3              &
@@ -18880,7 +18939,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'dfnpea', line, ((lll,lll=1,10),kkk=1,8)
@@ -18923,7 +18982,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 100 ij = 1,mn
          c(ij) = abs(c(ij))
   100 continue
-!                                  generate matrix printout
+! generate matrix printout
       write (6,'('' difmtx:'',2i5,a)') m,n,label
  6000 format ('  comparisons for ',a,'  columns:',2i5                   &
      &  ,/,5x,100i1 )
@@ -18944,7 +19003,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   180    continue
   200 continue
       call dshell (mn,c,ia)
-!                                  print 100 worst entries
+! print 100 worst entries
       ijmin =  max(1,mn-100)
       do 300 ijx = ijmin,mn
          ij  =  ia(ijx)
@@ -19022,7 +19081,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension rq(3,16), enc(3)
       equivalence (cpfz,qc), (icsf,ics), (n,nsff), (rq,rqff), (enc,encf)
 !ca freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -19036,7 +19095,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
     1 ncall   =  ncall + 1
       qrdb    =  .5d0*diamf
       iflumx  =  0
-!                                  make fast influence tests for superso
+! make fast influence tests for superso
 !!      iflu(1,1) = 0                                                       ! Removed by Martin Hegedus, 4/21/09
 !!      iflu(1,2) = 0                                                       ! Removed by Martin Hegedus, 4/21/09
 !!      iflu(2,1) = 0                                                       ! Removed by Martin Hegedus, 4/21/09
@@ -19063,7 +19122,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
     5 continue
       qrdb2   =  qrdb**2
       mplane  =  rfmin*sbetam .gt. 0.d0
-!                                  set up looping over planes of symmetr
+! set up looping over planes of symmetr
 !
       do 2000 jj = 1,njsym
       sgnj    =  3-2*jj
@@ -19075,7 +19134,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       p(2)    =  sgni*zc(2)
       p(3)    =  sgnj*zc(3)
       if ( sbetam .lt. 0.d0 ) go to 10
-!                                  subsonic tests
+! subsonic tests
       influ   =  .true.
       tg(1)   =  qc(1) - p(1)
       tg(2)   =  qc(2) - p(2)
@@ -19090,11 +19149,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &    dmin = sqrt(  dmin**2 + ( sqrt(rcxysq)-qrdb )**2  )
       go to 1000
 !
-!                                  supersonic tests
+! supersonic tests
    10 continue
-!                                  compute the distance from the mean
-!                                  plane panel center to the boundary
-!                                  of the cone, in x(bar).
+! compute the distance from the mean
+! plane panel center to the boundary
+! of the cone, in x(bar).
       tg(1)   =  qc(1) - p(1)
       tg(2)   =  qc(2) - p(2)
       tg(3)   =  qc(3) - p(3)
@@ -19107,26 +19166,26 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       hcsq    =  xcsq - rcyzsq
       influ   =  rc(1).lt.0.d0  .and.  xcsq.gt.rcyzsq
       if ( rc(1).gt.0.d0  .and.  xcsq.gt.rcyzsq ) go to 20
-!                                  near pt to  qc  is on cone surface
+! near pt to  qc  is on cone surface
           dqcb    =  abs(  rc(1) + sqrt(rcyzsq)  ) * rthaf
           dsq     =  dqcb**2
           go to 30
-!                                  near point to qc is at cone apex
+! near point to qc is at cone apex
    20 continue
           dsq     =  rcsq
           dqcb    =  sqrt ( dsq )
 !
    30 continue
       if ( dsq .le. qrdb2 ) go to 100
-!                                  panel cannot intersect the boundary
-!                                  of the mach cone.-- the center point
-!                                  distance  dqcb  exceeds the radius
-!                                  qrdb.
+! panel cannot intersect the boundary
+! of the mach cone.-- the center point
+! distance  dqcb  exceeds the radius
+! qrdb.
                dmin    =  dqcb - qrdb
                ifluij  =  0
                if ( .not. influ ) go to 1200
                if ( dqcb .gt. eps3*diamf ) go to 1000
-!                                  perform detailed influence test
+! perform detailed influence test
   100 continue
       dmin    =  dqcb
       hsqmin  =  hcsq
@@ -19146,66 +19205,66 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           hsq     =  xx*xx - ryzsq
           rsq     =  xx*xx + ryzsq
           if (  xx.gt.0.d0  .or.  hsq.lt.0.d0 ) go to 260
-!                                  corner inside  d(p)
+! corner inside  d(p)
                if ( .not. influ ) go to 250
                k       =  k + 1
                hsqmin  =   min ( hsq, hsqmin)
                dmin    =   min ( dmin, abs( xx + sqrt(ryzsq) ) *rthaf )
                if ( k .eq. isx ) go to 300
-!                                  either the center is outside, or
-!                                  isx .ne. k .  set  dmin = 0  and exit
+! either the center is outside, or
+! isx .ne. k .  set  dmin = 0  and exit
   250          continue
                     dmin    =  0.d0
 !              ***  influ   =  .true.   ***
                     go to 900
 !
-!                                  corner point outside  d(p)
+! corner point outside  d(p)
   260     continue
                if ( influ ) go to 270
                if ( hsq.gt.0.d0 ) dmin = min( dmin, sqrt(rsq)  )
                if ( hsq.le.0.d0 ) dmin = min( dmin,                     &
      &              abs(  xx+sqrt(ryzsq)  ) * rthaf   )
                if ( k .eq. 0 ) go to 300
-!                                  either the center was inside or k.ne.
-!                                  set  dmin = 0 ,  and exit
+! either the center was inside or k.ne.
+! set  dmin = 0 ,  and exit
   270          continue
                     dmin    =  0.d0
 !              ***  influ   =  .true.   ***
                     go to 900
 !
   300 continue
-!                                  if all corners inside, we are done
+! if all corners inside, we are done
       influ   =  influ .or.  k.ne.0
       if ( influ ) go to 900
-!                                  qc and all corners lie outside d(p).
-!                                  if mean plane is superinclined, check
-!                                  the near point (or the piercing point
-!                                  as appropriate) lies on the mean plan
-!                                  if the mean plane is not superincline
-!                                  go immediately to the checking of
-!                                  the supersonic edges.
+! qc and all corners lie outside d(p).
+! if mean plane is superinclined, check
+! the near point (or the piercing point
+! as appropriate) lies on the mean plan
+! if the mean plane is not superincline
+! go immediately to the checking of
+! the supersonic edges.
       hsqmin  =  0.d0
       if (  enc(1)**2 .le.  enc(2)**2+enc(3)**2  ) go to 400
 !
           xn      =  enc(1)*rc(1) + enc(2)*rc(2) + enc(3)*rc(3)
           if ( xn*enc(1) .gt. 0.d0 ) go to 340
-!                                  panel is upstream of the control pt.
-!                                  check for piercing
+! panel is upstream of the control pt.
+! check for piercing
                ichk    =  1
                rx(1)   =  xn/enc(1)
                rx(2)   =  0.d0
                rx(3)   =  0.d0
                go to 350
   340     continue
-!                                  panel is downstream of p-s domain of
-!                                  dependance.  compute minimum distance
-!                                  pt from apex to panel plane and see
-!                                  if it lies in the panel.
+! panel is downstream of p-s domain of
+! dependance.  compute minimum distance
+! pt from apex to panel plane and see
+! if it lies in the panel.
                ichk    =  2
                rx(1)   =  xn*enc(1)
                rx(2)   =  xn*enc(2)
                rx(3)   =  xn*enc(3)
-!                                  determine if rx(*) is in the avg pane
+! determine if rx(*) is in the avg pane
   350     continue
           do 360 is = 1,n
                xi(is)  =  1.d0
@@ -19225,19 +19284,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
           call zwindg (n,xi,et,zed,ized,ierr)
           if ( ierr.eq.0 ) go to 370
-!                                  error found. rx is probably on the
-!                                  boundary.
+! error found. rx is probably on the
+! boundary.
                if(ncall.lt.10) call errmsg(' zwindg eror in dinflu')
                go to 400
 !
   370     continue
           if ( ized.eq.0 ) go to 400
-!                                  rx lies in the panel
+! rx lies in the panel
                if ( ichk .eq. 1 ) dmin = 0.d0
 !         ***  if ( ichk .eq. 1 ) influ = .true.  ***
                if ( ichk.eq.2 ) dmin =  min ( dmin, abs(xn) )
                go to 900
-!                                  check supersonic edges
+! check supersonic edges
   400 continue
       do 500 is = 1,n
           if ( is.eq.ics ) go to 500
@@ -19249,7 +19308,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           tgyzsq  =  tg(2)**2 + tg(3)**2
           tgsq    =  tg(1)**2 - tgyzsq
           if ( tgsq.ge.0.d0 ) go to 500
-!                                  supersonic edge, plug ahead.
+! supersonic edge, plug ahead.
           qct     =  abs( r(2,is)*tg(3) - r(3,is)*tg(2) )
           drsq    =  tg(1)**2 + tgyzsq
           cxtqxt  =  r(1,is)*tgyzsq - tg(1)*( tg(2)*r(2,is)             &
@@ -19277,13 +19336,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                                                      drsq)
                     dmin    =   min (dmin,dist)
   500 continue
-!                                  supersonic collection point
+! supersonic collection point
   900 continue
       if ( mplane ) dmin = max( 0.d0, dmin - qdltf )
       if ( dmin .le. 0.d0 ) influ = .true.
       ifluij  =  0
       if ( .not.influ ) go to 1200
-!                                  define  iflu(ii,jj)
+! define  iflu(ii,jj)
  1000 continue
       ifluij  =  6
       if ( dmin .gt. eps5 * diamf ) ifluij = 5
@@ -19291,8 +19350,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( dqcb .gt. eps3 * diamf ) ifluij = 3
       if ( dqcb .gt. eps2 * diamf ) ifluij = 2
       if ( dqcb .gt. eps1 * diamf ) ifluij = 1
-!                                  adjust value of ifluij to reflect wav
-!                                  length restrictions, when ifluij # 0
+! adjust value of ifluij to reflect wav
+! length restrictions, when ifluij # 0
       dphase   =  omgabs*diamf
       if ( dphase.lt.phc1 ) goto 1200
          ifluij  =  max0( ifluij, 2)
@@ -19701,7 +19760,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     the panel center velocities.
 !
 !ca lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
 !ca comprs
@@ -19721,7 +19780,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       mfn     =  2*m-1
       nfn     =  2*n-1
       mnfn    =  mfn*nfn
-!                                  detect collapsed edges
+! detect collapsed edges
       do 100 ksd = 1,4
          kn      =  n
          if ( ksd.eq.2 .or. ksd.eq.4 ) kn = m
@@ -19741,11 +19800,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             write (6,'('' partially collapsed edge detected:'',2i5)')   &
      &           knet,ksd
   100 continue
-!                                  loop over network grid points
+! loop over network grid points
       do 400 l = 1,n-1
       do 350 k = 1,m-1
          kl      =  k + (l-1)*(m-1)
-!                                  use the mean plane normal
+! use the mean plane normal
          call mpnrml (z(1,k,l),m,n,  eng)
          call vip (eng,1,  eng,1,  3,  engsq)
          if ( engsq.le. 0.d0 ) then
@@ -19756,11 +19815,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          fac      =  1.d0/sqrt(engsq)
          call dscal (3,  fac,  eng,1)
          call en2xfm (eng,aa)
-!                                  get origin
+! get origin
          ifn     =  2*k
          jfn     =  2*l
          call fngrid (m,n,z,  ifn,jfn,  zorig)
-!                                  build spline
+! build spline
          npk     =  0
          l1      =  max(  1, l-1)
          l2      =  min(n-1, l+1)
@@ -19778,7 +19837,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call lproj (eng,zorig,zpt,zk(1,npk))
             call unipan (aa,zorig,zk(1,npk),zk(1,npk))
             if ( k1.ne.k2 ) goto 220
-!                                  k1=k2; put in dummy values
+! k1=k2; put in dummy values
                npk     =  npk + 1
                wtk(npk) =  1.d0
                indx(npk) = indx(npk-1)
@@ -19795,7 +19854,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   220       continue
             if ( l1.ne.l2 ) goto 230
-!                                  l1=l2; put in dummy values
+! l1=l2; put in dummy values
                npk     =  npk + 1
                wtk(npk) =  1.d0
                indx(npk) = indx(npk-1)
@@ -19822,7 +19881,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !----         write (6,'('' dsnc2g:  knet,k,l: '',3i6)') knet,k,l
 !----         call outvci ('indx',npk,indx)
 !----         call outmat ('ak',6,3,npk,ak)
-!                                   evaluate spline at 4 panel corners
+!  evaluate spline at 4 panel corners
          ijp     =  0
          do 260 jp = 0,1
             do 255 ip = 0,1
@@ -19894,14 +19953,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension ivjds(40), dvjds(3,40), delv(3)
 !
       if ( ipv.ne.ipn ) call strns (ipv,cp)
-!                                  compute the 9 canonical mu parms
+! compute the 9 canonical mu parms
       call dcopy (9,  0.d0,0,  amu,1)
       do 100 j = 1,ind
          lastd   =  1 + (j-1)*9
          call daxpy (9,  s(iid(j)),   astd(lastd),1,  amu,1)
   100 continue
-!                                  evaluate [[ phi ]], [[ phi/s ]]
-!                                                and   [[ phi/t ]]
+! evaluate [[ phi ]], [[ phi/s ]]
+!               and   [[ phi/t ]]
       sc      =  0.d0
       tc      =  0.d0
       call bqbfun (sc,tc,  phi,phis,phit)
@@ -19913,8 +19972,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ps (i)  =  .25d0*(cpq(i,1) - cpq(i,2) - cpq(i,3) + cpq(i,4) )
          pt (i)  =  .25d0*(cpq(i,1) + cpq(i,2) - cpq(i,3) - cpq(i,4) )
   200  continue
-!                                  enc  = N = p/s x p/t;
-!                                  enuc =  N~ /( N, N~)
+! enc  = N = p/s x p/t;
+! enuc =  N~ /( N, N~)
       call cross (ps,pt,enc)
       call dcopy (3,  enc,1,  enuc,1)
       call cscal2 (betams,enuc,1)
@@ -19922,22 +19981,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call vmul (enuc, 1.d0/enenuc, enuc,3)
       call cross (pt,enuc,bs)
       call cross (enuc,ps,bt)
-!                                  ensg =  N ( |N| / (N,N~) )
-!                                       =  n / (n,n~)
+! ensg =  N ( |N| / (N,N~) )
+!      =  n / (n,n~)
       enabs   =  sqrt( ddot( 3, enc,1, enc,1) )
       call vmul (enc, enabs/enenuc,  ensg,  3)
       sgctr   =  0.d0
       do 250 j = 1,ins
          sgctr   =  sgctr + asts(3*j-2)*s(iis(j))
   250 continue
-!                                  add the two dependencies upon 9 mu's
-!                                  [[ v ]] = bs*[[phi/s]] + bt*[[phi/t]]
-!                                            + sigma * [ n / (n,n~) ]
+! add the two dependencies upon 9 mu's
+! [[ v ]] = bs*[[phi/s]] + bt*[[phi/t]]
+!           + sigma * [ n / (n,n~) ]
       dpv(1)   =  dph
       do 300 i = 1,3
          dpv(i+1) =  bs(i)*dphs + bt(i)*dpht + ensg(i)*sgctr
   300 continue
-!                                  DEBUG: call dsncvj and get it right
+! DEBUG: call dsncvj and get it right
 !--      call dsncvj (ipv,cpq,  nvjds,ivjds,dvjds)
 !--      call dcopy (3,  0.d0,0,  delv,1)
 !--      do 400 j = 1,nvjds
@@ -19981,7 +20040,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !ca pandsn
-!                                                          /pandsn/
+!                         /pandsn/
 !     pandsn: panel data for the design
       common /pandsn/ wpdn(3,9), wsdn(3,3,8)                            &
      &              , wcdn(18,12), wcsdn(18,12,8)                       &
@@ -19999,15 +20058,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (3*9,  0.d0,0,  qd,1)
 !
       do 200 ipt = 1,9
-!                                  (iv,jv) = 3x3 grid indices
+! (iv,jv) = 3x3 grid indices
          iv      =  1 + inca(ipt)
          jv      =  1 + jnca(ipt)
-!                                  (ifn,jfn) = fine grid indices
+! (ifn,jfn) = fine grid indices
          ifn     =  2*(ipan-1) + 1 + inca(ipt)
          jfn     =  2*(jpan-1) + 1 + jnca(ipt)
          call vadd (vfg(1,ifn,jfn,1), -1.d0, vfg(1,ifn,jfn,2)           &
      &        ,vd(1,ipt),3)
-!                                  force continuity at P-O-S
+! force continuity at P-O-S
 !---         if ( abs(cp(2,ipt)).le. 1.d-7 ) vd(2,ipt) = 0.d0
 !
          call dcopy (3,  cp(1,ipt),1,  cpx,1)
@@ -20022,11 +20081,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call pident (cp(1,ipt),cpx,ident)
             if ( ident ) vd(3,ipt) = 0.d0
          endif
-!                                  form perturbation mass flux
+! form perturbation mass flux
          call cmpscl (betams,compd,vd(1,ipt),vd(1,ipt))
-!                                  add in freestream for W/tot
+! add in freestream for W/tot
          call daxpy (3,  1.d0,  fsv,1,  vd(1,ipt),1)
-!                                  copy to debug print array
+! copy to debug print array
          call dcopy (3,  vd(1,ipt),1,  wpdn(1,ipt),1)
          call dcopy (3,  vd(1,ipt),1,  vdm(1,iv,jv),1)
   200 continue
@@ -20041,7 +20100,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             isx(2)  =  mod(is+2,4)+5
             isx(3)  =  is
          endif
-!                                  generate subpanel info
+! generate subpanel info
          do 240 kk = 1,3
             call dcopy (3,  wpdn(1,isx(kk)),1,  wsdn(1,kk,is),1)
   240    continue
@@ -20208,7 +20267,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , ggcp(3,3), ggcpit(3,3), btsqi, akap, akapin
 !end  comprs
 !call endvcl
-!                                                            /endvcl/
+!                           /endvcl/
       common /endvcl/ encp(3)
 !end  endvcl
       dimension ps(3), pt(3), pst(3), enc(3), enuc(3), as(3), at(3)     &
@@ -20234,7 +20293,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross (enuc,as,bt)
       call mxma (bs,1,3,  phis,1,1,  dvdbl,1,3,  3,1,9)
       call hsmmp2 (3,1,9,  bt,1,3,  phit,1,1,  dvdbl,1,3)
-!                                  now compute jump in velocity due to s
+! now compute jump in velocity due to s
   500 continue
       call zero (dvsrc,9)
       if ( mod(its,2).eq.0 ) go to 900
@@ -20399,7 +20458,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mnmod (kedg,4,ksd,knet)
       m       =  2*nm(knet) - 1
       n       =  2*nn(knet) - 1
-!                                  get the fine grid row/col indices
+! get the fine grid row/col indices
       goto (100,200,300,400) ksd
   100 continue
          i       =  1
@@ -20640,9 +20699,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ksd     =  kedg - 4*(knet-1)
       np      =  nn(knet)
       if ( ksd.eq.2  .or.  ksd.eq.4 ) np = nm(knet)
-!                                   if point is the last point on side
-!                                   ksd, consider it as the first point
-!                                   on the next edge.
+!  if point is the last point on side
+!  ksd, consider it as the first point
+!  on the next edge.
       npfg    =  2*np - 1
       if ( ijx.eq.npfg ) then
          ijx     =  1
@@ -20786,10 +20845,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ksd     =  kedg - 4*(knet-1)
       knedg   =  nedmpa(kedg+1) - nedmpa(kedg) + 1
       if ( imp .ge. knedg ) go to 100
-!                                  imp .lt. knedg
+! imp .lt. knedg
           iedmp   =  nedmpa(kedg) + imp
           go to 950
-!                                  imp .eq. knedg
+! imp .eq. knedg
   100     if ( ksd.le.3 )  iedmp = nedmpa(kedg+1) + 1
           if ( ksd.eq.4 )  iedmp = nedmpa(1+4*(knet-1)) + 1
           go to 950
@@ -21030,7 +21089,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        , ioutpr,  ifmcpr,  icostp,  iextrp,  ispmap              &
      &        , icpmap,  ibcmap
 !end  prnt
-!                                   FORMAL PARAMETER DECLARATIONS
+!  FORMAL PARAMETER DECLARATIONS
       dimension       nedaba(mxnabt+1), kfdseg(4*mxfdsg)                &
      &              , kfdkey(mxfdsg), kfdsgn(mxfdsg)                    &
      &              , nedmpa(4*mxnett+1), tauemp(mxempt)
@@ -21044,14 +21103,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension zch(3)
       logical ident
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !
       character*8 imatch
 !
-!                                  get the fundamental segment of the c.
+! get the fundamental segment of the c.
       iabt    =  iabs( kabmtc )
       nedg    =  nedaba(iabt+1) - nedaba(iabt)
       kfsg    =  kfsgc
@@ -21059,7 +21118,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       knet    =  (kedseg+3)/4
       ksd     =  kedseg - (knet-1)*4
       ksgn    =  isign( 1, kfdsgn(kfsg) )
-!                                  perform a quick check on the panel
+! perform a quick check on the panel
       ijpan   =  ipnf - npa(kpf)
       call mnmod (ijpan, nm(kpf)-1, ipan, jpan)
       mpan    =  nm(kpf) - 1
@@ -21116,12 +21175,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                                            ,le,mtched
           l2      =  l1 + 1
           if ( l1.lt.i1lseg .or. l2.gt.i2lseg ) go to 100
-!                                  edge lsd of the panel is involved
-!                                  in the abutment for which the current
-!                                  control point does matching.  check
-!                                  that this network has not yet been
-!                                  accounted for and that the tau values
-!                                  match up.
+! edge lsd of the panel is involved
+! in the abutment for which the current
+! control point does matching.  check
+! that this network has not yet been
+! accounted for and that the tau values
+! match up.
           mbit    =  2**(le-1)
           if ( mod(mtched,2*mbit) .ge. mbit ) go to 100
 !
@@ -21144,8 +21203,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                            ,dzedg,tolscl,dtau,diamf
           if ( (tauc-taumax)*dzedg .gt. tolscl ) go to 100
           if ( (taumin-tauc)*dzedg .gt. tolscl ) go to 100
-!                                  things look promising.  make one
-!                                  last check
+! things look promising.  make one
+! last check
           call cptls (cpf(1,ic1), cpf(1,ic2), zch, zk, t)
           call distnc (zch,zk,dzqp)
           ident   =  dzqp .le. (1.d-10 * scldz)
@@ -21155,7 +21214,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6745     format ('  check 3 ',a8,3e24.16                               &
      &      ,/,   '          ',8x,3e24.16  )
           if ( .not.ident ) go to 100
-!                                  all tests passed
+! all tests passed
           if ( iedgep .le. 0 ) go to 110
           write (6,'(1x,a10,1x, 1i12)')                                 &
      & '== success',1
@@ -21173,13 +21232,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       go to 950
 !
 !
-!                                  a panel involved with the current
-!                                  matching condition has been found
+! a panel involved with the current
+! matching condition has been found
 !
 !
   110 continue
       mtched  =  mtched + mbit
-!                                  if current nw is null mu, exclude
+! if current nw is null mu, exclude
       if ( ntd(lnet).eq.0 ) goto 950
       npnmts  =  npnmts + 1
       ipnmts(npnmts) = lsgn*(  (ipnf-1)*4 + lsd  )
@@ -21316,7 +21375,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! *** format statements ***
  5000 format(6e10.0)
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'ellpt', qline, ((lll,lll=1,10),kkk=1,8)
@@ -21422,9 +21481,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine epoint (z,incz,nz,  t,zt)
       implicit double precision (a-h,o-z)
       dimension  z(3,1), zt(3)
-!                                  compute the point on the edge
-!                                  (z,incz,nz) associated with the
-!                                  parameter  t .
+! compute the point on the edge
+! (z,incz,nz) associated with the
+! parameter  t .
       anz     =  nz-1
       it      =  max( 1.d0, min( anz, t )   )
       lz1     =  1 + (it-1)*incz
@@ -21520,82 +21579,82 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !---      if ( hdmcon(7) .eq. 2.d0 ) rnd = rnd+rnd
       rnd   =  2.d-14
 !
-!                                  increment degree to get size of
-!                                  coefficient array.
+! increment degree to get size of
+! coefficient array.
 !
       if ( n.le.0 .or. n.gt.60 ) go to 90
       nc=n+1
 !
-!                                  check to see if high order
-!                                  coefficient = 0.
+! check to see if high order
+! coefficient = 0.
 !
       if (a(nc).eq.0.d0) go to 92
 !---    1 conv=hdmcon(4)
     1 continue
       conv  =  1.d-38
 !
-!                                  store coefficients in working array
+! store coefficients in working array
 !
       do 2 i=1,nc
     2 h(i)=a(i)
 !
-!                                  set starting values for quadratic
-!                                  and linear factors,x**2 + p*x + q
-!                                  and x-r.
+! set starting values for quadratic
+! and linear factors,x**2 + p*x + q
+! and x-r.
 !
       p=0.0d0
       q=0.0d0
       r=0.0d0
 !
-!                                  set polynomial reversal switch
+! set polynomial reversal switch
 !
       irev=1
 !
-!                                  check for low order coefficient = 0
+! check for low order coefficient = 0
 !
     3 if (h(1)) 6,4,6
 !
-!                                  if low order coefficient = 0, reduce
-!                                  degree by one and set one root = 0.
+! if low order coefficient = 0, reduce
+! degree by one and set one root = 0.
 !
     4 nc=nc-1
       v(nc)=0.0d0
       u(nc)=0.0d0
 !
-!                                  shift coefficient array to
-!                                  compensate for extraction of zero
-!                                  root
+! shift coefficient array to
+! compensate for extraction of zero
+! root
 !
       do 5 i=1,nc
     5 h(i)=h(i+1)
       go to 3
 !
-!                                  test for degree = 0.
+! test for degree = 0.
 !
     6 if (nc-1) 7,100,7
 !
-!                                  test for degree = 1.
+! test for degree = 1.
 !
     7 if (nc-2) 9,8,9
 !
-!                                  if degree = 1, solve linear.
+! if degree = 1, solve linear.
 !
     8 r=-h(1)/h(2)
       go to 50
 !
-!                                  if degree = 2, solve quadratic.
+! if degree = 2, solve quadratic.
 !
     9 if (nc-3) 11,10,11
    10 p=h(2)/h(3)
       q=h(1)/h(3)
       go to 70
 !
-!                                  make test for reversal
+! make test for reversal
 !
    11 if (dabs(h(nc))-dabs(h(1))) 12,19,19
-!                                  set reversal switch and reverse
+! set reversal switch and reverse
 !
-!                                  coefficients.
+! coefficients.
 !
    12 irev=-irev
       m=nc/2
@@ -21605,7 +21664,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       h(nl)=h(i)
    13 h(i)=f
 !
-!                                  alter p,q and r due to reversal.
+! alter p,q and r due to reversal.
 !
       if (q) 15,14,15
    14 p=0.0d0
@@ -21618,17 +21677,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
    19 continue
 !
-!                                  initialize newton-bairstow loop.
+! initialize newton-bairstow loop.
 !
       b(nc)=h(nc)
       c(nc)=h(nc)
       np=nc-1
 !
-!                                  begin newton-bairstow loop.
+! begin newton-bairstow loop.
 !
    20 do 40 j=1,1000
 !
-!                                  divide polynomial by x-r.
+! divide polynomial by x-r.
 !
       e=dabs(h(nc))/2.d0
       rm=dabs(r)
@@ -21638,28 +21697,28 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       e=e*rm+dabs(b(i))
    21 c(i)=b(i)+r*c(i+1)
 !
-!                                  test remainder
+! test remainder
 !
       bm1=dabs(b(1))
       e=rnd*(e+e-bm1)
       if(bm1-e) 50,50,22
 !
-!                                  test derivative evaluated at r for
-!                                  zero.
+! test derivative evaluated at r for
+! zero.
 !
    22 if (c(2)) 24,23,24
 !
-!                                  if derivative zero, newton is in
-!                                  trouble so perturb root by 1.
+! if derivative zero, newton is in
+! trouble so perturb root by 1.
 !
    23 r=r+1.0d0
       go to 25
 !
-!                                  apply newton-correction
+! apply newton-correction
 !
    24 r=r-b(1)/c(2)
 !
-!                                  divide polynomial by x**2 + p*x + q
+! divide polynomial by x**2 + p*x + q
 !
    25 e = 0.75d0*dabs(h(nc))
       zm=dsqrt(dabs(q))
@@ -21672,7 +21731,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       e=e*zm+dabs(b(i))
    30 c(i)=b(i)-p*c(i+1)-q*c(i+2)
 !
-!                                  make convergence criterion tests
+! make convergence criterion tests
 !
       bm3=p*b(2)/2.d0
       bm1=dabs(b(1)+bm3)
@@ -21684,18 +21743,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       d=c(3)**2-cbar*c(4)
       if (d)36,35,36
 !
-!                                  pertub p if d=0.
+! pertub p if d=0.
 !
    35 p=p-2.0d0
       q=q*(q+1.0d0)
       go to 40
 !
-!                                  add bairstow corrections t0 p and q.
+! add bairstow corrections t0 p and q.
 !
    36 p=p+(b(2)*c(3)-b(1)*c(4))/d
       q=q+(-b(2)*cbar+b(1)*c(3))/d
 !
-!                                  end loop
+! end loop
 !
 !
    40 continue
@@ -21703,41 +21762,41 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ier = nc-n-11
       go to 94
 !
-!                                  if newton converged reduce degree by
-!                                  one
+! if newton converged reduce degree by
+! one
 !
    50 nc=nc-1
       conv= max (e,conv)
 !
-!                                  set imaginary part to zero
+! set imaginary part to zero
 !
       v(nc)=0.0d0
 !
-!                                  test for reversal
+! test for reversal
 !
       if (irev)51,52,52
    51 u(nc)=1.0d0/r
       go to 53
    52 u(nc)=r
 !
-!                                  store reduced polynomial in working
-!                                  array
+! store reduced polynomial in working
+! array
 !
    53 do 54 i=1,nc
    54 h(i)=b(i+1)
 !
-!                                  return to solve reduced polynomial
+! return to solve reduced polynomial
 !
       go to 6
 !
-!                                  if quadratic factor found reduce
-!                                  degree by 2
+! if quadratic factor found reduce
+! degree by 2
 !
 !
    60 e=dsqrt(e)
       conv= max (e,conv)
-!                                  test for reversal and solve
-!                                  quadratic accordingly
+! test for reversal and solve
+! quadratic accordingly
 !
    70 nc=nc-2
       if (irev)71,72,72
@@ -21758,13 +21817,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       u(nc)=qp/u(nc+1)
       v(nc)=0.0d0
 !
-!                                  store reduced polynomial in working
-!                                  array.
+! store reduced polynomial in working
+! array.
 !
    76 do 77 i=1,nc
    77 h(i)=b(i+2)
 !
-!                                  return to solve reduced polynomial.
+! return to solve reduced polynomial.
 !
       go to 6
 !
@@ -21843,7 +21902,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       stit    =  ddot(3,  qst,1, qt,1)
       stist   =  ddot(3,  qst,1, qst,1)
 !
-!                                  compute amz: get coeffs of qs,qt,qst
+! compute amz: get coeffs of qs,qt,qst
       amzqs   =  sgip*sit + sgjp*tit                                    &
      &          +p33*stis + 2.d0*sgip*sgjp*stit +p33*sgjp*stist
       amzqt   = -sgjp*sit - sgip*sis                                    &
@@ -22159,10 +22218,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       go to 610
 !
 !
-!                                   evaluate upper and lower surface
-!                                   perturbation velocities (and sens-
-!                                   itivities, if requested) at
-!                                   cp-matching control point.
+!  evaluate upper and lower surface
+!  perturbation velocities (and sens-
+!  itivities, if requested) at
+!  cp-matching control point.
   410 continue
       call strns (ipc,cp)
       if ( its.ne.1 .and. its.ne.3 ) ins = 0
@@ -22329,7 +22388,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -22358,9 +22417,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( its.ne.1  .and.  its.ne.3 ) insf = 0
       if ( its.ne.2  .and.  its.ne.3 ) indf = 0
       if ( insf.ne.0 ) call xfera (asts,astsf,ncs*insf)
-!                                  form qa*astd for FF outer spline
-!                                  for std wakes.  data is complex for
-!                                  type 18/20 wakes in unsteady flow
+! form qa*astd for FF outer spline
+! for std wakes.  data is complex for
+! type 18/20 wakes in unsteady flow
       itp     =  1
       if ( ntdk.eq.18 .or. ntdk.eq.20 ) itp = ityprc
       ncdtp   =  ncd*itp
@@ -22429,8 +22488,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   370 continue
       call ccaln (p,ics,cf,4,6)
       aratff  =  1.d0
-!                                  compute max distance from panel
-!                                  to mean plane ( x(bar) )
+! compute max distance from panel
+! to mean plane ( x(bar) )
       qdltf   =  0.d0
       if ( ics.ne.0 ) go to 650
 !
@@ -22446,7 +22505,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   640 continue
   650 continue
       qdltf   =  qdltf + .01d0*diamf
-!                                  calculate rqff, encf and qcminf
+! calculate rqff, encf and qcminf
       indrqf  =  1
       call mxma (ggcpit,1,3,  af(3),3,1,  encf,1,3,  3,3,1)
       call uvect (encf)
@@ -22471,7 +22530,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           dcp(3,j) = cpf(3,j) - cpfz(3)
   790 continue
       call mxm (pft,3,dcp,3,rqff,4)
-!                                  define iisf and iidf
+! define iisf and iidf
       call ifera (iisgp,iisf,insf)
       call ifera (iidgp,iidf,indf)
   950 continue
@@ -22554,13 +22613,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       fh      =  sf*pif
       ng      =  3
       nf      =  6
-!                                  h moments
+! h moments
       do 10 ka = 1,10
       do 10 kb = 1,6
       hm (  ka,kb) =  fh *cf( 1+mi(ka)+mi(kb), 1+nj(ka)+nj(kb))  /      &
      &                                  (fcc(ka)*fcc(kb))
    10 continue
-!                                  hb moments
+! hb moments
       do 20 ka = 1,6
 !     do 20 kb = 1,3
 !     hbm(1,ka,kb) =  fh *cf( 2+mi(ka)+mi(kb), 1+nj(ka)+nj(kb))  /
@@ -22662,13 +22721,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       pif     =  1.d0/( pi*(3.d0+sf) )
       fh      =  sf*pif
-!                                  h moments
+! h moments
       do 10 ka = 1,10
       do 10 kb = 1,6
       hm (  ka,kb) =  fh *cf( 1+mi(ka)+mi(kb), 1+nj(ka)+nj(kb))  /      &
      &                                  (fcc(ka)*fcc(kb))
    10 continue
-!                                  hb moments
+! hb moments
       do 20 ka = 1,6
 !     do 20 kb = 1,3
 !     hbm(1,ka,kb) =  fh *cf( 2+mi(ka)+mi(kb), 1+nj(ka)+nj(kb))  /
@@ -22682,22 +22741,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       hbm(2,ka,2) =  hm(ka,5)
       hbm(2,ka,3) =  hm(ka,6) * 2.d0
    20 continue
-!                                  average values for cubic basis fcns.
+! average values for cubic basis fcns.
       do 30 ka = 1,10
           bavf(ka)=  cf( 1+mi(ka), 1+nj(ka) )  /  ( fcc(ka)*cf(1,1) )
    30 continue
-!                                  unstdy wake nw's have complex splines
+! unstdy wake nw's have complex splines
       astcpx  =  .false.
 !--      if ( ntd(kpf).eq.8  .or. ntd(kpf).eq.10  .or.
 !--     x     ntd(kpf).eq.18 .or. ntd(kpf).eq.20       ) astcpx = .true.
       if ( astcpx ) goto 50
-!                                  build hmasts, hmastd phic moments
-!                                  where the spline data is real
+! build hmasts, hmastd phic moments
+! where the spline data is real
          call hsmmp1 (6,3,insf  ,hm,10,1  ,astsf,1,3  ,hmasts,1,6)
          call hsmmp1 (6,6,indf  ,hm,10,1  ,astdf,1,6  ,hmastd,1,6)
          goto 70
-!                                  build hmasts, hmastd phic moments
-!                                  where the spline data is complex
+! build hmasts, hmastd phic moments
+! where the spline data is complex
    50 continue
          if ( 2*insf.gt.9  .or.  2*indf.gt.21 ) call a502er ('ffdqgx'   &
      &     ,' overflow of complex spline data, /pandfx/' )
@@ -22740,7 +22799,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -22777,7 +22836,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/solnt/naic,nrhs,nans,nsc1,nsc2,nsc3,nsc4,iray(10),mtitle(5)
 !end  solnt
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -22846,14 +22905,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , indrqf, rqff(3,16), encf(3), qcminf
 !end  pandf
 !call compsp
-!                                                           /compsp/
+!                          /compsp/
 !         contains info relating mu on edges 2 or 4 of ntdk=6 nw's
 !         to panel interior values
       common /compsp/ bpsp(6,200,2)                                     &
      &              , kntpsp, npsp(200,2), kkpsp(200,2), iipsp(6,200,2)
 !end  compsp
 !call ffgedg
-!                                                            /ffgedg/
+!                           /ffgedg/
       common /ffgedg/ lokseg, ledseg, i1lseg, i2lseg
 !end  ffgedg
       dimension ipnmts(10), mtched(1), zch(3)
@@ -22871,9 +22930,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nedmp   =  nx13/kklr2i
       call xtrns (37,iskmp,nsngn)
 !---  call outvec ('iskmp',nsngn,iskmp)
-!                                  put in final sp indices in the psp
-!                                  (provisional singularity parameters
-!                                  associated w edges 2 and 4 of type 6
+! put in final sp indices in the psp
+! (provisional singularity parameters
+! associated w edges 2 and 4 of type 6
       do 600 knet = 1,nnett
       if ( ntd(knet).ne.6 ) goto 600
       m       =  nm(knet)
@@ -22915,8 +22974,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call scmpkt(asts,iis,ncs,ins)
   925 if(its.eq.1) go to 935
       if ( ntd(kp).ne.18 .and. ntd(kp).ne.20 ) goto 927
-!                                  for standard wakes, spline matrices a
-!                                  complex and must be treated different
+! for standard wakes, spline matrices a
+! complex and must be treated different
       do 926 ic = 1,ind
           is      =  iid(ic)
           is      =  iskmp(is)
@@ -22928,7 +22987,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   926 continue
       call scmpkt (astd,iid,ityprc*ncd,ind)
       goto 935
-!                                  ordinary (real) doublet splines
+! ordinary (real) doublet splines
   927 continue
       do 930 ic=1,ind
       is=iid(ic)
@@ -22985,7 +23044,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iedgep.ge.2 )                                                &
      &write (6,'(1x,a10,1x, 5i12)')                                     &
      & '==jcx==',jcx,jc,ne,nbinmc,kabmtc
-!                                  matching condition
+! matching condition
       iabt    =  iabs( kabmtc )
       iedg1   =  nedaba(iabt) + 1
       iedg2   =  nedaba(iabt+1)
@@ -23113,7 +23172,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       integer  nt(0:3)
       data  nt/0,1,3,6/
-!                                  initialization
+! initialization
       pc(1)   =  zp(1) - cpfz(1)
       pc(2)   =  zp(2) - cpfz(2)
       pc(3)   =  zp(3) - cpfz(3)
@@ -23127,9 +23186,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       p3      =  p2*p1
 !
       fs      =  -ajf * sf
-!                                  ng = (3,6) as  nf = (6,10)
+! ng = (3,6) as  nf = (6,10)
       ng      =  3*( 1 + nf/10 )
-!                                  set processing flags
+! set processing flags
       nex     = ne
       ngx     = ng
       itsx    = itsf
@@ -23142,9 +23201,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       yp      =  y*p1*sf
       xp      =  x*p1*rf
-!                                  compute kernel moments
+! compute kernel moments
       if ( iflu - 2 ) 210,220,240
-!                                  quadrupole
+! quadrupole
   240 continue
       p5t3 = 3.d0*p2*p3
       hk(4) = p5t3 * (5.d0*xp*xp - rf)
@@ -23155,7 +23214,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       gk(4)   =  fs * p3 * (3.d0*xp*xp- rf )
       gk(5)   =  fs * p3 *  3.d0*xp*yp
       gk(6)   =  fs * p3 * (3.d0*yp*yp- sf )
-!                                  dipole
+! dipole
   220 continue
       p4t3 = 3.d0*p2*p2
       hk(2) = p4t3*xp
@@ -23164,13 +23223,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( itsx.eq.2 ) goto 210
       gk(2)   =  fs * p2 *     xp
       gk(3)   =  fs * p2 *     yp
-!                                  monopole
+! monopole
   210 continue
       hk(1)   =       p3
       gk(1)   =  fs * p1
-!                                  kernel moments ready, go.
+! kernel moments ready, go.
       if ( nex.gt.1 ) go to 500
-!                                  potential alone
+! potential alone
       if ( itsx.ne.2 ) then
          call mxma (hm,1,10 ,gk,1,nt(iflu) ,phsdsn,1,ng ,ng,nt(iflu),1)
          if ( itsf.ne.2 ) call dcopy (ng,  phsdsn,1,  dvs,1)
@@ -23180,14 +23239,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &          ,nf,nt(iflu),1)
       call vmul (h,z,dvd,nf)
       go to 950
-!                                  potential and velocity
+! potential and velocity
   500 continue
-!                                  get h integrals
+! get h integrals
       nh      =  max( nf, ngx)
       if ( itsx.eq.1 ) nh = ngx
       call mxma (hm,1,10  ,hk,1,nt(iflu)  ,h,1,nh                       &
      &          ,nh,nt(iflu),1)
-!                                  get hb integrals
+! get hb integrals
       if ( iflu.eq.1 ) then
          call zero (hb,2*ngx)
       else
@@ -23200,7 +23259,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           hb(2,k1) = hb(2,k1) - y*h(k1)
   550 continue
       if (itsx.eq.2) go to 700
-!                                  source aic"s
+! source aic"s
       call mxma (hm,1,10 ,gk,1,nt(iflu) ,g,1,ngx                        &
      &          ,ngx,nt(iflu),1)
       ajrs    =  ajf*rf*sf
@@ -23212,7 +23271,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          vs(3,j) =   ajrz* h(j)
   600 continue
       call hsmmp1 (3,3,ngx,  aft,1,3,  vs,1,3,  vsdsn,1,3)
-!                                  transform dvs to global
+! transform dvs to global
       if (itsf.eq.2) goto 700
       if ( ne.eq.1 ) then
          call dcopy (ng,  phsdsn,1,  dvs,ne)
@@ -23225,13 +23284,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   650 continue
       endif
       if ( itsf.eq.1 ) go to 950
-!                                  doublet aic"s
+! doublet aic"s
   700 continue
       if ( ne.eq.4 ) goto 750
-!                                  potential alone (nex=4, ne=1)
+! potential alone (nex=4, ne=1)
           call vmul (h,z,dvd,nf)
           goto 950
-!                                  potential and velocity (ne=4)
+! potential and velocity (ne=4)
   750 continue
       call vmul (h,z,zh,nf)
       dvd(1, 1)  =  zh(1)
@@ -23263,7 +23322,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dvd(4,6) = hb(2,3)
 !
       if ( nf.eq.6 ) go to 800
-!                                  cubic doublet terms
+! cubic doublet terms
       dvd(1, 7)  =  zh( 7)
       dvd(1, 8)  =  zh( 8)
       dvd(1, 9)  =  zh( 9)
@@ -23284,7 +23343,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dvd(4,9) = hb(1,6) + hb(2,5)
       dvd(4,10) = hb(2,6)
 !
-!                                  transform dvd to global
+! transform dvd to global
   800 continue
       do 1200 j = 2,nf
           c11 = aft(1)*dvd(2,j) + aft(4)*dvd(3,j) + aft(7)*dvd(4,j)
@@ -23294,7 +23353,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           dvd(3,j) = c21
           dvd(4,j) = c31
  1200 continue
-!                                  return
+! return
   950 continue
       return
       END subroutine ffpic
@@ -23354,7 +23413,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       data  ntz/0,1,3,6/
       data  nuv/1,3,4/, lf/1,2,1/
-!                                  initialization
+! initialization
       call xfera (usv(1,ivzp),us,6)
       call xfera (uvmv(1,1,ivzp),uvm,24)
       call xfera (amsv(1,1,ivzp),ams,9)
@@ -23384,9 +23443,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rs      =  rf*sf
 !
       phs     =  0.d0
-!                                  compute kernel moments
+! compute kernel moments
       if ( iflu - 2 ) 210,220,240
-!                                  quadrupole
+! quadrupole
   240 continue
       p5      =  p2*p3
       hk(4)   =       p5 *(15.d0*xp*xp-3.d0*rf)
@@ -23397,24 +23456,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       phs     =  p3*(  us(4) * (3.d0*xp*xp-rf)                          &
      &               + us(5) *  3.d0*xp*yp                              &
      &               + us(6) * (3.d0*yp*yp-sf)   )
-!                                  dipole
+! dipole
   220 continue
       p4      =  p2*p2
       hk(2)   =       p4 *  3.d0*xp
       hk(3)   =       p4 *  3.d0*yp
 !
       if (itsf.ne.2) phs = phs + p2*(us(2)*xp+us(3)*yp)
-!                                  monopole
+! monopole
   210 continue
       hk(1)   =       p3
       if ( itsf.ne.2 )                                                  &
      &phs     =  phs + p1*us(1)
-!                                  kernel moments ready, go.
+! kernel moments ready, go.
   500 continue
       call mxma (uvm(lf(itsf),1),1,4  ,hk,1,nt(iflu)                    &
      &          ,uv(lf(itsf)),1,nuv(itsf)  ,nuv(itsf),nt(iflu),1)
       if ( itsf.eq.2 ) go to 600
-!                                  source
+! source
       vph(1)  =  phs
 !
       xs(1)   =  x*rs*vsx
@@ -23436,7 +23495,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   600 continue
       if ( itsf.eq.1 ) go to 700
-!                                  doublet
+! doublet
       vph(5)  =  z*udx
 !
       xd(1)   =  z*vd1
@@ -23455,7 +23514,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       vph(6)  =  vph(6) + amd(1,2)*hk(2) + amd(1,3)*hk(3)
       vph(7)  =  vph(7) + amd(2,2)*hk(2) + amd(2,3)*hk(3)
       vph(8)  =  vph(8) + amd(3,2)*hk(2) + amd(3,3)*hk(3)
-!                                  return
+! return
   700 continue
       do 800 i = 1,4
   800 vphx(i) = vph(i) + vph(i+4)
@@ -23468,7 +23527,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                  ,nsngtp,sols)
       implicit double precision (a-h,o-z)
       dimension x(n), f(n)
-!                                       local scratch
+!      local scratch
       dimension dvdl(4,*), vica(3,*), vicd(3,*), aic(*)
       parameter (nb=20)
       dimension alam(*), fv(n), dldx(n), dfdl(nb,*), aj(nb,*)
@@ -23564,7 +23623,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  cp2aul
 !
 !call chybrj
-!                                                            /chybrj/
+!                           /chybrj/
 !         unit numbers and scratch memory addresses in sinver
       common /chybrj/ ljac, ljly, lans                                  &
      &              , lldvdl, llvica, llvicd, llaic
@@ -23587,17 +23646,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ncall = ncall + 1
       if ( istcp2.ge.4 ) write (6,'(1x,a10,1x, 3i12)')                  &
      & 'fhybrj in',ncall,iflag,iacase
-!                                  form the lambda vector (alam) corresp
-!                                  to the current value of the n-vector
+! form the lambda vector (alam) corresp
+! to the current value of the n-vector
       rewind lans
       do 100 i = 1,nsngu
           read (lans) (ans(j),j=1,nacase),ansx,(dldx(j),j=1,n)
           alam(i) = ans(iacase) + ddot(n,  dldx,1,  x,1)
   100 continue
-!                                  put the known s.p.'s for case iacase
-!                                  the current estimate of lambda (alam)
+! put the known s.p.'s for case iacase
+! the current estimate of lambda (alam)
       call dcopy (nsngk,  sols(nsngu+1,iacase),1,  alam(nsngu+1),1)
-!                                  set processing flags req'd by fcncpx
+! set processing flags req'd by fcncpx
       jacob   =  iflag.ge.2
       prtcp2  =  iexcp2.gt.1
       cp2sum  =  istcp2.ge.3
@@ -23614,17 +23673,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iflag.ne.2 ) call dcopy (n,  fv,1,  f,1)
       if ( .not. jacob ) go to 900
 !
-!                                  form the product:
+! form the product:
 !
-!                                  ( df/dlam ) * ( dlam/dx )
-!                                   n x nsngu     nsngu x n
-!                                   unit ljac     unit lans
-!                                   by rows       by rows
+! ( df/dlam ) * ( dlam/dx )
+!  n x nsngu     nsngu x n
+!  unit ljac     unit lans
+!  by rows       by rows
 !
       rewind ljac
-!                                  for each block of nb rows in ( df/dla
-!                                  read that block into the array 'dfdl'
-!                                  and accumulate:
+! for each block of nb rows in ( df/dla
+! read that block into the array 'dfdl'
+! and accumulate:
 !
 !         aj <-- aj + ( df/dlam ) ( i1:i2, j) * ( dlam/dx ) ( j, 1:n)
 !
@@ -23643,7 +23702,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call hsmmp2 (ni,1,n,  dfdl(1,j),1,nb,  dldx,1,1          &
      &                     ,aj,1,nb)
   160     continue
-!                                  put current block of rows out to luna
+! put current block of rows out to luna
           do 180 i = i1,i2
                call dcopy (n,  aj(i-i1+1,1),nb,  fv,1)
                call writmd (lunaj,fv,n,i,-1,0)
@@ -23662,7 +23721,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine flgcor (l1,l2,l3)
       logical l1,l2,l3
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -23953,7 +24012,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /ncons/ pi,pi2,pi4i,twopi,pio2
 !end  ncons
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call secprp
@@ -24009,30 +24068,30 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       parameter (mxnpec=6000)
 !end  limabt
 !ca lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !ca glopar
-!                                                  /glopar/
+!                 /glopar/
       common /glopar/ omgbin, kontrl, inplot, ilstdy, ktype             &
      &             , icamax                                             &
      &              , kutflg(150)
       logical ilstdy
 !end  glopar
 !ca freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
       common /freqer/ ndpher
 !ca rzrth
-!                                                  /rzrth/
+!                 /rzrth/
       common /rzrth/ rzrkic(3,150,5), thkic(3,150,5), pzkic(3,150,5)
       complex*16 thkic
 !end  rzrth
 !ca outdat
-!                                                  /outdat/
+!                 /outdat/
       logical lstdy
       common/outdat/iflag,lstdy
 !end  outdat
@@ -24049,17 +24108,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/brwi/nbdq,nsb,nrb,ntb,nnb,nib((maxcp+nsbp-1)/nsbp+1)
 !end  brwi
 !ca acurhg
-!                                                  /acurhg/
+!                 /acurhg/
       common /acurhg/ ihgram(60,5), thgram(7)                           &
      &           , ihgdrd(60), ihgdph(60), ihgevl(60), ihgavl(60)       &
      &           , ihgtot
 !end  acurhg
 !ca unstim
-!                                                  /unstim/
+!                 /unstim/
       common /unstim/ nuns(10), tuns(10)
 !end  unstim
 !ca lfqprm
-!                                                       /lfqprm/
+!                      /lfqprm/
 !     major flags for controlling the low-frequency features
 !     mlofrq = 0, normal run
 !            = 1, ph/0 run, low frequency theory
@@ -24086,7 +24145,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !end  lfqprm
 !call c2grwi
-!                                                        /c2grwi/
+!                       /c2grwi/
 !     File containing spline info for dsnfmc to generate surface
 !     velocity distributions from panel center velocity data.
 !
@@ -24101,7 +24160,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  mspnts
 !
 !call blkprm
-!                                                         /blkprm/
+!                        /blkprm/
 !     nppblk  i*4  flow  block size for out-of-core solver
 !     nqqblk  i*4  flow  sub-block size for blkaic blocking algorithm
 !     nqblk   i*4  flow  (nppblk+nqqblk-1)/nqqblk  # of row sub-blocks
@@ -24114,11 +24173,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , nwwblk
 !end  blkprm
 !call factrd
-!                                                            /factrd/
+!                           /factrd/
       common /factrd/ ifact
 !end  factrd
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -24130,18 +24189,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! --- dimension zctr(3,maxpan), pvactr(4,maxpan)
 !
 !ca prntxt
-!                                                  /prntxt/
+!                 /prntxt/
       common /prntxt/ iextra
 !end  prntxt
       i502er = 0
       lfqind  =  0
-!                                   set default frequency values
+!  set default frequency values
       omgbar  =  0.d0
       omegb   =  0.d0
       omg     =  0.d0
       omgabs  =  0.d0
-!                                  set mlofrq in accordance with lfqind
-!                                  to the appropriate value for bconcl
+! set mlofrq in accordance with lfqind
+! to the appropriate value for bconcl
       adjgeo  =  .false.
       if ( lfqind.eq.0 ) then
          mlofrq = 0
@@ -24198,15 +24257,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nckaic.ne.0 ) goto 800
       call svinfc
       go to 850
-!                                  set up /vrwi/ for execution of aical
-!                                  after a run that has saved a copy of
-!                                  the  ic  file, tape4 (ntv)
+! set up /vrwi/ for execution of aical
+! after a run that has saved a copy of
+! the  ic  file, tape4 (ntv)
   800 continue
       nvdq    =  nsngt
-!                                  collection point for restart and
-!                                  non-restart runs.
+! collection point for restart and
+! non-restart runs.
   850 continue
-!                                   set blocking parameters, /blkprm/
+!  set blocking parameters, /blkprm/
       nppblk  =  249
       if ( ityprc.eq.2 ) nppblk = 193
       nppblk  =  min(nppblk,nsngu)
@@ -24217,8 +24276,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       npblk   =  (nsngu+nppblk-1)/nppblk
       kinblk  =  nqblk*npblk+2
       klublk  =  npblk*npblk+2
-!                                  set nsngkq to avoid zero length
-!                                  allocations in getcor calls
+! set nsngkq to avoid zero length
+! allocations in getcor calls
       nsngkq  =  max( 1, nsngk)
 !
       if ( nckusp.ne.0  .and.  mlofrq.eq.0 ) goto 900
@@ -24252,10 +24311,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call pppdq (nsngt,w(llsngv))
       call frecor ('pppdq')
       if ( lfqind.eq.0 ) goto 960
-!                                     low frequency theory
+!    low frequency theory
       if ( lfqind.eq.2 ) goto 930
-!                                     lfqind = 1: do basic theory
-!                                     mlofrq=2: solve for d/dt phi(0)
+!    lfqind = 1: do basic theory
+!    mlofrq=2: solve for d/dt phi(0)
       nacase  =  1
       mlofrq  =  2
       call setcor ('saical')
@@ -24272,7 +24331,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call getcor ('sols',llsols,4*ityprc*nsngt)
       call sinver (nsngt,w(llsols))
       call frecor ('sinver')
-!                                     mlofrq=3: solver for phi(1,h)
+!    mlofrq=3: solver for phi(1,h)
       mlofrq  =  3
       call setcor ('saical')
       call getcor ('scr', llscr, 4*ityprc*nsngkq)
@@ -24290,7 +24349,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call frecor ('sinver')
 !
       goto 950
-!                                     lfqind = 2: do linearized theory
+!    lfqind = 2: do linearized theory
   930 continue
       nacase  =  2
       do 940 mlofrq = 1,3
@@ -24310,7 +24369,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call frecor ('sinver')
   940 continue
       goto 950
-!                                     generate U&L f.g. pert v
+!    generate U&L f.g. pert v
   950 continue
       goto 1000
 !
@@ -24323,7 +24382,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       tpivv  =  0.d0
       npvcal = 0
       if(nloft .gt. 0) call sloft
-!                                  generate v-spline data for F&M calc.
+! generate v-spline data for F&M calc.
       call setcor ('dsnc2g')
       call openms (ntc2g,nic2g,nnc2g,0)
 !
@@ -24609,7 +24668,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/tfmq/fc(3,3),fmc(3,3),tca
 !end  tfmq
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
       dimension pr(3),fi(3),fmi(3),frt(3,3),fmrt(3,3),ft(3,3),          &
@@ -25031,16 +25090,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       hh(0)   =  2.d0
       hh(1)   =  0.d0
       hh(2)   =  2.d0/3.d0
-!                                  set integral coefficients faii
-!                                  faii(ialf,i,ip) =
+! set integral coefficients faii
+! faii(ialf,i,ip) =
 !
-!                                  int  s^ialf b[i](s) b[ip](s) ds
+! int  s^ialf b[i](s) b[ip](s) ds
 !
-!                                  where b[i] = (1 - (-1)^i s )/2
+! where b[i] = (1 - (-1)^i s )/2
 !
-!                                  faii = [ 2/3  1/3  1/3  2/3 ]
-!                                         [-1/3   0    0   1/3 ]
-!                                         [ 4/15 1/15 1/15 4/15]
+! faii = [ 2/3  1/3  1/3  2/3 ]
+!        [-1/3   0    0   1/3 ]
+!        [ 4/15 1/15 1/15 4/15]
 !
       faii(0,0,0) = 2.d0*p33
       faii(0,1,0) =             p33
@@ -25057,7 +25116,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       mfn     =  2*m-1
       nfn     =  2*n-1
-!                                  compute pressure at panel centers
+! compute pressure at panel centers
       do 200 iul = 1,2
          do 190 l = 1,n-1
          do 180 k = 1,m-1
@@ -25072,25 +25131,25 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          if ( ksurf.ge.2 )                                              &
      &        call outmat ('cpc/lo',m-1,m-1,n-1,cpc(1,2))
       endif
-!                                  COMPUTE THE QUANTITIES:
-!                                  af, d(f)/d(q(i,j)), d(f)/d(v(k,l)+-)
-!                                  am, d(m)/d(q(i,j)), d(m)/d(v(k,l)+-)
+! COMPUTE THE QUANTITIES:
+! af, d(f)/d(q(i,j)), d(f)/d(v(k,l)+-)
+! am, d(m)/d(q(i,j)), d(m)/d(v(k,l)+-)
       call dcopy (3,  0.d0,0,  af,1)
       call dcopy (3,  0.d0,0,  am,1)
-!                                  sgul =  1 [U]; -1 [L]
-!                                  iul  =  1 [U];  2 [L]
+! sgul =  1 [U]; -1 [L]
+! iul  =  1 [U];  2 [L]
 !
-!                                  Even though the force vector is
-!                                  defined as:  F  =  - int p n dS,
-!                                  we actually compute the quantity:
+! Even though the force vector is
+! defined as:  F  =  - int p n dS,
+! we actually compute the quantity:
 !
-!                                  int_U (p n dS)  -  int_L (p n dS)
+! int_U (p n dS)  -  int_L (p n dS)
 !
-!                                  because the normal we compute in
-!                                  this routine is oppositely directed
-!                                  from the regular (a502) panel normal
-!                                  due to the "left handed" nature of
-!                                  the regular (a502) panel normal
+! because the normal we compute in
+! this routine is oppositely directed
+! from the regular (a502) panel normal
+! due to the "left handed" nature of
+! the regular (a502) panel normal
       errmax = 0.d0
       call dcopy (9,  0.d0,0,  afnw,1)
       call dcopy (9,  0.d0,0,  amnw,1)
@@ -25106,7 +25165,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 600 k = 1,m-1
          kl      =  k + (l-1)*(m-1)
          sgul    =  -1.d0
-!                                  basic geometry data for panel
+! basic geometry data for panel
          do 320 i = 1,3
             qz(i) = .25d0*( q(i,k,l)+q(i,k+1,l)+q(i,k,l+1)+q(i,k+1,l+1))
             qs(i) = .25d0*(-q(i,k,l)+q(i,k+1,l)-q(i,k,l+1)+q(i,k+1,l+1))
@@ -25126,7 +25185,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          stis    =  ddot(3,  qst,1, qs,1)
          stit    =  ddot(3,  qst,1, qt,1)
          stist   =  ddot(3,  qst,1, qst,1)
-!                                  loop over upper and lower surfaces
+! loop over upper and lower surfaces
          do 590 iul = 1,2
          sgul    =  -sgul
          sgfme   =  2.d0*sgul/( fsvm(isol)**2 )
@@ -25135,7 +25194,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
          call dcopy (3,  0.d0,0,  afpan,1)
          call dcopy (3,  0.d0,0,  ampan,1)
-!                                  loop over 4 panel corner points
+! loop over 4 panel corner points
          ijp     =  0
          do 550 jp = 0,1
             sgjp    =  sgp(jp)
@@ -25154,7 +25213,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                   cpgg    =  cpgg + cc2gx*cpc(klc,iul)
   480          continue
                sgulcp  =  sgul*cpgg
-!                                  accumulate into dfdv
+! accumulate into dfdv
 !                    fklij  =   (q x q ) + sg  (q x q  ) + sg  (q  x q )
 !                                 s   t      i'  s   st      j'  st   t
                fklij(1) = qsxqt(1) +sgip*qsxqst(1) +sgjp*qstxqt(1)
@@ -25163,7 +25222,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call daxpy (3,  sgulcp,  fklij,1,  af,1)
                call daxpy (3,  sgulcp,  fklij,1,  afpan,1)
                call cross (qmr,fklij,qmrxf)
-!                                  compute amz: get coeffs of qs,qt,qst
+! compute amz: get coeffs of qs,qt,qst
                amzqs   =  sgip*sit + sgjp*tit                           &
      &                   +p33*stis + 2.d0*sgip*sgjp*stit +p33*sgjp*stist
                amzqt   = -sgjp*sit - sgip*sis                           &
@@ -25172,12 +25231,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                   +p33*sgip*stit - p33*sgjp*stis
                do 490 kk = 1,3
                   amz(kk) = amzqs*qs(kk) + amzqt*qt(kk) + amzqst*qst(kk)
-!                                   m = m(0) + (qz - rz) x f
+!  m = m(0) + (qz - rz) x f
                   amklij(kk) = amz(kk) + qmrxf(kk)
   490          continue
                call daxpy (3,  sgulcp,  amklij,1,  am,1)
                call daxpy (3,  sgulcp,  amklij,1,  ampan,1)
-!                                  end of loops on panel's 4 corners
+! end of loops on panel's 4 corners
   540       continue
   550    continue
          call dscal (3,  1.d0/sref,  afpan,1)
@@ -25259,7 +25318,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outvec ('CD/CY/CL K',3,afrot)
       return
 !
-!                                  formats for standard printout
+! formats for standard printout
  3000 format(1h1,/,'0*b*for-mom-net#-',i3,/,46x,                        &
      &       'force / moment data for network ',i5,////)
  3500 format(//,1x,17htotals for column,2x,i5,10x,4harea,5x,            &
@@ -25468,16 +25527,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       hh(0)   =  2.d0
       hh(1)   =  0.d0
       hh(2)   =  2.d0/3.d0
-!                                  set integral coefficients faii
-!                                  faii(ialf,i,ip) =
+! set integral coefficients faii
+! faii(ialf,i,ip) =
 !
-!                                  int  s^ialf b[i](s) b[ip](s) ds
+! int  s^ialf b[i](s) b[ip](s) ds
 !
-!                                  where b[i] = (1 - (-1)^i s )/2
+! where b[i] = (1 - (-1)^i s )/2
 !
-!                                  faii = [ 2/3  1/3  1/3  2/3 ]
-!                                         [-1/3   0    0   1/3 ]
-!                                         [ 4/15 1/15 1/15 4/15]
+! faii = [ 2/3  1/3  1/3  2/3 ]
+!        [-1/3   0    0   1/3 ]
+!        [ 4/15 1/15 1/15 4/15]
 !
       faii(0,0,0) = 2.d0*p33
       faii(0,1,0) =             p33
@@ -25494,18 +25553,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       mfn     =  2*m-1
       nfn     =  2*n-1
-!                                  GIVEN vc; lc2g,klc2g,cc2g
-!                                  COMPUTE: cpg,dcpg
+! GIVEN vc; lc2g,klc2g,cc2g
+! COMPUTE: cpg,dcpg
       jac     =  .true.
-!                                  nprcof = [1,2,3,4]
-!                                  as: [linear,slender,2nd,isen]
-!                                  indp = [1,2,3] as: [linear,2nd,isen]
-!                                  with slender mapped to 2nd order
+! nprcof = [1,2,3,4]
+! as: [linear,slender,2nd,isen]
+! indp = [1,2,3] as: [linear,2nd,isen]
+! with slender mapped to 2nd order
       indp    =  2
       if ( nprcof.eq.1 ) indp = 1
       if ( nprcof.eq.4 ) indp = 3
-!                                  compute pressure and d(cp)/d(v) at
-!                                  panel centers
+! compute pressure and d(cp)/d(v) at
+! panel centers
       do 200 iul = 1,2
          do 190 l = 1,n-1
          do 180 k = 1,m-1
@@ -25522,27 +25581,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          if ( ksurf.ge.2 )                                              &
      &        call outmat ('cpc/lo',m-1,m-1,n-1,cpc(1,2))
       endif
-!                                  COMPUTE THE QUANTITIES:
-!                                  af, d(f)/d(q(i,j)), d(f)/d(v(k,l)+-)
-!                                  am, d(m)/d(q(i,j)), d(m)/d(v(k,l)+-)
+! COMPUTE THE QUANTITIES:
+! af, d(f)/d(q(i,j)), d(f)/d(v(k,l)+-)
+! am, d(m)/d(q(i,j)), d(m)/d(v(k,l)+-)
       call dcopy (3,  0.d0,0,  af,1)
       call dcopy (3,  0.d0,0,  am,1)
       call dcopy (3,  0.d0,0,  afet,1)
       call dcopy (3,  0.d0,0,  amet,1)
-!                                  sgul =  1 [U]; -1 [L]
-!                                  iul  =  1 [U];  2 [L]
+! sgul =  1 [U]; -1 [L]
+! iul  =  1 [U];  2 [L]
 !
-!                                  Even though the force vector is
-!                                  defined as:  F  =  - int p n dS,
-!                                  we actually compute the quantity:
+! Even though the force vector is
+! defined as:  F  =  - int p n dS,
+! we actually compute the quantity:
 !
-!                                  int_U (p n dS)  -  int_L (p n dS)
+! int_U (p n dS)  -  int_L (p n dS)
 !
-!                                  because the normal we compute in
-!                                  this routine is oppositely directed
-!                                  from the regular (a502) panel normal
-!                                  due to the "left handed" nature of
-!                                  the regular (a502) panel normal
+! because the normal we compute in
+! this routine is oppositely directed
+! from the regular (a502) panel normal
+! due to the "left handed" nature of
+! the regular (a502) panel normal
       errmax = 0.d0
       tra    =  0.d0
       ta     =  0.d0
@@ -25570,7 +25629,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
          call dcopy (3,  0.d0,0,  afpan,1)
          call dcopy (3,  0.d0,0,  ampan,1)
-!                                  panel center velocity and massflux
+! panel center velocity and massflux
          call dcopy (3,  vc(1,kl,iul),1,  vkl,1)
          call cmpscl (betams,compd,vkl,wkl)
          call daxpy (3,  1.d0,  fsv(1,isol),1,  vkl,1)
@@ -25589,11 +25648,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call cmpscl (betams,compd,   qsxqt  , enpt(1,0))
          call cmpscl (betams,compd,   qsxqst , enpt(1,1))
          call cmpscl (betams,compd,  qstxqt  , enpt(1,2))
-!                                  update crude estimates of the total
-!                                  contributions of afe, ame
+! update crude estimates of the total
+! contributions of afe, ame
 !
          call dcopy (3,  0.d0,0,  fex,1)
-!                                  fey = sgfme*( int n dS ).W/c V/c
+! fey = sgfme*( int n dS ).W/c V/c
          diag = ddot(3,  qsxqt,1,  wkl,1)
          do 330 kk = 1,3
             fey(kk) = 4.d0*sgfme*diag*vkl(kk)
@@ -25602,16 +25661,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call daxpy (3,  1.d0,  fey,1,  afet,1)
             call daxpy (3,  1.d0,  fey,1,  fex,1)
          endif
-!                                  sg * ( int n dS ) C/p
+! sg * ( int n dS ) C/p
          cpckl   =  sgul*cpc(kl,iul)
          call daxpy (3,  4.d0*cpckl,  qsxqt,1,  afet,1)
          call daxpy (3,  4.d0*cpckl,  qsxqt,1,  fex,1)
-!                                  extra term in the moment estimator,
-!                                  (q(0)-r(0)) x sgfme (int ndS).W/c V/c
+! extra term in the moment estimator,
+! (q(0)-r(0)) x sgfme (int ndS).W/c V/c
          call cross (qmr,fey,qmrxf)
          call daxpy (3,  1.d0,  qmrxf,1,  amet,1)
-!                                  pressure term
-!                                  (q(0)-r(0)) x sg * int c/p  n dS
+! pressure term
+! (q(0)-r(0)) x sg * int c/p  n dS
          call cross (qmr,qsxqt,qmrxf)
          call daxpy (3,  4.d0*cpckl,  qmrxf,1,  amet,1)
 !
@@ -25623,7 +25682,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                sum  =  sum + sgfme * hh(alfb(ppp)+alfb(qqq))            &
      &                             * hh(betb(ppp)+betb(qqq))            &
      &                             * ddot (3,  wkl,1,  enp(1,ppp),1)
-!                                   sg * c/p * int ( D_q x N_p )
+!  sg * c/p * int ( D_q x N_p )
                facx  =  cpckl * hh(alfb(ppp)+alfb(qqq))                 &
      &                        * hh(betb(ppp)+betb(qqq))
                call cross (dd(1,qqq),enp(1,ppp),dxn)
@@ -25632,7 +25691,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             if ( mvflux ) call daxpy (3,  sum,  qmrxf,1,  amex,1)
   340    continue
          if ( mvflux ) call daxpy (3,  1.d0,  amex,1,  amet,1)
-!                                   DIAGNOSTIC PRINTOUT
+!  DIAGNOSTIC PRINTOUT
  6001    format (' FMKAL:',3i3,f9.4,1x,3f9.4,1x,3f9.4,1x,3f9.4)
 !----         write (6,6001) knet,k,l,cpc(kl,iul),qsxqt,vkl,fex
 !
@@ -25642,8 +25701,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          stis    =  ddot(3,  qst,1, qs,1)
          stit    =  ddot(3,  qst,1, qt,1)
          stist   =  ddot(3,  qst,1, qst,1)
-!                                   compute velocities and mass flux
-!                                   at panel corners
+!  compute velocities and mass flux
+!  at panel corners
          call dcopy (3*4,  0.d0,0,  vb,1)
          call dcopy (3*4,  0.d0,0,  wb,1)
          ijp     =  0
@@ -25660,10 +25719,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                   call daxpy (3, cc2gx, vc(1,klc,iul),1, vb(1,ijp),1)
 !--                  call daxpy (3, cc2gx, wc(1,klc,iul),1, wb(1,ijp),1)
   350          continue
-!                                   use next 2 lines if wc not given
+!  use next 2 lines if wc not given
                call cmpscl (betams,compd,vb(1,ijp),wb(1,ijp))
                call daxpy (3, 1.d0, fsv(1,isol),1, wb(1,ijp),1)
-!                                   add in free stream
+!  add in free stream
                call daxpy (3,  1.d0,  fsv(1,isol),1,  vb(1,ijp),1)
                do 360 ppp = 0,2
                   enpw(ppp,ijp) = ddot(3,  enp(1,ppp),1,  wb(1,ijp),1)
@@ -25682,7 +25741,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                i       =  k+ip
                j       =  l+jp
                ij      =  i + (j-1)*m
-!                                     compute afe, ame and derivs
+!    compute afe, ame and derivs
                call dcopy (3,  0.d0,0,  afe,1)
                call dcopy (3,  0.d0,0,  ame,1)
                do 450 ijpp = 1,4
@@ -25704,7 +25763,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   420                continue
   430             continue
   450          continue
-!                                   perform origin shift for moment ints
+!  perform origin shift for moment ints
                call cross (qmr,afe,qmrxfe)
                call daxpy (3,  1.d0,  qmrxfe,1,  ame,1)
 !
@@ -25718,7 +25777,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   480          continue
                cpgx(ijp) = cpgg
                sgulcp  =  sgul*cpgg
-!                                  accumulate into dfdv
+! accumulate into dfdv
 !                    fklij  =   (q x q ) + sg  (q x q  ) + sg  (q  x q )
 !                                 s   t      i'  s   st      j'  st   t
                fklij(1) = qsxqt(1) +sgip*qsxqst(1) +sgjp*qstxqt(1)
@@ -25727,7 +25786,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call daxpy (3,  sgulcp,  fklij,1,  af,1)
                call daxpy (3,  sgulcp,  fklij,1,  afpan,1)
                call cross (qmr,fklij,qmrxf)
-!                                  compute amz: get coeffs of qs,qt,qst
+! compute amz: get coeffs of qs,qt,qst
                amzqs   =  sgip*sit + sgjp*tit                           &
      &                   +p33*stis + 2.d0*sgip*sgjp*stit +p33*sgjp*stist
                amzqt   = -sgjp*sit - sgip*sis                           &
@@ -25736,19 +25795,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                   +p33*sgip*stit - p33*sgjp*stis
                do 490 kk = 1,3
                   amz(kk) = amzqs*qs(kk) + amzqt*qt(kk) + amzqst*qst(kk)
-!                                   m = m(0) + (qz - rz) x f
+!  m = m(0) + (qz - rz) x f
                   amklij(kk) = amz(kk) + qmrxf(kk)
   490          continue
                call daxpy (3,  sgulcp,  amklij,1,  am,1)
                call daxpy (3,  sgulcp,  amklij,1,  ampan,1)
-!                                  ADD IN EXTRA TERM CONTRIBUTIONS
+! ADD IN EXTRA TERM CONTRIBUTIONS
                if ( mvflux ) then
                   call daxpy (3,  1.d0,  afe,1,  af,1)
                   call daxpy (3,  1.d0,  ame,1,  am,1)
                   call daxpy (3,  1.d0,  afe,1,  afpan,1)
                   call daxpy (3,  1.d0,  ame,1,  ampan,1)
                endif
-!                                  end of loops on panel's 4 corners
+! end of loops on panel's 4 corners
   540       continue
   550    continue
          call dscal (3,  1.d0/sref,  afpan,1)
@@ -25835,11 +25894,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1200 continue
       call remarx ('fmkal: fatal error')
       CALL AbortPanair('fmkal')
-!                                  standard printout
+! standard printout
 !
 !
 !
-!                                  formats for standard printout
+! formats for standard printout
  3000 format(1h1,/,'0*b*for-mom-net#-',i3,/,46x,                        &
      &       'force / moment data for network ',i5,////)
  3500 format(//,1x,17htotals for column,2x,i5,10x,4harea,5x,            &
@@ -25988,8 +26047,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cmpscl (1.d0/betams,compd,vdry,vdry)
       call dscal (3,  -1.d0,  vdry,1)
       call dcopy (4*npant,  0.d0,0,  pvactr,1)
-!                                  construct array of panel center
-!                                  control points
+! construct array of panel center
+! control points
       do 100 knet = 1,nnett
          mpan    =  nm(knet)-1
          npan    =  nn(knet)-1
@@ -26002,20 +26061,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          stagbc  =  .false.
          if ( ipotk.ne.0 .and.  (.not.wakenw) ) stagbc = .true.
 !---         write (6,'('' FMKVAV: knet,stagbc = '',i5,l4)') knet,stagbc
-!                                  if no proper stagnation b.c.'s are
-!                                  observed, ph and v average must
-!                                  be evaluated via pivv calls.  Set
-!                                  nwphev(knet) to reflect this fact.
-!                                  Note, however, that we still need
-!                                  to compute evaluation point locations
+! if no proper stagnation b.c.'s are
+! observed, ph and v average must
+! be evaluated via pivv calls.  Set
+! nwphev(knet) to reflect this fact.
+! Note, however, that we still need
+! to compute evaluation point locations
          nwphev(knet) = (.not.stagbc)
          facpv   =  .5d0
          if ( ipotk.lt.0 ) facpv = -.5d0
          iul     =  1
          if ( ipotk.lt.0 ) iul = 2
          call dcopy (3,  zctrgn(1,iul,knet),1,  rctr,1)
-!                                   Generate evaluation points and
-!                                   compute  phi, v  for stagnation
+!  Generate evaluation points and
+!  compute  phi, v  for stagnation
          do 90 jpan = 1,npan
          do 80 ipan = 1,mpan
             ip       =  ipan + (jpan-1)*mpan + npak
@@ -26025,11 +26084,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !---            write (6,'('' FMKVAV, zc calc:'',4i5,3f12.6)')
 !---     x           knet,ipan,jpan,ip,(zctr(kk,ip),kk=1,3)
             if ( .not.stagbc ) goto 80
-!                                  evaluate the difference of phi and v
-!                                  and transform it into an average
+! evaluate the difference of phi and v
+! and transform it into an average
             call dsncdv (ip,cp,s,  pvx)
             call dscal (4,  facpv,  pvx,1)
-!                                  adjust for TOTAL massflux stagnation
+! adjust for TOTAL massflux stagnation
             if ( iapotk.ge.3 ) then
                phdry  =  (zctr(1,ip)-rctr(1))*vdry(1)                   &
      &                  +(zctr(2,ip)-rctr(2))*vdry(2)                   &
@@ -26039,13 +26098,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                pvx(3) = pvx(3) + vdry(2)
                pvx(4) = pvx(4) + vdry(3)
             endif
-!                                  save the result
+! save the result
             call dcopy (4,  pvx,1,  pvactr(1,ip),1)
    80    continue
    90    continue
   100 continue
-!                                  loop over the panels requested for
-!                                  off body calculations
+! loop over the panels requested for
+! off body calculations
       rewind ntr
       do 150 ipx = 1,npanr
           read (ntr) (rtrnbf(i),i=1,nrdq)
@@ -26069,7 +26128,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   140    continue
 !
   150 continue
-!                                  print it all out
+! print it all out
       do 300 knet = 1,nnett
          npak    =  npa(knet)
          mpan    =  nm(knet) - 1
@@ -26083,7 +26142,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200    continue
   300 continue
  6001 format (1x,i4,1x,3i4,2x,3f11.6,2x,f11.6,2x,3f11.6)
-!                                  put it out in matrix format
+! put it out in matrix format
       do 400 knet = 1,nnett
          npak    =  npa(knet)
          mpan    =  nm(knet) - 1
@@ -26235,8 +26294,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (3,  fsv(1,isol),1,  vdry,1)
       call cmpscl (1.d0/betams,compd,vdry,vdry)
       call dscal (3,  -1.d0,  vdry,1)
-!                                  construct array of panel center
-!                                  control points
+! construct array of panel center
+! control points
       mpan    =  nm(knet)-1
       npan    =  nn(knet)-1
       npak    =  npa(knet)
@@ -26260,11 +26319,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call strns (ip,cp)
             call xxadj (cp(1,9),cp(1,5),cp(1,8),delta,zcgd)
             call surpro (zcgd,zcc,icc)
-!                                  copy in the average values of phi, v
+! copy in the average values of phi, v
             call dcopy (4,  pvactr(1,ip),1,  pvul(1,1),1)
             call dcopy (4,  pvactr(1,ip),1,  pvul(1,2),1)
-!                                  evaluate the difference of phi and v
-!                                  and transform it into an average
+! evaluate the difference of phi and v
+! and transform it into an average
             call dsncdv (ip,cp,s,  pvx)
             call daxpy (4,  .5d0,  pvx,1,  pvul(1,1),1)
             call daxpy (4, -.5d0,  pvx,1,  pvul(1,2),1)
@@ -26355,7 +26414,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !        label, 'label'.
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -26400,8 +26459,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
       levdyn  =  isv - 1
       if ( levdyn .gt. 0 ) return
-!                                  returned to the bottom level
-!                                  generate statistics, reset and return
+! returned to the bottom level
+! generate statistics, reset and return
       if ( .not. sumprt ) go to 250
       write (6,6300) mxxlev, maxlev, mxxlws, maxlws, mxxdyn, maxdyn
   250 continue
@@ -26471,9 +26530,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       implicit double precision (a-h,o-z)
       dimension s(ns)
       dimension x(n), f(n)
-!                                       local scratch
+!      local scratch
       dimension b(n,n), scr(n), xnew(n), fnew(n), dphi(n), d(n)
-!                                       fhybrj scratch
+!      fhybrj scratch
       dimension dvdl(4,*), vica(3,*), vicd(3,*), aic(*)
       parameter (nb=20)
       dimension alam(*), fv(n), dldx(n), dfdl(nb,*), aj(nb,*)
@@ -26556,7 +26615,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         logical units for nonlinear iteration             /nlilun/
       common /nlilun/ nlimat, nlitmp, nlillu, nlirhs, nlibn, nlians     &
      &              , indmat(maxcp2+1)
-!                                                           /nlilun/
+!                          /nlilun/
 !end  nlilun
 !call cp2flg
 !         /cp2flg/:  newton iteration, lambda print and cp2 print flags
@@ -26579,10 +26638,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       test    =  .false.
-!                                  allocate scratch memory
+! allocate scratch memory
       nnmat   =  maxcp2+1
       call openms (nlimat,indmat,nnmat,0)
-!                                  perform up to  nitmax  iterations
+! perform up to  nitmax  iterations
       alfprv  =   1.d0
       do 100 it = 1,nitmax
       itlast  =  it
@@ -26591,7 +26650,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & 'case, iter',iacase,it
       call outvcx ('x-vector',n,x)
    10 continue
-!                                  generate function and jacobian
+! generate function and jacobian
       call fhybrj (n,x,f,nlimat,n,3                                     &
      &            ,dvdl,vica,vicd,aic                                   &
      &            ,alam,fv,dldx,dfdl,aj                                 &
@@ -26604,11 +26663,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  7001 format (' case:',i3,'  iteration:',i3,'   max residual:'          &
      &       ,1pe12.4,'   at position',i4)
       if ( istcp2.ge.2 ) call outvcx ('residuals',n,f)
-!                                  check convergence
+! check convergence
       call vip (f,1,  f,1,  n,fsq)
       fnm  =  sqrt(fsq)
       if ( fnm .lt. 1.d-8 ) goto 110
-!                                  get newton correction: d
+! get newton correction: d
       if ( .not.test ) goto 16
       do 15 i = 1,n
           call readmd (nlimat,scr,n,i)
@@ -26617,39 +26676,39 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    15 continue
       call outvcx ('diags',n,dphi)
    16 continue
-!                                  factor the jacobian
+! factor the jacobian
       nrhsnl      =  1
       call bkfact (s,ns,n,nrhsnl, nlimat,nlitmp,nlillu                  &
      &            , .false.,nhdat,ier)
       if ( ier.eq.0 ) goto 21
-!                                  singular matrix
+! singular matrix
            write (6,7002) iacase, it
            goto 105
  7002 format (' singular jacobian, case',i3,', iteration',i4)
-!                                  copy f(x) to the array d for the solv
+! copy f(x) to the array d for the solv
    21 continue
       call dcopy (n,  f,1,  d,1)
-!                                  write the right hand side to nlirhs
+! write the right hand side to nlirhs
       rewind nlirhs
       do 25 i = 1,n
           write (nlirhs) d(i)
    25 continue
-!                                  solve the system:  [j] [d] = [f]
+! solve the system:  [j] [d] = [f]
       call bksolv (s,ns,n,nrhsnl,  nlillu,nlirhs,nlibn,nlians           &
      &            , .false.,nhdat,ier)
-!                                  read the system solution
+! read the system solution
       rewind nlians
       do 30 i = 1,n
           read (nlians) d(i)
    30 continue
-!                                  some debug output
+! some debug output
       if ( test ) call hsmmp1 (n,n,1, b,1,n, d,1,n, dphi,1,n)
 !---  call outvcx ('x',n,x)
 !---  call outvcx ('j*j-1*f',n,dphi)
 !---  call outvcx ('j-1 f',n,d)
-!                                  put the sol'n of [j] [d] = -[f] into
+! put the sol'n of [j] [d] = -[f] into
       call dscal (n, -1.d0,  d,1)
-!                                  limit d to .1*xscl,  xscl = 1./!df/dx
+! limit d to .1*xscl,  xscl = 1./!df/dx
       call vip (d,1,  d,1,  n,dsq)
       call vip (x,1,  x,1,  n,xsq)
       dnm  =  sqrt(dsq)
@@ -26684,7 +26743,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    41 continue
 ! -------------------------------  check jacobian, end
 !
-!                                  update of the x-vector
+! update of the x-vector
       t       =  1.d0
       if ( fnm.lt. 1.d-5 ) goto 90
       call vadd (x,alf,d,xnew,n)
@@ -26694,22 +26753,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &            ,nsngt,sols)
       call vip (fnew,1,  fnew,1,  n,fsq)
       fnm  =  sqrt(fsq)
-!                                  do line search for newton's method,
-!                                  finding the global minimum in the cas
-!                                  that f(x) is quadratic in x, as is th
-!                                  case when a 2nd order pressure formul
-!                                  is used.
+! do line search for newton's method,
+! finding the global minimum in the cas
+! that f(x) is quadratic in x, as is th
+! case when a 2nd order pressure formul
+! is used.
       call cublns (n,f,fnew,alf,t)
 !
    90 continue
       call vadd (x,t,d,xnew,n)
       call dcopy (n,  xnew,1,  x,1)
-!                                  set alfprv to current alf for use in
-!                                  the step control strategy
+! set alfprv to current alf for use in
+! the step control strategy
       alfprv  =  alf
   100 continue
-!                                  looks like a failure.  double check a
-!                                  issue messages if necessary
+! looks like a failure.  double check a
+! issue messages if necessary
   105 continue
       call fhybrj (n,x,f,nlimat,n,1                                     &
      &            ,dvdl,vica,vicd,aic                                   &
@@ -26731,7 +26790,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,/, '   ************************************************ '       &
      &  )
       call outvcx ('f-vector',n,f)
-!                                  generate the logfile message
+! generate the logfile message
       write (lcase,'(i1)') iacase
       write (lfnm,'(1p,e8.2)') fnm
       lmsg =                                                            &
@@ -26745,7 +26804,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
   110 continue
-!                                  generate logfile/output file message
+! generate logfile/output file message
       lmsg =                                                            &
      &'  iteration convergence, case x, xxx iterations, f-norm n.nne-nn'
 !      12345678901234567890123456789012345678901234567890123456789012345
@@ -26905,42 +26964,42 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !
-!                                  data related to prandtl-glauert
-!                                  transformation
+! data related to prandtl-glauert
+! transformation
       betams=1.d0-amach*amach
       abetms=abs(betams)
       betam=sqrt(abetms)
       sbetam=sign(1.d0,betams)
       btsqi   =  1.d0/abetms
-!                                  kernel scale factor: 4*pi (subsonic)
-!                                                       2*pi (supersonic
+! kernel scale factor: 4*pi (subsonic)
+!                      2*pi (supersonic
       akap    =  pi*(3.d0+sbetam)
       akapin  =  1.d0/akap
-!                                  compressibility axis
+! compressibility axis
       aarg=alpc*pi2/360.d0
       barg=betc*pi2/360.d0
       compd(1)  =  cos(aarg)*cos(barg)
       compd(2)  = -cos(aarg)*sin(barg)
       compd(3)  =  sin(aarg)
-!                                  symmetry plane completion values
-!                                  (1, 3, 15)
+! symmetry plane completion values
+! (1, 3, 15)
       ictsym  =  1
       if ( nsymm.eq.1 ) ictsym = 3
       if ( nsymm.eq.2 ) ictsym = 15
-!                                  symmetry plane limits
-!                                  nsymm=0 ==> (nisym,njsym) = (1,1)
-!                                  nsymm=1 ==> (nisym,njsym) = (2,1)
-!                                  nsymm=2 ==> (nisym,njsym) = (2,2)
+! symmetry plane limits
+! nsymm=0 ==> (nisym,njsym) = (1,1)
+! nsymm=1 ==> (nisym,njsym) = (2,1)
+! nsymm=2 ==> (nisym,njsym) = (2,2)
 !
 ! Setting nisym and njsym is now done in inputa.f90                       ! Note by Martin Hegedus, 4/21/09
 !!      nisym   =  min (nsymm+1,2)                                          ! Removed by Martin Hegedus, 4/21/09
 !!      njsym   =  max (nsymm,1)                                            ! Removed by Martin Hegedus, 4/21/09
-!                                  reference axis to compressibility axi
-!                                  transformation
+! reference axis to compressibility axi
+! transformation
       call rotate(arotc,aarg,barg)
       call trans(arotc,arotci,3,3)
-!                                  ggcp = reference axis to p-g scaled t
-!                                  ggcp = inverse (transpose (ggcp) )
+! ggcp = reference axis to p-g scaled t
+! ggcp = inverse (transpose (ggcp) )
       af      =  1.d0/betams
       do 110 i = 1,3
       gfac    =  betam
@@ -27391,7 +27450,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !call freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -27403,13 +27462,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nasrat  =  0
       npa     =  0
       nza     =  0
-!                                  loop over networks looking for
-!                                  aspect ratio, critical inclination
-!                                  and phase variation type problems
+! loop over networks looking for
+! aspect ratio, critical inclination
+! and phase variation type problems
       do 850 kn = 1,nnett
       mk      =  nm(kn)
       nk      =  nn(kn)
-!                                  loop over panels in each network
+! loop over panels in each network
       do 800 n = 2,nk
       jpan = n-1
       do 700 m = 2,mk
@@ -27418,7 +27477,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ip  = ipn+npa
       lzn = ipan+mk*(jpan-1)
       lz  = lzn+nza
-!                                  define canonical panel points
+! define canonical panel points
       do 100 l = 1,3
          cp(l,1) = zm(l,lz)
          cp(l,2) = zm(l,lz+mk)
@@ -27431,22 +27490,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          cp(l,9) = .25d0*(cp(l,1)+cp(l,2)+cp(l,3)+cp(l,4))
   100 continue
       nsff    =  4
-!                                  get index of collapsed sides
+! get index of collapsed sides
       call iscal (cp,ics)
-!                                  get info on 4 interior subpanels
+! get info on 4 interior subpanels
       call surfit (cp,aq,aqi)
       is = 5
       call dcopy (3,aqi(7),1,en(1,is),1)
       call uvect (en(1,is))
       call cmpscl (betams,compd,en(1,is),z)
       call mxm (z,1,en(1,is),3,wz,1)
-!                                  check for mach inclination
+! check for mach inclination
       if (wz.lt.0.d0) write(6,6100) is,ip,kn
       if (abs(wz).lt.(.1d0)) write(6,6200) is,ip,kn,wz
-!                                  get transformation for interior reg'n
+! get transformation for interior reg'n
       call vadd (cp(1,7), -1.d0, cp(1,5), genref, 3)
       call refloc (en(1,is),sbetam,genref,ar(1,is),ajc,arc,ari)
-!                                  get info on 4 exterior subpanels
+! get info on 4 exterior subpanels
       enmin =  1.d0
       diam  =  0.d0
       do 200 is = 1,4
@@ -27461,16 +27520,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call norcal (cp(1,is),cp(1,isp1),cp(1,isp3),en(1,is))
          call cmpscl (betams,compd,en(1,is),z)
          call mxm (z,1,en(1,is),3,wz,1)
-!                                  check for mach inclination
+! check for mach inclination
          if (wz.lt.0.d0) write(6,6100) is,ip,kn
          if (abs(wz).lt.(.1d0)) write(6,6200) is,ip,kn,wz
          call mxm (en(1,5),1,en(1,is),3,enis,1)
          enmin =  min (enmin,enis)
   200 continue
       diam    =  2.d0*diam
-!                                  check for excessive twisting
+! check for excessive twisting
       if ( enmin .lt. .5d0 ) write (6,6300) ipan, jpan, kn
-!                                  check for aspect ratio errors
+! check for aspect ratio errors
       call distnc (cp(1,5),cp(1,7),d57)
       call distnc (cp(1,6),cp(1,8),d68)
       pasrat =  min (d57,d68)/ max (d57,d68)
@@ -27479,13 +27538,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          nasrat  =  nasrat + 1
          write (6,6400) ipan,jpan,kn,pasrat
   300 continue
-!                                  check for phase variation errors
+! check for phase variation errors
       dph     =  omg*diam
       if ( dph.lt. 1.1d0 ) goto 350
          ndpher  =  ndpher + 1
          write (6,6500) dph, omg, diam, kn, ipn, ipan, jpan
   350 continue
-!                                  check for non-convexity
+! check for non-convexity
       call cnvxhl (pf,nsff,ics,qcvxhl,kcvxhl)
       if ( kcvxhl .ne. 0 ) go to 400
          ncvxer  =  ncvxer + 1
@@ -27494,11 +27553,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   700 continue
   800 continue
-!                                  increment cum panel and meshpt counts
+! increment cum panel and meshpt counts
       npa     =  npa + (mk-1)*(nk-1)
       nza     =  nza + mk*nk
   850 continue
-!                                  abort on nonconvex panel error
+! abort on nonconvex panel error
       if ( ncvxer .le. 0 ) goto 900
          write (6,6700) ncvxer
          stop
@@ -27726,12 +27785,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        , icpmap,  ibcmap
 !end  prnt
 !call narmsg
-!                                                            /narmsg/
+!                           /narmsg/
       common /narmsg/ nasrat
 !end  narmsg
       common /freqer/ ndpher
 !ca freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -27761,8 +27820,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       mm1=m-1
       ipn=mm1+(nm-1)*(nm1-1)
       ip=ipn+npa
-!                                   initialize spline data to avoid
-!                                   trouble later
+!  initialize spline data to avoid
+!  trouble later
       call dcopy (189,  0.d0,0,  astd,1)
       call dcopy ( 15,  0.d0,0,  asts,1)
       call icopy (  9,     0,0,   iis,1)
@@ -28069,7 +28128,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !        saved in the array tables for possible debugging purposes.
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -28100,7 +28159,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( lwsdyn.gt.maxlws ) call abtcor
       nwx     =  max(0,nw)
       lladdr  =  maplev(1,levdyn) + maplev(2,levdyn)
-!                                    allocate reals
+!   allocate reals
       maplev(2,levdyn) = maplev(2,levdyn) + nwx
 !
       chrlws(lwsdyn) = label
@@ -28124,7 +28183,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                               increasing it before inicating failure
       if ( nwtot .le. maxdyn ) go to 970
           incrcm  =  nwtot - maxdyn + 512
-!                                  suppress increase in fl
+! suppress increase in fl
 ! ---     call morcor (incrcm)
           incrcm  =  0
           maxdyn  =  maxdyn + incrcm
@@ -28326,7 +28385,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
       integer p(nb), q(nb), brnm(nb), head(100), point(200), count(100)
-!                                      nnode    2*nb        nnode
+!     nnode    2*nb        nnode
       integer    key(nb), kb(nb)
       dimension w(nb)
       integer pq, qp, b, psav, mnod(nnode)
@@ -28378,12 +28437,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ityp - isav ) 30,32,34
    32     continue
           if ( mnod(pq) .eq. -1 ) go to  33
-!                                  mnod(pq) = 0 .  select highest
-!                                  weighted branch.
+! mnod(pq) = 0 .  select highest
+! weighted branch.
                if ( w(b) .lt. wsav ) go to 30
                go to 34
-!                                  mnod(pq) = -1 .  select lowest
-!                                  weighted branch
+! mnod(pq) = -1 .  select lowest
+! weighted branch
    33     continue
                if ( w(b) .gt. wsav ) go to 30
                go to 34
@@ -28483,7 +28542,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                                                               *
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
-!                                                  nnode     ntr+1
+!                 nnode     ntr+1
       integer p(nb), q(nb), brnm(nb), key(nb), netwk(nnode), nbtra(101)
       integer kb(nb)
       dimension    pr(nb)
@@ -28599,13 +28658,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 5100 i = 1,nb
           pr(i)   =  -pr(i)
  5100 continue
-!                                  generate a pointer array into the lis
-!                                  of tree branches that describes the
-!                                  disjoint subtrees.
+! generate a pointer array into the lis
+! of tree branches that describes the
+! disjoint subtrees.
 !
-!                                  begin by assigning a subgraph
-!                                  identifier to each branch in the
-!                                  reordered list.
+! begin by assigning a subgraph
+! identifier to each branch in the
+! reordered list.
       do 5500 ib = 1,nb
           nbtra(ib) =  netwk( p(ib) )
  5500 continue
@@ -28640,7 +28699,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                  ,iabtpr,nfail)
       implicit double precision (a-h,o-z)
       integer p(nb), q(nb), brnm(nb), head(100), point(200), count(100)
-!                                      nnode    2*nb        nnode
+!     nnode    2*nb        nnode
       integer    key(nb), kb(nb)
       dimension w(nb)
       integer pq, qp, b, psav, mnod(nnode)
@@ -28757,7 +28816,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ukysrt (nb,brnm,key)
       call ukysrd (nb,w,key)
       call ukysrt (nb,kb,key)
-!                                  check for bad assignments
+! check for bad assignments
       nfail   =  0
       ngrasn  =  0
       do 150 b = 1,nb
@@ -29428,12 +29487,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ichk    =  ichk/2
           if ( ichk.le.0 ) go to 1100
           if ( iup.ne.idn ) go to 100
-!                                  iup = idn
+! iup = idn
       ist     =  idn
       if ( .not. ( ind.gt.index(ist) .and. ind.le.index(ist+1) ))       &
      &                                                 go to 1100
       return
-!                                  error
+! error
  1100 write (6,1200) ist,iup,idn,ind,n,index
  1200 format ( ' fatal error in ibsrch.  ist,iup,idn,ind,n =', 5i10     &
      &   ,/, (1x,10i10) )
@@ -29545,7 +29604,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       integer a(n), b(n)
       character*(*) msg
 !call prcmpr
-!                                                            /prcmpr/
+!                           /prcmpr/
       common /prcmpr/ llcmpr
       logical llcmpr
 !end  prcmpr
@@ -29743,7 +29802,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !        saved in the array tables for possible debugging purposes.
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -29775,7 +29834,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nwx     =  max(0,nw)
       nwx     =  (nwx+nrl2in-1)/nrl2in
       lladdr  =  maplev(1,levdyn) + maplev(2,levdyn)
-!                                    allocate integers
+!   allocate integers
       maplev(2,levdyn) = maplev(2,levdyn) + nwx
 !
       chrlws(lwsdyn) = label
@@ -29795,11 +29854,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  , chrlws(lwsdyn), maplws(1,lwsdyn), nwx
 !
   950 continue
-!                                  if not enough cm is available, try
-!                                  increasing it before inicating failur
+! if not enough cm is available, try
+! increasing it before inicating failur
       if ( nwtot .le. maxdyn ) go to 970
           incrcm  =  nwtot - maxdyn + 512
-!                                  suppress increase in fl
+! suppress increase in fl
 ! ---     call morcor (incrcm)
           incrcm  =  0
           maxdyn  =  maxdyn + incrcm
@@ -29833,7 +29892,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
 !call inp1
-!                                                            /inp1/
+!                           /inp1/
       character*80 icard
       common /inp1/ icard
 !end  inp1
@@ -29860,7 +29919,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/curpan/cpnorm(150)
 !end  curpan
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
 !call bcon
@@ -29903,7 +29962,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !call vicovr
 !         override vic specifications                       /vicovr/
       common /vicovr/ nedflt(mxnett)
-!                                                           /vicovr/
+!                          /vicovr/
 !end  vicovr
       logical lbc1, lbc2
       character*90 qline
@@ -29919,7 +29978,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nedflk  =  dum(4)
       if ( nedflk.gt.1 ) nedflk = 4
       nedflk  =  max( 0, min( 4, nedflk) )
-!                                  now disable it until we figure it out
+! now disable it until we figure it out
       nedflk  =  0
       imnwpr  =  dum(5).ne.0.d0
 !
@@ -30196,7 +30255,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   786 continue
       go to 1010
   787 continue
-!                                  set b.c.'s for composite wake nw's
+! set b.c.'s for composite wake nw's
       inlop1  =  nlopt1
       inrop1  =  nropt1
       inlop2  =  nlopt2
@@ -30224,7 +30283,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       inrop2  =  2
       if ( dum(3).ne.0.d0 ) inlop2 = dum(3)
       if ( dum(4).ne.0.d0 ) inrop2 = dum(4)
-!                                  set leading edge (kutta or not) condi
+! set leading edge (kutta or not) condi
       matchw   =  dum(2)
       inlop3  =  15
       inrop3  =  2
@@ -30341,7 +30400,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           nnp1    =  nn(k) + 1
           call cmngrd (k,mcp,ncp)
           write (6,8100) k,nts(k),ntd(k),nm(k),nn(k),mcp,ncp
-!                                  put basic b.c. info in
+! put basic b.c. info in
           icsv    =  ica
           do 920 n = 1,ncp
           do 915 m = 1,mcp
@@ -30355,12 +30414,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     nlopt2   =  inlop3
                     nropt2   =  inrop3
                endif
-!                                  determine if there is a first b.c.
+! determine if there is a first b.c.
                lbc1    =  .true.
                if ( m.eq.1 .or. m.eq.nmp1 .or. n.eq.1 .or. n.eq.nnp1 )  &
      &              lbc1    = .false.
                if ( .not. lbc1 ) nlopt1 = 0
-!                                  determine if there is a second b.c.
+! determine if there is a second b.c.
                lbc2    =  .true.
                if (  (ntdk.eq.8 .or. ntdk.eq.18) .and. m.gt.1 )         &
      &              lbc2    =  .false.
@@ -30375,7 +30434,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   915     continue
   920     continue
           nbca(k+1) = ica
-!                                  read in nlopt1 = 1 data, if needed
+! read in nlopt1 = 1 data, if needed
           if ( inlop1.ne.1 ) goto 931
           icx     =  icsv
           do 930 n = 1,ncp
@@ -30393,7 +30452,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call ibtrns (icx,cu1)
   925     continue
   930     continue
-!                                  read in nropt1 = 1,7,8 data, if neede
+! read in nropt1 = 1,7,8 data, if neede
   931     continue
           nr1a = iabs(inrop1)
           if ( nr1a.ne.1 .and. nr1a.ne.7 .and. nr1a.ne.8 )              &
@@ -30412,7 +30471,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call ibtrns (icx,cu1)
   935     continue
   940     continue
-!                                  read in nlopt2 = 1 data, if needed
+! read in nlopt2 = 1 data, if needed
   941     continue
           if ( inlop2.ne.1 .and. inlop3.ne.1 ) goto 951
           icx     =  icsv
@@ -30431,7 +30490,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call ibtrns (icx,cu1)
   945     continue
   950     continue
-!                                  read in nropt2 = 1,7,8 data, if neede
+! read in nropt2 = 1,7,8 data, if neede
   951     continue
           nr2a  =  iabs( inrop2 )
           nr3a  =  iabs( inrop3 )
@@ -30503,7 +30562,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       ,i3,'  rows',i3,'  cols',i3,'  c.p. row count',i4          &
      &       ,'  c.p. col count',i4)
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'inbc', qline, ((lll,lll=1,10),kkk=1,8)
@@ -30531,7 +30590,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/curpan/cpnorm(150)
 !end  curpan
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
 !call index
@@ -30581,7 +30640,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !call vicovr
 !         override vic specifications                       /vicovr/
       common /vicovr/ nedflt(mxnett)
-!                                                           /vicovr/
+!                          /vicovr/
 !end  vicovr
 !
 !
@@ -30636,7 +30695,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/curpan/cpnorm(150)
 !end  curpan
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
 !call bcon
@@ -30699,7 +30758,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'inbc2', qline, ((lll,lll=1,10),kkk=1,8)
@@ -30841,7 +30900,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -30849,7 +30908,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  rlcplx
       dimension ind(nind), dv(ne,nind)
       dimension phic(nncp,*), vic(3,nnvcp,*)
-!                                    accumulate potential influences
+!   accumulate potential influences
       if ( ne.lt.1 ) return
       do 100 j = 1,nind
          phic(1,ind(j)) = phic(1,ind(j)) + dv(1,j)
@@ -30860,7 +30919,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call outmtx ('phic',ityprc*nncp,ityprc,nsngt,phic)
       endif
       if ( ne.le.1 ) goto 950
-!                                    accumulate velocity influences
+!   accumulate velocity influences
                  do 200 j=1,nind
          vic(1,1,ind(j)) = vic(1,1,ind(j)) + dv(2,j)
          vic(2,1,ind(j)) = vic(2,1,ind(j)) + dv(3,j)
@@ -30997,8 +31056,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   190    continue
   180 continue
       cl    = 2.d0*facsym*cl/sref
-!                                  give drag figures for principle image
-!                                  if anti-symmetry flags are set
+! give drag figures for principle image
+! if anti-symmetry flags are set
       fclcd   =  1.d0
       if ( misym.lt.0 ) fclcd = .5d0
       if ( mjsym.lt.0 ) fclcd = .5d0*fclcd
@@ -31053,7 +31112,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       implicit double precision (a-h,o-z)
       character*90 qline
 !call inp1
-!                                                            /inp1/
+!                           /inp1/
       character*80 icard
       common /inp1/ icard
 !end  inp1
@@ -31070,7 +31129,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*4 titch, titup, titlo
       character*4 icard4
 !call vercom
-!                                                           /vercom/
+!                          /vercom/
       common /vercom/ versn
       character*45 versn
 !end  vercom
@@ -31145,10 +31204,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( icard4.eq.endlo .or. icard4.eq.endup ) goto 40
       go to 10
 !
-!                                  Now read data, stripping out comment
-!                                  lines, removing comment information
-!                                  and rewriting to unit 22 with line
-!                                  numbers included
+! Now read data, stripping out comment
+! lines, removing comment information
+! and rewriting to unit 22 with line
+! numbers included
 !
    40 continue
       ncard  =  0
@@ -31169,7 +31228,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   121 continue
       if ( jmax.le.0 ) go to 100
       if ( buf(1:1) .ne. '#' )goto 180
-!                                  repeat card encountered. process it
+! repeat card encountered. process it
       do 130 j = 2,jmax
           j1  =  j
           if ( buf(j:j) .ne. ' ' ) goto 131
@@ -31178,14 +31237,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       goto 100
 !
   131 continue
-!                                  look for separator after data start
+! look for separator after data start
       j2  =  j1
       do 135 j = j1,jmax
           if ( buf(j:j).eq. ' '  .or. buf(j:j).eq. ',' ) goto 136
           j2   =  j
   135 continue
   136 continue
-!                                  look for data after separator
+! look for data after separator
       do 140 j = j2+2,jmax
           j3   =  j
           if ( buf(j:j).ne. ' ' ) goto 141
@@ -31193,7 +31252,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       j3  = jmax
       j4  = jmax-1
       goto 151
-!                                  look for separator after data start
+! look for separator after data start
   141 continue
       j4  =  j3
       do 145 j = j3,jmax
@@ -31201,7 +31260,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           j4  =  j
   145 continue
   146 continue
-!                                  m = (j1 .. j2), n = (j3 .. j4)
+! m = (j1 .. j2), n = (j3 .. j4)
   151 continue
       aline  =  '          '
       do 155 j = j1,j2
@@ -31249,7 +31308,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6104 format (' the following',i3,' lines will be repeated',i4,' times')
  6105 format (10x,a80)
 !
-!                                  ordinary input line
+! ordinary input line
   180 continue
       write (ntsinx,5070) buf, ncard
 ! ***           write (6,5062) (buf(j),j=1,jmax)
@@ -31281,7 +31340,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  7001 format(//,5x,19h---no more input---,//)
       stop
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'inecho', qline(1:80),ncard                        &
@@ -31341,7 +31400,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  pandq
       dimension pc(3), pct(3), zp(3,4), dcp(3)
 !call freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -31396,7 +31455,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !              nlws      the maximum number of dynamic arrays needed
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -31413,7 +31472,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /dynchr/ iniset, chrlev(nlev), chrlws(nlws)
       character*8 iniset, chrlev, chrlws
 !end  dynmap
-!                                         get the ratio of real/int
+!        get the ratio of real/int
       nrl     =  locfcn(intlth) - locfcn(realth)
       nin     =  locfcn(nrl2in) - locfcn(intlth)
       nrl2in  =  nrl/nin
@@ -31446,7 +31505,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! ----      llwstg  =  llmlws + 4*nlws
       llmplv  =  0
       llmlws  =  0
-!                                   allocate from the beginning
+!  allocate from the beginning
       llwstg  =  1
 !
       chrlev(levdyn)  =  ' '
@@ -31694,7 +31753,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   nnett     /index/   output    number of networks            *
 !     *                                                               *
 !     *   nprcof    /fmcof/   output    pressure coefficient used for *
-!                                       force calculations            *
+!      force calculations            *
 !     *                                                               *
 !     *   nropt1    /bcon/    output    first boundary condition      *
 !     *                                 right hand side value         *
@@ -31792,7 +31851,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                                           parameter (mxsgpn = 17500)
 !end  limits
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !call acase
@@ -31853,11 +31912,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *  may be required                                              *
       common/case/icase,ncase
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call exdign
-!                                                            /exdign/
+!                           /exdign/
       common/exdign/nexdgn
 !end  exdign
 !call skrch1
@@ -31954,7 +32013,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character*4 idict(50)
       character*4 updict(100), lodict(100)
 !call inp1
-!                                                            /inp1/
+!                           /inp1/
       character*80 icard
       common /inp1/ icard
 !end  inp1
@@ -31973,7 +32032,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  inp4
       integer abnet1(200),abnet2(200),absid1(200),absid2(200)
 !call factrd
-!                                                            /factrd/
+!                           /factrd/
       common /factrd/ ifact
 !end  factrd
 !call secprp
@@ -32027,12 +32086,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /anwlst/ nnwlst
 !end  nwlst
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
 !call prtnor
-!                                                            /prtnor/
+!                           /prtnor/
       common /prtnor/ nprten
 !end  prtnor
 !
@@ -32050,7 +32109,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  cp2flg
 !
 !call trfanl
-!                                                         /trfanl/
+!                        /trfanl/
 !         ptrffz    logical flag, set by inputa, used in output, indic-
 !                   ating whether or not to perform trefftz analysis.
       common /trfanl/ ptrffz
@@ -32255,10 +32314,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                          selecting this option.
 !
 !                          ndtchk=1  the program will check abutments,
-!                                    boundary conditions, normals etc.
+!   boundary conditions, normals etc.
 !
 !                          ndtchk=2  the program will check only the
-!                                    abutments.
+!   abutments.
       read (ntsin,'( a )') qline
       read (qline,5070,err=9950) dum1, dum2
       ndtchk  =  dum1
@@ -32372,9 +32431,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kodew = 0
       ipter = 6
       call meshp(k,ipter,amnsw,dnsmsh)
-!                                  if  k.gt.mxnett  or network input has
-!                                  signalled as completed by the appeara
-!                                  $abu or $pea, abort.
+! if  k.gt.mxnett  or network input has
+! signalled as completed by the appeara
+! $abu or $pea, abort.
       if ( k.gt.nnett ) goto 6010
       kodew=1
       go to 60
@@ -32396,9 +32455,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     call b.c. input
 !
       call inbc(k,ica)
-!                                  if  k.gt.mxnett  or network input has
-!                                  signalled as completed by the appeara
-!                                  $abu or $pea, abort.
+! if  k.gt.mxnett  or network input has
+! signalled as completed by the appeara
+! $abu or $pea, abort.
       if ( k.gt.nnett ) goto 6010
       go to 60
 !
@@ -32409,8 +32468,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                    abutment data should be input only after all the
 !                    geometry data has been input successfully.
 !
-!                                  it is assumed that all networks have
-!                                  input.  reset  nnett  and process $ab
+! it is assumed that all networks have
+! input.  reset  nnett  and process $ab
       nnett   =  k
       do 2681 kk = 1,nnett
           write (nwname(kk),5073) iduser(kk)
@@ -32685,12 +32744,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( dum(3) .gt. 0.d0 ) igeout = 1
       if ( dum(4) .gt. 0.d0 ) nwxref = 1
       if ( dum(5) .gt. 0.d0 ) xtrint = .true.
-!                                  field 6     description
-!                                    <0      no abutment print at all
-!                                    =0      abutment print only (defaul
-!                                    =1      abutment + a.i. print
-!                                    =2      (1) + [ nwprop = 1 ]
-!                                    =3      (2) + [ iabutd = 1 ]
+! field 6     description
+!   <0      no abutment print at all
+!   =0      abutment print only (defaul
+!   =1      abutment + a.i. print
+!   =2      (1) + [ nwprop = 1 ]
+!   =3      (2) + [ iabutd = 1 ]
       iabsum  =  1
       if ( dum(6).lt.0.d0 ) iabsum = 0
       if ( dum(6).gt.0.d0 ) iabsum = 2
@@ -33052,7 +33111,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outvec ('gcnmat',nprop+1,gcnmat)
       call outvec ('pcnmat',nprop+1,pcnmat)
       call outvec ('rcnmat',nprop+1,rcnmat)
-!                                  read the surface material specs
+! read the surface material specs
       read (ntsin,'( a )') qline
       read (qline,5070,err=9950) dum
       nsrfls =  dum(1)
@@ -33066,7 +33125,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                ksv  =  kk
                if ( qmatls(i).eq.qratio(kk) ) goto 675
   674     continue
-!                                  didn't find the symbol, decode a numb
+! didn't find the symbol, decode a numb
           read (qmatls(i),5052,err=9950) dum(1)
           ksv   =  dum(1)
   675     continue
@@ -33106,14 +33165,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           write (nwname(kk),5073) iduser(kk)
           call ljbf10 (nwname(kk))
   701 continue
-!                                  calculate tpcrit for checking pratio(
+! calculate tpcrit for checking pratio(
       tpexp   =  gmair/(1.d0-gmair)
       tpcrit  = ( 1.d0 + .5d0*(gmair-1.d0)*amach*amach )**tpexp + 1.d-12
       tpcrit  =  min( tpcrit, 1.d0)
       write (6,'(1x,a10,1x, 2f12.6)')                                   &
      & 'tpcrit, m',tpcrit,amach
-!                                  reset material properties at very low
-!                                  mach number to those of air
+! reset material properties at very low
+! mach number to those of air
       if ( amach.lt.(.01d0)  .and.  nprop.gt.0 ) then
           write (6,6240) amach, nprop
           do 702 i = 1,nprop
@@ -33135,8 +33194,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &,/,' **********************************************************'  &
      & )
 !
-!                                  define upper and lower surface materi
-!                                  specifications for all networks
+! define upper and lower surface materi
+! specifications for all networks
       call icopy (2*mxnett,  0,0,   matnet,1)
 !-----      write (6,'(''  nsrfls before 705 loop'',i6)') nsrfls
       if ( nsrfls.le.0 ) goto 7051
@@ -33162,8 +33221,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  7051 continue
 !                            define the free stream vectors for each mat
       do 707 i = 0,nprop
-!                                  make sure that  pratio(i) (tp) always
-!                                  exceeds tpcrit.
+! make sure that  pratio(i) (tp) always
+! exceeds tpcrit.
           if ( i.eq.0 ) goto 7050
                if ( pratio(i).lt.tpcrit ) then
                     write (6,6250) qratio(i), i,pratio(i),tpcrit,amach
@@ -33217,7 +33276,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &,/,' *                                                        *'  &
      &,/,' **********************************************************'  &
      & )
-!                                   update the 'iform' arrays per spec
+!  update the 'iform' arrays per spec
       if( isignl .eq. 0 ) then
          do 7081 knet = 1,nnett
             if( icomtd(knet) .ne. 1 ) iform(knet,1) = 0
@@ -33235,14 +33294,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &           (icomtd(knet) .eq. 1 )     ) iform(knet,1) = 1
  7082    continue
       endif
-!                                  dump the 'iform' arrays indicating
-!                                  which surfaces will be used in force
-!                                  and moment calculations
+! dump the 'iform' arrays indicating
+! which surfaces will be used in force
+! and moment calculations
       call outvci ('iform-1',nnett,iform(1,1))
       call outvci ('iform-2',nnett,iform(1,2))
 !
 !
-!                                  generate the quick summary of input
+! generate the quick summary of input
 !
       call insumm
       if ( nnetsv.ne.0  .and.  k.ne.nnetsv ) goto 6110
@@ -33264,8 +33323,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nidq(18).gt.0 ) call writmd (nti,stmln,nidq(18),18,-1,0)
   720 continue
 !
-!                                  count the mesh points and save the
-!                                  unmodified geometry
+! count the mesh points and save the
+! unmodified geometry
       nzmesh  =  0
       do 730 k = 1,nnett
           nzmesh  =  nzmesh + nm(k)*nn(k)
@@ -33296,7 +33355,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &22x,53h      (only changed points are reported)             ,     &
      &//)
       notokg = 0
-!                                  use the procedure of tgeomc to set ep
+! use the procedure of tgeomc to set ep
       epssav  =  epsgeo
       call abtdim (nnett,nm,nn,zm,ntd,  diamin,diamax)
       epsmax  =  .1d0*diamin
@@ -33307,7 +33366,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( movusr.ge.3 ) write (6,5083) epsgeo
  5083 format ('    global geometry tolerance used in $pea processing:'  &
      &       ,1p,e12.4)
-!                                  enforce the $pea specifications
+! enforce the $pea specifications
       call setcor ('peaidn')
       call getcor ('zorg',llzorg,3*maxpts)
       call getcor ('dzcr',lldzcr,  mxempt)
@@ -33323,7 +33382,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &            ,w(llnedm),w(lliedg)                                  &
      &            )
       call frecor ('peaidn')
-!                                  reset epsgeo
+! reset epsgeo
       epsgeo  =  epssav
       write(ntsout,5084)
   741 continue
@@ -33339,8 +33398,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   751 continue
 !
 !
-!                                       if restart, check for consistenc
-!                                       between ipot(k) and nckaic value
+!      if restart, check for consistenc
+!      between ipot(k) and nckaic value
 !
       if(nckaic.ne.2)go to 761
       do 760 k=1,nnett
@@ -33356,9 +33415,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   770 continue
       if ( ndtchk.ne.0 .and. icontp.ge.0 ) icontp = 1
       if ( icontp.lt.0 ) icontp = 0
-!                                  set the flag for printing normals
-!                                  defaults: datacheck ==> on
-!                                            solution  ==> off
+! set the flag for printing normals
+! defaults: datacheck ==> on
+!           solution  ==> off
       ntmp    =  nprten
       nprten  =  0
       if ( ntmp.gt.0 ) nprten = 1
@@ -33465,7 +33524,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       stop
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'inputa', qline, ((lll,lll=1,10),kkk=1,8)
@@ -33491,7 +33550,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ifst    =  1
       if ( ics .eq. 1 ) ifst = 2
       call vadd (q(1,ifst),-1.d0,p,rp,3)
-!                                  cycle on edges
+! cycle on edges
       do 100 i = 1,4
           if ( i .eq. ics ) go to 100
           call xfera (rp,rm,3)
@@ -33503,7 +33562,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( abs(a(i)) .ge. abs(amax) ) amax = a(i)
   100 continue
       within  =  .true.
-!                                  check areas for consistent signs
+! check areas for consistent signs
       do 200 i = 1,4
           if ( i.eq.ics ) go to 200
           if ( a(i)*amax .gt. 0.d0 ) go to 200
@@ -33579,7 +33638,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/curpan/cpnorm(150)
 !end  curpan
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !call acase
@@ -33731,16 +33790,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , kbcrgn(150)
 !end  nwkrgn
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
       logical rhctr1, rhctr2
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call exdign
-!                                                            /exdign/
+!                           /exdign/
       common/exdign/nexdgn
 !end  exdign
 !
@@ -33832,8 +33891,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! --- 6043 format (1x,a10,  14(i6,2x), i6)
  6043 format (1x,a10,  3(i6,2x), i2,2x, i3,2x, i4,2x, 9(i6,2x), i6)
       ierglo  =  0
-!                                  define the surface conventions for th
-!                                  nlopt values
+! define the surface conventions for th
+! nlopt values
       call icopy (26,  0,0,  isfrgn(0),1)
       isfrgn(2)  = 1
       isfrgn(3)  = 2
@@ -33856,9 +33915,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kctr2   =  0
           do 415 ica = ica1,ica2
                call btrns (ica,cu1)
-!                                  check that any nropt=4 or 9 b.c. is
-!                                  clearly applied to either the lower
-!                                  or the upper surface.
+! check that any nropt=4 or 9 b.c. is
+! clearly applied to either the lower
+! or the upper surface.
                ianr1   =  iabs(nropt1)
                ianr2   =  iabs(nropt2)
                ianl1   =  iabs(nlopt1)
@@ -34513,7 +34572,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( line(1:1) .eq. '='  .or.  line(1:1)  .eq. '!' ) goto 100
       ier     =  0
       return
-!                                      end-of-file before data found
+!     end-of-file before data found
   500 continue
       ier     =  1
       write (6,6002) lun, nline
@@ -34522,7 +34581,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6003 format (a)
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'inxcmt', qline, ((lll,lll=1,10),kkk=1,8)
@@ -34965,7 +35024,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       p33     =  1.d0/3.d0
       p66     =  2.d0/3.d0
       p0833   =  1.d0/12.d0
-!                                  initialize top level of recursion
+! initialize top level of recursion
       call dcopy (6,  0.d0,0,  aint,1)
       call dcopy (6,  0.d0,0,  aint2,1)
       lev     =  1
@@ -35009,8 +35068,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! top
   100 continue
-!                                  perform quadrature at level  lev  and
-!                                  estimate accuracy
+! perform quadrature at level  lev  and
+! estimate accuracy
       dsnm    =  0.d0
       do 110 i = 1,6
           s(i)    =  h(lev)*( p166 *f(i,1,lev)                          &
@@ -35025,7 +35084,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           dsnm    =   max ( dsnm, abs(s(i)-s2(i))  )
 !----     write (6,6004) lev,ind(lev),a(lev),b(lev),h(lev),s(i),s2(i)
   110 continue
-!                                  if error budget not met, go deeper (3
+! if error budget not met, go deeper (3
       if ( lev.eq.levmax ) then
          if ( .not.writn )                                              &
      & write (6,'( '' ===== levmax hit '',2e12.4)') x(1,lev),x(2,lev)
@@ -35034,13 +35093,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       if ( dsnm*.066667d0*h(1) .gt. tol*h(lev) ) go to 300
   115 continue
-!                                  looks good: accumulate
+! looks good: accumulate
           do 120 i = 1,6
                aint2(i)=  aint2(i) + s2(i)
                aint(i) =  aint(i) + s(i)
   120     continue
-!                                  increment loop index at current level
-!                                  and pop stack (possibly more than onc
+! increment loop index at current level
+! and pop stack (possibly more than onc
 ! recur
   200     continue
           if ( lev.eq.1 ) go to 500
@@ -35048,8 +35107,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ind(lev).le.1 ) go to 400
                lev     =  lev - 1
                go to 200
-!                                  increase recursion level and initiali
-!                                  loop index at the new level
+! increase recursion level and initiali
+! loop index at the new level
 ! nxtlev
   300 continue
           lev     =  lev + 1
@@ -35057,9 +35116,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ind(lev)=  0
 ! nxtind
   400     continue
-!                                  let the quadrature at level  lev
-!                                  inherit appropriate data from level
-!                                  lev-1
+! let the quadrature at level  lev
+! inherit appropriate data from level
+! lev-1
                ix      =  2*ind(lev)
                x(1,lev)=  x(1+ix,lev-1)
                x(3,lev)=  x(2+ix,lev-1)
@@ -35068,14 +35127,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                a(lev)  =  x(1,lev)
                b(lev)  =  x(5,lev)
                h(lev)  =  .5d0*h(lev-1)
-!                                  function value inheritance
+! function value inheritance
                do 420 i = 1,6
                     f(i,1,lev)=  f(i,1+ix,lev-1)
                     f(i,3,lev)=  f(i,2+ix,lev-1)
                     f(i,5,lev)=  f(i,3+ix,lev-1)
   420          continue
-!                                  generate required new function values
-!                                  new recursion level
+! generate required new function values
+! new recursion level
                do 450 k = 2,4,2
                     x(k,lev) = .5d0*( x(k-1,lev) + x(k+1,lev) )
 !-----------------------------------------------
@@ -35317,7 +35376,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                                           parameter (mxsgpn = 17500)
 !end  limits
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -35730,7 +35789,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  index
 !
       nind    =  4*nnett + 1
-!                                   nedmpa(kedg) < kmp <= nedmpa(kedg+1)
+!  nedmpa(kedg) < kmp <= nedmpa(kedg+1)
       call ibsrch (nedmpa,nind,kmp,kedg)
       if ( kedg.le.0 .or. kedg.ge.nind ) then
          write (6,'( '' bad kmp value: '',2i10)') kmp,nnett
@@ -35765,7 +35824,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         a vector  v(0:idim) = lin. functional ( tau**i, i=0:idim )
       dimension     v(1)
       last    =  1 + idim
-!                                  for id = idim,idim-1,...,1
+! for id = idim,idim-1,...,1
       do 100 idbk = 1,idim
       id      =  1 + idim - idbk
           lstinc  =  last+inc
@@ -36086,11 +36145,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
 !call sginvc
-!                                                            /sginvc/
+!                           /sginvc/
       common /sginvc/ eps,tol,q(6),v(96),b(36),qp(6),irank,mrank
 !end  sginvc
       dimension c(16,6)
@@ -36229,14 +36288,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
 !call sginvc
-!                                                            /sginvc/
+!                           /sginvc/
       common /sginvc/ eps,tol,q(6),v(96),b(36),qp(6),irank,mrank
 !end  sginvc
-!                                  get the  qrp  factorization of  c
+! get the  qrp  factorization of  c
       dimension  d(6), sa(6), jq(6)
       equivalence (d,q), (sa,qp), (jq,b)
       dimension c(16,6)
@@ -36275,20 +36334,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call zero(ak,6*npk)
       call dcbht (c,d,sa,jq,mr,npk,ni)
-!                                  note:   a  =  q * r * p
-!                                         a+  =  p(t)*(rh(-1),0)*q(t)
-!                                       a+(t) =  q * ( rh(-t) ) * p
-!                                                    (    0   )
-!                                  we want   a+(t) * e(1)
+! note:   a  =  q * r * p
+!        a+  =  p(t)*(rh(-1),0)*q(t)
+!      a+(t) =  q * ( rh(-t) ) * p
+!                   (    0   )
+! we want   a+(t) * e(1)
 !
-!                                  find k such that  p*e(1) = e(k)
+! find k such that  p*e(1) = e(k)
       do 300 j = 1,ni
           k       =  j
           if ( jq(j).eq.1 ) go to 310
   300 continue
       call uabend
   310 continue
-!                                  apply rh(-t) to  e(k),  get v
+! apply rh(-t) to  e(k),  get v
       call zero (v,npk)
       v(k)    =  1.d0/d(k)
       kp1     =  k+1
@@ -36298,14 +36357,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           v(i)    =  -zed/d(i)
   350 continue
   360 continue
-!                                  apply  q = h(1)*h(2)*   *h(ni) to v
+! apply  q = h(1)*h(2)*   *h(ni) to v
       do 400 kb = 1,ni
           k       =  ni+1-kb
           zed=ddot(npk+1-k,v(k),1,c(k,k),1)
           zed     =  zed/( c(k,k)*d(k) )
           call vadd (v(k),zed,c(k,k),v(k),npk+1-k)
   400 continue
-!                                  apply weights
+! apply weights
       do 500 k = 1,npk
   500 ak(1,k) =  v(k)*wtk(k)
       return
@@ -36389,7 +36448,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  comprs
       data gm /1.4d0/
 !
-!                                  set low mach number defaults
+! set low mach number defaults
       rmat    =  1.d0
       vfmat   =  1.d0
       wfmat   =  1.d0
@@ -36401,12 +36460,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       qsqair  =  vfsair(1)**2 +vfsair(2)**2 +vfsair(3)**2
       vxair   =  compd(1)*vfsair(1) +compd(2)*vfsair(2)                 &
      &                              +compd(3)*vfsair(3)
-!                                  put transverse components into vfsmat
+! put transverse components into vfsmat
       f0      =  tpmat**( (1.d0-gm)/gm )
       rmat    =  1.d0/(f0*ttmat)
       rinv    =  1.d0/rmat
-!                                  calculate qsqmat and back out transve
-!                                  components to get component in compd
+! calculate qsqmat and back out transve
+! components to get component in compd
       qsqmat  =  qsqair*2.d0*ttmat*( 1.d0 +.5d0*(gm-1.d0)*amach2 -f0) / &
      &                                            ( (gm-1.d0)*amach2 )
       vfmat   =  sqrt( qsqmat/qsqair )
@@ -36425,7 +36484,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         print current maxima for dynamic cm package
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -36878,14 +36937,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  9000 continue
       if ( .not.imnwpr ) go to 9900
-!                                  print the geometry immediately per re
+! print the geometry immediately per re
       write (6,'(1x,a10,1x,  i12)')                                     &
      & 'network',k
       call outmvc ('mesh pts',nm(k),nm(k),nn(k),zm(1,nzap1))
  9900 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'meshp', qline, ((lll,lll=1,10),kkk=1,8)
@@ -36981,21 +37040,21 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50 continue
       if ( kpt(jx).ne.jx ) go to 400
       go to 300
-!                                  kpt(ix) = ix,  kpt(jx) = jx
+! kpt(ix) = ix,  kpt(jx) = jx
   100 continue
       kpt(ix) =  jx
       kpt(jx) =  ix
       go to 950
-!                                  kpt(ix) $ ix,  kpt(jx) = jx
+! kpt(ix) $ ix,  kpt(jx) = jx
   200 continue
       kpt(ix) =  kpt(jx)
       kpt(jx) =  ix
       go to 950
-!                                  kpt(ix) = ix,  kpt(jx) $ jx
+! kpt(ix) = ix,  kpt(jx) $ jx
   300 continue
       kpt(jx) = kpt(ix)
       kpt(ix) = jx
-!                                  kpt(ix) $ ix,  kpt(jx) $ jx
+! kpt(ix) $ ix,  kpt(jx) $ jx
   400 continue
       nloop   =  0
       kx      =  ix
@@ -37263,7 +37322,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , indvsl(4), ncassl
 !end  kstmln
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call titles
@@ -37553,7 +37612,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ic  =  1
       jc  =  m
 ! --straight from mxma--
-!                                  perform matrix-matrix multiplication
+! perform matrix-matrix multiplication
       lc1j    =  1
       lb1j    =  1
       call mzero (m,n,  c,ic,jc)
@@ -38134,8 +38193,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension dz(3), pz(3), pex(3)
 !
       if ( isgn .gt. 0 ) go to 200
-!                                  isgn = -1: restrict t .lt. tsgn
-!                                  set defaults
+! isgn = -1: restrict t .lt. tsgn
+! set defaults
       te      =  1.d0
       pe(1)   =  ze(1)
       pe(2)   =  ze(2)
@@ -38175,9 +38234,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   110 continue
       go to 950
 !
-!                                  isgn = +1.: restrict t .gt. tsgn
+! isgn = +1.: restrict t .gt. tsgn
   200 continue
-!                                  set defaults
+! set defaults
       ieb     =  max( 1.d0, tsgn - .000001d0)
       ieb     =  max ( 2, ieb)
       te      =  ne
@@ -38260,9 +38319,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       dimension  qm(3), qp(3), p(3), qnear(3)
       dimension delr(3), rm(3)
-!                                  get  t
+! get  t
       call vadd (qp,-1.d0,qm,delr,3)
-!                                  qnear is being used as scratch
+! qnear is being used as scratch
       call vadd (qm,-1.d0,p,rm,3)
       call vip (  rm,1,  delr,1,  3,  tn)
       call vip (delr,1,  delr,1,  3,  td)
@@ -38270,18 +38329,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( t.le.0.d0 ) go to 10
       if ( t.ge.1.d0 ) go to 30
       go to 20
-!                                  qm is near pt.
+! qm is near pt.
    10 call xfera (qm,qnear,3)
       tau     =  0.d0
       go to 40
-!                                  qm + t*delr is near pt
+! qm + t*delr is near pt
    20 call vadd (qm,t,delr,qnear,3)
       tau     =  t
       go to 40
-!                                  qp is near pt
+! qp is near pt
    30 call xfera (qp,qnear,3)
       tau     =  1.d0
-!                                  get distance and return
+! get distance and return
    40 continue
       call vadd (qnear,-1.d0,p,delr,3)
       call vip (delr,1,  delr,1,  3,  dist)
@@ -38323,7 +38382,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       trumin  =   .true.
       call inside (q,ics,enb,p,within)
       if ( within ) go to 200
-!                                  outside, check boundary
+! outside, check boundary
   100 continue
       dist    =  1.d20
       do 120 i = 1,4
@@ -38344,11 +38403,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ss      =  ks * t(jj)
       tt      =  kt * t(3-jj)
       if ( ics .eq. 0 ) go to 300
-!                                  triangle.  we are done
+! triangle.  we are done
       onbdry  =  .true.
       trumin  =  .false.
       go to 600
-!                                  inside.  project down and get s,t
+! inside.  project down and get s,t
   200 continue
       call vip (enb,1,  enb,1,  3,  ensq)
       ensqi   =  1.d0/ensq
@@ -38382,10 +38441,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   300 continue
 !
-!                                  perform newton iteration to find
-!                                  the near point on the panel
+! perform newton iteration to find
+! the near point on the panel
 !
-!                                  r**2 =  phi(i) = a(i,j) * phi(j)
+! r**2 =  phi(i) = a(i,j) * phi(j)
       call xfera (qp,qpl,12)
       call vadd (qpl,-1.d0,p,t,3)
       call xfera (t,qpl,3)
@@ -38394,7 +38453,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call vip (qpl(1,i),1,  qpl(1,j),1,  3,  a(i,j))
       a(j,i)  =  a(i,j)
   410 continue
-!                                  set constant elements of ph, phst
+! set constant elements of ph, phst
       ph(1)   =  1.d0
 !     ph(2)   =  ss
 !     ph(3)   =  tt
@@ -38409,7 +38468,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       phst(2,2) = 0.d0
       phst(3,2) = 1.d0
 !     phst(4,2) = ss
-!                                  newton iteration
+! newton iteration
       convgd  =  .false.
       do 500 k = 1,12
           ph(2)   =  ss
@@ -38417,16 +38476,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ph(4)   =  ss*tt
           phst(4,1)=  tt
           phst(4,2)=  ss
-!                                  set variable entries of ph, gph
-!                                  get hessian
+! set variable entries of ph, gph
+! get hessian
           call hsmmp1 (4,4,2,  a,1,4,  phst,1,4,  x,1,4)
           call hsmmp1 (2,4,2,  phst,4,1,  x,1,4,  h,1,2)
           call hsmmp1  (1,4,1,  ph,1,1,  a(1,4),1,4,  z,1,1)
           h(1,2)  =  h(1,2) + z
           h(2,1)  =  h(1,2)
-!                                  get function to be zeroed
+! get function to be zeroed
           call hsmmp1 (1,4,2,  ph,1,1,  x,1,4,  f,1,1)
-!                                  newton correction
+! newton correction
           if (  (abs(ss).ne.1.d0) .and.  (abs(tt).ne.1.d0)  )  go to 450
                fnm     =  sqrt (  f(1)**2 + f(2)**2  )
                if ( fnm .eq. 0.d0 ) go to 510
@@ -38436,13 +38495,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                it      =  0
                if ( (abs(tt).eq.1.d0) .and. ( abs(tt-f(2)/fnm).gt.1.d0))&
      &              it  =  1
-!                                  case is = 0 (ss motion permissible)
+! case is = 0 (ss motion permissible)
                if ( is.ne.0 ) go to 430
                     dst(2)  =  0.d0
                     dst(1)  =  -f(1) / max( 1.d-8, h(1,1) )
                     go to 460
   430          continue
-!                                  case it = 0 (tt motion permissible)
+! case it = 0 (tt motion permissible)
                     dst(1)  =  0.d0
                     dst(2)  =  -f(2) / max( 1.d-8, h(2,2) )
                     go to 460
@@ -38489,8 +38548,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if(  (.not.onbdry)  .or.  (  (abs(f(1))+abs(f(2))) .lt. 1.d-06 )) &
      &    trumin  =  .true.
 !
-!                                  near point has been found
-!                                  get a variety of info about the near
+! near point has been found
+! get a variety of info about the near
 !
   600 continue
       sval    =  ss
@@ -38587,7 +38646,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , ggcp(3,3), ggcpit(3,3), btsqi, akap, akapin
 !end  comprs
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -38612,9 +38671,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       data tmu/ 0.d0,-.5d0,1.d0, 0.d0,0.d0,-4.d0,  0.d0,.5d0,3.d0 /
 !
 !
-!                                  compute the reference to local trans-
-!                                  formation for the wake filament surfa
-!                                  using 'gen' as a special direction
+! compute the reference to local trans-
+! formation for the wake filament surfa
+! using 'gen' as a special direction
       call vadd (cp(1,4), -1.d0, cp(1,3), tg, 3)
       call cross (gen,tg,enwk)
       call uvect (enwk)
@@ -38635,16 +38694,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dcpl(2) = dcpl(2) - cpl(2)
       dcpl(3) = dcpl(3) - cpl(3)
 ! ===========================================================
-!                                  compute a downstream displacement
-!                                  and apply it.
+! compute a downstream displacement
+! and apply it.
       call dcopy (3,  0.d0,0,  dq,1)
       call vip (zc,1,  genhat,1,  3,  zgen)
       call vip (cpl,1, genhat,1,  3,  cgen)
       call vip (dcpl,1,genhat,1,  3,  dcgen)
       cgen    =  max( cgen, cgen+dcgen )
       dcplnm  =  sqrt( dcpl(1)**2 + dcpl(2)**2 + dcpl(3)**2 )
-!                                  if  cgen < zgen, add multiple
-!                                  of gen to cpl
+! if  cgen < zgen, add multiple
+! of gen to cpl
       dqmag    =  max( 1.1*(zgen-cgen), dcplnm)
 !
       do 40 i = 1,3
@@ -38655,9 +38714,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          qpan(i,3)  =  dq(i) + dcpl(i)
          qpan(i,4)  =          dcpl(i)
    40 continue
-!                                  move the wake filament panel d.s.
+! move the wake filament panel d.s.
       call daxpy (3,  1.d0,  dq,1,  cpl,1)
-!                                  build the special distributions
+! build the special distributions
       call dcopy (10*6,  0.d0,0,  zmu,1)
       dxi     =  dcpl(1)
       deta    =  dcpl(2)
@@ -38697,34 +38756,34 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       zmu(10,5)  =           24.d0*tx
       zmu(10,6)  =                    -12.d0*tx
 ! ===========================================================
-!                                  clear the phi and v buffers
+! clear the phi and v buffers
       call dcopy (36,  0.d0,0,  vic,1)
       call dcopy (12,  0.d0,0,  phic,1)
-!                                  loop over symmetry images for the 1-s
+! loop over symmetry images for the 1-s
       sgni    =  -1.d0
       do 500 isymm = 1,nisym
       sgni    =  -sgni
-!                                  loop over symmetry images for the 2-n
+! loop over symmetry images for the 2-n
       sgnj    =  -1.d0
       do 400 jsymm = 1,njsym
       sgnj    =  -sgnj
-!                                  set sgnk for antisymmetric/symmetric
+! set sgnk for antisymmetric/symmetric
       ksymm   =  isymm*jsymm
       sgnk    =  1.d0
       if ( isymm*misym  .eq.  -2 ) sgnk = -sgnk
       if ( jsymm*mjsym  .eq.  -2 ) sgnk = -sgnk
-!                                  compute control point image
+! compute control point image
       z(1)    =  zc(1)
       z(2)    =  sgni*zc(2)
       z(3)    =  sgnj*zc(3)
-!                                  rollin (1/4*pi) factor
+! rollin (1/4*pi) factor
       sgnk    =  akapin*sgnk
-!                                  set sign vector for velocity inclusio
+! set sign vector for velocity inclusio
       sg(1)   =  sgnk
       sg(2)   =  sgnk*sgni
       sg(3)   =  sgnk*sgnj
 ! ----------------------------------------------------------------------
-!                                  evaluate phz(1:3), ph1; vz(3,1:3), v1
+! evaluate phz(1:3), ph1; vz(3,1:3), v1
       call dcopy (3,  0.d0,0,  ph1,1)
       call dcopy (3,  0.d0,0,  phz,1)
       call dcopy (3,  0.d0,0,  v1,1)
@@ -38764,15 +38823,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       w1j(1)  =  a11inv * ( -deta*ztmz )
       w1j(2)  =  a11inv * (  dxi *ztmz )
       w1j(3)  =  a11inv * (  deta*ximx - dxi*etmy(1) )
-!                                  phz
+! phz
       phz(1)  =  -deta*ztmz*rj(1)
       phz(2)  =  -deta*ztmz*rj(2)
       phz(3)  =  -deta*ztmz*rj(3)
-!                                  ph1
+! ph1
       ph1(1)  =  -deta*ztmz*a11inv*rj(4) + dqmag*phz(1)
       ph1(2)  =  -deta*ztmz*a11inv*rj(5) + dqmag*phz(2)
       ph1(3)  =  -deta*ztmz*a11inv*rj(6) + dqmag*phz(3)
-!                                  w1
+! w1
 !
       do 80 j = 1,3
          do 70 i = 1,3
@@ -38783,7 +38842,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                     + a11inv*etmy(1)*akd(j)                      &
      &                     + a11inv*deta*akt(j)
    80 continue
-!                                  wz, include shift effect in w1
+! wz, include shift effect in w1
       do 200 j = 1,3
           wz(1,j)  =  0.d0
           wz(2,j)  =  -ztmz*( dmu(1,j)*rj(1)                            &
@@ -38847,7 +38906,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! ----------------------------------------------------------------------
       call mxma (awk,3,1,  wz,1,3,  vz,1,3,  3,3,3)
       call mxma (awk,3,1,  w1,1,3,  v1,1,3,  3,3,3)
-!                                  accumulate results to output ic's  c
+! accumulate results to output ic's  c
       phic(3)  =  phic(3) + sgnk*phz(1)
       phic(7)  =  phic(7) + sgnk*phz(2)
       phic(4)  =  phic(4) + sgnk*phz(3)
@@ -38865,10 +38924,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           vic(i,12) =  vic(i,12) +  sg(i)*v1(i,3)
   300 continue
   310 continue
-!                                  end, loop on symmetry images
+! end, loop on symmetry images
   400 continue
   500 continue
-!                                  put ic results into output array
+! put ic results into output array
       call dcopy (12,  phic,1,  phvic,ne)
       if ( ne.eq.4 ) call mcopy (3,12,  vic,1,3,  phvic(2,1),1,4)
       indkgp  =  0
@@ -38929,10 +38988,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  nwlst
 !
       iflag   =  0
-!                                  take string, and left justify, blank
+! take string, and left justify, blank
       s       =  string
       call ljbf10 (s)
-!                                  update the list of nw names, nwname
+! update the list of nw names, nwname
       do 100 kk  = (nnwlst+1),netknt
           write (nwname(kk),6001) iduser(kk)
           call ljbf10 (nwname(kk))
@@ -38947,18 +39006,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/,   '                   ',3x,'       '                        &
      &       ,'1234567890','        ','1234567890')
  6003 format (f10.0)
-!                                  list is updated, search for string
+! list is updated, search for string
       do 200 kk = 1,netknt
           ksv      =  kk
           if ( s.eq.nwname(kk) ) goto 250
   200 continue
-!                                  item not found, read as f10.0
-!                                  note that the read will cause pgm
-!                                  failure if the data is no good
+! item not found, read as f10.0
+! note that the read will cause pgm
+! failure if the data is no good
       read (string,6003,err=9950) xknet
       knet    =  xknet
       goto 950
-!                                  item was found
+! item was found
   250 continue
       knet    =  ksv
       goto 950
@@ -38966,7 +39025,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'nwindx', qline, ((lll,lll=1,10),kkk=1,8)
@@ -39036,7 +39095,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , iacase, nacase, fsvhat(3,4), pvdry(3,4)
 !end  acase
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
 !call comprs
@@ -39103,7 +39162,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/fmcof/xref,yref,zref,sref,bref,cref,dref,nprcof
 !end  fmcof
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !call titles
@@ -39138,7 +39197,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       open (unit=ntpoff,file='ft34',form='formatted',status='unknown')
 !
-!                                  calculate the size of each output set
+! calculate the size of each output set
       nofset  =  nof/nacase
       ch      =  'w'
       if ( tpoff.ne.0.d0 ) ch = 'v'
@@ -39179,16 +39238,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       ia    =  ivzof(iof)
       iacase = ia
-!                                  correct velocities and compute
-!                                  pressure coefficients
+! correct velocities and compute
+! pressure coefficients
       call vadd (wof(2),-1.d0,fsv(1,ia),pv,3)
       if ( tpoff.ne.0.d0 ) goto 360
-!                                     tpoff = 0., mass flux was calculat
+!    tpoff = 0., mass flux was calculat
           call dcopy (3,  wof(2),1,  wt,1)
           call cmpscl ( 1.d0/betams, compd, pv, pv)
           call vadd (fsv(1,ia), 1.d0, pv, vt, 3)
           goto 370
-!                                     tpoff # 0., velocity was calculate
+!    tpoff # 0., velocity was calculate
   360 continue
       call cmpscl (betams,compd,pv,pw)
       call vadd (fsv(1,ia),1.d0,pw,wt,3)
@@ -39250,18 +39309,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 800 k = 1,nnett
          mk      =  nm(k)
          nk      =  nn(k)
-!                                   set increments for panel points
+!  set increments for panel points
          inc(1)  =  0
          inc(2)  =  mk
          inc(3)  =  mk+1
          inc(4)  =  1
          lz     =  nza(k)+1
-!                                   loop over panels
+!  loop over panels
          do 700 jp = 1,nk-1
          do 600 ip = 1,mk-1
             lpan    =  ip + (jp-1)*(mk-1) + npa(k)
             lz      =  ip + (jp-1)*mk     + nza(k)
-!                                   get panel center and normal
+!  get panel center and normal
             do 100 ii = 1,3
                zctr(ii,lpan) = .25d0*( zm(ii,lz)   + zm(ii,lz+mk)       &
      &                                +zm(ii,lz+1) + zm(ii,lz+mk+1))
@@ -39282,8 +39341,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             wctr(1,lpan) = w(1)
             wctr(2,lpan) = w(2)
             wctr(3,lpan) = w(3)
-!                                  get r and z cylindrical coordinates
-!                                  for each corner of the panel
+! get r and z cylindrical coordinates
+! for each corner of the panel
             zmax    =  0.d0
             rmax2   =  0.d0
             do 200 is = 1,4
@@ -39297,10 +39356,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                zmax    =  max( zmax, abs(zmax))
                rmax2   =  max( rmax2, rsq)
   200       continue
-!                                  set semi-thickness of cylinder
-!                                  and modified radius (save squared
-!                                  value to avoid square root when
-!                                  using)
+! set semi-thickness of cylinder
+! and modified radius (save squared
+! value to avoid square root when
+! using)
             rcsq(lpan) = rmax2 + zmax**2
             rmax       = sqrt(rmax2)
             tctr(lpan) = max( zmax, .001d0*rmax )
@@ -39338,14 +39397,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       fudge   =  .999999d0
       nohead  =  .true.
-!                                  zap indicator array
+! zap indicator array
       call icopy (nof,  0,0,  ipnd,1)
-!                                  loop over off-body point images
+! loop over off-body point images
 !!      ncnsym   =  max( 1, min( 4,  2**nsymm) )                            ! Removed by Martin Hegedus, 4/21/09
 !!      do 600 icnsym = 1,ncnsym                                            ! Removed by Martin Hegedus, 4/21/09
       do 600 jj = 1,njsym                                                 ! Added by Martin Hegedus, 4/21/09
       sgnj    =  3-2*jj                                                   ! Added by Martin Hegedus, 4/21/09
-!                                                                         ! Added by Martin Hegedus, 4/21/09
+!                                        ! Added by Martin Hegedus, 4/21/09
       do 600 ii = 1,nisym                                                 ! Added by Martin Hegedus, 4/21/09
       sgni    =  3-2*ii                                                   ! Added by Martin Hegedus, 4/21/09
       do 500 iof = 1,nof
@@ -39355,16 +39414,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !!         pc(3) =  zfac(icnsym)*p(3,iof)                                   ! Removed by Martin Hegedus, 4/21/09
          pc(2) =  sgni*p(2,iof)                                           ! Added by Martin Hegedus, 4/21/09
          pc(3) =  sgnj*p(3,iof)                                           ! Added by Martin Hegedus, 4/21/09
-!                                  perform 1st pass tests using rcsq
+! perform 1st pass tests using rcsq
          do 400 k = 1,nnett
          mk      =  nm(k)
          nk      =  nn(k)
-!                                   set increments for panel points
+!  set increments for panel points
          inc(1)  =  0
          inc(2)  =  mk
          inc(3)  =  mk+1
          inc(4)  =  1
-!                                   loop over panels
+!  loop over panels
          do 300 jp = 1,nk-1
          do 200 ip = 1,mk-1
             lpan    =  ip + (jp-1)*(mk-1) + npa(k)
@@ -39379,8 +39438,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                 +pdel(2)*wctr(2,lpan)                            &
      &                 +pdel(3)*wctr(3,lpan)
             if ( abs(pz) .gt. fudge*tctr(lpan) ) goto 200
-!                                   control point looks close: look
-!                                   real hard
+!  control point looks close: look
+!  real hard
 !!!---            write (6,6101) k,ip,jp,icnsym,iof,pc                      ! Removed by Martin Hegedus, 4/21/09
 !---            write (6,6101) k,ip,jp,ii,jj,iof,pc                       ! Added by Martin Hegedus, 4/21/09
 !---            call outmvc ('panel-zm',mk,2,2,zm(1,lz))
@@ -39412,9 +39471,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200    continue
   300    continue
   400    continue
-!                                  branch point out of search loop
+! branch point out of search loop
   410    continue
-!                                  end, loops on offbody pt images
+! end, loops on offbody pt images
   500 continue
   600 continue
 !
@@ -39475,23 +39534,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          w(1)    =  u(2)*v(3) - u(3)*v(2)
          w(2)    =  u(3)*v(1) - u(1)*v(3)
          w(3)    =  u(1)*v(2) - u(2)*v(1)
-!                                  norm of w = 2 area of subpanel;
-!                                  compare to rsq in test for null
-!                                  subpanel
+! norm of w = 2 area of subpanel;
+! compare to rsq in test for null
+! subpanel
          wfac    =  sqrt( w(1)**2 + w(2)**2 + w(3)**2 )
 ! --- write (6,'('' wfac, areatl*rsq:'',i2,2e12.4)') is,wfac,areatl*rsq
          if ( wfac .lt. areatl*rsq ) goto 200
-!                                  get unit normal
+! get unit normal
          wfac    =  1.d0/wfac
          w(1)    =  wfac*w(1)
          w(2)    =  wfac*w(2)
          w(3)    =  wfac*w(3)
-!                                  get height above plane
+! get height above plane
          zl      =  w(1)*pl(1) + w(2)*pl(2) + w(3)*pl(3)
 ! ---      write (6,'('' zl, compare:'',2d12.4)') zl, proxtl*rscale
          if ( abs(zl) .gt. proxtl*rscale ) goto 200
-!                                  project point down to subpanel
-!                                  and get (s,t) coordinates
+! project point down to subpanel
+! and get (s,t) coordinates
          wxp(1)  =  w(2)*pl(3) - w(3)*pl(2)
          wxp(2)  =  w(3)*pl(1) - w(1)*pl(3)
          wxp(3)  =  w(1)*pl(2) - w(2)*pl(1)
@@ -39503,8 +39562,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! ---      call outvcy ('alf',3,alf)
          if ( cmin+proxtl .le. 0.d0 ) goto 200
          if ( cmax-proxtl .ge. 1.d0 ) goto 200
-!                                  point lies on subpanel isub: move it
-!                                  a bit putting exactly on subpanel.
+! point lies on subpanel isub: move it
+! a bit putting exactly on subpanel.
             isub    =  is
 !
             call dcopy (3,  qctr,1,  pcn,1)
@@ -39515,7 +39574,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                      + thalf*( cp(ii,ind(j,is)) - qctr(ii) )
   140          continue
   150       continue
-!                                  raise the pt slightly off surface
+! raise the pt slightly off surface
             call distnc (pc,pcn,dpc)
             dpn     =  .1d0*dpc
             call daxpy (3,  dpn,  w,1,  pcn,1)
@@ -39541,15 +39600,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  skrch1
 !
       call setcor ('offchk')
-!                                  get parameters for the containing
-!                                  cylinders
+! get parameters for the containing
+! cylinders
       call getcor ('zctr',llzctr,3*npant)
       call getcor ('rcsq',llrcsq,  npant)
       call getcor ('tctr',lltctr,  npant)
       call getcor ('wctr',llwctr,3*npant)
       call offch1 (nnett,npant,nm,nn,nza,npa,zm                         &
      &            ,w(llzctr),w(llrcsq),w(lltctr),w(llwctr))
-!                                  perform the checks
+! perform the checks
       call igtcor ('ipnd',llipnd,nof)
 !!      call offch2 (nof,p,w(llipnd),  nsymm,nnett,npant,nm,nn,nza,npa,zm & ! Removed by Martin Hegedus, 4/21/09
 !!     &            ,w(llzctr),w(llrcsq),w(lltctr),w(llwctr))               ! Removed by Martin Hegedus, 4/21/09
@@ -39746,7 +39805,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    20 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'scale', qline, ((lll,lll=1,10),kkk=1,8)
@@ -40432,7 +40491,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                                 sum of array np               *
 !     *                                                               *
 !     *   nprcof    /fmcof/   input     pressure coefficient used for *
-!                                       force calculations            *
+!      force calculations            *
 !     *                                                               *
 !     *   nsngt     /index/   input     number of total singularity   *
 !     *                                 parameters                    *
@@ -40607,7 +40666,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       logical prtsgd
 !
 !call trfanl
-!                                                         /trfanl/
+!                        /trfanl/
 !         ptrffz    logical flag, set by inputa, used in output, indic-
 !                   ating whether or not to perform trefftz analysis.
       common /trfanl/ ptrffz
@@ -40631,7 +40690,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  lamrwi
       integer iijj(3,3)
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -40675,14 +40734,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  limabt
 !
 !
-!                                  FORMAL PARAMETERS
+! FORMAL PARAMETERS
 !
 !
 ! --- dimension dvdfs(4, nsngt), pres(3,mxxpan), za(3,mxxpan), s( nsngt)
       dimension dvdfs(4,mxsngt), pres(3,mxxpan), za(3,mxxpan), s(mxsngt)
       dimension af(3), am(3)
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !call titles
@@ -40725,7 +40784,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call trfdat
-!                                                            /trfdat/
+!                           /trfdat/
 !     /trfdat/ contains the list of wake networks with free trailing
 !              edges (edge 3).  these networks are determined during
 !              the abutment analysis and used during the trefftz plane
@@ -40755,7 +40814,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/tfmq/fc(3,3),fmc(3,3),tca
 !end  tfmq
 !call exdign
-!                                                            /exdign/
+!                           /exdign/
       common/exdign/nexdgn
 !end  exdign
 !call agps
@@ -40823,7 +40882,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /anwlst/ nnwlst
 !end  nwlst
 !call cvtrns
-!                                               /cvtrns/
+!              /cvtrns/
       common /cvtrns/ nejc
 !end  cvtrns
       character*41 cvmsg
@@ -40868,7 +40927,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call setcor ('output')
       call getcor ('prcf',llprcf,15*npant)
       call getcor ('agpc',llagpc,12*npant)
-!                                  zero out the agpspc array
+! zero out the agpspc array
       call zero (ww(llagpc),12*npant)
       call zero (tmstat,12)
       call CPU_TIME (tax)
@@ -41047,7 +41106,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !           ......................................................
 !
 !           sol-no  alpha  beta  cl  cd  cy  fx  fy  fz
-!                                            mx  my  mz  area
+!           mx  my  mz  area
 !
 ! - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       write(iflfm,6004)
@@ -41085,7 +41144,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !           ......................................................
 !
 !           sol-no  alpha  beta  cl  cd  cy  fx  fy  fz
-!                                            mx  my  mz  total-area
+!           mx  my  mz  total-area
 !
 ! - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       write(iflfmf,6003)
@@ -41175,13 +41234,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1008 format(//,4x,13hmach number =,                                    &
      &f15.5,4x,17hangle of attack =,f15.5,                              &
      &15x,16hsideslip angle =,f15.5)
-!                                  isings:  value      function
-!                                             0        no print
-!                                             1        no print
-!                                             2        ntdk=18,20 print
-!                                             3        2 + (s)
-!                                             4        3 + (matrix print
-!                                             5        4 + old style sin
+! isings:  value      function
+!            0        no print
+!            1        no print
+!            2        ntdk=18,20 print
+!            3        2 + (s)
+!            4        3 + (matrix print
+!            5        4 + old style sin
       if ( isings.lt.3 ) goto 101
       write (6,1003)
       do 100 jbeg = 1,nsngt,10
@@ -41363,7 +41422,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   299 continue
       call CPU_TIME (tb)
       tmstat(3) = tmstat(3) + tb-ta
-!                                   perform trefftz plane drag analysis
+!  perform trefftz plane drag analysis
       call CPU_TIME (ta)
       if ( .not. ptrffz ) goto 500
       if (  nwtrf.le.0  ) goto 500
@@ -41371,7 +41430,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       asprat  =  (bref*bref)/sref
       fsymm   =  0.d0
       if ( nsymm.gt.0 .and. misym.gt.0 ) fsymm = 1.d0
-!                                   print bref, sref, asprat, fsymm
+!  print bref, sref, asprat, fsymm
       write (6,6006) bref, sref, asprat, nsymm, misym, mjsym
  6006 format ('  Trefftz Plane Lift and Drag Analysis, '                &
      &       ,' engineering analysis performed by Gunter Brune '        &
@@ -41386,12 +41445,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  )
 !
       do 310 k = 1,20
-!                                   set title descriptor
+!  set title descriptor
          k2      =  4*k
          k1      =  k2-3
          trftit(k1:k2) = title1(k)
   310 continue
-!                                   determine scratch memory requirement
+!  determine scratch memory requirement
       nkmax   =  0
       do 320 knw = 1,nwtrf
          knet    =  nwltrf(knw)
@@ -41402,7 +41461,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( mjsym.ne.0 ) nrpeat = 2*nrpeat
       nwsymm  =  nrpeat*nwtrf
       nsctrf  =  nwtrf*nrpeat*nkmax
-!                                   allocate scratch
+!  allocate scratch
       call igtcor ('npn', llnpn, nwtrf*nrpeat)
       call igtcor ('nwl', llnwl, nwtrf*nrpeat)
       call icopy (nwtrf,  nwltrf,1,  ww(llnwl),1)
@@ -41418,7 +41477,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call getcor ('dcd', lldcd, nsctrf)
       call getcor ('xil', llxil, nsctrf)
       call getcor ('xir', llxir, nsctrf)
-!                                  do the analysis
+! do the analysis
       srefrp  =  sref*nrpeat
       call trfftz (nwtrf,nwsymm,ww(llnwl),s,misym,mjsym, cltr,cdtr,eftr &
      &            ,trftit,fsymm,sref,asprat,ww(llnpn)                   &
@@ -41500,8 +41559,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( zdc.lt.0.d0 .and. nexdgn.ne.0 ) go to 502
       if ( zdc.gt.0.d0 .and. nexdgn.ne.0 .and. iabs(ipotm).eq.2 )       &
      &    go to 502
-!                                  no reason has been found to generate
-!                                  flow data.  go to next control point
+! no reason has been found to generate
+! flow data.  go to next control point
           go to 600
 !
   502 continue
@@ -41593,10 +41652,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *  retrieve panel defining quantities                           *
 !
       call strns(ip,cp)
-!                                  if kabmtc.lt.0, znc was redefined. fi
+! if kabmtc.lt.0, znc was redefined. fi
       isubrg  =  min (icc,5)
       if ( kabmtc.lt.0 ) call xfera (en(1,isubrg),znc,3)
-!                                  if kabmtc.lt.0, znc was redefined. fi
+! if kabmtc.lt.0, znc was redefined. fi
 !c
 !     *  calculate source strength and doublet strength and gradient  *
 !     *  at control point                                             *
@@ -41637,11 +41696,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cmpscl(betams,compd,pwd,pwd)
       iapot=iabs(ipotm)
       instag  =  iabs(ipot(k))
-!                                  define material index for u/l/m surfa
-!                                  n.b.: m denotes the wetted surface wh
-!                                  stagnation bc's are used.  note that
-!                                  nation is always defined in terms of
-!                                  the freestream of 'air', kmat = 0.
+! define material index for u/l/m surfa
+! n.b.: m denotes the wetted surface wh
+! stagnation bc's are used.  note that
+! nation is always defined in terms of
+! the freestream of 'air', kmat = 0.
       kmatu   =  matnet(1,k)
       kmatl   =  matnet(2,k)
       kmatm   =  0
@@ -41729,7 +41788,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if(ipotm.eq.-1) pres(2,ipk)=cpm(nprcof)
       pres(3,ipk)=cpd(nprcof)
   594 continue
-!                                  if required, perform velocity correct
+! if required, perform velocity correct
       if ( ivcorr .le. 0 ) go to 595
       call velcor (ivcorr,fsv(1,iacase),fsvm(iacase),compd,amach,wu,vu)
       call velcor (ivcorr,fsv(1,iacase),fsvm(iacase),compd,amach,wl,vl)
@@ -41781,11 +41840,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       amachm  =  sqrt( cpfmat(kmatm) )*amachm
 !---- call machvl (kmatm,pvm,amachm)
   596 continue
-!                                  apply material property factors to ve
-!                                  and mass flux quantities (but leave p
-!                                  alone as a phi(star) type quantity).
-!                                  note that cp type quantities were tre
-!                                  in cpcal.
+! apply material property factors to ve
+! and mass flux quantities (but leave p
+! alone as a phi(star) type quantity).
+! note that cp type quantities were tre
+! in cpcal.
       call dscal (3,  vfu,  vu,1)
       vtu     =  vfu*vtu
       pvtu    =  vfu*pvtu
@@ -41832,8 +41891,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3500 format(/,i5,i6,11f11.4)
  3600 format(12f11.4)
 !
-!                                  generate an output file to be used as
-!                                  an input to the boundary layer progra
+! generate an output file to be used as
+! an input to the boundary layer progra
 !
       if(itapbl.eq.0)go to 600
       if ( zdc .ne. 0.d0 ) go to 600
@@ -41865,8 +41924,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       jacase = iacase
       call CPU_TIME (ta)
 !
-!                                  print panel center pressures for
-!                                  design wake networks
+! print panel center pressures for
+! design wake networks
       if ( ntd(k).ne.6 ) goto 650
       write (6,5200) nwname(k),k
  5200 format ('   panel center pressures, nw name: ',a10,'  index:',i5  &
@@ -41915,7 +41974,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       myfac = 1.d0
       mzfac = 1.d0
       tcfac = 1.d0
-!!                                                                          ! Removed by Martin Hegedus, 4/21/09
+!!                                         ! Removed by Martin Hegedus, 4/21/09
 !!      if( .not.((misym .gt. 0) .or.  (mjsym .gt. 0))) go to 910           ! Removed by Martin Hegedus, 4/21/09
 !!        clfac=clfac*2.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!        cdfac=cdfac*2.d0                                                  ! Removed by Martin Hegedus, 4/21/09
@@ -41928,7 +41987,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !!        mzfac=mzfac*0.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!        tcfac=tcfac*2.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!  910 continue                                                            ! Removed by Martin Hegedus, 4/21/09
-!!!                                                                         ! Removed by Martin Hegedus, 4/21/09
+!!!                                        ! Removed by Martin Hegedus, 4/21/09
 !!      if( .not.((misym .gt. 0) .and. (mjsym .gt. 0))) go to 920           ! Removed by Martin Hegedus, 4/21/09
 !!        clfac=clfac*0.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!        cdfac=cdfac*2.d0                                                  ! Removed by Martin Hegedus, 4/21/09
@@ -41941,7 +42000,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !!        mzfac=mzfac*0.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!        tcfac=tcfac*2.d0                                                  ! Removed by Martin Hegedus, 4/21/09
 !!  920 continue                                                            ! Removed by Martin Hegedus, 4/21/09
-!                                                                         ! Added by Martin Hegedus, 4/21/09
+!                                        ! Added by Martin Hegedus, 4/21/09
       if( .not.(misym .gt. 0)) go to 910                                  ! Added by Martin Hegedus, 4/21/09
         clfac=clfac*2.d0                                                  ! Added by Martin Hegedus, 4/21/09
         cdfac=cdfac*2.d0                                                  ! Added by Martin Hegedus, 4/21/09
@@ -41954,7 +42013,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         mzfac=mzfac*0.d0                                                  ! Added by Martin Hegedus, 4/21/09
         tcfac=tcfac*2.d0                                                  ! Added by Martin Hegedus, 4/21/09
   910 continue                                                            ! Added by Martin Hegedus, 4/21/09
-!                                                                         ! Added by Martin Hegedus, 4/21/09
+!                                        ! Added by Martin Hegedus, 4/21/09
       if( .not.(mjsym .gt. 0)) go to 920                                  ! Added by Martin Hegedus, 4/21/09
         clfac=clfac*0.d0                                                  ! Added by Martin Hegedus, 4/21/09
         cdfac=cdfac*2.d0                                                  ! Added by Martin Hegedus, 4/21/09
@@ -42051,7 +42110,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/,   '*dupt'                                                   &
      &  ,/,   '*dup'                                                    &
      &   )
-!                                  put data to ggp file, 1 nw at a time
+! put data to ggp file, 1 nw at a time
       call CPU_TIME (ta)
       do 960 k=1,nnett
         call setcor ('agpsfl')
@@ -42641,8 +42700,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          dlin(j,j) = 1.d0
          call chlslv (3,clin,   dlin(1,j))
    96 continue
-!                                  INVERT CLIN AND CQUAD INPLACE !!!!!!
-!                                  invert clin and cquad inplace
+! INVERT CLIN AND CQUAD INPLACE !!!!!!
+! invert clin and cquad inplace
       call dcopy (3*3*6*4,  0.d0,0,   wsm,1)
       call dcopy (  3*3*4,  0.d0,0, almsm,1)
       do 100 is = 1,8
@@ -42826,7 +42885,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  nwlst
       dimension zedg(3,mxedmp)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
@@ -42960,12 +43019,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        ,  ielst(2*mxeiab)
       logical epsequ, badedg, excess
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
 !call symcnd
-!                                                            /symcnd/
+!                           /symcnd/
       common /symcnd/ isympa
 !end  symcnd
 !call nwlst
@@ -42978,8 +43037,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       nedgt   =  4*nnett
       ch5blk  =  '       '
-!                                  generate a list of (initial meshpoint
-!                                  on the edge segments given by the pea
+! generate a list of (initial meshpoint
+! on the edge segments given by the pea
       nex     =  0
       do 100 ie = 1,ne
           isgn    =  ksgn(ie)
@@ -42992,8 +43051,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kmplst(nex) = kmp1 - 1
           nptlst(nex) = i2kseg - i1kseg + 1
           ielst(nex)  = ie
-!                                  last pt on edge 4 = 1st pt on edge 1,
-!                                  fix if necessary
+! last pt on edge 4 = 1st pt on edge 1,
+! fix if necessary
           if ( ksd.ne.4 ) goto 100
           if ( kmp2 .le. nedmpa(4*knet+1) ) goto 100
                nptlst(nex) = nptlst(nex) - 1
@@ -43002,19 +43061,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                nptlst(nex) = 1
                ielst(nex)  = ie
   100 continue
-!                                  all of the edge mesh points in the pe
-!                                  spec will be described by the lists:
+! all of the edge mesh points in the pe
+! spec will be described by the lists:
 !
-!                                  kmplst( 1 )+1,...,kmplst( 1 ) + nptls
-!                                  kmplst( 2 )+1,...,kmplst( 2 ) + nptls
-!                                       ...               ..............
-!                                  kmplst(nex)+1,...,kmplst(nex) + nptls
+! kmplst( 1 )+1,...,kmplst( 1 ) + nptls
+! kmplst( 2 )+1,...,kmplst( 2 ) + nptls
+!      ...               ..............
+! kmplst(nex)+1,...,kmplst(nex) + nptls
       call jshell (nex,kmplst,keylst)
       call keysrt (nex,nptlst,keylst)
       call keysrt (nex, ielst,keylst)
-!                                  for each abutment, define the meshpoi
-!                                  of the universal edge and adjust all
-!                                  meshpoints of the abutment to lie on
+! for each abutment, define the meshpoi
+! of the universal edge and adjust all
+! meshpoints of the abutment to lie on
       nzcom   =  0
       do 700 ie = 1,ne
           isgn    =  ksgn(ie)
@@ -43024,7 +43083,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                imp     =  impx
                if ( isgn.lt.0 ) imp = i1kseg + i2kseg - impx
                call edgmpi (kedseg,imp,nedmpa,  iedmp)
-!                                  count and collect the points in this
+! count and collect the points in this
                kmp     =  iedmp
                npt     =  0
                nloop   =  0
@@ -43033,13 +43092,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     nloop   =  nloop + 1
                     if ( nloop.gt.mxempt ) call abtend                  &
      &                   ('peadue: infinite loop trapped (1)')
-!                                  determine if the point lies on a spec
-!                                  edge in the 'kfds' list
+! determine if the point lies on a spec
+! edge in the 'kfds' list
                     call ibsrch (kmplst,nex,kmp,kptr)
                     if ( kptr.le.0 ) goto 220
                     if ( kmp .gt.kmplst(kptr)+nptlst(kptr) ) goto 220
-!                                  good point, add it to the list and
-!                                  remember the edge
+! good point, add it to the list and
+! remember the edge
                     npt     =  npt + 1
                     call cmpied (kmp, nnett,nedmpa,nza,nm,nn, kz)
                     iept(npt) = ielst(kptr)
@@ -43050,23 +43109,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                   call abtend ('peadue: zpt buffer exceeded')
                     kmp     =  kptemp(kmp)
                     if ( kmp.ne.iedmp ) go to 200
-!                                  counting and collecting done,
-!                                  check for error conditions
+! counting and collecting done,
+! check for error conditions
                if ( ie.gt.1 ) go to 500
                if ( impx.ne.i1kseg .and. impx.ne.i2kseg )               &
      &                        go to 300
-!                                  first edge, end points
+! first edge, end points
                     if ( npt.lt.ne ) call abtend                        &
      &                   ('peadue: end point class not full ')
                     go to 400
-!                                  first edge, interior
+! first edge, interior
   300          continue
                     if ( npt.gt.ne ) call abtend                        &
      &                   ('peadue: interior equivalence class too big')
                     if (npt.lt.ne) go to 600
                     go to 400
 !
-!                                  first edge, merge points and save
+! first edge, merge points and save
   400          continue
                if ( iept(1).ne.ie ) then
                     call outvci ('iept',npt,iept)
@@ -43094,14 +43153,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     if ( kmp.ne.iedmp ) go to 450
                     goto 600
 !
-!                                  subsequent edges
+! subsequent edges
   500          continue
                if ( impx.ne.i1kseg .and. impx.ne.i2kseg ) go to 550
-!                                  subsequent edge, end points
+! subsequent edge, end points
                     if ( kempec(iedmp).gt.0 ) call abtend               &
      &                   ('peadue: end mesh pt not already processed')
                     go to 600
-!                                  subsequent edge, interior point
+! subsequent edge, interior point
   550          continue
                     if ( npt.gt.ne ) call abtend                        &
      &                   ('peadue: excessive eq. class detected ')
@@ -43112,42 +43171,42 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     go to 600
   600     continue
   700 continue
-!                                  compute individual and cumulative
-!                                  segment lengths for the common edge
+! compute individual and cumulative
+! segment lengths for the common edge
       dzsum(1)=  0.d0
       nzcseg  =  nzcom - 1
       do 710 izcom = 1,nzcseg
           call distnc (zcom(1,izcom),zcom(1,izcom+1),dzcom(izcom))
           dzsum(izcom+1) = dzsum(izcom) + dzcom(izcom)
   710 continue
-!                                  compute tau values for the common edg
+! compute tau values for the common edg
       do  720 izcom = 1,nzcom
           tauval(izcom) = dzsum(izcom)/dzsum(nzcom)
   720 continue
       ntau    =  nzcom
-!                                  diagnostic print
+! diagnostic print
       if ( movusr.lt.3 ) goto 730
       call outmat ('zcom',3,3,nzcom,zcom)
       call outvec ('dzcom',nzcom,dzcom)
       call outvec ('dzsum',nzcom,dzsum)
   730 continue
-!                                  universal edge defined, adjust the
-!                                  remaining points of the abutment
-!                                  up to it.
+! universal edge defined, adjust the
+! remaining points of the abutment
+! up to it.
       do 800 ie = 1,ne
           isgn    =  ksgn(ie)
           call icopy (4,  kfds(4*(ie)-3),1, kokseg,1)
           kedg    =  kedseg
           izcom   =  0
           call mnmod (kedg,4,ksd,knet)
-!                                  project un-full equivalence classes o
-!                                  points onto the universal edge
+! project un-full equivalence classes o
+! points onto the universal edge
           do 780 impx = i1kseg,i2kseg
                imp     =  impx
                if ( isgn.lt.0 ) imp = i1kseg + i2kseg - impx
                call edgmpi (kedseg,imp,nedmpa,  iedmp)
-!                                  count the size of this point's
-!                                  equivalence class
+! count the size of this point's
+! equivalence class
                kmp     =  iedmp
                npt     =  0
                nloop   =  0
@@ -43160,29 +43219,29 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     call xfera (z(1,kz),zpt(1,npt),3)
                     kmp     =  kptemp (kmp)
                     if ( kmp .ne. iedmp ) go to 740
-!                                  keep a running count of the number of
-!                                  points passed in full equiv. classes
+! keep a running count of the number of
+! points passed in full equiv. classes
                if ( npt.ge.ne ) izcom = izcom+1
-!                                  full equiv classes already processed:
+! full equiv classes already processed:
                if (  npt.ge.ne  ) go to 780
-!                                  define  tau  values and adjust coordi
-!                                  points that are not in full equiv. cl
+! define  tau  values and adjust coordi
+! points that are not in full equiv. cl
                if ( kempec(iedmp).lt.0 ) go to 780
                call dcopy (3,  zpt(1,1),1,  zavg,1)
                if ( iopfor.ne.0 ) call zmerge (npt,zpt,zavg)
-!                                  move points to p-o-s if needed
+! move points to p-o-s if needed
                call peapos (npt,zpt,epspea,jsym)
                if ( mod(jsym,2).eq.1 ) zavg(2) = 0.d0
                if (   jsym.ge.2      ) zavg(3) = 0.d0
-!                                  project points down to the common edg
+! project points down to the common edg
                if ( izcom.lt.1 .or. izcom.ge.nzcom ) call abtend        &
      &              ('peadue: izcom out of bounds    ')
                call zmproj (zcom(1,izcom),zcom(1,izcom+1),zavg          &
      &                                                   ,tauz)
                tauedg  =  ( dzsum(izcom) + tauz*dzcom(izcom) ) /        &
      &                                             dzsum(nzcom)
-!                                  check that projection point lies in
-!                                  the appropriate interval
+! check that projection point lies in
+! the appropriate interval
                if ( (tauz.ge.0.d0) .and. (tauz.le.1.d0) ) goto 750
                     call abtmsg ('peadue: tauz out of range  ')
                     write (6,'(1x,a10,1x, 5f12.6)')                     &
@@ -43191,9 +43250,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     call outmat ('zcom',3,3,2,zcom(1,izcom))
                     call outvec ('zavg',3,zavg)
   750          continue
-!                                  change points and mark kempec; save
-!                                  the tau value and the principal
-!                                  kmp value for this equivalence class
+! change points and mark kempec; save
+! the tau value and the principal
+! kmp value for this equivalence class
                kmp     =  iedmp
                ntau    =  ntau + 1
                tauval(ntau) = tauedg
@@ -43210,14 +43269,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                     if ( kmp.ne.iedmp ) go to 760
   780     continue
   800 continue
-!                                  sort the tauval array and bring the l
-!                                  of 'principal edge meshpoints', kmpva
-!                                  into synch.
+! sort the tauval array and bring the l
+! of 'principal edge meshpoints', kmpva
+! into synch.
       call dshell (ntau,tauval,keyval)
       call keysrt (ntau,kmpval,keyval)
-!                                  loop over the edges of the partial ed
-!                                  abutment and write out a summary of p
-!                                  motion
+! loop over the edges of the partial ed
+! abutment and write out a summary of p
+! motion
       if ( movusr.gt.0 ) write (6,6000)
       do 900 ie = 1,ne
           isgn    =  ksgn(ie)
@@ -43227,16 +43286,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call edgind (ksd,nm(knet),nn(knet)                            &
      &                ,kzedg,kncedg,kncint,knedg)
           kzedg   =  kzedg + nza(knet)
-!                                  generate a list of abutment point ind
+! generate a list of abutment point ind
           call icopy (ntau,  0,0,  impval,1)
           call dcopy (ntau, 0.d0,0,  dzval,1)
           do 810 itau = 1,ntau
                cdzval(itau) = '    :'
   810     continue
           excess  =  .false.
-!                                  ipmove = 0 if motion is not to be pri
-!                                         = 1 if motion is to be printed
-!                                  movusr = the user's default for this
+! ipmove = 0 if motion is not to be pri
+!        = 1 if motion is to be printed
+! movusr = the user's default for this
           ipmove  =  movusr
           dzmaxv  =  0.d0
           do 840 impx = i1kseg,i2kseg
@@ -43245,7 +43304,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call edgmpi (kedseg,imp,nedmpa,  kmp)
                dzmax   =  dzcrit(kmp)
                iedmp   =  iabs( kempec(kmp) )
-!                                  find iedmp in the kmpval list
+! find iedmp in the kmpval list
                do 820 itau = 1,ntau
                     itausv  =  itau
                     if ( iedmp .eq. kmpval(itau) ) goto 830
@@ -43259,8 +43318,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                itau    =  itausv
                if ( .not.epsequ ) imp = -imp
                impval(itau) = imp
-!                                  build the string describing the
-!                                  point motion
+! build the string describing the
+! point motion
                dzmaxv  =   max ( dzchg, dzmaxv)
                if ( dzchg.le. (1.d-20) ) goto 840
                dzchg   =  max( 1.d-99, min( 1.d99, dzchg))
@@ -43275,9 +43334,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                if ( dzchg.gt.dzmax ) ch5bld(1:1) = '*'
                cdzval(itau) = ch5bld
   840     continue
-!                                  print information describing how each
-!                                  of the current edge is related to the
-!                                  equivalence classes of the abutment
+! print information describing how each
+! of the current edge is related to the
+! equivalence classes of the abutment
 !                   123456789012345678901234567890
           movmsg = '                            '
           if ( excess ) movmsg = msgerr
@@ -43288,13 +43347,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                jtau2   =  min(ntau,jtau1+19)
                if ( movusr.le.0 ) goto 850
                if ( jtau1.ne.1 ) goto 845
-!                                  first line
+! first line
                write (6,6001) nwname(knet),knet,ksd,dzmaxv              &
      &                       ,(impval(i),i=jtau1,jtau2)
                if ( ipmove.ne.0 ) write (6,6002) movmsg                 &
      &                       ,(cdzval(i),i=jtau1,jtau2)
                goto 850
-!                                  subsequent lines
+! subsequent lines
   845          continue
                write (6,6003) nwname(knet),                             &
      &                        (impval(i),i=jtau1,jtau2)
@@ -43304,7 +43363,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   850     continue
 !
   900 continue
-!                                  put out two blank lines at end of abm
+! put out two blank lines at end of abm
       if ( movusr.gt.0 ) write (6,6006)
  6000 format (1x,'nw name   ',2x,  'nw.edge', 1x,'max chg',2x,          &
      &'corresponding edge points.  minus (-) ==> point moved by '       &
@@ -43315,7 +43374,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6004 format (29x,20a5)
  6005 format (1x,' ')
  6006 format (1h )
-!                                  restore the kempec array to all 1's
+! restore the kempec array to all 1's
       do 950 ie = 1,ne
           isgn    =  ksgn(ie)
           call icopy (4,  kfds(4*(ie)-3),1, kokseg,1)
@@ -43379,10 +43438,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                           of the forced partial edge abutments.
 !                           for ipea = 1,npea
 !                               for kedg = 1,nedges(ipea)
-!                                   netpea(1,kedg,ipea) = nw number
-!                                   netpea(2,kedg,ipea) = edge number
-!                                   netpea(3,kedg,ipea) = start pt index
-!                                   netpea(4,kedg,ipea) = end   pt index
+!  netpea(1,kedg,ipea) = nw number
+!  netpea(2,kedg,ipea) = edge number
+!  netpea(3,kedg,ipea) = start pt index
+!  netpea(4,kedg,ipea) = end   pt index
 !         nedges  i   int   nedges(ipea) = nmbr of edges in pea spec. 'i
 !         peatol  i   r*8   peatol(ipea) = user tolerance for pea spec.
 !         nza     i   int   nza(k)+1 = start pt loc for nw k mesh pts
@@ -43431,11 +43490,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension netpea (4,mxeiab,*)
 !
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
-!                                  f.p. arrays controlled by parameters
+! f.p. arrays controlled by parameters
       dimension       zorig(3,maxpts), dzcrit(mxempt), kptemp(mxempt)   &
      &              , kempec(mxempt), kptpea(mxempt)                    &
      &              , nedmpa(4*mxnett+1), iedgtp(4*mxnett)
@@ -43451,10 +43510,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( movusr.ge.3 ) call outvci ('nza',nnett+1,nza)
       call dcopy (10,  0.d0,0,  tpea,1)
       call CPU_TIME (ta)
-!                                  copy input geometry to zorig
+! copy input geometry to zorig
       npts    =  nza(nnett+1)
       call dcopy (3*npts,  z,1,  zorig,1)
-!                                  define the cumulative count of nw edg
+! define the cumulative count of nw edg
       nedmp   =  0
       nedgt   =  4*nnett
       do 100 kedg = 1,nedgt
@@ -43466,9 +43525,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           nedmp   =  nedmp + knedg - 1
   100 continue
       nedmpa(nedgt+1) = nedmp
-!                                  define the acceptable limits of point
+! define the acceptable limits of point
       call pealim (nnett,nm,nn,z,nza,nedmpa   ,dzcrit)
-!                                  characterize nw edges: 0=ok, 1=collap
+! characterize nw edges: 0=ok, 1=collap
       call icopy (nedgt,  0,0,  iedgtp,1)
       do 160 knet = 1,nnett
       do 150 ksd = 1,4
@@ -43478,7 +43537,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kedg    =  ksd + 4*(knet-1)
           iedgtp(kedg) = 0
 !---------if ( ntd(knet) .eq. 0 ) goto 150
-!                                  check for collapsed edge
+! check for collapsed edge
           ncolps  =  0
           do 110 ij = 2,knedg
                kz1     =  kzedg + (ij-2)*kncedg
@@ -43501,32 +43560,32 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                               ,ij ,(z(i,kz2),i=1,3)
   120          continue
   130     continue
-!                                  check that edge does not have
-!                                  too many meshpoints
+! check that edge does not have
+! too many meshpoints
           if ( knedg .le. mxedmp ) goto 140
                call abtmsg                                              &
      &             ('peaidn (fatal): too many points in nw edge')
                write (6,'(1x,a10,1x, 2i12)')                            &
      & 'net,edge',knet,ksd
   140     continue
-!                                  set edge type
+! set edge type
           iedgtp(kedg) = 0
           if ( ncolps.eq.0 ) goto 150
           iedgtp(kedg) = 1
   150 continue
   160 continue
-!                                  define the pointer data structure for
-!                                  edge mesh point equivalence classes
+! define the pointer data structure for
+! edge mesh point equivalence classes
       do 200 iedmp = 1,nedmp
           kptemp(iedmp) = iedmp
           kempec(iedmp) = 1
   200 continue
-!                                  define all points lying along any
-!                                  collapsed edge to be equivalent to
-!                                  one another
+! define all points lying along any
+! collapsed edge to be equivalent to
+! one another
       do 280 kedg = 1,nedgt
           if ( iedgtp(kedg).eq.0 ) goto 280
-!                                  edge kedg is collapsed: enter equiv.
+! edge kedg is collapsed: enter equiv.
           call mnmod  (kedg,4,ksd,knet)
           call edgind (ksd,nm(knet),nn(knet)                            &
      &                ,kzedg,kncedg,kncint,knedg)
@@ -43538,7 +43597,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                iedmp1  =  iedmp2
   250     continue
   280 continue
-!                                  optional diagnostic output
+! optional diagnostic output
       if ( movusr.lt.3 ) goto 290
       call outvci ('nedmpa',4*nnett+1,nedmpa)
       call outvci ('nza',nnett+1,nza)
@@ -43546,15 +43605,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   290 continue
       call CPU_TIME (tb)
       tpea(1) = tb-ta
-!                                  loop over the list of user specified
-!                                  partial edge abutments and adjust mes
-!                                  points in accordance with those specs
+! loop over the list of user specified
+! partial edge abutments and adjust mes
+! points in accordance with those specs
       do 500 ipea = 1,npea
           call CPU_TIME (ta)
           call icopy (nedmp,  kptemp,1,  kptpea,1)
           epspea  =  peatol(ipea)
-!                                  generate the std data structure
-!                                  representation of the current specifi
+! generate the std data structure
+! representation of the current specifi
           ne      =  nedges(ipea)
           do 300 ie = 1,ne
                knet    =  netpea(1,ie,ipea)
@@ -43573,25 +43632,25 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                kokseg  =  0
                call icopy (4,  kokseg,1, kfds(4*(ie)-3),1)
   300     continue
-!                                  calculate the relative signs of the e
-!                                  involved using the (1/3, 2/3 rule)
+! calculate the relative signs of the e
+! involved using the (1/3, 2/3 rule)
           call peasgn (z,nza,nm,nn,nedmpa,nnett,epspea,iedgtp           &
      &                ,ier,ipea,movusr,  ne,kfds,ksgn)
           call CPU_TIME (tb)
           tpea(2) =  tpea(2) + tb - ta
           ta      =  tb
           if ( ier.ne.0 ) goto 500
-!                                  determine the equivalence classes of
-!                                  points for this pea specification
+! determine the equivalence classes of
+! points for this pea specification
           call abtemp (ne,kfds,ksgn,  z,nza,nm,nn,nedmpa,  epspea       &
      &                ,kptpea,nedmp)
           call CPU_TIME (tb)
           tpea(3) =  tpea(3) + tb - ta
           ta      =  tb
           if ( movusr.ge.3 ) call outvci ('kptpea',nedmp,kptpea)
-!                                  define a universal edge associated wi
-!                                  this pea spec. and adjust points up t
-!                                  generate an abtaip style report of pt
+! define a universal edge associated wi
+! this pea spec. and adjust points up t
+! generate an abtaip style report of pt
           iopfor  =  mthfrc(ipea)
           call peadue (nnett,nm,nn,nza,z,zorig  ,epspea,iopfor,movusr   &
      &                ,ne,kfds,ksgn ,nedmp,nedmpa ,kempec,kptpea,dzcrit &
@@ -43680,11 +43739,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 5 k = 1,nnett
           nza(k+1) = nza(k) + nm(k)*nn(k)
     5 continue
-!                                  read the following:
-!                                  (1) # of $pea specs, this group
-!                                  (2) method of forcing, this group (0,
-!                                          (1, average in equiv. class)
-!                                  (3) print flag 'movusr' for peaidn
+! read the following:
+! (1) # of $pea specs, this group
+! (2) method of forcing, this group (0,
+!         (1, average in equiv. class)
+! (3) print flag 'movusr' for peaidn
       read (ntsin,'( a )') qline
       read (qline,6001,err=9950) (dum(i),i=1,3)
       ngrp    =  dum(1)
@@ -43697,8 +43756,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( dum(3).lt.0.d0 ) movusr = 0
       if ( dum(3).ge.1.d0 ) movusr = 2
       if ( ipea.gt.mxpeab ) goto 8000
-!                                  read and enter into (peatol,nedges,ne
-!                                  the $pea specs in this group
+! read and enter into (peatol,nedges,ne
+! the $pea specs in this group
       do 500 igrp = 1,ngrp
       ipea  =  ipea + 1
       mthfrc(ipea) = iopfor
@@ -43725,7 +43784,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   500 continue
       return
-!                                  error condition
+! error condition
  8000 continue
       write (ntsout,8001) ipea,nedges(ipea),mxeiab
  8001 format (' *** fatal *** '                                         &
@@ -43737,7 +43796,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (a80)
 !
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'peainp', qline, ((lll,lll=1,10),kkk=1,8)
@@ -43779,10 +43838,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kzedg   =  kzedg + nza(knet)
           kedg    =  ksd + 4*(knet-1)
           kmpbas  =  nedmpa(kedg)
-!                                  the critical distance is set at xpct
-!                                  times the smaller of the two diameter
-!                                  of the 2 panels that an edge mesh poi
-!                                  is a part of.
+! the critical distance is set at xpct
+! times the smaller of the two diameter
+! of the 2 panels that an edge mesh poi
+! is a part of.
           dprv    =  1.d38
           do 300 imp = 1,(knedg-1)
                kz1    =  kzedg + (imp-1)*kncedg
@@ -43923,17 +43982,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension z33(3), z66(3), zx33(3), zx66(3), zx1(3), zx2(3)
       dimension ndef(2)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
-!                                  put out a nice summary of the input d
-!                                  if the user has requested it
+! put out a nice summary of the input d
+! if the user has requested it
       if ( movusr.lt.2 ) goto 51
       write (6,6000) ipea
  6000 format (' input geometry for partial edge abutment specification' &
      & ,' #',i4)
-!                                  describe each edge in the pea spec
+! describe each edge in the pea spec
       do 50 ie = 1,ne
       call icopy (4,  kfds(4*(ie)-3),1, kokseg,1)
       kedg    =  kedseg
@@ -43945,8 +44004,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,6001) ie,nwname(knet),knet,ksd,i1kseg,i2kseg
  6001 format (1x,i3,'.',2x,a10,'  nw.edge:',i4,'.',i1,4x,'start:',i4    &
      &                                               ,4x,'end:',i4)
-!                                  describe each referenced point on the
-!                                  current edge
+! describe each referenced point on the
+! current edge
       do 40 imp = i1kseg,i2kseg
       kz      =  kzedg + (imp-1)*kncedg
       l       =  imp - i1kseg + 1
@@ -43962,7 +44021,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       p33     =  1.d0/3.d0
       p66     =  2.d0/3.d0
       ier     =  0
-!                                  define the 1/3 and 2/3 points on 1st
+! define the 1/3 and 2/3 points on 1st
       call icopy (4,  kfds(4*(1)-3),1, kokseg,1)
       kedg    =  kedseg
       call mnmod  (kedg,4,ksd,knet)
@@ -43988,7 +44047,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 150 imp = i1kseg+1,i2kseg
           tau     =  dzsum(imp)/dzsum(i2kseg)
           if ( taupv.le.p33 .and. p33.le.tau ) then
-!                                  found the 1/3 point, evaluate and mar
+! found the 1/3 point, evaluate and mar
                ndef(1)  =  1
                dtau    =  dzedg(imp)/dzsum(i2kseg)
                alf     =  (p33-taupv)/dtau
@@ -44000,7 +44059,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           endif
 !
           if ( taupv.le.p66 .and. p66.le.tau ) then
-!                                  found the 2/3 point, evaluate and mar
+! found the 2/3 point, evaluate and mar
                ndef(2)  =  1
                dtau    =  dzedg(imp)/dzsum(i2kseg)
                alf     =  (p66-taupv)/dtau
@@ -44014,9 +44073,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   150 continue
       if ( ndef(1).eq.0 .or. ndef(2).eq.0 )                             &
      &   call abtend ('peasgn: either z33 or z66 failed to get defined')
-!                                  examine the other edges of the pea sp
-!                                  evaluating ksgn for each and doing so
-!                                  error checking along the way
+! examine the other edges of the pea sp
+! evaluating ksgn for each and doing so
+! error checking along the way
       kmp1    =  kzedg + (i1kseg-1)*kncedg
       kmp2    =  kzedg + (i2kseg-1)*kncedg
 !
@@ -44030,8 +44089,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lzedg   =  lzedg + nza(lnet)
       lmpe    =  lzedg + (i1lseg-1)*lncedg
       npte    =  i2lseg - i1lseg + 1
-!                                  evaluate the orientation of the oppos
-!                                  edge using the 1/3, 2/3 method
+! evaluate the orientation of the oppos
+! edge using the 1/3, 2/3 method
       call nredge (z33, z(1,lmpe),lncedg,npte,  1,0.d0,  zx33,tx33,dx33)
       call nredge (z66, z(1,lmpe),lncedg,npte,  1,0.d0,  zx66,tx66,dx66)
       isgn    =  1
@@ -44043,9 +44102,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lmp1    =  lmp2
           lmp2    =  lsv
       endif
-!                                  check the distance of the opposing ed
-!                                  endpoints from the reference edge's
-!                                  endpoints
+! check the distance of the opposing ed
+! endpoints from the reference edge's
+! endpoints
       call distnc (z(1,kmp1),z(1,lmp1),d1)
       call distnc (z(1,kmp2),z(1,lmp2),d2)
       if ( movusr.lt.3 ) goto 210
@@ -44065,24 +44124,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ksgn(ie) = isgn
       goto 900
 !
-!                                  the specified opposing edge is not cl
-!                                  enough to the reference edge.  see if
-!                                  you can figure out what is going on.
+! the specified opposing edge is not cl
+! enough to the reference edge.  see if
+! you can figure out what is going on.
   500 continue
       ier     =  ier + 1
       lsdbas  =  lsd
       lsdmn   =  0
       dx12mn  =  1.d38
-!                                  check all the edges on the object nw
+! check all the edges on the object nw
       do 800 ind = 1,4
       if ( ind.eq.1 ) lsd = lsdbas
       if ( ind.eq.2 ) lsd = mod(lsdbas+2,4) + 1
       if ( ind.eq.3 ) lsd = mod(lsdbas  ,4) + 1
       if ( ind.eq.4 ) lsd = mod(lsdbas+1,4) + 1
-!                                  don't examine collapsed edges
+! don't examine collapsed edges
       ledg    =  lsd + (lnet-1)*4
       if ( iedgtp(ledg).eq.1 ) goto 800
-!                                  an edge may not abut itself
+! an edge may not abut itself
       if ( lsd.eq.ksd .and. knet.eq.lnet ) goto 800
 !
       call edgind (lsd,nm(lnet),nn(lnet)                                &
@@ -44110,7 +44169,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 !
       if ( dx1.gt.peatol .or. dx2.gt.peatol ) goto 800
-!                                  find integer nearest to tx1 and tx2
+! find integer nearest to tx1 and tx2
       ix1     =  tx1 + .5d0
       ix2     =  tx2 + .5d0
       i1lseg  =  max( 1, min( lnedg, ix1) )
@@ -44120,7 +44179,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call distnc (z(1,kmp1),z(1,lmp1),d1)
       call distnc (z(1,kmp2),z(1,lmp2),d2)
       d12     =   max ( d1, d2)
-!                                  report out recommendation/info
+! report out recommendation/info
       write (6,6003) ie,lnet,lsd,  tx1,tx2,dx12,  i1lseg,i2lseg,d12
  6003 format (' list position:',i3,'  nw.edge:',i3,'.',i1               &
      &    ,'   t values: begin',f7.3,' end',f7.3,' distance',e10.2      &
@@ -44271,7 +44330,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !call norx
-!                                                            /norx/
+!                           /norx/
       common /norx/ sgnx, diamx
 !end  norx
 !call psdflg
@@ -44284,7 +44343,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       logical dsnic
 !end  dsnpic
 !call pandsn
-!                                                          /pandsn/
+!                         /pandsn/
 !     pandsn: panel data for the design
       common /pandsn/ wpdn(3,9), wsdn(3,3,8)                            &
      &              , wcdn(18,12), wcsdn(18,12,8)                       &
@@ -44292,7 +44351,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , iiptdn(4), iipgdn(4), iidumm(8)
 !end  pandsn
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -44308,7 +44367,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       logical ponq
       data nf,icsp /6,4/
 !
-!                                  compute near field splines if necessa
+! compute near field splines if necessa
       if ( psdpan.eq.ipn ) go to 10
           call psddq6
           psdpan  =  ipn
@@ -44321,7 +44380,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       netp    =  ityprc*ne
       if (its.gt.1) call zero (dvd,netp*ncd)
       if (its.ne.2) call zero (dvs,netp*ncs)
-!                                   define requests of nftpic calls
+!  define requests of nftpic calls
       nfx     =  nf
       nex     =  ne
       itsx    =  its
@@ -44476,7 +44535,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine pivc (ne  ,nncp,phic  ,nnvcp,vic  ,npt,phix            &
      &                ,ifluar,iflumx,astcpx)
       implicit double precision (a-h,o-z)
-!                                  /timing/
+! /timing/
       dimension phic(nncp,1), vic(3,nnvcp,1)
 ! --- real*8 phic, vic
       dimension phix(3,npt)
@@ -44532,7 +44591,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !ca pandsn
-!                                                          /pandsn/
+!                         /pandsn/
 !     pandsn: panel data for the design
       common /pandsn/ wpdn(3,9), wsdn(3,3,8)                            &
      &              , wcdn(18,12), wcsdn(18,12,8)                       &
@@ -44547,7 +44606,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  index
       dimension lz(4)
 !call piccnt
-!                                                     /piccnt/
+!                    /piccnt/
       common /piccnt/ npic(4,7), n56chg(0:3)
 !end  piccnt
 !call kstrns
@@ -44581,7 +44640,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /symm/ nsymm, ictsym, nisym, njsym, misym, mjsym
 !end  symm
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -44593,7 +44652,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , ggcp(3,3), ggcpit(3,3), btsqi, akap, akapin
 !end  comprs
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -44622,9 +44681,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! ----      call dinflu (zc,ifluar,iflumx)
       if ( iflumx.eq.0 ) go to 950
       lffld   =  iflumx.le.4
-!                                  determine if panel is in the last
-!                                  row of a wake network for which
-!                                  downstream ic's have been requested.
+! determine if panel is in the last
+! row of a wake network for which
+! downstream ic's have been requested.
       call qtewic (ltewic)
       if ( ltewic ) lffld = .false.
       ncdp    =  9
@@ -44635,15 +44694,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       if ( itsf.ne.1 ) call zero (dvdd,netp*ncdp)
       if ( itsf.ne.2 ) call zero (dvds,netp*ng)
-!                                  include effects of infinite wake
+! include effects of infinite wake
       if ( ltewic ) then
           call vadd (cp(1,7), -1.d0, cp(1,5), gen, 3)
           call uvect (gen)
           call dcopy (3,  genwak(1,kpf),1,  gen,1)
           call ntewic (gen,  ne,zc,  indkgp,phvic,awki)
           call dcopy (ne*ncdp,  phvic,1,  dvdd,1)
-!                                  include the effects of linear mu/x
-!                                  coefficients
+! include the effects of linear mu/x
+! coefficients
           if ( inmux.eq.0 ) goto 7515
           lphvic   =  ne*ncdp+1
           call hsmmp1 (ne,3,inmux,  phvic(lphvic),1,ne,  astmux,1,3     &
@@ -44686,13 +44745,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ifluai  = (jsymm-1)*nisym + isymm                                   ! Added by Martin Hegedus, 4/21/09
       iflun   =  ifluar(ifluai)                                           ! Added by Martin Hegedus, 4/21/09
       if ( iflun.eq.0 ) go to 160
-!                                  timset/ii, ii=11,20
+! timset/ii, ii=11,20
       if ( iflun - 4 ) 20,25,30
    20 continue
-!                                  far field and quasi far field computa
+! far field and quasi far field computa
       call ffpic (z,iflun,ne,nf,dvs,dvd)
       go to 27
-!                                  quasi far field computation
+! quasi far field computation
    25 continue
       call qffcal (z,ne,nf,dvs,dvd)
 !
@@ -44701,8 +44760,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mxm (dvd,netp,qa,6,dv,9)
       call dcopy (9*netp,dv,1,dvd,1)
       go to 40
-!                                  near field and quasi near field
-!                                  computation
+! near field and quasi near field
+! computation
    30 continue
       iflinp  =  iflun
 !-----      call qnfcal(z,iflun,ksymm,ne,dvs,dvd)
@@ -44711,7 +44770,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iflun.ne.iflinp ) n56chg(itsf) = n56chg(itsf) + 1
 !
    40 continue
-!                                  include contribution to dvds and dvdd
+! include contribution to dvds and dvdd
       if ( jcn.eq.ipraic ) then
        write(6,'('' pivc jc,ip,isym,jsym,iflu,isqn,f'',6i6,1p,3e12.4))')&
      &        jcn,ipnf,isymm,jsymm,iflun,isqn,omgbar,omegb,omg
@@ -44720,9 +44779,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       dvset   =  .true.
       if ( ne.eq.1 ) go to 130
-!                                  ne = 4
+! ne = 4
       if ( itsf.eq.2 ) go to 110
-!                                  source
+! source
       do 105 j = 1,ng
           dvds4(1,j) = dvds4(1,j) + dvs4(1,j) * sgnk
           dvds4(2,j) = dvds4(2,j) + dvs4(2,j) * sgnk
@@ -44731,7 +44790,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   105 continue
   110 continue
       if ( itsf.eq.1 ) go to 160
-!                                  doublet
+! doublet
       do 115 j = 1,ncdp
           dvdd4(1,j) = dvdd4(1,j) + dvd4(1,j) * sgnk
           dvdd4(2,j) = dvdd4(2,j) + dvd4(2,j) * sgnk
@@ -44744,7 +44803,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( itsf.ne.2 ) call daxpy (ityprc*ng,    sgnk,  dvs,1,  dvds,1)
       if ( itsf.ge.2 ) call daxpy (ityprc*ncdp,  sgnk,  dvd,1,  dvdd,1)
   160 continue
-!                                  timcum/ii, ii=11,20
+! timcum/ii, ii=11,20
   165 continue
 ! ---      if ( itsf.ne.2 ) npic(1,iflun+1)=npic(1,iflun+1) + 1
 ! ---      if ( itsf.ge.2 ) npic(2,iflun+1)=npic(2,iflun+1) + 1
@@ -44756,11 +44815,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( astcpx ) istcpx = 1
 !
       if ( .not.dvset ) go to 950
-!                                  timcum/9
-!                                  timset/10
+! timcum/9
+! timset/10
 !
       if ( lffld ) go to 600
-!                                  not a block and not a far field
+! not a block and not a far field
       if ( itsf.eq.2 ) go to 550
       if ( .not. astcpx )                                               &
      & call hsmmp1 (insf,3,netp,  asts,3,1,  dvds,netp,1,  dv,netp,1)
@@ -44791,7 +44850,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call indadd (ne,indf,iidf,dv  ,nncp,phic  ,nnvcp,vic)
       go to 700
-!                                  far field accumulation
+! far field accumulation
   600 continue
       if ( itsf.eq.2 ) go to 650
       if ( .not. astcpx )                                               &
@@ -44823,7 +44882,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call indadd (ne,indf,iidf,dv  ,nncp,phic  ,nnvcp,vic)
   700 continue
-!                                  timcum/10
+! timcum/10
   950 continue
       return
       END subroutine pivc
@@ -44895,14 +44954,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /slstat/ tpvcal, tpivv, npicsl(7), npvcal, nphvsl
 !end  slstat
 !call norx
-!                                                            /norx/
+!                           /norx/
       common /norx/ sgnx, diamx
 !end  norx
 !call nftphd
       common /nftphd/ phimuz
 !end  nftphd
 !ca lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -44945,16 +45004,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !    *   far field influence calculation.
 !
       nf=6
-!                                  when only one solution is being proce
-!                                  use ffpiv to optimize efficiency
+! when only one solution is being proce
+! use ffpiv to optimize efficiency
       if ( nv.le.1 ) go to 350
-!                                  use ffpiv for several solutions
+! use ffpiv for several solutions
       do 330 ix = 1,nv
          iiv = ix-1+iv
          call ffpiv (iiv,z,iflun,pvsd(1,ix))
   330 continue
       go to 390
-!                                  ffpiv for a single solution
+! ffpiv for a single solution
   350 continue
       call ffpiv (iv,z,iflun,pvsd)
       go to 390
@@ -45722,9 +45781,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/skrch4/d(10,7),e(3,3),f(6,9),g(3,3),h(6,6)
       logical allspl
 !
-!                                    get true near field data first
+!   get true near field data first
       call psddq6
-!                                    get intermediate data second
+!   get intermediate data second
       call psddq5
       return
       END subroutine psddqg
@@ -45736,13 +45795,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         *** compute the transpose of the pseudo inverse, given the  **
 !         ***  q-r factorization.  no allowance for pivotting is made he
       nm1     =  n-1
-!                                  zero out z
+! zero out z
       do 100 i = 1,m
       do 100 j = 1,n
   100 z(i,j)  =  0.d0
 !              form  r**(-1) (t)  in the lower triangle of z*s upper par
 !
-!                                  get diagonals of r**(-1)
+! get diagonals of r**(-1)
       do 200 j = 1,n
   200 z(j,j)  =  1.d0/d(j)
 !              form  r**(-1) row by row. (its transpose, column by colum
@@ -45751,7 +45810,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ip1     =  i + 1
           do 250 j = ip1,n
 !              for k = i,j-1;  sum  uinv(i,k)*u(k,j)
-!                                     z(k,i) * a(k,j)
+!    z(k,i) * a(k,j)
                  s=ddot(j-i,z(i,i),1,a(i,j),1)
                z(j,i)  =  -z(j,j)*s
   250     continue
@@ -45799,7 +45858,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
 !call comprs
@@ -45985,9 +46044,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !call pblprm
-!                                                         /pblprm/
+!                        /pblprm/
       common /pblprm/ mxcls
-!                                                         /pblprm/
+!                        /pblprm/
 !end  pblprm
 !call pandq
       common/pandq/cp(3,9),ar(9,5),ari(9),en(3,5),aq(9),aqi(9),aj(5),   &
@@ -46015,7 +46074,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , ndsgrp, nptgrp(npagpx)
 !end  gsqrwi
 !ca vfgrwi
-!                                                        /vfgrwi/
+!                       /vfgrwi/
 !     File for containing fine grid velocity data, 1 record/network
 !     ntvfg   unit number [45]
 !     nnvfg   number of records [nnett+1], 1 per nw + index record
@@ -46024,7 +46083,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /vfgrwi/ ntvfg, nnvfg, nivfg(mxnett+1)
 !end  vfgrwi
 !ca pandsn
-!                                                          /pandsn/
+!                         /pandsn/
 !     pandsn: panel data for the design
       common /pandsn/ wpdn(3,9), wsdn(3,3,8)                            &
      &              , wcdn(18,12), wcsdn(18,12,8)                       &
@@ -46035,7 +46094,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /bsqrwi/ nbsqdq, nsqb
 !end  bsqrwi
 !ca dsnrwi
-!                                                          /dsnrwi/
+!                         /dsnrwi/
 !     File containing /pandsn/ data for a reference singularity set
 !
 !     ndqdsn  number of floating point words per record
@@ -46049,7 +46108,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /skrch1/ w(9000000)
 !end  skrch1
       dimension strbuf(1024)
-!                                                  ...  mxxcls = 512
+!                 ...  mxxcls = 512
       parameter (mxxcls=512)
       dimension indgrp(mxxcls), indsrt(mxxcls), indloc(mxxcls)
       dimension iptgrp(mxxcls), iptsrt(mxxcls), iptloc(mxxcls)
@@ -46104,7 +46163,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
               if ( loc.eq.0 ) nptx = nptx + 1
   110     continue
           if ( nspx.le.mxcls .and. nptx.le.mxcls ) goto 200
-!                                  new panel group
+! new panel group
                if ( npagp.ge.npagpx ) CALL AbortPanair('pvinfc')
                npagp   =  npagp + 1
                write (nsqg) (indgrp(i),i=1,nsp)
@@ -46198,9 +46257,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                iiptdn(j) = iipt(j)
                iipgdn(j) = iptloc(loc)
   440     continue
-!                                  ======  think about the following ===
+! ======  think about the following ===
           call ffdqg
-!                                  suppress the writmd call after c.o.
+! suppress the writmd call after c.o.
           if ( ndsgrp.ne.0 ) then
              call dsnpdt (mfn,nfn,w(llvfg),ip,ipan,jpan)
 !---             call panpwm (ics,cp  ,en,ar,aj,wsdn
@@ -46317,7 +46376,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , ggcp(3,3), ggcpit(3,3), btsqi, akap, akapin
 !end  comprs
 !call norx
-!                                                            /norx/
+!                           /norx/
       common /norx/ sgnx, diamx
 !end  norx
 !call pandf
@@ -46336,7 +46395,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       logical dsnic
 !end  dsnpic
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -46384,19 +46443,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( ne.eq.nex ) goto 200
       if ( .not. ( ne.eq.1 .and. nex.eq.4 ) ) call a502er ('qffcal'     &
      &  ,'ne and nex are all screwed up')
-!                                   store source coefficients
+!  store source coefficients
       if ( itsf.ne.2 ) call dcopy (ng,  dvsp,nex,  dvs,ne)
-!                                   store doublet coefficients
+!  store doublet coefficients
       if ( itsf.ge.2 ) call dcopy (nf,  dvdp,nex,  dvd,ne)
       goto 300
-!                                   ne = nex, do block copy
+!  ne = nex, do block copy
   200 continue
       call dcopy (netp*ng,  dvsp,1,  dvs,1)
       call dcopy (netp*nf,  dvdp,1,  dvd,1)
 !
   300 continue
       if ( .not.dsnic ) goto 950
-!                                   dsnic set, save phsdsn, vsdsn
+!  dsnic set, save phsdsn, vsdsn
       call dcopy (3,  dvsp,nex,  phsdsn,1)
 ! --- call mcopy (3,6,  dvsp(2),1,4,  vsdsn,1,3)  ; phxdsn
 !
@@ -46644,7 +46703,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         , qq( 6,9,8), pp(3,3,8), rr(3,3,8)
 !end  pandq
 !call norx
-!                                                            /norx/
+!                           /norx/
       common /norx/ sgnx, diamx
 !end  norx
 !call prnt
@@ -46661,7 +46720,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! --- real*8   dvs,dvd
       logical ponq
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -46788,7 +46847,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !         other input:
 !         idsvfw(knet) /lndblx/ int  nonzero if nw knet has wake filamen
-!                                    attached
+!   attached
 !
 !         michael epton, 30 november 1988
 !
@@ -46840,12 +46899,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , kpf, nsff                                          &
      &             , indrqf, rqff(3,16), encf(3), qcminf
 !end  pandf
-!                                  /lndblx/
-!                                       idsvfw(knet) # 0 for wake nw's t
-!                                       have very-far-wake filaments att
-!                                       to edge 3.
+! /lndblx/
+!      idsvfw(knet) # 0 for wake nw's t
+!      have very-far-wake filaments att
+!      to edge 3.
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -46855,12 +46914,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nmapca(151)                                                   &
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
-!                                  check if very-far-wake downstream ic'
-!                                  have been requested for this network
+! check if very-far-wake downstream ic'
+! have been requested for this network
       ltewic  =  .false.
       if ( idsvfw(kpf).eq.0 ) goto 950
-!                                  get panel row/column, ipan/jpan, and
-!                                  check for last panel row (nm(kpf)-1)
+! get panel row/column, ipan/jpan, and
+! check for last panel row (nm(kpf)-1)
       ipk     =  ipnf - npa(kpf)
       call mnmod (ipk,nm(kpf)-1,ipan,jpan)
       if ( ipan.eq.(nm(kpf)-1) ) ltewic = .true.
@@ -47121,9 +47180,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         form the product:  a[real] x b[complex] = c[complex]
 !         with the usual conventions for strides
 !
-!                                  form:  re.c = a * re.b
+! form:  re.c = a * re.b
       call hsmmp1 (m,l,n,  a,ia,ja,  b(1),2*ib,2*jb,  c(1),2*ic,2*jc)
-!                                  form:  im.c = a * im.b
+! form:  im.c = a * im.b
       call hsmmp1 (m,l,n,  a,ia,ja,  b(2),2*ib,2*jb,  c(2),2*ic,2*jc)
 !
       return
@@ -47132,7 +47191,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine readmd (lun,ia,n,irec)
       dimension ia(n)
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -47246,7 +47305,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           a(2,j)  =                    aa(2,2)*gg(2,j) + aa(2,3)*gg(3,j)
           a(3,j)  =  aa(3,1)*gg(1,j) + aa(3,2)*gg(2,j) + aa(3,3)*gg(3,j)
   200 continue
-!                                  compute inverse
+! compute inverse
       rs      =  rpntyp*sfac
 !
       aa(1,1) =  rpntyp * aa(1,1)
@@ -47263,15 +47322,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ai(j,3)=aa(3,1)*ggit(1,j)+aa(3,2)*ggit(2,j)+aa(3,3)*ggit(3,j)
   300 continue
       if ( amach.gt.1.d0 ) goto 950
-!                                  apply a final rotation so
-!                                  that gen, expressed in local
-!                                  coordinates, is parallel to
-!                                  the x-axis
+! apply a final rotation so
+! that gen, expressed in local
+! coordinates, is parallel to
+! the x-axis
       gp(1)  =  a(1,1)*gen(1) + a(1,2)*gen(2) + a(1,3)*gen(3)
       gp(2)  =  a(2,1)*gen(1) + a(2,2)*gen(2) + a(2,3)*gen(3)
       gp(3)  =  a(3,1)*gen(1) + a(3,2)*gen(2) + a(3,3)*gen(3)
-!                                  choose c,s such that
-!                                  -s*gp(1)+c*gp(2) = 0
+! choose c,s such that
+! -s*gp(1)+c*gp(2) = 0
       gpi    =  1.d0/sqrt( gp(1)**2 + gp(2)**2 )
       cosr   =  gp(1)*gpi
       sinr   =  gp(2)*gpi
@@ -47316,7 +47375,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         report back amount of dynamic cm remaining
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -47461,7 +47520,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    40 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'rot1', qline, ((lll,lll=1,10),kkk=1,8)
@@ -47626,7 +47685,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    40 continue
       return
 !
-!                                  read error handling
+! read error handling
 !
  9950 continue
       write (6,9960) 'rot2', qline, ((lll,lll=1,10),kkk=1,8)
@@ -48146,7 +48205,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       ncs    =  3
       ncd    =  9
-!                                  extend corner point data
+! extend corner point data
       do 100 j = 1,4
           jp1    =  mod(j,4) + 1
           cp(1,j+4) = .5d0*( cp(1,j) + cp(1,jp1) )
@@ -48160,7 +48219,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call vadd (cp(1,7), -1.d0, cp(1,5), genref(1,2), 3)
       call vadd (cp(1,3), -1.d0, cp(1,2), genref(1,3), 3)
 !
-!                                  compute transformations
+! compute transformations
       call jzero (iin,5)
       rqmin   =  1.d0
       do 200 is = 1,5
@@ -48472,7 +48531,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        , icpmap,  ibcmap
 !end  prnt
 !call blkprm
-!                                                         /blkprm/
+!                        /blkprm/
 !     nppblk  i*4  flow  block size for out-of-core solver
 !     nqqblk  i*4  flow  sub-block size for blkaic blocking algorithm
 !     nqblk   i*4  flow  (nppblk+nqqblk-1)/nqqblk  # of row sub-blocks
@@ -48485,11 +48544,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , nwwblk
 !end  blkprm
 !call factrd
-!                                                            /factrd/
+!                           /factrd/
       common /factrd/ ifact
 !end  factrd
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -48517,7 +48576,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call openms (ntv,niv,nnv,0)
       call readms (ntv,nwv,nctrt,nctrt+1)
       if ( nta.ne.0 ) call openms (nta,nia,nna,0)
-!                                  set blocking parms, open lint & llu
+! set blocking parms, open lint & llu
       llu     =  iray(6)
       lint    =  iray(7)
 !
@@ -48526,7 +48585,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       np      =  npblk
       nq      =  nqblk
       nwic    =  nwwblk
-!                                  open lint & llu
+! open lint & llu
       kint    =  kinblk
       call igtcor ('int',llint,kint)
       call openms (lint,w(llint),kint,0)
@@ -48544,12 +48603,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 600 is=1,nsngk
       kmax=is+nsngk*(nacase-1)
       read(93) (scr(k),k=is,kmax,nsngk)
-!                                  put known lambda's in bbeta, brhs
+! put known lambda's in bbeta, brhs
       bbeta(is+nsngu) = scr(is)
       brhs(is+nsngu)  = scr(is)
   600 continue
   650 continue
-!                                  read data for multi-nw matching
+! read data for multi-nw matching
       call xtrns (20,ncp2ab,nx20)
       if ( ncp2ab.ne.0 ) call icopy (ncp2ab,  idcp2,3,  ablcp2,1)
       if ( ncp2ab.ne.0 ) call jshell (ncp2ab, ablcp2, keycp2)
@@ -48617,7 +48676,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       if ( nra.ne.nsngu ) call a502er ('saical'                         &
      &     ,'mismatch between aic rows and unknown sp-s')
-!                                  close the intermediate blocking file
+! close the intermediate blocking file
       call closms (lint)
       if ( rlse20 ) then
          fname  =  'rwms20'
@@ -48627,7 +48686,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
            close (lint,status='delete')
          endif
       endif
-!                                  close the blocked AIC/LU file
+! close the blocked AIC/LU file
       call closms (llu)
 !
       if ( nbccp2.le.0 ) go to 950
@@ -48783,7 +48842,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
 !ca abtprm
-!                                                         /abtprm/
+!                        /abtprm/
 !     nabt      number of abutments
 !     nabint    number of abutment intersections
 !     nfdseg    number of fundamental segments
@@ -48891,7 +48950,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *  reformat boundary conditions and execute user specified      *
 !     *  options                                                      *
 !call cumabc
-!                                                            /cumabc/
+!                           /cumabc/
 !         cumulative bc count, used in bconcl
       common /cumabc/ nabca(151)
 !end  cumabc
@@ -49249,7 +49308,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  pandq
 !
 !     network quantities
-!                                                                    ...
+!                                   ...
 !call index
       common/index/nts(150),ntd(150),nm(150),nn(150),nza(151),npa(151), &
      &    nssa(151),nsda(151),nca(151),nbca(151),ipot(150),nwofb(150)   &
@@ -49360,7 +49419,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       npspg = 65
       open (unit=npspg,file='ispggp',status='unknown')
       iprtst = 1
-!                                                                     se
+!                                    se
       write(nout,7900)
  7900 format('1')
 !
@@ -50098,7 +50157,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !        the same 'label'.
 !
 !call dynmap
-!                                                      /dynmap/
+!                     /dynmap/
       parameter (nlev=15)
       parameter (nlws=200)
       common /dynmap/ realth, intlth,       nrl2in                      &
@@ -50115,7 +50174,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /dynchr/ iniset, chrlev(nlev), chrlws(nlws)
       character*8 iniset, chrlev, chrlws
 !end  dynmap
-!                                  check for a reset
+! check for a reset
 ! **  write (6,7100) label
 !--- 7100 format ( 1x, 27( 4h * /  ), ' setcor : ',a8 )
  7100 format ( 1x, 27( 4h * /  ), ' setcor : ',a )
@@ -50193,7 +50252,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , indvsl(4), ncassl
 !end  kstmln
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
       dimension arr1(maxarr), zof(3000), pzof(4000)
@@ -50420,7 +50479,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /irwi/ nidq(21), nsi, nri, nti, nni, nii(21)
 !end  irwi
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
       dimension y(neqn,icore), t(icore), iflag(icore), yy(neqn,icore),  &
@@ -51468,13 +51527,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dist3   =  eps3*diamf
       dist4   =  eps4*diamf
       dist5   =  eps5*diamf
-!                                  loop over selected cp images
+! loop over selected cp images
       do 3000 ic = 1,nndc
       ib      =  indc(ic)
       p(1)    =  zb(1,ib)
       p(2)    =  zb(2,ib)
       p(3)    =  zb(3,ib)
-!                                  make fast influence tests
+! make fast influence tests
       ifluij  =  7
       tg(1)   =  p(1)-pwf(1)
       tg(2)   =  p(2)-pwf(2)
@@ -51489,10 +51548,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call compip (tg,tg,compd,betams,tgx)
       tgxx = tgx + 1.d-2*diamf*diamf
       if (  ( tgx + 1.d-2*diamf*diamf )  .lt.  0.d0 ) go to 2100
-!                                  set up looping over planes of symmetr
-!                                  compute the distance from the mean
-!                                  plane panel center to the boundary
-!                                  of the cone, in x(bar).
+! set up looping over planes of symmetr
+! compute the distance from the mean
+! plane panel center to the boundary
+! of the cone, in x(bar).
       tg(1)   =  cpfz(1) - p(1)
       tg(2)   =  cpfz(2) - p(2)
       tg(3)   =  cpfz(3) - p(3)
@@ -51505,26 +51564,26 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       hcsq    =  xcsq - rcyzsq
       influ   =  rc(1).lt.0.d0  .and.  xcsq.gt.rcyzsq
       if ( rc(1).gt.0.d0  .and.  xcsq.gt.rcyzsq ) go to 20
-!                                  near pt to  cpfz  is on cone surface
+! near pt to  cpfz  is on cone surface
           dqcb    =  abs(  rc(1) + sqrt(rcyzsq)  ) * rthaf
           dsq     =  dqcb**2
           go to 30
-!                                  near point to qc is at cone apex
+! near point to qc is at cone apex
    20 continue
           dsq     =  rcsq
           dqcb    =  sqrt ( dsq )
 !
    30 continue
       if ( dsq .le. qrdb2 ) go to 100
-!                                  panel cannot intersect the boundary
-!                                  of the mach cone.-- the center point
-!                                  distance  dqcb  exceeds the radius
-!                                  qrdb.
+! panel cannot intersect the boundary
+! of the mach cone.-- the center point
+! distance  dqcb  exceeds the radius
+! qrdb.
                dmin    =  dqcb - qrdb
                ifluij  =  7
                if ( .not. influ ) go to 1200
                if ( dqcb .gt. dist3 ) go to 1000
-!                                  perform detailed influence test
+! perform detailed influence test
   100 continue
       dmin    =  dqcb
       hsqmin  =  hcsq
@@ -51544,66 +51603,66 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           hsq     =  xx*xx - ryzsq
           rsq     =  xx*xx + ryzsq
           if (  xx.gt.0.d0  .or.  hsq.lt.0.d0 ) go to 260
-!                                  corner inside  d(p)
+! corner inside  d(p)
                if ( .not. influ ) go to 250
                k       =  k + 1
                hsqmin  =   min ( hsq, hsqmin)
                dmin    =   min ( dmin, abs( xx + sqrt(ryzsq) ) *rthaf )
                if ( k .eq. isx ) go to 300
-!                                  either the center is outside, or
-!                                  isx .ne. k .  set  dmin = 0  and exit
+! either the center is outside, or
+! isx .ne. k .  set  dmin = 0  and exit
   250          continue
                     dmin    =  0.d0
 !              ***  influ   =  .true.   ***
                     go to 900
 !
-!                                  corner point outside  d(p)
+! corner point outside  d(p)
   260     continue
                if ( influ ) go to 270
                if ( hsq.gt.0.d0 ) dmin = min( dmin, sqrt(rsq)  )
                if ( hsq.le.0.d0 ) dmin = min( dmin,                     &
      &              abs(  xx+sqrt(ryzsq)  ) * rthaf   )
                if ( k .eq. 0 ) go to 300
-!                                  either the center was inside or k.ne.
-!                                  set  dmin = 0 ,  and exit
+! either the center was inside or k.ne.
+! set  dmin = 0 ,  and exit
   270          continue
                     dmin    =  0.d0
 !              ***  influ   =  .true.   ***
                     go to 900
 !
   300 continue
-!                                  if all corners inside, we are done
+! if all corners inside, we are done
       influ   =  influ .or.  k.ne.0
       if ( influ ) go to 900
-!                                  qc and all corners lie outside d(p).
-!                                  if mean plane is superinclined, check
-!                                  the near point (or the piercing point
-!                                  as appropriate) lies on the mean plan
-!                                  if the mean plane is not superincline
-!                                  go immediately to the checking of
-!                                  the supersonic edges.
+! qc and all corners lie outside d(p).
+! if mean plane is superinclined, check
+! the near point (or the piercing point
+! as appropriate) lies on the mean plan
+! if the mean plane is not superincline
+! go immediately to the checking of
+! the supersonic edges.
       hsqmin  =  0.d0
       if (  encf(1)**2 .le.  encf(2)**2+encf(3)**2  ) go to 400
 !
           xn      =  encf(1)*rc(1) + encf(2)*rc(2) + encf(3)*rc(3)
           if ( xn*encf(1) .gt. 0.d0 ) go to 340
-!                                  panel is upstream of the control pt.
-!                                  check for piercing
+! panel is upstream of the control pt.
+! check for piercing
                ichk    =  1
                rx(1)   =  xn/encf(1)
                rx(2)   =  0.d0
                rx(3)   =  0.d0
                go to 350
   340     continue
-!                                  panel is downstream of p-s domain of
-!                                  dependance.  compute minimum distance
-!                                  pt from apex to panel plane and see
-!                                  if it lies in the panel.
+! panel is downstream of p-s domain of
+! dependance.  compute minimum distance
+! pt from apex to panel plane and see
+! if it lies in the panel.
                ichk    =  2
                rx(1)   =  xn*encf(1)
                rx(2)   =  xn*encf(2)
                rx(3)   =  xn*encf(3)
-!                                  determine if rx(*) is in the avg pane
+! determine if rx(*) is in the avg pane
   350     continue
           do 360 is = 1,nsff
                xi(is)  =  1.d0
@@ -51623,20 +51682,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
           call zwindg (n,xi,et,zed,ized,ierr)
           if ( ierr.eq.0 ) go to 370
-!                                  error found. rx is probably on the
-!                                  boundary.
+! error found. rx is probably on the
+! boundary.
                nerr    =  nerr + 1
                if(nerr.lt.10) call errmsg(' zwindg eror in sinflu')
                go to 400
 !
   370     continue
           if ( ized.eq.0 ) go to 400
-!                                  rx lies in the panel
+! rx lies in the panel
                if ( ichk .eq. 1 ) dmin = 0.d0
 !         ***  if ( ichk .eq. 1 ) influ = .true.  ***
                if ( ichk.eq.2 ) dmin =  min ( dmin, abs(xn) )
                go to 900
-!                                  check supersonic edges
+! check supersonic edges
   400 continue
       do 500 is = 1,nsff
           if ( is.eq.icsf ) go to 500
@@ -51648,7 +51707,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           tgyzsq  =  tg(2)**2 + tg(3)**2
           tgsq    =  tg(1)**2 - tgyzsq
           if ( tgsq.ge.0.d0 ) go to 500
-!                                  supersonic edge, plug ahead.
+! supersonic edge, plug ahead.
           qct     =  abs( r(2,is)*tg(3) - r(3,is)*tg(2) )
           drsq    =  tg(1)**2 + tgyzsq
           cxtqxt  =  r(1,is)*tgyzsq - tg(1)*( tg(2)*r(2,is)             &
@@ -51676,13 +51735,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                                                      drsq)
                     dmin    =   min (dmin,dist)
   500 continue
-!                                  supersonic collection point
+! supersonic collection point
   900 continue
       if ( mplane ) dmin = max( 0.d0, dmin - qdltf )
       if ( dmin .le. 0.d0 ) influ = .true.
       ifluij  =  7
       if ( .not.influ ) go to 1200
-!                                  define  ifluij
+! define  ifluij
  1000 continue
       ifluij  =  6
       if ( dmin .gt. dist5 ) ifluij = 5
@@ -51869,7 +51928,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !call lsqsfc
-!                                                            /lsqsfc/
+!                           /lsqsfc/
       common/lsqsfc/zk(3,16),wtk(16),ak(6,16),no,npk
 !end  lsqsfc
 !call pandq
@@ -52199,7 +52258,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/mspnts/zm(3,maxpts)
 !end  mspnts
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -52212,15 +52271,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call setcor ('sinput')
 !
       call inputa
-!                                  set up nw list for off-body-point
-!                                  calculation if it has not already bee
-!                                  done.
+! set up nw list for off-body-point
+! calculation if it has not already bee
+! done.
       if ( nnwofb .gt. 0 ) go to 20
       nnwofb  =  nnett
       do 10 i = 1,nnett
       nwofb(i)  =  i
    10 continue
-!                                  clean up the nwofb list
+! clean up the nwofb list
    20 continue
       call shlsrt (nnwofb,nwofb)
       inew    =  0
@@ -52236,7 +52295,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,40) nnwofb, (nwofb(i),i=1,nnwofb)
    40 format ('  off-body-points network list,',i5,' networks'          &
      &    ,/, (1x,20i5)  )
-!                                  generate wake directions for wake net
+! generate wake directions for wake net
       do 500 knet = 1,nnett
           j1      =  (nn(knet)+1)/2
           j2      =  j1+1
@@ -52345,7 +52404,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       character form26*26
       character*72 line
 !call factrd
-!                                                            /factrd/
+!                           /factrd/
       common /factrd/ ifact
 !end  factrd
       integer pp,qq,p
@@ -52363,7 +52422,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/solnt/naic,nrhs,nans,nsc1,nsc2,nsc3,nsc4,iray(10),mtitle(5)
 !end  solnt
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -52390,7 +52449,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  skrch1
 !
 !call chybrj
-!                                                            /chybrj/
+!                           /chybrj/
 !         unit numbers and scratch memory addresses in sinver
       common /chybrj/ ljac, ljly, lans                                  &
      &              , lldvdl, llvica, llvicd, llaic
@@ -52462,10 +52521,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         logical units for nonlinear iteration             /nlilun/
       common /nlilun/ nlimat, nlitmp, nlillu, nlirhs, nlibn, nlians     &
      &              , indmat(maxcp2+1)
-!                                                           /nlilun/
+!                          /nlilun/
 !end  nlilun
 !ca lfqprm
-!                                                       /lfqprm/
+!                      /lfqprm/
 !     major flags for controlling the low-frequency features
 !     mlofrq = 0, normal run
 !            = 1, ph/0 run, low frequency theory
@@ -52492,7 +52551,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !end  lfqprm
 !call blkprm
-!                                                         /blkprm/
+!                        /blkprm/
 !     nppblk  i*4  flow  block size for out-of-core solver
 !     nqqblk  i*4  flow  sub-block size for blkaic blocking algorithm
 !     nqblk   i*4  flow  (nppblk+nqqblk-1)/nqqblk  # of row sub-blocks
@@ -52505,7 +52564,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &              , nwwblk
 !end  blkprm
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -52524,15 +52583,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       nw      =  300000
       call setcor ('sinver')
-!                                  allocate cm for 1st part of sinver
+! allocate cm for 1st part of sinver
       call setcor ('sinver-1')
       nnsa    =  250000
       call getcor ('sa',llsa,nnsa)
-!                                  set release flags
+! set release flags
       rlse19  =  .false.
       rlse20  =  .true.
       rlse27  =  .true.
-!                                  release flags for NLI units
+! release flags for NLI units
       rlse51  =  .false.
       rlse52  =  .false.
       rlse53  =  .false.
@@ -52552,7 +52611,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ljac    =  51
       ljly    =  10000
       open (unit=ljac,file='ft51',form='unformatted',status='unknown')
-!                                  SCRATCH REQUIREMENTS FOR SOLVER
+! SCRATCH REQUIREMENTS FOR SOLVER
       nsfclu  =  klublk + ityprc*( 3*nppblk*nppblk + 2*nppblk )
       nbpp    =  min(nppblk,nrhs)
       nbrhs   =  (nrhs+nppblk-1)/nppblk
@@ -52630,7 +52689,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( nlopt2.ne.0 ) iaic = iaic + 1
           if ( ier.eq.iaic ) go to 350
           go to 400
-!                                  bad aic row detected
+! bad aic row detected
   350 continue
       call mnmod (ijfgc, 2*nm(kc)-1, ifn, jfn)
       write (6,6200) iaic, ii, kc, iduser(kc)                           &
@@ -52700,12 +52759,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nbccp2.le.0 ) go to 2000
       call openms (ntv,niv,nnv,0)
       call readms (ntv,nwv,nctrt,nctrt+1)
-!                                  print baseline solution, first case
+! print baseline solution, first case
       if ( iexcp2.ge.1 )                                                &
      &    call outvec ('lambda/0',nsngt,scr)
-!                                  set up and run iteration for cp2 matc
+! set up and run iteration for cp2 matc
       ll      =  450000
-!                                  define nf, the nonlinear problem size
+! define nf, the nonlinear problem size
       nf      =  nbccp2
 !
       call getcor ('dvdl',lldvdl, 4*(nsngu+nsngk) )
@@ -52719,30 +52778,30 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     ---------------------
       call getcor ('xvec',llxvec, nf)
       call getcor ('fvec',llfvec, nf)
-!                                  allow  25 000 to out-of-core solver
+! allow  25 000 to out-of-core solver
       nss     =  25000
       call getcor ('ss',  llss,  nss)
-!                                  allocate all lower level arrays
+! allocate all lower level arrays
 !         ======================>  be sure to allocate llb if you set <=
 !         ======================>  test = .true. in fsolve            <=
       ll = llss
       call getcor ('b',llb,1)
 ! === call getcor ('b',llb, nf*nf)
-!                                  allocate scratch for fsolve
+! allocate scratch for fsolve
       call getcor ('scr' ,llscr , nf)
       call getcor ('xnew',llxnew, nf)
       call getcor ('fnew',llfnew, nf)
       call getcor ('dphi',lldphi, nf)
       call getcor ('d',   lld,    nf)
-!                                  block size in fhybrj: coordinate chgs
+! block size in fhybrj: coordinate chgs
       nblkaj  =  20
-!                                  allocate scratch for fhybrj
+! allocate scratch for fhybrj
       call getcor ('alam',llalam, nsngt)
       call getcor ('fv',  llfv,   nf)
       call getcor ('dldx',lldldx, nf)
       call getcor ('dfdl',lldfdl, nblkaj*nsngu)
       call getcor ('aj',  llaj,   nblkaj*nf )
-!                                  set various flags for fhybrj usage
+! set various flags for fhybrj usage
       mode    =  1
       factor  =  10.d0
       nprint  =  -1.d0
@@ -52753,8 +52812,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 1600 iacase = 1,nacase
 !
       call dcopy (nbccp2,  0.d0,0,  w(llxvec),1)
-!                                  solve nonlinear problem for
-!                                  current case
+! solve nonlinear problem for
+! current case
       call fsolve (nf,w(llxvec),w(llfvec),nitcp2,nss,w(llss)            &
      &       ,w(llb),w(llscr),w(llxnew),w(llfnew),w(lldphi),w(lld)      &
      &       ,w(lldvdl),w(llvica),w(llvicd),w(llaic)                    &
@@ -52767,7 +52826,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       sols(is,iacase) = sols(is,iacase) + deltlm
  1500 continue
  1600 continue
-!                                  close NLI files: not yet implemented
+! close NLI files: not yet implemented
 !
 !
  1960 continue
@@ -52783,7 +52842,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
  2000 continue
-!                                  generate direct solution summary
+! generate direct solution summary
       do 2020 k = 1,72
       line(k:k) = ' '
  2020 continue
@@ -52792,7 +52851,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call remarx (line)
       goto 2100
 !
-!                                  collection point
+! collection point
  2100 continue
 !c
 !     *  loop ranges over the columns of the solution matrix          *
@@ -52803,7 +52862,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dcopy (nsngt,  sols(1,iacase),1, w(lsa),1)
       write(nans) (sols(is,iacase),is=1,nsngt)
   900 continue
-!                                     put solutions on records 90-93
+!    put solutions on records 90-93
       call ixtrns (90+mlofrq,w(llsa),kklr2i*nsngt*nacase)
       write (line,9002) lans
  9002 format (' ft',i2.2,' (singularity file) complete')
@@ -52811,7 +52870,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lamprt  =  iextrp.ge.2
       if ( lamprt )                                                     &
      &    call outvec ('lambda/n',nsngt,scr)
-!                                  close the LU file
+! close the LU file
       if ( rlse19 ) then
          fname  =  'rwms19'
          inquire (file=fname,exist=fexist)
@@ -52820,7 +52879,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
            close (llu,status='delete')
          endif
       endif
-!                                  close the AIC file
+! close the AIC file
 !----      call closms (nta)
 !c
 !     *  print out job status and cost for step just completed        *
@@ -53063,7 +53122,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  prnt
       dimension locpak(4), zk(3), zl(3)
 !call indedg
-!                                                            /indedg/
+!                           /indedg/
       common /indedg/ kokseg, kedseg, i1kseg, i2kseg                    &
      &              , lokseg, ledseg, i1lseg, i2lseg
 !end  indedg
@@ -53083,10 +53142,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nactbc  =  0
       if ( nlopt1 .ne. 0 ) nactbc = nactbc + 1
       if ( nlopt2 .ne. 0 ) nactbc = nactbc + 1
-!                                  check that there is an aic row which
-!                                  the matching condition may replace
-!                                  and that when this has been done,
-!                                  aic"s are no longer needed.
+! check that there is an aic row which
+! the matching condition may replace
+! and that when this has been done,
+! aic"s are no longer needed.
       ier = 2
       if ( nactbc .le. 0 ) go to 1000
       ier = 3
@@ -53099,7 +53158,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( kbasic.le.0 ) go to 610
       call enrchg (kc,ifn,jfn,zk)
       if ( nedg .eq. 2 ) go to 500
-!                                  one edge :  matchhinging to zero
+! one edge :  matchhinging to zero
       if ( iextrp.eq.0 ) go to 200
       knaif   =  0
       if ( iflgsp(kbasic) .ne.0 ) write (6,'(1x,a10,1x, 10i12)')        &
@@ -53108,8 +53167,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
       iflgsp(kbasic) =  3
       go to 800
-!                                  two edges :  check if there are two
-!                                  doublet parameters adjacent
+! two edges :  check if there are two
+! doublet parameters adjacent
   500 continue
       iedg1   =  nedaba(iabt) + 1
       iedg2   =  iedg1 + 1
@@ -53117,8 +53176,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( ifsg.eq.kfsgc ) ifsg = kfdkey(iedg2)
       call icopy (4,  kfdseg(4*ifsg-3),1,  lokseg,1)
       lnet    =  (ledseg+3)/4
-!                                  check on a variety of error and warni
-!                                  conditions and possibly issue some ms
+! check on a variety of error and warni
+! conditions and possibly issue some ms
       kchk    =  0
       if ( kc.ne.lnet .and. kfsgc.eq.ifsg ) kchk = 1
       if ( kchk.ne.0 ) write (6,'(1x,a10,1x, 10i12)')                   &
@@ -53132,8 +53191,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lsd     =  ledseg - (lnet-1)*4
       mfl     =  2*nm(lnet) - 1
       nfl     =  2*nn(lnet) - 1
-!                                  more checks on a variety of error
-!                                  and warning conditions
+! more checks on a variety of error
+! and warning conditions
       if ( ifsg.eq.kfsgc ) write (6,'(1x,a10,1x, 4i12)')                &
      & 'sngdel=err'                                                     &
      &    ,kfsgc,kfdkey(iedg1),kfdkey(iedg2),jcn
@@ -53143,8 +53202,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( kfsgc.ne.kfdkey(iedg1) .and. kfsgc.ne.kfdkey(iedg2) )        &
      &     CALL AbortPanair('sngdel-1')
       if ( ifsg.eq.kfsgc ) CALL AbortPanair('sngdel-2')
-!                                  get the control point's location
-!                                  on its matching edge
+! get the control point's location
+! on its matching edge
       call icopy (4,  kfdseg(4*kfsgc-3),1, kokseg,1)
       knet    =  (kedseg+3)/4
       ksd     =  kedseg - (knet-1)*4
@@ -53165,13 +53224,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kloc    =  0
       if ( kptfn .eq. 2*i1kseg-1 ) kloc = -1
       if ( kptfn .eq. 2*i2kseg-1 ) kloc = +1
-!                                  get the relative sign of the two edge
+! get the relative sign of the two edge
       ksgn    =  isign( 1, kfdsgn(kfsgc) )
       lsgn    =  isign( 1, kfdsgn(ifsg ) )
       klsgn   =  ksgn * lsgn
-!                                  examine points on opposing edge of nw
-!                                  lnet for being coincident with the po
-!                                  zk on nw kc
+! examine points on opposing edge of nw
+! lnet for being coincident with the po
+! zk on nw kc
       ll1     =  nssa(lnet) + 1
       ll2     =  nssa(lnet+1)
       i1lfn   =  2*i1lseg - 1
@@ -53207,14 +53266,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call enrchg (lnet,ifn,jfn,zl)
       call pident (zk,zl,ident)
       if ( .not. ident ) go to 600
-!                                  make a final check
+! make a final check
       if ( lptfn.lt.i1lfn  .or.  lptfn.gt.i2lfn )                       &
      &    go to 600
       lloc    =  0
       if ( lptfn .eq. 2*i1lseg-1 ) lloc = -1
       if ( lptfn .eq. 2*i2lseg-1 ) lloc = +1
       if ( kloc*lloc*klsgn .ge. 0 ) go to 570
-!                                  error detected in old logic
+! error detected in old logic
       go to 600
 !
   570 continue
@@ -53234,8 +53293,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &           ,ledseg,lnet,lsd,mfl,nfl
   620 continue
       go to 950
-!                                  an equivalent singularity parameter
-!                                  has been found
+! an equivalent singularity parameter
+! has been found
   700 continue
       if ( iextrp.ne.0 )                                                &
      &  write (6,6801) jcn,kfsgc,kc,jfsg,knet,ksd,i1kseg,i2kseg,ksgn    &
@@ -53417,7 +53476,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       common /ofbcom/ zof(3,6000), pvof(4,6000), ivzof(6000)
       dimension pvx(4,4)
-!                                  read in offbody evaluation points
+! read in offbody evaluation points
       if ( nof.le.0 ) go to 15
       call readmd (nti,zof,nidq(16),16)
       nof     =  min( 6000/nacase, nof)
@@ -53431,8 +53490,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    10 continue
       nofcas  =  nof*nacase
    15 continue
-!                                  loop over the panels requested for
-!                                  off body calculations
+! loop over the panels requested for
+! off body calculations
       rewind ntr
       do 50 ipx = 1,npanr
           read (ntr) (rtrnbf(i),i=1,nrdq)
@@ -53457,7 +53516,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
    50 continue
 !
-!                                  complete processing of offbody points
+! complete processing of offbody points
       if ( nof.le.0 ) go to 500
       do 200 iof = 1,nofcas
           if ( tpoff.eq.0.d0 ) call cscal2 (betams,pvof(2,iof),1)
@@ -53519,24 +53578,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !        array    matrix    in/out  contains cut geometry information
 !        epssec   real      input   tolerance where trace ends are
-!                                   considered to be equivalent
+!  considered to be equivalent
 !        ips      vector    in/out  panel stack - contains all of the
-!                                   panel numbers (global basis) that
-!                                   this cutting plane intersects.
-!                                   the panels are sorted by traces.
-!                                   itcsa provides pointers into ips.
+!  panel numbers (global basis) that
+!  this cutting plane intersects.
+!  the panels are sorted by traces.
+!  itcsa provides pointers into ips.
 !        itcsa    vector    in/out  contains trace pointers into panel
-!                                   stack vector (ips)
+!  stack vector (ips)
 !        ipvf     matrix    scrtch  panel visited flag matrix
-!                                   col 1 - 1st point in segment
-!                                   col 2 - end point in segment
-!                                   0 - not visited, 1 - checked
+!  col 1 - 1st point in segment
+!  col 2 - end point in segment
+!  0 - not visited, 1 - checked
 !        netgl    integer   input   global configuration network no.
 !        netgp    integer   input   group network number
 !        netind   vector    output  contains the global and group
-!                                   network indicies for each trace
-!                                   col 1 - global network index
-!                                   col 2 - group network index
+!  network indicies for each trace
+!  col 1 - global network index
+!  col 2 - group network index
 !        nmk      integer   input   number of rows in network k
 !        nnk      integer   input   number of columns in network k
 !        npak     integer   input   number of panels up to network k
@@ -53983,27 +54042,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !        array    matrix    input   contains cut geometry information
 !        epssec   real      input   tolerance where trace ends are
-!                                   considered to be equivalent
+!  considered to be equivalent
 !        ips      vector    input   panel stack - contains all of the
-!                                   panel numbers (global basis) that
-!                                   this cutting plane intersects.
-!                                   the panels are sorted by traces.
-!                                   itcsa provides pointers into ips.
+!  panel numbers (global basis) that
+!  this cutting plane intersects.
+!  the panels are sorted by traces.
+!  itcsa provides pointers into ips.
 !        isinfo   matrix    output  list containing the information
-!                                   about traces making up the strings
-!                                   col 1 - trace number
-!                                   col 2 - beginning index in the
-!                                           ips (panel stack) vector
-!                                   col 3 - end index in the ips vector
-!                                   col 4 - increment for loop along
-!                                           individual trace
-!                                           (if beg > end; incr=-1)
+!  about traces making up the strings
+!  col 1 - trace number
+!  col 2 - beginning index in the
+!          ips (panel stack) vector
+!  col 3 - end index in the ips vector
+!  col 4 - increment for loop along
+!          individual trace
+!          (if beg > end; incr=-1)
 !        itcsa    vector    input   contains trace pointers into panel
-!                                   stack vector (ips)
+!  stack vector (ips)
 !        itvf     matrix    scrtch  trace visited flag matrix
-!                                   col 1 - 1st point in trace
-!                                   col 2 - end point in trace
-!                                   0 - not visited, 1 - checked
+!  col 1 - 1st point in trace
+!  col 2 - end point in trace
+!  0 - not visited, 1 - checked
 !        nout     integer   input   standard output unit
 !        ntra     integer   input   total number of traces in this group
 !        ntrstr   vector    output  number of traces in each string
@@ -54232,7 +54291,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       knaif   =  keyloc(kl)
       kbasic  =  maps(knaif)
   950 continue
-!                                  return kl value as kloc to sngdel
+! return kl value as kloc to sngdel
       kloc    =  kl
       return
       END subroutine spbsc
@@ -55180,11 +55239,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , iacase, nacase, fsvhat(3,4), pvdry(3,4)
 !end  acase
 !call boundl
-!                                                           /boundl/
+!                          /boundl/
       common /boundl/ itapbl, ivcorr
 !end  boundl
 !ca cinout
-!                                                           /cinout/
+!                          /cinout/
       common /cinout/ ntsin, ntsout
 !end  cinout
 !call titles
@@ -55226,24 +55285,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( tpsl .ne. 0.d0 ) itypsl = 2
       ch      =  'w'
       if ( tpsl .ne. 0.d0 ) ch = 'v'
-!                                  write out each streamline, rereading
-!                                  unit  ntsmln  for each.
+! write out each streamline, rereading
+! unit  ntsmln  for each.
       nsltot  =  numpts*ncassl
       do 100 isl = 1,nsltot
       rewind ntsmln
       ia      =  53
-!                                  get start pt index indsl, and case nu
+! get start pt index indsl, and case nu
       call mnmod (isl,numpts,  indsl,icassl)
       isol    =  indvsl(icassl)
       iacase  =  isol
-!                                  read all data from unit  ntsmln
-!                                  selecting only data for the current
-!                                  streamline and quitting at the eof
+! read all data from unit  ntsmln
+! selecting only data for the current
+! streamline and quitting at the eof
    50 continue
       read (ntsmln,end=100) jsl, intpnt, svar, xyz, vw, phip, korder,   &
      &                      fwdbk
       if ( jsl.ne.isl ) go to 50
-!                                  as needed, put out a page header
+! as needed, put out a page header
       if ( ia .lt. 52 ) go to 80
           if ( ia .eq. 52 ) write (ntsout,6003)
           if ( ia .eq. 53 )                                             &
@@ -55253,15 +55312,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           write (ntsout,6002) ch,ch,ch,cpname(nprcof)
    80 continue
       ia      =  ia + 1
-!                                  apply the velocity correction and get
+! apply the velocity correction and get
       call vadd (vw,-1.d0,fsv(1,isol),pv,3)
       if ( tpsl.ne.0.d0 ) goto 85
-!                                       tpsl = 0., mass flux was calcula
+!      tpsl = 0., mass flux was calcula
           call dcopy (3,  vw,1,  wt,1)
           call cmpscl ( 1.d0/betams, compd, pv, pv)
           call vadd (fsv(1,isol), 1.d0, pv, vt, 3)
           goto 90
-!                                       tpsl # 0., velocity was calculat
+!      tpsl # 0., velocity was calculat
    85 continue
       call cmpscl (betams,compd,pv,pw)
       call vadd (fsv(1,isol),1.d0,pw,wt,3)
@@ -55271,8 +55330,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call velcor (ivcorr,fsv(1,isol),fsvmag,compd,amach,wt,vw)
       call vadd (vw,-1.d0,fsv(1,isol),pv,3)
       call dcopy (3,  vw,1,  vt,1)
-!                                  write  s/l  info  to  units  ntsout
-!                                  and  nslout.
+! write  s/l  info  to  units  ntsout
+! and  nslout.
    90 continue
       kmat    =  0
       call cpcal (kmat,pv,fsv(1,isol),betams,compd,cp)
@@ -55314,16 +55373,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       intprv  =  -100
       ksl     =  0
 !
-!                                  copy file  *nslout*  to  *ntsmln*
+! copy file  *nslout*  to  *ntsmln*
 !
   200 continue
       read ( nslout ,end=300) jsl,intpnt,svar,xyz,vw,phip,korder,fwdbk  &
      &              ,amloc,cp(nprcof),iacase,indsl
       if ( jsl.eq.jslprv ) goto 240
-!                                  new streamline
+! new streamline
           ksl     =  ksl + 1
           if ( ksl.eq.1 ) goto 220
-!                                  save streamline (ksl-1) when (ksl-1)
+! save streamline (ksl-1) when (ksl-1)
           aintpt  =  intprv
           anum2   =  2.d0
           write (slcase,'(i1)') iaprv
@@ -55339,18 +55398,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           iaprv   =  iacase
           indprv  =  indsl
           jslprv  =  jsl
-!                                  put out *eof for previous streamline
+! put out *eof for previous streamline
           if ( ksl.gt.1 ) write (ntsmln,3002)
           write (ntsmln,3005) indsl,iacase
           if ( ksl.eq.1 ) write (ntsmln,3003) ch,ch,ch,cpname(nprcof)
   240 continue
-!                                  save integration pt index, position,
+! save integration pt index, position,
       intprv  =  intpnt
       call dcopy (3,  xyz,1,  posvel(1,intpnt),1)
       call dcopy (3,   vw,1,  posvel(4,intpnt),1)
-!                                  compute cp and mach
+! compute cp and mach
  6005 format ('  streamline #',i4,'  case:',i5)
-!                                  pv =  pert. v, vt = total v, wt = tot
+! pv =  pert. v, vt = total v, wt = tot
   280 continue
       ifwbk   =  fwdbk
       write (ntsmln,3004) intpnt,svar,xyz,vw,phip,cp(nprcof),amloc,ifwbk
@@ -55360,7 +55419,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
       write (ntsmln,3002)
       rewind ntsmln
-!                                  save the last streamline
+! save the last streamline
       aintpt  =  intprv
       anum2   =  2.d0
       write (slcase,'(i1)') iaprv
@@ -55571,7 +55630,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                          ,astdnz(100), istdnz(100)
 !end  strpak
       common /zpandq/ zpan(455),izpan(44),zpan2(6),izpan2(34),zdum(1)
-!                                  generate far field data
+! generate far field data
       nwf    =  locfcn(indrqf) - locfcn(cpfz)
       call dlocfx (nwf)
       call jzero (cpfz,nwf)
@@ -55732,15 +55791,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       data incg / 0,1,0,2,1,0 /
       data jncg / 0,0,1,0,1,2 /
       data facg / 1.d0,  1.d0,1.d0,  .5d0,1.d0,.5d0 /
-!                                  clear output arrays that are set
-!                                  rather than incremented
+! clear output arrays that are set
+! rather than incremented
       call dcopy (3*6*3*4, 0.d0,0,  wscc,1)
       call dcopy (3*3*4,  0.d0,0,  almscc,1)
-!                                  check for null subpanel
+! check for null subpanel
       icsp1    =  mod(ics,4) + 1
       if ( ics.ne.0 .and. ( is.eq.ics .or. is.eq.icsp1 ) ) goto 900
-!                                  get the local coordinates of the
-!                                  subpanel's 3 corners
+! get the local coordinates of the
+! subpanel's 3 corners
       if ( is.le.4 ) then
          isx(1)  =  is
          isx(2)  =  is+4
@@ -55750,17 +55809,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          isx(2)  =  mod(is+2,4)+5
          isx(3)  =  is
       endif
-!                                  generate local coords of 3 corners
+! generate local coords of 3 corners
       do 100 j = 1,3
          call unipan (as,cp(1,isx(1)), cp(1,isx(j)), cpl(1,j))
          call unipan (am,cp(1,9),      cp(1,isx(j)), cpm(1,j))
   100 continue
-!                                  compute subpanel panel moments
+! compute subpanel panel moments
       icsl    =  0
       call ccaln (cpl,icsl,cm,  3,  6)
-!                                  get transformation for coefficients
-!                                  of linearfcns psi/beta (sg,tau) to
-!                                  fcns g/alfa (xi',eta').
+! get transformation for coefficients
+! of linearfcns psi/beta (sg,tau) to
+! fcns g/alfa (xi',eta').
 !                   xi/2 *  eta/3  -    xi/3 *  eta/2
       detxy   =  cpl(1,2)*cpl(2,3) - cpl(1,3)*cpl(2,2)
       deti    =  1.d0/detxy
@@ -55782,13 +55841,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       aloc(3,1) = -(alyx+alyy)
       aloc(3,2) =                alyx
       aloc(3,3) =                               alyy
-!                                  generate transformation between
-!                                  subpanel local coords and mean plane
-!                                  local coords
+! generate transformation between
+! subpanel local coords and mean plane
+! local coords
       call hsmmp1 (3,3,3,  aloc,1,3,  cpm,3,1,  xfm,1,3)
-!                                  generate transformation from g-fcns
-!                                  of (xi',eta') (subpanel local) to
-!                                  g-fcns of (xi,eta) (meanplane local)
+! generate transformation from g-fcns
+! of (xi',eta') (subpanel local) to
+! g-fcns of (xi,eta) (meanplane local)
 !
 !     g/alpha = [ 1, xi, eta, xi^2/2, xi*eta, eta^2/2 ]
 !     incg    = [ 0,  1,   0,      2,      1,       0 ]
@@ -55845,12 +55904,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       gab(6,5) =                      b1*b2
       gab(6,6) =                           b2*b2
 !
-!                                  get q/sg, q/tau; w/sg, w/tau
+! get q/sg, q/tau; w/sg, w/tau
       call vadd (cp(1,isx(2)), -1.d0, cp(1,isx(1)), dqs, 3)
       call vadd (cp(1,isx(3)), -1.d0, cp(1,isx(1)), dqt, 3)
       call vadd (ws(1,2),      -1.d0, ws(1,1),      dws, 3)
       call vadd (ws(1,3),      -1.d0, ws(1,1),      dwt, 3)
-!                                  generate alm coefficients wrt sg,tau
+! generate alm coefficients wrt sg,tau
       call cross (dqt,dws, qtxws)
       call cross (dqs,dwt, qsxwt)
       call vadd (qtxws,  -1.d0,  qsxwt,  dqwts, 3)
@@ -55870,10 +55929,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross (dqs,dqt,qsxqt)
       sfac    =  1.d0/sqrt( ddot(3, qsxqt,1, qsxqt,1) )
       call dscal (27,  sfac,  almccx,1)
-!                                  transform alm coefficients from
-!                                  (sg,tau) to (xi',eta') dependence
+! transform alm coefficients from
+! (sg,tau) to (xi',eta') dependence
       call hsmmp1 (3,3,9,  aloc,1,3,  almccx,1,3,  almccy,1,3)
-!                                   get increments to almsm moments
+!  get increments to almsm moments
       call dcopy (3*3*3,  0.d0,0,  almsmx,1)
       do 130 ibt = 1,3
          do 125 igm = 1,3
@@ -55884,7 +55943,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   125    continue
   130 continue
 !+++      call hsmmp1 (3,3,9,  gab,1,6,  almsmx,1,3,  almsmy,1,3)
-!                                   coeffs of w as fcn of xi', eta'
+!  coeffs of w as fcn of xi', eta'
       call hsmmp1 (3,3,3,  aloc,1,3,  ws,3,1,  wsxy,3,1)
       call hsmmp1 (3,3,1,  wsxy,3,1, ens,1,3,  enwsxy,1,3)
 !
@@ -55912,18 +55971,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200       continue
   300    continue
   400 continue
-!                                  transform dmdq into dependency upon
-!                                  triangles 3 corners
+! transform dmdq into dependency upon
+! triangles 3 corners
       call hsmmp1 (54,3,3,  dmdq,1,54,  aloc,1,3,  dmdqx,1,54)
-!                                  transform dmdqx from moments for
-!                                  functions of (xi',eta') to (xi,eta)
+! transform dmdqx from moments for
+! functions of (xi',eta') to (xi,eta)
 !+++      do 500 jq = 1,3
 !+++         call hsmmp1 (9,6,6,  dmdqx(1,1,1,jq),1,9,  gab,6,1
 !+++     x               ,dmdq(1,1,1,jq),1,9)
 !+++ 500  continue
-!                                  accumulate moments into wsm.  Also,
-!                                  determine dependence of 6 canonical
-!                                  subpanel points on the 4 corner pts
+! accumulate moments into wsm.  Also,
+! determine dependence of 6 canonical
+! subpanel points on the 4 corner pts
       call dcopy (24,  0.d0,0,  chvl,1)
       call dcopy (3*3*4,  0.d0,0,  almsmy,1)
       call dcopy (3*3*6*4,  0.d0,0,  dmdqz,1)
@@ -55932,8 +55991,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          jdep1   =  ipdep(ic)
          jdep2   =  ipdep(ic+1)-1
          cc      =   cdep(ic)
-!                                  wsm(i,j,ialf,kdep) <-- +
-!                                      <-- + cc*dmdqx(i,j,ialf,jq)
+! wsm(i,j,ialf,kdep) <-- +
+!     <-- + cc*dmdqx(i,j,ialf,jq)
          do 550 jdep = jdep1,jdep2
             kdep    =  indep(jdep)
 !+++          call daxpy (54, cc,  dmdq(1,1,1,jq),1,  wsm(1,1,1,kdep),1)
@@ -55943,27 +56002,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             call daxpy (9,  cc,  almsmx(1,1,jq),1,   almsmy(1,1,kdep),1)
   550    continue
   600 continue
-!                                  evaluate (n,w) at triangle corners
+! evaluate (n,w) at triangle corners
       call hsmmp1 (1,3,3,  ens,1,1,  ws,1,3,  enws,1,1)
       call dcopy (9,  ws,1,  wst,1)
       do 620 ibt = 1,3
          jbt      =  mod(ibt,3) + 1
          kbt      =  mod(jbt,3) + 1
-!                                  express 6 canonical basis fcns in
-!                                  terms of g/alpha (xi',eta'):
-!                                    th/bt   =  psi/bt ( 2 psi/bt - 1)
-!                                    th/bt+3 =  4 psi/[bt+1] psi/[bt+2]
+! express 6 canonical basis fcns in
+! terms of g/alpha (xi',eta'):
+!   th/bt   =  psi/bt ( 2 psi/bt - 1)
+!   th/bt+3 =  4 psi/[bt+1] psi/[bt+2]
          call qudlxl (aloc(1,ibt),aloc(1,ibt),  bloc(1,ibt))
          call dscal (6,  2.d0,  bloc(1,ibt),1)
          call daxpy (3, -1.d0,  aloc(1,ibt),1,  bloc(1,ibt),1)
          call qudlxl (aloc(1,jbt),aloc(1,kbt),  bloc(1,ibt+3))
          call dscal (6,  4.d0,  bloc(1,ibt+3),1)
-!                                  interpolate  (n,w), w  to tri-midpts
+! interpolate  (n,w), w  to tri-midpts
          enws(ibt+3) = .5d0*( enws(jbt) + enws(kbt) )
          do 605 i = 1,3
             wst(i,ibt+3) = .5d0*( ws(i,jbt) + ws(i,kbt) )
   605    continue
-!                                  depedence of tri-midpts on 4 corners
+! depedence of tri-midpts on 4 corners
          do 610 idlt = 1,4
             chvl(ibt+3,idlt) = .5d0*( chvl(jbt,idlt) + chvl(kbt,idlt) )
   610    continue
@@ -55982,21 +56041,21 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   650       continue
   680    continue
   700 continue
-!                                    transform function values into
-!                                    derivatives for output to wscc
+!   transform function values into
+!   derivatives for output to wscc
       do 720 i = 1,3
          call hsmmp1 (6,6,12,  bloc,1,6,  wsccx(i,1,1,1),3,3*6          &
      &               ,wscc(i,1,1,1),3,3*6)
   720 continue
-!                                     transform to fcns (xi,eta)
+!    transform to fcns (xi,eta)
       call hsmmp1 (3,3,12,  gab,1,6,  almsmy,1,3,  almsmx,1,3)
       do 820 ialf = 1,4
       call hsmmp1 (9,6,6,  dmdqz(1,1,1,ialf),1,9,  gab,6,1              &
      &            ,dmdqy(1,1,1,ialf),1,9)
   820 continue
-!                                    accumulate into moment integrals
+!   accumulate into moment integrals
       call daxpy (36,   1.d0,  almsmx,1,   almsm,1)
-!                                    add in to wsm(i,j,ialf,idlt)
+!   add in to wsm(i,j,ialf,idlt)
       call daxpy (216,  1.d0,  dmdqy,1,  wsm,1)
 !
   900 continue
@@ -56634,7 +56693,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                            declare input                      *
 !
 !call norx
-!                                                            /norx/
+!                           /norx/
       common /norx/ sgnx, diamx
 !end  norx
       dimension     dvsp(4,6), dvdp(4,10)
@@ -56680,7 +56739,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                            with aicsup                        *
 !
 !call supdta
-!                                                            /supdta/
+!                           /supdta/
       common /supdta/ p(2), x, n, doublt, btinv, nf
 !end  supdta
       dimension q(2,16)
@@ -56700,17 +56759,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                q(1,n)  =  pn(1,i)
                q(2,n)  =  pn(2,i)
   100 continue
-!                                  factor for change of coordinates,
-!                                  source aic-s
+! factor for change of coordinates,
+! source aic-s
       btinv   =  sfac
-!                                  downstream distance of field point
+! downstream distance of field point
       x=sgnx*xp(3)
-!                                  position of center of mach cone,
-!                                  local coordinates
+! position of center of mach cone,
+! local coordinates
       p(1)    =  xp(1)
       p(2)    =  xp(2)
-!                                  determine if doublet aic*s are
-!                                  desired
+! determine if doublet aic*s are
+! desired
       doublt  =  mits.eq.2
 !c
 !     *                            call aicsup to get answers         *
@@ -56720,21 +56779,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   rearrange answers and apply sign factors                    *
 !
       do 400 i = 1,nf
-      if(ne.eq.1) go to 400
-      dvd(2,i)=dvdp(2,i)*sgnx
-      dvd(3,i)=dvdp(3,i)*sgnx
-      dvd(4,i)=dvdp(1,i)
-  400 dvd(1,i)=dvdp(4,i)*sgnx
+        if(ne.eq.1) go to 400
+        dvd(2,i)=dvdp(2,i)*sgnx
+        dvd(3,i)=dvdp(3,i)*sgnx
+        dvd(4,i)=dvdp(1,i)
+  400   dvd(1,i)=dvdp(4,i)*sgnx
       ng      =  3*(1+nf/10)
       do 500 i = 1,ng
-      if(ne.eq.1) go to 500
-      dvs(2,i)=dvsp(2,i)
-      dvs(3,i)=dvsp(3,i)
-      dvs(4,i)=dvsp(1,i)*sgnx
-  500 dvs(1,i)=dvsp(4,i)
+        if(ne.eq.1) go to 500
+        dvs(2,i)=dvsp(2,i)
+        dvs(3,i)=dvsp(3,i)
+        dvs(4,i)=dvsp(1,i)*sgnx
+  500   dvs(1,i)=dvsp(4,i)
       return
       END subroutine supspi
-! **deck surfit
+      
+
+
       subroutine surfit(cp,ar,art)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -56997,7 +57058,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /skrch1/ w(9000000)
 !end  skrch1
 !
-!                                  get max panels, doublet parms
+! get max panels, doublet parms
       mxxpan  =  0
       mxxdbl  =  0
       mxxfg   =  0
@@ -57006,7 +57067,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          mxxdbl  =  max ( mxxdbl, (nm(knet)+1)*(nn(knet)+1) )
          mxxfg   =  max ( mxxfg,  (2*nm(knet)-1) * (2*nn(knet)-1)   )
   100 continue
-!                                  allocate memory
+! allocate memory
       call setcor ('sutput')
 !
       call getcor ('dvdfs',lldvdf,4*nsngt)
@@ -57086,7 +57147,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !call iomag
-!                                                            /iomag/
+!                           /iomag/
       common /iomag/ncalg,ncalt,nwrdg,nwrdt
 !end  iomag
       character*72 line
@@ -57112,7 +57173,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /vrwi/ nvdq,nsv,nrv,ntv,nnv, niv(maxcp+2), nwv(maxcp)
 !end  vrwi
 !call piccnt
-!                                                     /piccnt/
+!                    /piccnt/
       common /piccnt/ npic(4,7), n56chg(0:3)
 !end  piccnt
 !call prnt
@@ -57127,11 +57188,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,nmapca(151)                                                   &
      &   ,nnett,nzmpt,npant,nsngt,nsngu,nsngk,nctrt,nbcot,nnwofb
 !end  index
-!                                                  ...  mxxscr = 295 000
+!                 ...  mxxscr = 295 000
       parameter (mxxscr=295000)
-!                                                  ...  mxxcls = 512
+!                 ...  mxxcls = 512
       parameter (mxxcls=512)
-!                                                  ...  mxxrws = 300
+!                 ...  mxxrws = 300
       parameter (mxxrws=300)
 !
 !call skrch1
@@ -57175,14 +57236,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call remarx (line)
  9001 format (' ft',i2.2,' (pic file) done.  index lth-',i5             &
      &  ,'  cp count-',i5,'  nwv recd-',i5)
-!                                  adjust the pic counts
-!                                  n56chg: (1,2,3) <==> (S,D,S+D)
+! adjust the pic counts
+! n56chg: (1,2,3) <==> (S,D,S+D)
       n56chg(1) = n56chg(1) + n56chg(3)
       n56chg(2) = n56chg(2) + n56chg(3)
-!                                  adjust source influence counts
+! adjust source influence counts
       npic(1,5+1) = npic(1,5+1) + n56chg(1)
       npic(1,6+1) = npic(1,6+1) - n56chg(1)
-!                                  adjust double influence counts
+! adjust double influence counts
       npic(2,5+1) = npic(2,5+1) + n56chg(2)
       npic(2,6+1) = npic(2,6+1) - n56chg(2)
       write (6,1000)
@@ -57280,7 +57341,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -57644,7 +57705,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -57711,7 +57772,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       ,ndbcon
 !end  bcon
 !call kutflg
-!                                                            /kutflg/
+!                           /kutflg/
       common /kutflg/ kutta(150), kttype(150)
 !end  kutflg
 !call ofbod
@@ -57768,11 +57829,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  nwlst
       character*30 kutmsg(4)
 !call datchk
-!                                                            /datchk/
+!                           /datchk/
       common/datchk/ndtchk
 !end  datchk
 !call prtnor
-!                                                            /prtnor/
+!                           /prtnor/
       common /prtnor/ nprten
 !end  prtnor
 !call skrch1
@@ -57781,7 +57842,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !c
 !     *  if requested, print out the geometry data                    *
 !call narmsg
-!                                                            /narmsg/
+!                           /narmsg/
       common /narmsg/ nasrat
 !end  narmsg
 !
@@ -57841,10 +57902,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       xpidnt  =  .not. newabt
 !
-!                                  define epsgeo and jsympa for the
-!                                  call to  abtidn  which will identify
-!                                  abutments and abutment intersections
-!                                  and adjust the geometry.
+! define epsgeo and jsympa for the
+! call to  abtidn  which will identify
+! abutments and abutment intersections
+! and adjust the geometry.
    30 continue
       call bmark ('libgeoab')
       write (6,6003)
@@ -57910,16 +57971,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call CPU_TIME (tb)
       write (6,'(1x,a10,1x, f12.6)')                                    &
      & 't/abtidn',tb-ta
-!                                  define the standard pilot code data
-!                                  structures for abutments and
-!                                  abutment intersections
+! define the standard pilot code data
+! structures for abutments and
+! abutment intersections
       call CPU_TIME (ta)
       call CPU_TIME (tb)
       write (6, '(1x,a10,1x, f12.6)' )                                  &
      & 'abtcal/anl',tb-ta
       call emark  ('libgeoab')
-!                                  check for any untoward intersections
-!                                  that may have been induced.
+! check for any untoward intersections
+! that may have been induced.
       if ( .not. xtrint ) go to 32
       call CPU_TIME (ta)
       call triint (nnett,nm,nn,nza,zm,  intcnt)
@@ -57927,9 +57988,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,'(1x,a10,1x,  f12.6)')                                   &
      & 't/triint',tb-ta
    32 continue
-!                                  compare old and new p.c. data structu
+! compare old and new p.c. data structu
    40 continue
-!                                  print network normals on a datacheck
+! print network normals on a datacheck
       if ( nprten.eq.0 ) goto 130
       call bmark ('netnorml')
       lz      =  1
@@ -57947,7 +58008,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   120 continue
       call emark ('netnorml')
   130 continue
-!                                   put in various other checks
+!  put in various other checks
       npa(1)  =  0
       do 140 k = 1,nnett
          np      =(nm(k)-1)*(nn(k)-1)
@@ -57962,9 +58023,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          write(6,7000) npant,maxpan
          go to 400
       endif
-!                                   move any offbody points lying on a
-!                                   subpanel boundary into the interior
-!                                   of the subpanel, elevate slightly.
+!  move any offbody points lying on a
+!  subpanel boundary into the interior
+!  of the subpanel, elevate slightly.
       if ( nof.gt.0 ) then
          nof3    =  nidq(16)
          call readmd (nti,zof,nof3,16)
@@ -57972,8 +58033,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call offchk (nof,zof,nisym,njsym,nnett,npant,nm,nn,nza,npa,zm)   ! Added by Martin Hegedus, 4/21/09
          call writmd (nti,zof,nof3,16,  -1,0)
       endif
-!                                   for type 3 datacheck, run geomc and
-!                                   ffdqg style geometry checks.
+!  for type 3 datacheck, run geomc and
+!  ffdqg style geometry checks.
       if ( ndtchk.ge.2 ) then
          call geodtc (nnett,nm,nn,zm)
          return
@@ -58239,7 +58300,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ip = irow + (nmk-1)*( jcol - 1 ) + npa
           ipgp = irow + (nmk-1)*( jcol - 1 ) + npagp
           call strns(ip,cp)
-!                                  ACTIVATE PSDDQG CALL (m.e.)
+! ACTIVATE PSDDQG CALL (m.e.)
           call psddqg
 !
 !         get normal vector for panel (in global coordinates)
@@ -58674,35 +58735,35 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outmat ('atrf',3,3,3,atrf)
       call mxm (atrf,3,fsvhat(1,iacase),3,fsvl,1)
       call outvcx ('fsvhat-loc',3,fsvl)
-!                                   loop over selected wake networks
-!                                   with free trailing edges
+!  loop over selected wake networks
+!  with free trailing edges
       do 500 knw = 1,nw
          knet    =  nwlst(knw)
          mk      =  nm(knet)
          nk      =  nn(knet)
          npn(knw)=  nk-1
-!                                   loop over trailing edge panels along
-!                                   edge 3 in positive order
+!  loop over trailing edge panels along
+!  edge 3 in positive order
          do 400 jj = 1,(nk-1)
             jpan    =  nk - jj
             jpan    =  jj
             ijpan   =  jpan*(mk-1)
             ip      =  ijpan + npa(knet)
             call strns (ip,cp)
-!                                   compute the 9 canonical doublet vals
+!  compute the 9 canonical doublet vals
             call dcopy (9,  0.d0,0,  amu,1)
             do 250 jmu = 1,ind
                lmu     =  1 + (jmu-1)*9
                js      =  iid(jmu)
                call daxpy (9,  s(js),  astd(lmu),1,  amu,1)
   250       continue
-!                                   count the trailing edge panels
-!                                   loop over left (ilr=2) and
-!                                   right (ilr=1) points of wake T.E.
-!                                   the reversal of the natural logical
-!                                   order has been performed in order
-!                                   to correct a sign error in the
-!                                   original code/derivation
+!  count the trailing edge panels
+!  loop over left (ilr=2) and
+!  right (ilr=1) points of wake T.E.
+!  the reversal of the natural logical
+!  order has been performed in order
+!  to correct a sign error in the
+!  original code/derivation
             do 300 ilr = 1,2
                is      =  ilr + 2
                tc      =  -1.d0
@@ -58711,23 +58772,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                alfa    =  - ddot(3, cp(1,is),1,  fsvhat(1,iacase),1)
                call vadd (cp(1,is),alfa,fsvhat(1,iacase),xtrf,3)
                call mxm  (atrf,3,xtrf,3,xltrf,1)
-!                                   compute grad(mu) and transform.
+!  compute grad(mu) and transform.
                call sngcal (cp(1,is),s,tsc)
                call dcopy (3,  tsc(3),1,  gdmu,1)
-!                                   computing grad(mu) using dvcalc
-!                                   gives identical results at corners
-!                                   because the quadratic variation of
-!                                   mu along the local s and t traject-
-!                                   ories completely determines the
-!                                   gradient.  Also the H-P normal at
-!                                   the panel corners agrees exactly
-!                                   with the 8-subpanel normal there
+!  computing grad(mu) using dvcalc
+!  gives identical results at corners
+!  because the quadratic variation of
+!  mu along the local s and t traject-
+!  ories completely determines the
+!  gradient.  Also the H-P normal at
+!  the panel corners agrees exactly
+!  with the 8-subpanel normal there
 !=====               call dvcalc (cp(1,is),sc,tc,  dvsrc,dvdbl)
 !=====               call mxm (dvdbl,3,amu,9,gdmu,1)
-!                                   apply the freestream rotation matrix
+!  apply the freestream rotation matrix
                call mxm  (atrf,3,gdmu,3,gdmul,1)
-!                                   put coordinates and grad(mu) into
-!                                   appropriate positions
+!  put coordinates and grad(mu) into
+!  appropriate positions
                if ( ilr.eq.1 ) then
                   yrit(knw,jj) = xltrf(2)
                   zrit(knw,jj) = xltrf(3)
@@ -58742,9 +58803,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300       continue
   400    continue
   500 continue
-!                                   impose symmetry conditions
+!  impose symmetry conditions
       nwx     =  nw
-!                                   symmetry wrt y axis (x-z plane)
+!  symmetry wrt y axis (x-z plane)
       if ( misym.eq.0 ) goto 610
       sgni     =  1.d0
       if ( misym.lt.0 ) sgni = -1.d0
@@ -58770,7 +58831,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   600 continue
       nwx     =  2*nwx
   610 continue
-!                                   symmetry wrt z axis (x-y plane)
+!  symmetry wrt z axis (x-y plane)
       if ( mjsym.eq.0 ) goto 710
       sgj     =  1.d0
       if ( mjsym.lt.0 ) sgj = -1.d0
@@ -59066,7 +59127,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       testq =  min (tstq12,tstq13,tstq23)
 !
 !     note that the largest acceptable difference is .001, absolute
-!                                                          --------
+!                         --------
       if( (abs(testp) .le. tol)  .or.                                   &
      &    (abs(testq) .le. tol)  )  go to 1100
 !
@@ -59475,7 +59536,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /ncons/ pi,pi2,pi4i,twopi,pio2
 !end  ncons
       dimension gen(3)
-!                                  specify wake generator direction
+! specify wake generator direction
       call dcopy (3,  0.d0,0,  gen,1)
       gen(1)  =  1.d0
       aarg=alpc*pi2/360.d0
@@ -59665,7 +59726,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /skrch1/ w(9000000)
 !end  skrch1
 !call lndblx
-!                                                           /lndblx/
+!                          /lndblx/
       common /lndblx/ genwak(3,mxnett), slndbl(mxnett)                  &
      &              , nlndbl, iwkfil, ilndbl(mxnett), idsvfw(mxnett)
 !end  lndblx
@@ -59881,12 +59942,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine uabend
       implicit double precision (a-h,o-z)
       data  ifail /10/
-!                                  on cray, force traceback via call to
+! on cray, force traceback via call to
       CALL AbortPanair('uabend')
-!                                  user error. force traceback via acgoe
+! user error. force traceback via acgoe
       go to (10,20), ifail
-!                                  give the compiler some code to
-!                                  fool the optimizer
+! give the compiler some code to
+! fool the optimizer
    10 continue
       ifail   =  ifail+1
       go to 30
@@ -60443,18 +60504,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       data gm /1.4d0/,   nt /20/
 !
-!                                  define in-line functions
+! define in-line functions
       ffcn(xd) = xd * ( max(0.d0, 1.d0 + hgm1m2*(1.d0-xd*xd)  ) )**gm1i
       gfcni(ed) =  xc * (  1.d0 - sqrt( max(0.d0,1.d0-ed/fc) )  )
       phi(ed) =  ffcn(  gfcni(ed)  )
 !
 !
-!                                  if no correction is to be applied, re
+! if no correction is to be applied, re
       if ( iv.le.0 ) go to 950
       call vadd (v, -1.d0, f, pv, 3)
       call vip (pv,1,  c,1,  3,pvc)
       if ( iv.gt.1 ) go to 200
-!                                  mclean velocity correction
+! mclean velocity correction
       if ( pvc .gt. 0.d0 ) go to 40
           rhorat  =  1.d0/( 1.d0-amach*amach*pvc/fm )
           go to 100
@@ -60466,7 +60527,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
       call vmul (w,rhorat,v,3)
       go to 950
-!                                  boctor velocity correction
+! boctor velocity correction
   200 continue
       if ( amach .gt. 1.d0 ) go to 950
       call vip (w,1,c,1,3,wc)
@@ -60481,8 +60542,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       y       =  abs(y)
       if ( amach .gt. .6d0 ) go to 500
 !
-!                                  solve for  x ,  y = ffcn( x )
-!                                  by means of the secant method
+! solve for  x ,  y = ffcn( x )
+! by means of the secant method
       x       =  y
       p       =  ffcn(x)
       s       =  1.d0
@@ -60513,8 +60574,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       vxc     =  sgy * x * fm
       go to 800
 !
-!                                  solve for  e ,  y = ffcn( gfcni( e )
-!                                  by means of the secant method
+! solve for  e ,  y = ffcn( gfcni( e )
+! by means of the secant method
   500 continue
       xc      =  sqrt(  (1.d0+hgm1m2) / (.5d0*(gm+1.d0)*amach**2)  )
       fc      =  xc * (amach*xc)**(2.d0/gm1)
@@ -60547,11 +60608,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( abs(y-p) .lt. 1.d-8 ) go to 610
   600 continue
   610 continue
-!                                  set  x = gfcni( e )  so that  y = ffc
+! set  x = gfcni( e )  so that  y = ffc
       x       =  gfcni(e)
       vxc     =  sgy * x * fm
 !
-!                                  n.b.:  vxc = sgy * x * fm  where ffcn
+! n.b.:  vxc = sgy * x * fm  where ffcn
   800 continue
       call vip (v,1,c,1,3,vx)
       call vadd (v,vxc-vx,c,v,3)
@@ -60571,7 +60632,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension za(3,nncp*ncnsym), rsqa(nncp*ncnsym), ifla(nncp*ncnsym)
       dimension hk(nncp*ncnsym,6), gk(nncp*ncnsym,6)
       dimension hkph(nncp,6), gkph(nncp,6)
-!                                     scratch arrays
+!    scratch arrays
       dimension indb(nncp*ncnsym)
       dimension rsqb(nncp*ncnsym),    zb(nncp*ncnsym,3)
       dimension  hkb(nncp*ncnsym,6), gkb(nncp*ncnsym,6)
@@ -60623,12 +60684,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     jca     i  i*4  jc [control point index] values for za
 !
 !call freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -60660,11 +60721,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       dimension sgnkar(4)
       logical gkneed, hkneed
-!                                  ph/s kernel moments (gk) needed if
-!                                  panel has source or if dsnic is set
+! ph/s kernel moments (gk) needed if
+! panel has source or if dsnic is set
       gkneed  =  (itsf.ne.2) .or. dsnic
-!                                  ph/d kernel moments (hk) needed if
-!                                  panel has doublet or if VIC's req'd
+! ph/d kernel moments (hk) needed if
+! panel has doublet or if VIC's req'd
       hkneed  =  itsf.ge.2  .or.  nnvcp.gt.0
 !
                           ! SET BUT NEVER USED ???
@@ -60680,19 +60741,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       sgnkar(2) =  sgnki
       sgnkar(3) =  sgnkj
       sgnkar(4) =  sgnki*sgnkj
-!                                  gather up c.p. locations for
-!                                  all true far fields
+! gather up c.p. locations for
+! all true far fields
 !
       na      =  nncp*ncnsym
-!                                  note: vinflu/vinsup now uses 7 for
-!                                  a null influence flag
+! note: vinflu/vinsup now uses 7 for
+! a null influence flag
 !===      if ( amach.gt. 1.d0 ) then
 !===         call wheneq (na  ,ifla,1  ,0  ,indb,nb)
 !===         do 40 k = 1,nb
 !===            ifla(indb(k)) = 7
 !=== 40      continue
 !===      endif
-!                                  find all true far fields
+! find all true far fields
       call whenilt (na  ,ifla,1  ,4  ,indb,nb)
       do 80 k = 1,nb
          rsqb(k) = rsqa(indb(k))
@@ -60700,24 +60761,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          zb(k,2) = za(2,indb(k))
          zb(k,3) = za(3,indb(k))
    80 continue
-!                                  get p1 = sqrt[ rsqb ]
+! get p1 = sqrt[ rsqb ]
       do 85 k = 1,nb
          p1(k)   =  sqrt(rsqb(k))
    85 continue
 !
       if ( ityprc.eq.1 ) goto 110
-!                                  complex data (unsteady case)
-!                                  put omg*R into rsqb
+! complex data (unsteady case)
+! put omg*R into rsqb
       do 90 k = 1,nb
          rsqb(k) = omg*p1(k)
    90 continue
-!                                  [cos(omg*R),sin(omg*R)] in [xb,yb]
+! [cos(omg*R),sin(omg*R)] in [xb,yb]
       do 92 k = 1,nb
          xb(k) = cos(rsqb(k))
          yb(k) = sin(rsqb(k))
    92 continue
       if ( amach.gt. 1.d0 ) goto 100
-!                                  subsonic case: partial ps0,ps1
+! subsonic case: partial ps0,ps1
       do 94 k = 1,nb
                                                      ! was dcmplx
          ps0(k) = CMPLX(xb(k), -yb(k), KIND=8)
@@ -60725,16 +60786,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ps1(k) = ps0(k) * CMPLX(1.d0, rsqb(k), KIND=8)
    94 continue
       goto 110
-!                                  supersonic case: partial ps0,ps1
+! supersonic case: partial ps0,ps1
   100 continue
       do 102 k = 1,nb
          ps0(k) = xb(k)
          ps1(k) = xb(k) + rsqb(k)*yb(k)
   102 continue
       goto 110
-!                                  start generating kernel moments
-!                                  inverse powers of R;
-!                                  normalized  x, y, x*x, x*y, y*y
+! start generating kernel moments
+! inverse powers of R;
+! normalized  x, y, x*x, x*y, y*y
   110 continue
       do 120 k = 1,nb
          p1(k)  =  1.d0/p1(k)
@@ -60747,7 +60808,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   120 continue
 !
       if ( ityprc.eq.2 ) goto 125
-!                                  real data: steady flow
+! real data: steady flow
       do 122 k = 1,nb
          ps0(k) = p1(k)
          ps1(k) = p1(k)*p2(k)
@@ -60755,7 +60816,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ps3(k) = 5.d0*p2(k)*ps2(k)
   122 continue
       goto 135
-!                                  complex data: unsteady flow
+! complex data: unsteady flow
   125 continue
       do 130 k = 1,nb
          ps0(k) = p1(k)*ps0(k)
@@ -60765,7 +60826,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   130 continue
 !
   135 continue
-!                                  doublet kernel moments
+! doublet kernel moments
       if ( .not.hkneed ) goto 190
       do 140 k = 1,nb
          hkb(k,1)  =         ps1(k)
@@ -60775,7 +60836,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          hkb(k,5)  =  xyb(k)*ps3(k)
          hkb(k,6)  =  yyb(k)*ps3(k) - sf*ps2(k)
   140 continue
-!                                  scatter the doublet kernel moments
+! scatter the doublet kernel moments
       call zero (hk,ityprc*na*6)
       do 150 k = 1,nb
          hk(indb(k),1) = hkb(k,1)
@@ -60785,7 +60846,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          hk(indb(k),5) = hkb(k,5)
          hk(indb(k),6) = hkb(k,6)
   150 continue
-!                                  perform folding for ph/d calculation
+! perform folding for ph/d calculation
       do 155 k = 1,nncp
          hkph(k,1)  =  za(3,k)*hk(k,1)
          hkph(k,2)  =  za(3,k)*hk(k,2)
@@ -60819,11 +60880,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          hkph(k,5) = hkph(k,5) - za(3,k+kbase)*hk(k+kbase,5)
          hkph(k,6) = hkph(k,6) - za(3,k+kbase)*hk(k+kbase,6)
   170 continue
-!                                  end loop on symmetry conditions
+! end loop on symmetry conditions
   180 continue
 !
   190 continue
-!                                  source kernel moments
+! source kernel moments
       if ( .not.gkneed ) goto 290
       do 240 k = 1,nb
          gkb(k,1)  =         ps0(k)
@@ -60833,9 +60894,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          gkb(k,5)  =  xyb(k)*ps2(k)
          gkb(k,6)  =  yyb(k)*ps2(k) - sf*ps1(k)
   240 continue
-!                                  scatter the source kernel moments,
-!                                  scaling by the factor  fs = -ajf*sf
-!                                  as you go [no bop count increase]
+! scatter the source kernel moments,
+! scaling by the factor  fs = -ajf*sf
+! as you go [no bop count increase]
       call zero (gk,ityprc*na*6)
       do 250 k = 1,nb
          gk(indb(k),1) = fs*gkb(k,1)
@@ -60845,7 +60906,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          gk(indb(k),5) = fs*gkb(k,5)
          gk(indb(k),6) = fs*gkb(k,6)
   250 continue
-!                                  perform folding for ph/s calculation
+! perform folding for ph/s calculation
       do 255 k = 1,nncp
          gkph(k,1)  =  gk(k,1)
          gkph(k,2)  =  gk(k,2)
@@ -60879,7 +60940,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          gkph(k,5) = gkph(k,5) - gk(k+kbase,5)
          gkph(k,6) = gkph(k,6) - gk(k+kbase,6)
   270 continue
-!                                  end loop on symmetry conditions
+! end loop on symmetry conditions
   280 continue
 !
   290 continue
@@ -60924,7 +60985,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     RECOMMENDATIONS:  construct hmt in /pandfx/
 !                       incorporate code inline in vinfcc
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -60948,22 +61009,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension nkrna(0:7)
       dimension phsx(9), phdx(21)
 ! --- real*8 phsx, phdx, gkk, hkk
-!                                  number of kernel terms
+! number of kernel terms
       data nkrna /0,1,3,6,0,0,0,0/
-!                                  method: 1,true FF; 2, all quadrupole
+! method: 1,true FF; 2, all quadrupole
       data method / 2 /
 !
       nncpx   =  nncp*ityprc
       if ( astcpx ) goto 800
       goto ( 100, 500) method
-!                                  DISTINGUISH TYPES 1, 2 AND 3 FF's
+! DISTINGUISH TYPES 1, 2 AND 3 FF's
   100 continue
-!                                  evaluate source influences
+! evaluate source influences
       if ( mod(itsf,2).ne.0 ) then
          do 200 k = 1,nncp
             nkrn    =  nkrna(iflc(k))
             if ( nkrn.le.0 ) goto 200
-!                                  build source potential
+! build source potential
             gkk     =  gkph(k,1)
             do 140 j = 1,insf
                phsx(j) = gkk*hmasts(1,j)
@@ -60981,12 +61042,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   200    continue
       endif
-!                                  evaluate doublet influences
+! evaluate doublet influences
       if ( itsf.ge.2 ) then
          do 400 k = 1,nncp
             nkrn    =  nkrna(iflc(k))
             if ( nkrn.le.0 ) goto 400
-!                                  build source potential
+! build source potential
             hkk     =  hkph(k,1)
             do 340 j = 1,indf
                phdx(j) = hkk*hmastd(1,j)
@@ -61005,7 +61066,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400    continue
       endif
       goto 950
-!                                   USE QUADRUPOLES FOR ALL EVALUATIONS
+!  USE QUADRUPOLES FOR ALL EVALUATIONS
   500 continue
       if ( mod(itsf,2).ne.0 ) then
          call hsmmp1 (nncpx,6,insf  ,gkph,1,nncpx  ,hmasts,1,6          &
@@ -61033,8 +61094,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       goto 950
 !
-!                                   USE QUADRUPOLES FOR ALL EVALUATIONS
-!                                   [DATA IS COMPLEX]
+!  USE QUADRUPOLES FOR ALL EVALUATIONS
+!  [DATA IS COMPLEX]
   800 continue
       if ( mod(itsf,2).ne.0 ) then
          call hcmmp1 (nncp,6,insf  ,gkph,1,nncp  ,hmasts,1,6            &
@@ -61075,7 +61136,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                       incorporate code inline in vinfcc
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -61133,7 +61194,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension ifla(nncp*ncnsym), indv(nnvcp), iflva(nnvcp*ncnsym)     &
      &                                        , iflvb(nnvcp*ncnsym)
       dimension vsa(3,nnvcp,3), vda(3,nnvcp,5), sna(3,nnvcp,3)
-!                                  scratch memory
+! scratch memory
       dimension indva(nnvcp*ncnsym), indvb(nnvcp*ncnsym), indb(nnvcp)
       dimension zvb(nnvcp*ncnsym,3), hkv(nnvcp*ncnsym,6)
       dimension hbv(nnvcp*ncnsym,12), hv(nnvcp*ncnsym,6)
@@ -61168,7 +61229,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     vdc     l  r*8  scartch array for vdb calculation
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -61203,11 +61264,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       vsens   =  .false.
       vsourc  =  itsf.ne.2  .or.  vsens
       vdblet  =  itsf.ge.2
-!                                  flag to enforce true types 1&2 by
-!                                  zeroing appropriate kernel moments
+! flag to enforce true types 1&2 by
+! zeroing appropriate kernel moments
       true12  =  .false.
-!                                  generate the list of c.p. images
-!                                  for which vic computation is req'd
+! generate the list of c.p. images
+! for which vic computation is req'd
       nnkv    =  nnvcp*ncnsym
       kabase  =  0
       kvabas  =  0
@@ -61217,35 +61278,35 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             iflva(kvabas+k) = ifla(indv(k)+kabase)
    40    continue
          call whenilt (nnvcp  ,iflva(kvabas+1),1  ,4  ,indb,nb)
-!                                  indva points back into the za array;
-!                                  indvb points back into the vb buffer
-!                                  used in vffvs2: vb(nnvcp*ncnsym,nj,3)
+! indva points back into the za array;
+! indvb points back into the vb buffer
+! used in vffvs2: vb(nnvcp*ncnsym,nj,3)
          do 50 ib = 1,nb
             indva(ib+nvb) = indv( indb(ib) ) + kabase
             indvb(ib+nvb) = indb(ib) + kvabas
-!                                  following line req'd if true12 = .T.
+! following line req'd if true12 = .T.
             iflvb(ib+nvb) = iflva(kvabas+indb(ib))
    50    continue
          kabase  =  kabase + nncp
          kvabas  =  kvabas + nnvcp
          nvb     =  nvb + nb
    70 continue
-!                                  check for no influence; if nvb = 0,
-!                                  zero outputs and return
+! check for no influence; if nvb = 0,
+! zero outputs and return
       if ( nvb.gt.0 ) goto 100
          if ( vsourc ) call zero (vsa,ityprc*3*nnvcp*3)
          if ( vdblet ) call zero (vda,ityprc*3*nnvcp*5)
          if ( vsens  ) call zero (sna,ityprc*3*nnvcp*6)
          goto 950
   100 continue
-!                                  gather up all kernel moments for
-!                                  the required velocity matrices
+! gather up all kernel moments for
+! the required velocity matrices
       do 110 k = 1,nvb
          zvb(k,1)  =  za( 1, indva(k) )
          zvb(k,2)  =  za( 2, indva(k) )
          zvb(k,3)  =  za( 3, indva(k) )
   110 continue
-!                                  doublet kernel moments
+! doublet kernel moments
       do 130 k = 1,nvb
          hkv(k,1)  =  hk( indva(k),1 )
          hkv(k,2)  =  hk( indva(k),2 )
@@ -61254,9 +61315,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          hkv(k,5)  =  hk( indva(k),5 )
          hkv(k,6)  =  hk( indva(k),6 )
   130 continue
-!                                  zero out certain farfield moments
-!                                  in accordance with influence type
-!                                  instructions
+! zero out certain farfield moments
+! in accordance with influence type
+! instructions
       if ( .not. true12 ) goto 151
       call whenilt (nnkv  ,iflvb,1  ,3  ,indb,nb)
       do 140 ib = 1,nb
@@ -61271,25 +61332,25 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          hkv( indb(ib), 3 ) = 0.d0
   150 continue
   151 continue
-!                                  EVALUATE KERNEL INTEGRALS
+! EVALUATE KERNEL INTEGRALS
       nvbx    =  ityprc*nvb
       nnkvx   =  ityprc*nnkv
-!                                  nhv = 3 for linear source alone
+! nhv = 3 for linear source alone
       nhv     =  3
       if ( vdblet .or. vsens ) nhv = 6
       call hsmmp1 (nvbx,6,nhv  ,hkv,1,nnkvx  ,hm,10,1  ,hv,1,nnkvx)
 ! --- call hsmmp1 (nvbx,6,nhv  ,hkv,1,nnkvx  ,hmt,1,6  ,hv,1,nnkvx)
-!                                  build hbar velocity moments (used
-!                                  for vs(1),vs(2) and vd(3) )
-!                                  First, enforce any 'true 1&2'
-!                                  conditions if requested.
+! build hbar velocity moments (used
+! for vs(1),vs(2) and vd(3) )
+! First, enforce any 'true 1&2'
+! conditions if requested.
       if ( .not. true12 ) goto 171
-!                                  indb still set for true monopoles
+! indb still set for true monopoles
 ! ---      call whenilt (nnkv  ,iflvb,1  ,2  ,indb,nb)
       do 170 ib = 1,nb
          hkv( indb(ib), 1 ) = 0.d0
   170 continue
-!                                  find true monopoles and dipoles
+! find true monopoles and dipoles
       call whenilt (nnkv  ,iflvb,1  ,3  ,indb,nb)
       do 160 ib = 1,nb
          hkv( indb(ib), 2 ) = 0.d0
@@ -61300,12 +61361,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( vsens ) nhbv = 12
       call hsmmp1 (nvbx,3,nhbv  ,hkv,1,nnkvx  ,hbm,12,1  ,hbv,1,nnkvx)
 ! --- call hsmmp1 (nvbx,3,nhbv  ,hkv,1,nnkvx  ,hbmt,1,3  ,hbv,1,nnkvx)
-!                                  build VIC data for source, doublets
-!                                  and sensitivity calculations per req.
+! build VIC data for source, doublets
+! and sensitivity calculations per req.
       call vffvs1 (ncnsym,nnvcp,nvb,nnkv  ,indvb,zvb,hv,hbv             &
      &            ,vsourc,vsa,vsb,vsc  ,vdblet,vda,vdb,vdc              &
      &            ,vsens ,sna,snb,snc  ,nncp,jca,indv)
-!                                  common return point
+! common return point
   950 continue
 !
       return
@@ -61326,7 +61387,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                       incorporate code inline in vinfcc
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -61425,7 +61486,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     snc     l  r*8  source VIC scratch buffer
 !
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -61470,7 +61531,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             sgkar(3,icnsym) = sgnk
    40    continue
    50 continue
-!                                  define assorted scalars
+! define assorted scalars
       f1      =  -ajf*rf*sf
       f2      =  -ajf
       f3      =   ajf*rf
@@ -61478,23 +61539,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nvb5    =  5*nvb
       nvb3x   =  nvb3*ityprc
       nvb5x   =  nvb5*ityprc
-!                                  build transposed velocity matrices
+! build transposed velocity matrices
       do 140 k = 1,nvb
-!                                  row 1 of vs
+! row 1 of vs
          vsb(k,1) =  hbv(k, 1) - zvb(k,1)*hv(k,1)
          vsb(k,2) =  hbv(k, 3) - zvb(k,1)*hv(k,2)
          vsb(k,3) =  hbv(k, 5) - zvb(k,1)*hv(k,3)
-!                                  row 2 of vs
+! row 2 of vs
          vsb(k,4) =  hbv(k, 2) - zvb(k,2)*hv(k,1)
          vsb(k,5) =  hbv(k, 4) - zvb(k,2)*hv(k,2)
          vsb(k,6) =  hbv(k, 6) - zvb(k,2)*hv(k,3)
-!                                  row 3 of vs
+! row 3 of vs
          vsb(k,7) =  zvb(k,3)*hv(k,1)
          vsb(k,8) =  zvb(k,3)*hv(k,2)
          vsb(k,9) =  zvb(k,3)*hv(k,3)
   140 continue
-!                                  DOUBLET VELOCITY
-!                                  build vdb if needed
+! DOUBLET VELOCITY
+! build vdb if needed
       if ( .not. vdblet ) goto 180
       do 160 k = 1,nvb
          vdb(k, 1) =  vsb(k,7)
@@ -61515,57 +61576,57 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          vdb(k,14) =  vsb(k,5)+vsb(k,3)
          vdb(k,15) =  vsb(k,6)
   160 continue
-!                                  apply transformation matrix
+! apply transformation matrix
       call hsmmp1 (nvb5x,3,3  ,vdb,1,nvb5x  ,af,1,3  ,vdc,1,nvb5x)
-!                                  scatter the vdc data to vdb, applying
-!                                  symmetry factors and summing
-!                                  up symmetry images along the way
+! scatter the vdc data to vdb, applying
+! symmetry factors and summing
+! up symmetry images along the way
       call vffvs2 (nvb,nnvcp,5,ncnsym,indvb,sgijk  ,vdc,vdb,vda,  kx)
   180 continue
-!                                  SOURCE VELOCITY
+! SOURCE VELOCITY
       if ( (.not.vsourc) .and. (.not.vsens)  ) goto 200
-!                                  apply diagonal scaling
+! apply diagonal scaling
       call dscal (nvb3x  ,f1  ,vsb(1,1),1)
       call dscal (nvb3x  ,f2  ,vsb(1,4),1)
       call dscal (nvb3x  ,f3  ,vsb(1,7),1)
-!                                  apply transformation matrix
+! apply transformation matrix
       call hsmmp1 (nvb3x,3,3  ,vsb,1,nvb3x  ,af,1,3  ,vsc,1,nvb3x)
-!                                  scatter the vsc data to vsb, applying
-!                                  symmetry factors and summing symmetry
-!                                  images into vsa.
+! scatter the vsc data to vsb, applying
+! symmetry factors and summing symmetry
+! images into vsa.
       if ( .not.vsourc ) goto 200
       call vffvs2 (nvb,nnvcp,3,ncnsym,indvb,sgijk  ,vsc,vsb,vsa,  kx)
 !
   200 continue
-!                                  SENSITIVITY VIC'S
-!                                  build quadratic velocity matrix used
-!                                  for sensitivity calculation (AIC')
-!                                  via the VIC method
+! SENSITIVITY VIC'S
+! build quadratic velocity matrix used
+! for sensitivity calculation (AIC')
+! via the VIC method
       if ( .not.vsens ) goto 300
-!                                  get quadratic terms of source VIC's
+! get quadratic terms of source VIC's
       do 250 k = 1,nvb
-!                                  row 1 of vs
+! row 1 of vs
          snb(k,1) =  hbv(k, 7) - zvb(k,1)*hv(k,4)
          snb(k,2) =  hbv(k, 9) - zvb(k,1)*hv(k,5)
          snb(k,3) =  hbv(k,11) - zvb(k,1)*hv(k,6)
-!                                  row 2 of vs
+! row 2 of vs
          snb(k,4) =  hbv(k, 8) - zvb(k,2)*hv(k,4)
          snb(k,5) =  hbv(k,10) - zvb(k,2)*hv(k,5)
          snb(k,6) =  hbv(k,12) - zvb(k,2)*hv(k,6)
-!                                  row 3 of vs
+! row 3 of vs
          snb(k,7) =  zvb(k,3)*hv(k,4)
          snb(k,8) =  zvb(k,3)*hv(k,5)
          snb(k,9) =  zvb(k,3)*hv(k,6)
   250 continue
-!                                  scale rows of quadratic VIC src terms
+! scale rows of quadratic VIC src terms
       call dscal (nvb3x  ,f1  ,snb(1, 1),1)
       call dscal (nvb3x  ,f2  ,snb(1, 4),1)
       call dscal (nvb3x  ,f3  ,snb(1, 7),1)
-!                                  transform quadratic terms to global
+! transform quadratic terms to global
       call hsmmp1 (nvb3x,3,3  ,snb,1,nvb3x  ,af,1,3  ,snc,1,nvb3x)
-!                                  build the sna array; use snb to hold
-!                                  scattered vsc and snc that is then
-!                                  accumulated into sna.
+! build the sna array; use snb to hold
+! scattered vsc and snc that is then
+! accumulated into sna.
       kz      =  0
       call vffvs2 (nvb,nnvcp,3,ncnsym,indvb,sgkar,vsc,snb,sna(1,1,1),kz)
       call vffvs2 (nvb,nnvcp,3,ncnsym,indvb,sgkar,snc,snb,sna(1,1,4),kz)
@@ -61605,25 +61666,25 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , indrqf, rqff(3,16), encf(3), qcminf
 !end  pandf
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
       common /rlcplx/ ityprc
 !end  rlcplx
-!                                    initialize all VIC symmetry images
+!   initialize all VIC symmetry images
       nnvcpx  =  nnvcp*ityprc
       nnkv    =  nnvcp*ncnsym
       nnkvx   =  nnkv*ityprc
       call zero (vb,ityprc*nnvcp*ncnsym*nj*3)
       call zero (va,ityprc*nnvcp*nj*3)
-!                                    scatter the VIC data
+!   scatter the VIC data
       nji     =  nj*3
       if ( ityprc.eq.1 )                                                &
      &   call disct1 (nvb,nji  ,vc,nvb  ,indvb  ,vb,nnvcp*ncnsym)
       if ( ityprc.eq.2 )                                                &
      &   call zisct1 (nvb,nji  ,vc,nvb  ,indvb  ,vb,nnvcp*ncnsym)
-!                                    accumulate symmetry images
+!   accumulate symmetry images
       do 500 i = 1,3
          kvb     =  0
          do 400 icnsym = 1,ncnsym
@@ -61671,7 +61732,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       common /skrch1/ w(9000000)
 !call piccnt
-!                                                     /piccnt/
+!                    /piccnt/
       common /piccnt/ npic(4,7), n56chg(0:3)
 !end  piccnt
       dimension ifluar(4), imap(0:7)
@@ -61711,7 +61772,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! ---      write (6,6000) nncp,tfast,tslow
  6000 format ('  vinchk test:',i6,'  fast:',f12.6,'  slow:',f12.6)
  6001 format (2x,i4,4x,a3,1x,a3  ,2i4,3f12.6  ,2(2x,2i2) ,4x,2(2x,2i2) )
-!                                    look for error situations
+!   look for error situations
       nerrx = 0
       nnulx = 0
       do 200 k = 1,nncp
@@ -61767,18 +61828,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       implicit double precision (a-h,o-z)
       dimension nwvx(1:*)
 !---      dimension nwvx(4*nctrt)
-!                                                  ...  mxxscr = 295000
+!                 ...  mxxscr = 295000
       parameter (mxxscr=295000)
-!                                                  ...  mxxcls = 512
+!                 ...  mxxcls = 512
       parameter (mxxcls=512)
-!                                                  ...  mxxrws = 300
+!                 ...  mxxrws = 300
       parameter (mxxrws=300)
 !        LOCAL PARAMETERIZED ARRAYS
       dimension indgrp(2*mxxcls)
       dimension iptgrp(2*mxxcls)
       dimension nepha(mxxrws+1), neva(mxxrws+1), indv(mxxrws)
       dimension jca(mxxrws)
-!                                                  ... nrzc =8, nizc =12
+!                 ... nrzc =8, nizc =12
       parameter (nrzc=8)
       parameter (nizc=12)
       dimension szc(nrzc,mxxrws),   kszc(nizc,mxxrws)
@@ -61850,7 +61911,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     szc     l   r*8  buffer for real cp data for cp's in cp group
 !
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -61916,7 +61977,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , indrqf, rqff(3,16), encf(3), qcminf
 !end  pandf
 !ca pandsn
-!                                                          /pandsn/
+!                         /pandsn/
 !     pandsn: panel data for the design
       common /pandsn/ wpdn(3,9), wsdn(3,3,8)                            &
      &              , wcdn(18,12), wcsdn(18,12,8)                       &
@@ -61943,7 +62004,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common/mspnts/zm(3,maxpts)
 !end  mspnts
 !call gbnejc
-!                                                            /gbnejc/
+!                           /gbnejc/
       common /gbnejc/ icpgpk, icpbkk, ne, jc
 !end  gbnejc
 !
@@ -61954,15 +62015,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        , icpmap,  ibcmap
 !end  prnt
 !call pblprm
-!                                                         /pblprm/
+!                        /pblprm/
       common /pblprm/ mxcls
-!                                                         /pblprm/
+!                        /pblprm/
 !end  pblprm
 !call vrwi
       common /vrwi/ nvdq,nsv,nrv,ntv,nnv, niv(maxcp+2), nwv(maxcp)
 !end  vrwi
 !ca phxrwi
-!                                                          /phxrwi/
+!                         /phxrwi/
 !     File containing phx sensitivity influence coefficients
 !
 !     ndqphx  number of floating point words per record
@@ -61991,7 +62052,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /symm/ nsymm, ictsym, nisym, njsym, misym, mjsym
 !end  symm
 !ca rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -62021,32 +62082,32 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call jzero (nwrdw,3)
       nbsqdq  =  locfcn(qa) - locfcn(cp)
       call dlocfx (nbsqdq)
-!                                    count real words (change for cray)
+!   count real words (change for cray)
       nbsqdq  =  (nbsqdq+kklr2i-1)/kklr2i
       write (6,'( '' size of records written by pvinfc '',i6)')nbsqdq
-!                                  initialize /psdflg/ and /kstrns/
+! initialize /psdflg/ and /kstrns/
       psdpan  =  0
       nstrns  =  0
       mstrns  =  0
-!                                  set /pblprm/ parameters
+! set /pblprm/ parameters
       mxrws   =  mxxrws
       mxcls   =  mxxcls
       nscr    =  mxxscr
-!                                  open the scratch aic file
+! open the scratch aic file
       call openms (nsc3,nisc3,12001,0)
       call openms (nsc4,nisc4,12001,0)
       call openms (ntphx,niphx,nnphx,0)
       naicgp  =  mxrws*mxcls*ityprc
       if ( naicgp+mxcls .gt. nscr ) CALL AbortPanair('vinfcc')
       nvdq    =  nsngt
-!                                  define the panel groups
+! define the panel groups
       call pvinfc
-!                                  get max pt count for all panel groups
+! get max pt count for all panel groups
       mxptgp  =  0
       do 20 jpagp = 1,npagp
          mxptgp  =  max ( mxptgp, nptgrp(jpagp))
    20 continue
-!                                  define the control point groups and b
+! define the control point groups and b
       nrpb    =  (nscr - mxcls)/( ityprc*(mxcls+nsngt) )
       nrpb    =  min( nrpb, mxrws)
       nwpb    =  mxcls*(1 + ityprc*nrpb)
@@ -62068,11 +62129,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           icpbkk  =  100000
 !-------- if ( nec.eq.0 .and. nbinmc.eq.0 ) go to 90
           if ( nec.lt.1 ) goto 90
-!                                  control point is to be added to the l
-!                                  of control points requiring processin
-!                                  get the group and block indices right
+! control point is to be added to the l
+! of control points requiring processin
+! get the group and block indices right
           if ( negp+ne.le.mxrws .and. kcpgp+1.le.mxrws ) go to 50
-!                                  new group
+! new group
                     icpgp   =  icpgp + 1
                     kcpgp   =  0
                     negp    =  0
@@ -62083,7 +62144,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
    50     continue
           if ( nebk+ne.le.nrpb ) go to 80
-!                                  new block
+! new block
                icpbk   =  icpbk + 1
                nebk    =  0
                kcpbk   =  0
@@ -62110,8 +62171,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6001 format (2x,7i8)
  6002 format (' mxcpgp:',i8,' mxcpbk:',i8,'  kcpbk:',i8)
       nwphix  =  mxptgp*( 1 + 3*mxcpbk )
-!                                  for each cp group, define its limits
-!                                  process it.
+! for each cp group, define its limits
+! process it.
       ncpgp   =  icpgp
       ncpbkc  =  icpbk
       ncpbkw  =  icpbk
@@ -62129,7 +62190,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       twric   =  0.d0
       trdic   =  0.d0
 !
-!                                  if-loop on c.p. groups
+! if-loop on c.p. groups
   200 continue
       icpgp   =  icpgp + 1
       if ( icpgp.gt.ncpgp ) go to 2000
@@ -62141,7 +62202,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       icpbk1  =  icpbkk
       nncp    =  0
       nnvcp   =  0
-!                                  get c.p. index limits of current gp
+! get c.p. index limits of current gp
       do 220 icp = icp1,nctrt
           call icopy (4,  nwvx(4*icp-3),1, icpgpk,1)
           if ( icpgpk.ne.icpgp ) go to 225
@@ -62172,7 +62233,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       nepha(nncp+1) = nephsm
       neva (nncp+1) = nevsm
-!                                  get data into szc for current group
+! get data into szc for current group
       do 250 icp = icp1,icp2
           iszc    =  icp - icp1 + 1
           call icopy (4,  nwvx(4*icp-3),1, icpgpk,1)
@@ -62180,7 +62241,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call dcopy (nrzc,   zc,1,   szc(1,iszc),1)
           call icopy (nizc,  ipc,1,  kszc(1,iszc),1)
   250 continue
-!                                  allocate memory for cp group calc.
+! allocate memory for cp group calc.
       call setcor ('cp-group')
       ncnsym  =  nisym*njsym
       nnza    =  nncp*ncnsym
@@ -62189,18 +62250,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call igtcor ('ifla',llifla,nnza)
       call igtcor ('iflb',lliflb,nnza)
       call igtcor ('iflc',lliflc,nnza)
-!                                  setup call to vffkrn
+! setup call to vffkrn
       nnzax   =  nnza*ityprc
       nnvcps  =  nnvcp*ncnsym
       nnvcpx  =  nnvcps*ityprc
-!                                  output arrays, vffkrn
+! output arrays, vffkrn
       call getcor ('hk',llhk,nnzax*6)
       call getcor ('gk',llgk,nnzax*6)
       call getcor ('hkb',llhkb,nnzax*6)
       call getcor ('gkb',llgkb,nnzax*6)
       call getcor ('hkph',llhkph,nncp*ityprc*6)
       call getcor ('gkph',llgkph,nncp*ityprc*6)
-!                                  scratch memory for vffkrn
+! scratch memory for vffkrn
       call igtcor ('indb',llindb,nnza)
       call getcor ('rsqb',llrsqb,nnza)
       call getcor ('zb',  llzb,  nnza*3)
@@ -62217,11 +62278,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call getcor ('xxb', llxxb, nnza)
       call getcor ('xyb', llxyb, nnza)
       call getcor ('yyb', llyyb, nnza)
-!                                  scratch for vffpin call
+! scratch for vffpin call
       call getcor ('phs' ,llphs, ityprc*nncp*9)
       call getcor ('phd' ,llphd, ityprc*nncp*21)
       call getcor ('ph'  ,llph,  ityprc*nncp*30)
-!                                  output arrays for vffvel
+! output arrays for vffvel
       if ( nnvcp.le.0 ) goto 260
          call getcor ('vsa' ,llvsa , 9*ityprc*nnvcp)
          call getcor ('vda' ,llvda ,15*ityprc*nnvcp)
@@ -62232,7 +62293,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call getcor ('vsc' ,llvsc , 9*nnvcpx)
          call getcor ('vdc' ,llvdc ,15*nnvcpx)
          call getcor ('snc' ,llsnc , 9*nnvcpx)
-!                                  scratch memory for vffvel call
+! scratch memory for vffvel call
          call igtcor ('flva',llflva,nnvcp*ncnsym)
          call igtcor ('flvb',llflvb,nnvcp*ncnsym)
          call igtcor ('ndb', llndb ,nnvcp*ncnsym)
@@ -62242,17 +62303,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call getcor ('hkv' ,llhkv , 6*nnvcpx)
          call getcor ('hbv' ,llhbv ,12*nnvcpx)
          call getcor ('hv'  ,llhv  , 6*nnvcpx)
-!                                  scratch for vffvin call
+! scratch for vffvin call
          call getcor ('va'  ,llva,  3*ityprc*nncp*30)
   260 continue
-!                                  rewind files associated with panel
-!                                  groups and blocks
+! rewind files associated with panel
+! groups and blocks
       rewind nsqg
       rewind nsqb
       irec    =  0
-!                                  loop over panel groups
+! loop over panel groups
       ipn2   =  0
-!                                  loop over panel groups
+! loop over panel groups
       do 1000 jpagp = 1,npagp
       call setcor ('pic-pngp')
       nnphic  =  ityprc*nephsm*mxcls
@@ -62261,7 +62322,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nevsm .gt.0) call getcor ('vic' ,llvic ,nnvic)
       call zero (w(llphic),nnphic)
       call zero (w(llvic), nnvic)
-!                                  debug copies
+! debug copies
       llphiq  =  llphic
       llviq   =  llvic
       if ( debug ) then
@@ -62296,7 +62357,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       ipn1   =  ipn2 + 1
       ipn2   =  ipn2 + npn
-!                                  loop on panels within a group
+! loop on panels within a group
       call CPU_TIME (tapic)
       do 700 ip = ipn1,ipn2
       read (nsqb) (strbuf(i),i=1,nbsqdq)
@@ -62304,7 +62365,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call stunpk (strbuf)
       call psddq5
       nstrns  =  nstrns + 1
-!                                  unstdy wake nw's have complex splines
+! unstdy wake nw's have complex splines
       astcpx  =  .false.
       call qtewic (ltewic)
 !--      if ( ntd(kpf).eq.8  .or. ntd(kpf).eq.10  .or.
@@ -62316,7 +62377,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &               ,wcdn,wcsdn,acdn,acsdn                             &
      &               ,qd)
       endif
-!                                  checkout of vectorized influence test
+! checkout of vectorized influence test
       call mcopy (3,nncp,  szc,1,nrzc,  w(llza),1,3)
       call CPU_TIME (ta)
 !--      call vinchk (nncp,ncnsym,w(llza),w(llrsqa),w(llifla),w(lliflb)
@@ -62325,9 +62386,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &            ,w(lliflc))
       call CPU_TIME (tb)
       tvin = tvin + tb-ta
-!                                  use pivc for panels w wake filaments
+! use pivc for panels w wake filaments
       if ( ltewic ) goto 480
-!                                  evaluate far-field kernel moments
+! evaluate far-field kernel moments
       call CPU_TIME (ta)
       call vffkrn (nncp,nnvcp,ncnsym,w(llza),w(llrsqa),w(llifla)        &
      &            ,w(llhk),w(llgk)  ,w(llhkph),w(llgkph)                &
@@ -62343,7 +62404,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call CPU_TIME (tc)
       tphi  =  tphi + tc-tb
       ta   =  tc
-!                                  setup call to vffvel
+! setup call to vffvel
       if ( nnvcp.le.0 ) goto 450
       call CPU_TIME (ta)
       call vffvel (nncp,nnvcp,ncnsym                                    &
@@ -62359,7 +62420,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       tvel = tvel + tb-ta
       tvsp = tvsp + tc-tb
   450 continue
-!                                  loop on c.p.'s within a group
+! loop on c.p.'s within a group
   480 continue
       call CPU_TIME (ta)
       do 500 icp = icp1,icp2
@@ -62369,27 +62430,27 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iflumx.le.0 ) goto 500
       call dcopy (nrzc,   szc(1,iszc),1,   zc,1)
       call icopy (nizc,  kszc(1,iszc),1,  ipc,1)
-!                                  llphiq = llphic; llviq = llvic
-!                                  unless debug was set .true.
+! llphiq = llphic; llviq = llvic
+! unless debug was set .true.
       lphic    =  llphiq + ityprc*nepha(iszc)
       lvic     =  llviq  + ityprc*neva (iszc)
 !
       locphx   =  llphix + ityprc*( npt + 3*npt*(icp-icp1) )
-!                                  regular aic computation
+! regular aic computation
       if ( ne.gt.0 )                                                    &
      &    call pivc (ne ,nncp,w(lphic) ,nnvcp,w(lvic) ,npt,w(locphx)    &
      &              ,ifluar,iflumx,astcpx)
-!                                  end loop on control points
+! end loop on control points
   500 continue
       call CPU_TIME (tb)
       tnear = tnear + tb-ta
-!                                  end, loop on panels within a block
+! end, loop on panels within a block
   700 continue
       call CPU_TIME (tbpic)
       tpic  =  tpic + tbpic-tapic
 !
       if ( dbgprt ) then
-!                                  print first two columns of ph and v
+! print first two columns of ph and v
          call difmat ('phic-phiq',nncp,mxcls,w(llphic),w(llphiq))
          call difmat ('vic-viq',3*nnvcp,mxcls,w(llvic),w(llviq))
          lphic = llphic + 42*nncp
@@ -62413,16 +62474,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 !--   write(7,'('' TIMING SUMMARY: vin,krn,phi,vel,vsp,near-'',6f12.6)')
 !--  x         tvin,tkrn,tphi,tvel,tvsp,tnear
-!                                  write out a buffer
+! write out a buffer
       kcp2    =  icp1 - 1
-!                                  loop on c.p. blocks within a group
+! loop on c.p. blocks within a group
       call getcor ('aic',llaic,nwpb)
       call icopy (mxcls,  indgrp,1,  w(llaic),1)
       call CPU_TIME (tawric)
       do 800 icpbk = icpbk1,icpbk2
       irec    =  irec + 1
       kcp1   =  kcp2 + 1
-!                                  loop on c.p.'s within a block
+! loop on c.p.'s within a block
       laic    =  llaic + mxcls
       incv    =  nevsm
       do 750 icp = kcp1,icp2
@@ -62464,11 +62525,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       ncalw(1)=  ncalw(1) + 1
       nwrdw(1)=  nwrdw(1) + nwpb
-!                                  end, loop on cp blocks
+! end, loop on cp blocks
   800 continue
       call CPU_TIME (tbwric)
       twric  =  twric + tbwric-tawric
-!                                  end, loop on groups of panels
+! end, loop on groups of panels
       call frecor ('pic-pngp')
  1000 continue
 !
@@ -62512,10 +62573,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1180 continue
       call frecor ('pic-dsnb')
  1190 continue
-!                                  read file nsc3.and write the results
-!                                  on the aic file
+! read file nsc3.and write the results
+! on the aic file
       kcp2    =  icp1 - 1
-!                                  loop on c.p. blks in current c.p. gro
+! loop on c.p. blks in current c.p. gro
       call setcor ('cpbcum')
       call getcor ('ind', llind,  nwpb)
       call getcor ('b'  , llb,    ityprc*nsngt*nrpb)
@@ -62562,7 +62623,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         tvin,tkrn,tphi,tvel,tvsp,tnear
       write(7,'('' TIMING SUMMARY: setup,pic-s,block,assy-'',4f12.6)')  &
      &         tsetp,tpic,twric,trdic
-!                                  put ne into nwvx
+! put ne into nwvx
       do 2100 i = 1,nctrt
           call icopy (4,  nwvx(4*i-3),1, icpgpk,1)
           nwv(jc)=  ne
@@ -62595,7 +62656,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     mode.
 !
 !call piccnt
-!                                                     /piccnt/
+!                    /piccnt/
       common /piccnt/ npic(4,7), n56chg(0:3)
 !end  piccnt
 !call epsff
@@ -62634,9 +62695,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       if ( amach.gt.1.d0 ) goto 500
 !
-!                                  SUBSONIC INFLUENCE TESTS
+! SUBSONIC INFLUENCE TESTS
 !
-!                                  Generate control point images
+! Generate control point images
       if ( nisym.gt.1 .and. njsym.gt.1 ) then                             ! Added by Martin Hegedus, 4/21/09
          call dcopy (3*nncp,  za(1,1,1),1,  za(1,1,2),1)                  ! Added by Martin Hegedus, 4/21/09
          call dscal (  nncp,  -1.d0,        za(2,1,2),3)                  ! Added by Martin Hegedus, 4/21/09
@@ -62650,16 +62711,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call dscal (  nncp,  -1.d0,        za(3,1,2),3)                  ! Added by Martin Hegedus, 4/21/09
       endif                                                               ! Added by Martin Hegedus, 4/21/09
 !!      if ( nisym.gt.1 ) then                                              ! Removed by Martin Hegedus, 4/21/09
-!!!                                  1st p-o-s: copy and reflect y coord    ! Removed by Martin Hegedus, 4/21/09
+!!! 1st p-o-s: copy and reflect y coord    ! Removed by Martin Hegedus, 4/21/09
 !!         call dcopy (3*nncp,  za(1,1,1),1,  za(1,1,2),1)                  ! Removed by Martin Hegedus, 4/21/09
 !!         call dscal (  nncp,  -1.d0,        za(2,1,2),3)                  ! Removed by Martin Hegedus, 4/21/09
 !!         if ( njsym.gt.1 ) then                                           ! Removed by Martin Hegedus, 4/21/09
-!!!                                  2nd p-o-s: copy and reflect z coord    ! Removed by Martin Hegedus, 4/21/09
+!!! 2nd p-o-s: copy and reflect z coord    ! Removed by Martin Hegedus, 4/21/09
 !!            call dcopy (6*nncp,  za(1,1,1),1,  za(1,1,3),1)               ! Removed by Martin Hegedus, 4/21/09
 !!            call dscal (2*nncp,  -1.d0,        za(3,1,3),3)               ! Removed by Martin Hegedus, 4/21/09
 !!         endif                                                            ! Removed by Martin Hegedus, 4/21/09
 !!      endif                                                               ! Removed by Martin Hegedus, 4/21/09
-!                                  perform influence tests
+! perform influence tests
       n       =  ncnsym*nncp
       call getcor ('v',llv,5*n)
       call vinsub (nncp*ncnsym,  za,rsqa,ifla                           &
@@ -62667,12 +62728,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       goto 950
 !
-!                                  SUPERSONIC INFLUENCE TESTS
+! SUPERSONIC INFLUENCE TESTS
 !
   500 continue
 ! NOTE: imaging control points must be done so other routines get values  ! NOTE by Martin Hegedus, 4/21/09
 !       which are not garbage, such as NANs                               ! NOTE by Martin Hegedus, 4/21/09
-!                                  Generate control point images          ! Added by Martin Hegedus, 4/21/09
+! Generate control point images          ! Added by Martin Hegedus, 4/21/09
       if ( nisym.gt.1 .and. njsym.gt.1 ) then                             ! Added by Martin Hegedus, 4/21/09
          call dcopy (3*nncp,  za(1,1,1),1,  za(1,1,2),1)                  ! Added by Martin Hegedus, 4/21/09
          call dscal (  nncp,  -1.d0,        za(2,1,2),3)                  ! Added by Martin Hegedus, 4/21/09
@@ -62685,20 +62746,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call dcopy (3*nncp,  za(1,1,1),1,  za(1,1,2),1)                  ! Added by Martin Hegedus, 4/21/09
          call dscal (  nncp,  -1.d0,        za(3,1,2),3)                  ! Added by Martin Hegedus, 4/21/09
       endif                                                               ! Added by Martin Hegedus, 4/21/09
-!                                  perform the first pass test
-!                                  on the principle image generating
-!                                  an index
+! perform the first pass test
+! on the principle image generating
+! an index
       call igtcor ('indb',llindb,nncp)
       call vinsp1 (nncp,  za,rsqa,  w(llindb),nndb)
-!                                  initialize to null influence and
-!                                  skip the remainder if there is no
-!                                  influence at all
+! initialize to null influence and
+! skip the remainder if there is no
+! influence at all
       call icopy (nncp*ncnsym,  7,0,  ifla,1)
       if ( nndb.le.0 ) goto 950
-!                                  generate the short list of c.p.'s
+! generate the short list of c.p.'s
       call getcor ('zb',llzb,3*ncnsym*nndb)
       call vinsp2 (za,  w(llindb),nndb,  w(llzb))
-!                                  generate the images of the short list
+! generate the images of the short list
       if ( nisym.gt.1 .and. njsym.gt.1 ) then                             ! Added by Martin Hegedus, 4/21/09
          call dcopy (3*nndb,  w(llzb),1,  w(llzb+3*nndb),1)               ! Added by Martin Hegedus, 4/21/09
          call dscal (  nndb,  -1.d0,      w(llzb+3*nndb+1),3)             ! Added by Martin Hegedus, 4/21/09
@@ -62731,9 +62792,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       goto 950
   950 continue
-!                                  fix up influences so that all far
-!                                  fields for a given c.p. are the
-!                                  same type
+! fix up influences so that all far
+! fields for a given c.p. are the
+! same type
       do 960 k = 1,nncp
          iflc(k) = ifmap( ifla(k,1) )
   960 continue
@@ -62745,10 +62806,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             iflc(k) = max( iflb(k), iflc(k))
   970    continue
   980 continue
-!                                  following code can be suppressed
-!                                  (with some loss of accuracy on the
-!                                  pic statistics) when not doing
-!                                  debug validation with pivc
+! following code can be suppressed
+! (with some loss of accuracy on the
+! pic statistics) when not doing
+! debug validation with pivc
       if ( .not. syncff ) goto 991
       do 990 icnsym = 1,ncnsym
          do 985 k = 1,nncp
@@ -62756,7 +62817,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   985    continue
   990 continue
   991 continue
-!                                  count the various influence types
+! count the various influence types
       nncpx   =  nncp*ncnsym
       do 995 iflx = 0,7
          call wheneq (nncpx,  ifla,1,  iflx,   iflb,nx)
@@ -62786,20 +62847,20 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       logical produx
       dimension iflmap(0:7), ifltew(0:7)
-!                                   for validation, set debug=.t. in vin
-!                                   validation: method=2, true12=.f.
+!  for validation, set debug=.t. in vin
+!  validation: method=2, true12=.f.
 ! ---      data iflmap /0,  3,3,3,  0,0,0,   0/
-!                                   validation: method=1, true12=.t.
+!  validation: method=1, true12=.t.
 ! ---      data iflmap /0,  1,2,3,  0,0,0,   0/
-!                                   for production, be sure debug=.f. in
-!                                   production: qffcal still in pivc
+!  for production, be sure debug=.f. in
+!  production: qffcal still in pivc
       data iflmap /0,  0,0,0,  4,5,6,   0/
-!                                   production: wake filament panels
+!  production: wake filament panels
       data ifltew /0,  1,2,3,  4,5,6,   0/
-!                                   production: produx = .true.
-!                                               true12 = .false.[vffvel]
-!                                               method = 1 [vffpev,ws]
-!                                                      = 2 [vffpev,cray]
+!  production: produx = .true.
+!              true12 = .false.[vffvel]
+!              method = 1 [vffpev,ws]
+!                     = 2 [vffpev,cray]
 ! ---      data produx /.false./
       data produx /.true./
 !
@@ -62854,7 +62915,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rsq5     =  (eps5*diamf)**2
       rad      =  .5d0*diamf
       radsq    =  rad**2
-!                                  gather up basic data
+! gather up basic data
       do 100 idex = 1,ndex
          ii      =  index(idex)
          zb(1,idex) = za(1,ii)
@@ -62891,8 +62952,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !--         iflb(idex) = cvmgm (iflb(idex),6,  rsq5 - dmnsq(idex) )
          if ( rsq5 .ge. dmnsq(idex)  ) iflb(idex) = 6
   350 continue
-!                                  perform the tests
-!                                  scatter the influence results
+! perform the tests
+! scatter the influence results
       do 500 idex = 1,ndex
          ifla( index(idex) ) = iflb(idex)
   500 continue
@@ -62971,7 +63032,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , phc1, phc2, phc3
 !end  epsff
 !ca freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -63002,34 +63063,34 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rsq1     =  (eps1*diamf)**2
       rsq2     =  (eps2*diamf)**2
       rsq3     =  (eps3*diamf)**2
-!                                  initialize x-coords, R^2 values
-!                                  and influence types
+! initialize x-coords, R^2 values
+! and influence types
       do 50 i = 1,n
          ifla(i)  =   0
    50 continue
-!                                  compute vector from panel center to
-!                                  control point images, x-coord of this
-!                                  vector and square of this vector
+! compute vector from panel center to
+! control point images, x-coord of this
+! vector and square of this vector
       do 200 kk = 1,3
          qckk    =  cpfz(kk)
          do 100 i = 1,n
             zb(kk,i) = za(kk,i) - qckk
   100    continue
   200 continue
-!                                  get local coords of pan ctr to c.p.
+! get local coords of pan ctr to c.p.
       call hsmmp1 (n,3,3,  zb,3,1,  af,3,1,  za,3,1)
 ! --- call hsmmp1 (3,3,n,  af,1,3,  zb,1,3,  za,1,3)
-!                                  compute square of compressible dist.
+! compute square of compressible dist.
       do 300 i = 1,n
          rhsqa(i) =  za(1,i)**2 + za(2,i)**2
          rsqa(i)  =  rhsqa(i)   + za(3,i)**2
   300 continue
-!                                  set default influence based on max
-!                                  possible phase variation
+! set default influence based on max
+! possible phase variation
       phc     =  diamf*omgabs
       ifldfl  =  4
       if ( phc.lt.phc3 ) ifldfl = 3
-!                                  perform basic far field test
+! perform basic far field test
       do 320 i = 1,n
 ! ---         ifla(i) = cvmgm (3,0, rsq3 - rsqa(i) )
          if ( rsq3 .lt. rsqa(i) ) ifla(i) = ifldfl
@@ -63049,11 +63110,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   350 continue
 !
   351 continue
-!                                  if ifla is zero, reset to 4, 5 or 6
+! if ifla is zero, reset to 4, 5 or 6
       call wheneq (n,  ifla,1,  0,  index,ndex)
       if ( ndex.le.0 ) goto 400
-!                                  do a single allocation (to save time)
-!                                  and fill out types 4, 5 and 6
+! do a single allocation (to save time)
+! and fill out types 4, 5 and 6
       call getcor ('vinsb2',llv,9*ndex)
       call vinsb2 (ndex,index,  za,rsqa,ifla,rhsqa                      &
      &            ,w(llv),w(llv+3*ndex),w(llv+4*ndex),w(llv+5*ndex)     &
@@ -63087,7 +63148,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &             , phc1, phc2, phc3
 !end  epsff
 !ca freqdt
-!                                                  /freqdt/
+!                 /freqdt/
       common /freqdt/ omgbar, omegb, omg, omgabs
 !---- complex*16 omgbar, omegb, omg
 !end  freqdt
@@ -63127,9 +63188,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call hsmmp1 (3,3,4,     ggcp,1,3,   cpf,1,3,   cpxb,1,3)
       call hsmmp1 (3,3,4,       af,1,3,   cpf,1,3,  cploc,1,3)
-!                                   compute distance from panel center
-!                                   to the boundary of the zb's mach
-!                                   cones as first cut test.
+!  compute distance from panel center
+!  to the boundary of the zb's mach
+!  cones as first cut test.
       nndbx   =  ncnsym*nndb
       call hsmmp1 (nndbx,3,3,  zb,3,1,  ggcp,3,1,  zd,3,1)
       do 150 i = 1,nndbx
@@ -63141,14 +63202,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          rsqa(i) =  xcsq + rcyzsq
          hcsq    =  xcsq - rcyzsq
          hcsqmn  =  -hcsq
-!                                   if anfl(i) < 0, then both z1<0
-!                                   and   rcyzsq < xcsq ==> influence
+!  if anfl(i) < 0, then both z1<0
+!  and   rcyzsq < xcsq ==> influence
 !----         anfl(i) =  max( z1, rcyzsq-xcsq )
          anfl(i) =  max( z1,  hcsqmn )
-!                                   if bnfl(i) > 0, distance is
-!                                   sqrt( rsqa(i) )  and the point on
-!                                   the mach cone closest to the panel
-!                                   center is at the apex
+!  if bnfl(i) > 0, distance is
+!  sqrt( rsqa(i) )  and the point on
+!  the mach cone closest to the panel
+!  center is at the apex
 !----         bnfl(i) =  min( z1, xcsq-rcyzsq )
          bnfl(i) =  min( z1, hcsq )
 !
@@ -63159,13 +63220,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 160 i = 1,napex
          zx(indc(i)) = sqrt(  rsqa(indc(i))  )
   160 continue
-!                                   if zx(i) <= .5*diam, we must assume
-!                                   an influence.
+!  if zx(i) <= .5*diam, we must assume
+!  an influence.
       do 170 i = 1,nndbx
          anfl(i) =  min( anfl(i), zx(i)-radxb )
   170 continue
-!                                   gather up list of zb pts influenced
-!                                   by the panel
+!  gather up list of zb pts influenced
+!  by the panel
       call whenfle (nndbx,  anfl,1,  0.d0,  indc,nndc)
 !
       do 180 ic = 1,nndc
@@ -63177,15 +63238,15 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call whenfgt (nndc,  dc,1,  dist3,  indd,nndd)
 ! ---      call jzero (iflc,nndc)
       call icopy (nndc,  7,0,  iflc,1)
-!                                  set default influence based on max
-!                                  possible phase variation
+! set default influence based on max
+! possible phase variation
       phc     =  diamf*omgabs
       ifldfl  =  4
       if ( phc.lt.phc3 ) ifldfl = 3
       do 190 id = 1,nndd
          iflc(indd(id)) = ifldfl
   190 continue
-!                                   code to use only during validation
+!  code to use only during validation
       if ( .not.chek12 ) goto 250
       if ( phc.ge.phc2 ) goto 250
       do 220 ic = 1,nndc
@@ -63198,10 +63259,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          if ( dist1 .lt. dc(ic) ) iflc(ic) = 1
   240 continue
   250 continue
-!                                   next define the sublist that fail
-!                                   the farfield test and for which
-!                                   the distance from panel to boundary
-!                                   of mach cone must be computed
+!  next define the sublist that fail
+!  the farfield test and for which
+!  the distance from panel to boundary
+!  of mach cone must be computed
       call wheneq (nndc,  iflc,1,  7,  indd,nndd)
 !
       if ( nndd.le.0 ) goto 700
@@ -63211,9 +63272,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          zd(2,id)  =  zc(2,indd(id))
          zd(3,id)  =  zc(3,indd(id))
   300 continue
-!                                   compute minimum distance from the
-!                                   panel corners to the c.p. image
-!                                   mach cones in X(bar)
+!  compute minimum distance from the
+!  panel corners to the c.p. image
+!  mach cones in X(bar)
       ischk   =  0
       do 600 is = 1,4
          if ( is.eq.icsf ) goto 600
@@ -63229,12 +63290,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             rsqa(i) = sqrt(rsqa(i))
   520    continue
          if ( ischk.gt.1 ) goto 540
-!                                   is = 1
+!  is = 1
          do 530 i = 1,nndd
             dmn(i)   =  rthaf * ( zx(i) - rsqa(i) )
   530    continue
          goto 600
-!                                   is = 2,3,4
+!  is = 2,3,4
   540    continue
          do 550 i = 1,nndd
             dmni     =  rthaf * ( zx(i) - rsqa(i) )
@@ -63242,7 +63303,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   550    continue
   600 continue
 !
-!                                  set influence types 4,5,6
+! set influence types 4,5,6
       do 640 i = 1,nndd
 !--         ifld(i) = cvmgm (         4,5,  dist4 - dmn(i) )
          ifld(i)  =  4
@@ -63256,22 +63317,22 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 660 i = 1,nndd
          iflc(indd(i)) = ifld(i)
   660 continue
-!                                  scatter iflc data to iflb
+! scatter iflc data to iflb
   700 continue
 ! ---      call jzero (iflb,  nndbx)
       call icopy (nndbx,  7,0,  iflb,1)
       do 720 i = 1,nndc
          iflb(indc(i)) = iflc(i)
   720 continue
-!                                  for supersonic flow, apply the more
-!                                  rigorous test of sinflu (clone of the
-!                                  original dinflu routine) to help
-!                                  determine null influences
+! for supersonic flow, apply the more
+! rigorous test of sinflu (clone of the
+! original dinflu routine) to help
+! determine null influences
       if ( .not.chknul ) goto 735
          call wheneq (ncnsym*nndb,  iflb,1,  6,  indc,nndc)
          if ( nndc.gt.0 ) call sinflu (nndc,indc  ,zb,iflb)
   735 continue
-!                                  novel usage: 7 == null influence
+! novel usage: 7 == null influence
 ! ---      call jzero (ifla,nncp*ncnsym)
       call icopy (nncp*ncnsym,  7,0,  ifla,1)
       ibias   =  0
@@ -63281,24 +63342,24 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   740    continue
          ibias   =  ibias + nndb
   750 continue
-!                                   gather up all non-null influence
-!                                   control point images, transform
-!                                   to local coordinates and get R^2
-!                                   at panel centers
+!  gather up all non-null influence
+!  control point images, transform
+!  to local coordinates and get R^2
+!  at panel centers
 ! ---      call whenne (ncnsym*nncp,  ifla,1,  0,  indc,nndc)
-!                                   indc will point into zb
+!  indc will point into zb
       call whenne (nndbx,  iflb,1,  7,  indc,nndc)
       call vinsp2 (zb,  indc,nndc,  zc)
       call hsmmp1 (nndc,3,3,  zc,3,1,  af,3,1,  zd,3,1)
-!                                   construct indd so that it points
-!                                   into za
+!  construct indd so that it points
+!  into za
       do 760 ic = 1,nndc
          ib      =  indc(ic)
          icnsbs  =  (ib-1)/nndb
          ibx     =  ib - icnsbs*nndb
          indd(ic) = indb(ibx) + icnsbs*nncp
   760 continue
-!                                   get indc = indd another way & check
+!  get indc = indd another way & check
 !---      call whenne (ncnsym*nncp,  ifla,1,  7,  indc,nndcx)
 !---      do 770 ic = 1,nndc
 !---         if ( indd(ic).ne.indc(ic) ) call abort
@@ -63476,7 +63537,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                                           parameter (mxsgpn = 17500)
 !end  limits
 !call rlcplx
-!                                                         /rlcplx/
+!                        /rlcplx/
 !     ityprc  i*4  fee  real/complex indicator, = 1,real; = 2,complex
 !                       this parameter is used to diminish the changes
 !                       needed to generate the unsteady version
@@ -63486,7 +63547,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       common /vrwi/ nvdq,nsv,nrv,ntv,nnv, niv(maxcp+2), nwv(maxcp)
 !end  vrwi
 !call cvtrns
-!                                               /cvtrns/
+!              /cvtrns/
       common /cvtrns/ nejc
 !end  cvtrns
       dimension dvdfs(1)
@@ -63651,7 +63712,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine writmd (lun,ia,n,irec, i1,i2)
       dimension ia(n)
 !ca locinf
-!                                                         /locinf/
+!                        /locinf/
       common /locinf/ rlocdm(2), ilocdm(2), kkloci, kklocr, kklr2i
       double precision rlocdm
 !end  locinf
@@ -63694,8 +63755,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call upkims (iblock,nbkold,indxms(1,lliudx+irec))
       if ( indxms(1,lliudx+irec).eq.0 ) goto 50
       if ( nbk.le.nbkold ) goto 500
-!                                  calculate the block address in the
-!                                  direct access file
+! calculate the block address in the
+! direct access file
    50 continue
       lblock  =  ndirwr(lun)
       ndirwr(lun) = ndirwr(lun) + nbk
@@ -63711,7 +63772,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
       return
 !
-!                                  rewrite a logical record in place
+! rewrite a logical record in place
 !
   500 continue
       call upkims (lblock,nbkold,indxms(1,lliudx+irec))
@@ -63798,7 +63859,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &           ,aanx,aany,aanz                                        &
      &           ,awnu,apwnu,avtu,apvtu,apheu                           &
      &           ,awnl,apwnl,avtl,apvtl,aphel
-!                                  put data into std format
+! put data into std format
       call e11fmt (3,zc,azc)
       call e11fmt (5,tsc,atsc)
 !
@@ -63881,29 +63942,29 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,klopt2,kldum2,betin2(4)                                         &
      &       ,ndbcon
 !end  bcon
-!                                  /bcona/ and /bconb/ exactly parallel
-!                                  /bcon/, and receive the b.c. data for
-!                                  neighboring edge control points a and
+! /bcona/ and /bconb/ exactly parallel
+! /bcon/, and receive the b.c. data for
+! neighboring edge control points a and
       common /bcona/                                                    &
      &               ctdb1a(14), n1a(6), b1a(4)                         &
      &             , ctdb2a(14), n2a(6), b2a(4)
       common /bconb/                                                    &
      &               ctdb1b(14), n1b(6), b1b(4)                         &
      &             , ctdb2b(14), n2b(6), b2b(4)
-!                                  copy the b.c. data for control points
-!                                  a and b into /bcona/ and /bconb/
+! copy the b.c. data for control points
+! a and b into /bcona/ and /bconb/
       call icopy (nbdq,  bca,1,  ctdb1a,1)
       call icopy (nbdq,  bcb,1,  ctdb1b,1)
-!                                  if b.c. indexes don't match, just cop
-!                                  data from the nearest point
+! if b.c. indexes don't match, just cop
+! data from the nearest point
       do 40 i = 1,3
           if ( n1a(i).ne.n1b(i) ) goto 200
           if ( n2a(i).ne.n2b(i) ) goto 200
    40 continue
       if ( n1a(4).ne.0 .or. n2a(4).ne.0 ) goto 200
       if ( n1b(4).ne.0 .or. n2b(4).ne.0 ) goto 200
-!                                  all integral parameters agree, averag
-!                                  the floating point data
+! all integral parameters agree, averag
+! the floating point data
       do 100 i = 1,14
           ctdb1a(i)  =  wa*ctdb1a(i) + wb*ctdb1b(i)
           ctdb2a(i)  =  wa*ctdb2a(i) + wb*ctdb2b(i)
@@ -63911,8 +63972,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call icopy (nbdq,  ctdb1a,1,  cu1,1)
       go to 950
-!                                   b.c. indexes don't match, copy in da
-!                                   from the nearest point
+!  b.c. indexes don't match, copy in da
+!  from the nearest point
 !
   200 continue
       call icopy (nbdq,  ctdb1b,1,  cu1,1)
@@ -63982,8 +64043,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       subroutine xdaspl (knet,ipan,jpan,  indx,iidx,astx,  nssax,iprnt)
       implicit double precision (a-h,o-z)
       dimension indx(4), iidx(4,4), astx(4,4)
-!                                  compute any special edge splines when
-!                                  extra singularity parameters are pres
+! compute any special edge splines when
+! extra singularity parameters are pres
 !call limits
 !     maximum number of control points
                                           parameter (maxcp  = 24000)
@@ -64051,8 +64112,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &      ( icr.eq.1 .and. jcr.eq.nnk) .or.                           &
      &      ( icr.eq.nmk .and. jcr.eq.1 ).or.                           &
      &      ( icr.eq.nmk .and. jcr.eq.nnk )    )  go to 300
-!                                  panel corner  kcr  is on an edge but
-!                                  not a netork corner
+! panel corner  kcr  is on an edge but
+! not a netork corner
       if ( icr.eq.1 ) ksd = 1
       if ( jcr.eq.nnk ) ksd = 2
       if ( icr.eq.nmk ) ksd = 3
@@ -64073,8 +64134,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           idist   =  iabs( kpt - lpt )
           if ( idist.gt.1 ) go to 250
           if ( idist.eq.1 ) go to 220
-!                                  this corner point is the site of an e
-!                                  singularity parameter.
+! this corner point is the site of an e
+! singularity parameter.
                locx(1) =  l
                go to 290
 !
@@ -64083,11 +64144,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           locx(nloc) = l
   250 continue
       if ( nloc.le.0 ) go to 300
-!                                  the current corner's spline is affect
-!                                  by an extra singularity parameter.
-!                                  compute the spline
+! the current corner's spline is affect
+! by an extra singularity parameter.
+! compute the spline
 !
-!                                  gather up the neighboring mesh points
+! gather up the neighboring mesh points
       do 260 i = 1,5
           ipt    =  i - 3 + kpt
           ipt    =  min ( knedg, max ( 1, ipt))
@@ -64095,8 +64156,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           kz1    =  kzedg + (ipt-1)*kncedg
           call dcopy (3, zm(1,kz1),1, ze(1,i),1)
   260 continue
-!                                  compute the edge segment lengths and
-!                                  get the locations of the s.p.'s
+! compute the edge segment lengths and
+! get the locations of the s.p.'s
       do 265 i = 1,4
           z(1,i)  =  .5d0*( ze(1,i) + ze(1,i+1) )
           z(2,i)  =  .5d0*( ze(2,i) + ze(2,i+1) )
@@ -64109,8 +64170,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       xe(2)   =  -.5d0*de(2)
       xe(4)   =  de(3) + .5d0*de(4)
       xe(3)   =  .5d0*de(3)
-!                                  get the naive s.p. indices of neighbo
-!                                  singularity parameters
+! get the naive s.p. indices of neighbo
+! singularity parameters
       do 275 i = 1,4
           ipt     =  kpt + i - 2
           go to (271, 272, 273, 274), ksd
@@ -64128,19 +64189,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                iidx(i,kcr)  =  (nma+1-ipt) + nssax
                go to 275
   275 continue
-!                                  now, replace default data with extra
-!                                  s.p. data where appropriate
+! now, replace default data with extra
+! s.p. data where appropriate
       do 280 iloc = 1,nloc
           l       =  locx(iloc)
           call icopy (4,  locxsp(4*(l)-3),1, nwsdpt,1)
           lpt     =  nwsdpt(3)
           if ( lpt .gt. kpt ) go to 277
-!                                  lpt = kpt - 1
+! lpt = kpt - 1
                call dcopy (3, ze(1,2),1, z(1,1),1)
                xe(1)   =  -de(2)
                iidx(1,kcr) = nss + nssax + (l+1-nxsp1)
                go to 280
-!                                  lpt = kpt + 1
+! lpt = kpt + 1
   277     continue
                call dcopy (3, ze(1,4),1, z(1,4),1)
                xe(4)   =  de(3)
@@ -64148,7 +64209,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                go to 280
   280 continue
       call dcopy (4, xe,1,  dex(1,kcr),1)
-!                                  get any upstream weighting factors
+! get any upstream weighting factors
       do 285 i = 1,4
           call vadd ( z(1,i), -1.d0, ze(1,3), w, 3)
           wsq     =  w(1)**2 + w(2)**2 + w(3)**2
@@ -64161,13 +64222,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       indx(kcr)  =  4
       call edgspl (xe,we,astx(1,kcr))
       go to 295
-!                                  add a unit spline
+! add a unit spline
   290 continue
       l       =  locx(1)
       indx(kcr) = 1
       iidx(1,kcr) =  nss + nssax + (l+1-nxsp1)
       astx(1,kcr) =  1.d0
-!                                  common collection pt.
+! common collection pt.
   295 continue
       if ( iprnt.le.0 ) go to 300
       write (6,'(1x,a10,1x, 10i12)')                                    &
@@ -64534,7 +64595,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension a(n), b(n)
       character*(*) msg
 !call prcmpr
-!                                                            /prcmpr/
+!                           /prcmpr/
       common /prcmpr/ llcmpr
       logical llcmpr
 !end  prcmpr
@@ -64774,7 +64835,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                                                   ! was dcmplx
           z       =  z*CMPLX(x(j),y(j),KIND=8)
           if ( y(j).lt.0.d0) go to 200
-!                                  y(j) .gt. 0, increasing phase
+! y(j) .gt. 0, increasing phase
 ! 100     continue
           go to (110,120,130,140), k
 !
@@ -64803,7 +64864,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   150     continue
           if ( k.gt.4 ) k = k-4
           go to 500
-!                                  y(j) .lt. 0, decreasing phase
+! y(j) .lt. 0, decreasing phase
   200     continue
           go to (210,220,230,240), k
 !
@@ -64830,13 +64891,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   250     continue
           if ( k.lt.1 ) k = k+4
           go to 500
-!                                  y(j) = 0, change is either 0 or +pi
+! y(j) = 0, change is either 0 or +pi
   300     continue
           if ( x(j).ne.0 ) go to 310
-!                                  x(j) = y(j) = 0, no change, but error
+! x(j) = y(j) = 0, no change, but error
                ierr    =  ierr+1
                go to 500
-!                                  x(j).ne.0, y(j)=0
+! x(j).ne.0, y(j)=0
   310     continue
                z       =  z*x(j)
                if ( x(j).gt.0.d0 ) go to 500
@@ -64848,7 +64909,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       u       =  u/auv
       v       =  v/auv
   505 continue
-!                                  ensure consistency
+! ensure consistency
       izc     =  (i-k)/4 + (k+1)/4
       go to (510,520,530,540), k
   510 continue
@@ -64876,7 +64937,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !         *****     *****     *****     *****     *****     *****
-!                                  error returns
+! error returns
  1100 continue
  1200 continue
       write (6,6000)
