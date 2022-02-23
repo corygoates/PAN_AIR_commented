@@ -7804,9 +7804,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !     *                                                               *
-!c    *                    * * * m e t h o d * * *                    *
+!     *                    * * * m e t h o d * * *                    *
 !     *                          - - - - - -                          *
-!     *   aicsup uses formulae developed by m. epton at the boeing    * ! Yay a familiar name!
+!     *   aicsup uses formulae developed by m. epton at the boeing    *
 !     *   company.   these formulae give the source and doublet       *
 !     *   aics as follows                                             *
 !     *                                                               *
@@ -8088,14 +8088,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           km1     =  mod(km1,n)+1
   250 continue
 
-      if ( area.gt.0.d0 ) go to 270 ! This is so bad....
+      if ( area.gt.0.d0 ) go to 270 ! This is so bad....why would you do it this way?...
           go to 3000
   270 continue
 
 ! get  rho(*,k), rhosq(k), corner(k)
 ! and  tg(*,k), nm(*,k), d(k)
       km1     =  n
+
+      ! Loop through sides
       do 300 k = 1,n
+
 ! rho(*,k) Displacement vector
           rho(1,k)=  q(1,k) - p(1)
           rho(2,k)=  q(2,k) - p(2)
@@ -8118,7 +8121,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           nm(1,k) =  tg(2,k)
           nm(2,k) = -tg(1,k)
 
-! in-plane perpendicular distance to edge k, d(k)
+! in-plane perpendicular distance to edge k, d(k); this is a
           d(k)    =  rho(1,k)*nm(1,k) + rho(2,k)*nm(2,k)
 
 ! update  km1
@@ -8147,6 +8150,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           vm(k)   =  tg(1,k)*rho(1,km1) + tg(2,k)*rho(2,km1)
 
 ! edge(k) whether the edge intersects the Mach cone
+          ! This is a far simpler procedure than E&M give in Section J.3.4.1... Jerks.
           edge(k) =  corner(km1) .or. corner(k)
           vpvm    =  vp(k)*vm(k)
           if ( abs(d(k)).lt.x  .and.  x.ne.0.d0  .and.  vpvm.le.0.d0 )  &
@@ -8189,12 +8193,19 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if (.not.intsct  .and.  .not.within ) go to 3000 ! No influence need be calculated
 
     ! get functions  r, qprm
+            ! This calculates J using E&M Eq. (J.8.109)
     kp1     =  2
     psi     =  pi2
     do 500 k = 1,n
         r(k)    =  0.d0
+
+        ! Not sure where this one comes from...
         if ( corner(k) ) psi = psi + pi
+
+        ! Add edge influence
         if (   edge(k) ) psi = psi - pi
+
+        ! Skip non-influencing corner
         if ( .not.corner(k) ) go to 490
 
             ! r(k) = sqrt( x*x - rho**2 )
@@ -8203,8 +8214,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ! qprm(k)
             tktkp1  =  tg(1,k)*tg(1,kp1) + tg(2,k)*tg(2,kp1)
             tcross  =  tg(1,k)*tg(2,kp1) - tg(2,k)*tg(1,kp1)
+
+            ! E&M Eq. (J.8.110)
             xval    =  d(k)*d(kp1) - xsq*tktkp1
             yval    =  x*r(k)*tcross
+
+            ! E&M Eq. (J.8.109)
             psi     =  psi - atan2( yval, -xval)
 
         490 continue
@@ -8212,58 +8227,82 @@ END Subroutine AbortPanair   ! -------------------------------------------------
     500 continue
 
     ! phi(k)
-      km1     =  n
-      do 550 k = 1,n
-          phi(k)  =  0.d0
-          if ( .not.edge(k) ) go to 540
-          phi(k)  = -pi
-          if ( .not.corner(k) .and. .not.corner(km1) ) go to 540
-          vpk     =  vp(k)
-          if ( .not.corner(k))  vpk = 1.d0
-          vmk     =  vm(k)
-          if ( .not.corner(km1))vmk =-1.d0
-          xval    =  vpk*vmk + r(k)*r(km1)
-          yval    =  r(k)*vmk - r(km1)*vpk
-          phi(k)  =  atan2 ( yval, xval)
-  540 km1     =  mod(km1,n) + 1
-  550 continue
-      psix    =  psi*x
-      psixx2  =  .5d0 * x * psix
+    ! This calculates the edge function I(psi) for supersonic edges
+    km1     =  n
+    do 550 k = 1,n
 
-! initialize  s  and  d
-      ! This is a very interesting way to show which elements of the array you're setting
-      saic(1,1)=    psi
-      saic(2,2)=         psix
-      saic(3,3)=              psix
-      saic(4,1)=    psix
+        ! Initialize phi
+        phi(k)  =  0.d0
 
-! check for doublet terms
-      if (.not.doublt) go to 700
-      daic(1,4)=                   psix
-      daic(1,6)=                             psix
-!
-      daic(2,2)=         psi
-!
-      daic(3,3)=              psi
-!
-      daic(4,1)=    psi
-      daic(4,4)=                   psixx2
-      daic(4,6)=                             psixx2
-  700 continue
-!
-      if ( .not. intsct ) go to 1100
+        ! Skip non-influencing edge
+        if ( .not.edge(k) ) go to 540
 
-! add in edge contributions
-      km1     =  n
-      do 1000 k = 1,n
-      if (.not.edge(k)) go to 990
-          phx     =  phi(k)*x
-          phdmns  = -phi(k)*d(k)
-          phny    =  phi(k)*nm(1,k)
-          phnz    =  phi(k)*nm(2,k)
-          phvsqh  =  .5d0 * phi(k) * ( xsq - d(k)**2 )
-          delr    =  r(k) - r(km1)
-          drdmn2  =  - delr * d(k) * .5d0
+        ! Add in edge contribution
+        ! This will get overwritten if at least one endpoint is in
+        phi(k)  = -pi
+
+        ! Check at least one endpoint is in
+        if ( .not.corner(k) .and. .not.corner(km1) ) go to 540
+
+        ! Get v_p(k)
+        vpk     =  vp(k)
+        if ( .not.corner(k))  vpk = 1.d0
+
+        ! Get v_m(k)
+        vmk     =  vm(k)
+        if ( .not.corner(km1)) vmk =-1.d0
+
+        ! E&M Eq. (J.8.29)
+        xval    =  vpk*vmk + r(k)*r(km1)
+        yval    =  r(k)*vmk - r(km1)*vpk
+        phi(k)  =  atan2 ( yval, xval)
+
+        540 km1     =  mod(km1,n) + 1
+
+    550 continue
+
+    ! No idea what these are
+    psix    =  psi*x
+    psixx2  =  .5d0 * x * psix
+
+    ! initialize  s  and  d
+    ! This is a very interesting way to show which elements of the array you're setting.
+    ! Nicely visual. Shows off the advantage to not making whitespace meaningful as far as code syntax goes.
+    saic(1,1)=    psi
+    saic(2,2)=         psix
+    saic(3,3)=              psix
+    saic(4,1)=    psix
+
+    ! Skip doublet terms
+    if (.not.doublt) go to 700
+
+    ! check for doublet terms
+    daic(1,4)=                   psix
+    daic(1,6)=                             psix
+    
+    daic(2,2)=         psi
+    
+    daic(3,3)=              psi
+    
+    daic(4,1)=    psi
+    daic(4,4)=                   psixx2
+    daic(4,6)=                             psixx2
+
+    700 continue
+!
+    if ( .not. intsct ) go to 1100
+
+    ! add in edge contributions
+    km1     =  n
+    do 1000 k = 1,n
+    if (.not.edge(k)) go to 990
+        phx     =  phi(k)*x
+        phdmns  = -phi(k)*d(k)
+        phny    =  phi(k)*nm(1,k)
+        phnz    =  phi(k)*nm(2,k)
+        phvsqh  =  .5d0 * phi(k) * ( xsq - d(k)**2 )
+        delr    =  r(k) - r(km1)
+        drdmn2  =  - delr * d(k) * .5d0
 
 ! get source terms, phi(k)
       saic(1,2)=saic(1,2) +        phny*x
@@ -56087,8 +56126,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   ! Height above panel
       h=x(3)
       signh=0.d0
-      if(h.gt.0.d0) signh=1.d0
-      if(h.lt.0.d0) signh=-1.d0
+      if (h > 0.d0) then
+            signh=1.d0
+      end if
+      if (h < 0.d0) then
+            signh=-1.d0
+      end if
+
       hh=h*h
       hm=abs(h)
 
@@ -56128,11 +56172,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
             aa=a*a
 
             ! Perpendicular distance
-            gg=aa+hh
+            gg=aa+hh ! This is not how the theory document says this is done...
 
-            ! Edge integration lengths?
+            ! Edge integration lengths
             el1=aet1*ank-aks1*ane
             el2=aet2*ank-aks2*ane
+
+            ! Products of edge integration lengths
             el12=el1*el2
             el1s=el1*el1
             el2s=el2*el2
@@ -56373,6 +56419,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         aet2=p(2,isp1)-x(2)
         dks=aks2-aks1
         det=aet2-aet1
+
+        ! Edge length
         drm=sqrt(dks*dks+det*det)
         drmi=1.d0/drm
 
@@ -56383,6 +56431,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         ! In-plane perpendicular distance
         a=aks1*ank+aet1*ane
         aa=a*a
+
+        ! b from Eq. (E14) in Ehlers
         bet=(ank-ane)*(ank+ane)
 
         ! Perpendicular distance
@@ -56395,41 +56445,73 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 
         ! Initialize hH(1,1,3) integral
         hh113=0.d0
+
+        ! Squared hyperbolic radii to the edge endpoints
         rr1=aks1*aks1-aet1*aet1-hh
         rr2=aks2*aks2-aet2*aet2-hh
+
+        ! Hyperbolic radii to the edge endpoints
         r1=0.d0
         r2=0.d0
+
+        ! Check for outside DoD
         if((rr1.gt.0.d0).and.(aks1.lt.0.d0)) r1=sqrt(rr1)
         if((rr2.gt.0.d0).and.(aks2.lt.0.d0)) r2=sqrt(rr2)
         if((r1.gt.0.d0).or.(r2.gt.0.d0)) go to 300
         if ( (bet.le.0.d0)  .or.  (el1*el2.ge.0.d0)  .or.                 &
      &       (gg.le.0.d0)   .or.  (a*ank.ge.0.d0)  )                      &
      &  go to 600
+
+     ! Neither endpoint is in the DoD
+
+     ! Ehlers Eq. (E18)
         if(h.ne.0.d0) hh113=sign(pi,h*ank)
+
+        ! Ehlers Eq. (E22)
         f111=pi/sbet
+
+        ! Ehlers Eq. (E23)
         f121=-a*ane*f111/bet
+
+        ! Ehlers Eq. (E24)
         f211=a*ank*f111/bet
+
+        ! Not sure where this one comes from
         f221=-ank*ane*f111*(gg+2.d0*aa)/(2.d0*bet*bet)
         go to 500
+
+        ! At least one endpoint is in the DoD
   300   continue
         gg=abs(gg)
         g=sqrt(gg)
         if(r1.eq.0.d0) el1=-g
         if(r2.eq.0.d0) el2=g
+
+        ! Ehlers Eqs. (E19-20)
         if(bet.gt.0.d0) fact1=(el1*r2-el2*r1)/gg
         if(bet.gt.0.d0) fact2=(bet*r1*r2+el1*el2)/gg
         if(bet.le.0.d0) fact1=(r2-r1)*(r2+r1)/(el1*r2+el2*r1)
         if(bet.le.0.d0) fact2=(gg-el1*el1-el2*el2)/(bet*r1*r2-el1*el2)
+
+        ! Ehlers Eq. (E18)
         if(h.ne.0.d0) hh113=atan2(h*a*fact1,r1*r2+hh*fact2)
+
+        ! Check for last condition of Ehlers Eq. (E22)
         if(abs(fact2).lt.dltmch*abs(sbet*fact1)) go to 400
         sig=fact1/fact2
         sigs=sig*sig
         seris = sig*sigs*                                                 &
      &            (1.d0/3.d0-bet*sigs/5.d0+(bet*sigs)*(bet*sigs)/7.d0)
         f111=-sig+bet*seris
+
+        ! Last condition of Ehlers Eq. (E23)
         f121=(el2*r1*aet1-el1*r2*aet2-ank*r1*r2*(r2-r1))/(gg*fact2)       &
      &  -a*ane*seris
+
+     ! Ehlers Eq. (E24)
         f211=ank*(a*f111-2.d0*ane*f121)-ane*(r2-r1)
+
+        ! Don't know where this one comes from
         if(sbet.gt.deltbt)                                                &
      &  f221=(3.d0*a*(ank*f121-ane*f211)+ane*(r2*aet2-r1*aet1)            &
      &  -ank*(r2*aks2-r1*aks1)+2.d0*hh*ank*ane*f111)/(4.d0*bet)
@@ -56441,6 +56523,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                                                     (15.d0*gg*gg)
         go to 500
   400   continue
+
+  ! Middle two conditions of Ehlers Eq. (E22)
         if(bet.lt.0.d0) f111=                                             &
      &  -sign(1.d0,ane)*log((sbet*r1+abs(el1))/(sbet*r2+abs(el2)))/sbet
         if(bet.gt.0.d0) f111=                                             &
