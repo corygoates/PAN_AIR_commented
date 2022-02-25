@@ -983,7 +983,7 @@
       END program a502   ! =====================================================
 
 ! **deck a502er
-      subroutine a502er(sub,msg)
+subroutine a502er(sub,msg)
       implicit double precision (a-h,o-z)
       character*(*) sub,msg
       character*50 xmsg
@@ -997,9 +997,9 @@
       call remarx (xmsg)
       CALL AbortPanair('a502bd')
       return
-      END subroutine a502er
+end subroutine a502er
 ! **deck a502ms
-      subroutine a502ms(sub,msg)
+subroutine a502ms(sub,msg)
       implicit double precision (a-h,o-z)
       character*(*) sub,msg
       character*50 xmsg
@@ -1016,9 +1016,9 @@
       xmsg(14:50)= msg
       if ( i502er.lt.100 ) call remarx (xmsg)
       return
-      END subroutine a502ms
+end subroutine a502ms
 ! **deck a502wr
-      subroutine a502wr (label,lmsg)
+subroutine a502wr (label,lmsg)
       implicit double precision (a-h,o-z)
       character*(*) label,lmsg
       character*50 xmsg
@@ -1034,7 +1034,7 @@
       xmsg(14:50)= lmsg
       call remarx (xmsg)
       return
-      END subroutine a502wr
+end subroutine a502wr
 !+
 SUBROUTINE AbortPanair(a)
 ! ------------------------------------------------------------------------------
@@ -1048,7 +1048,7 @@ SUBROUTINE AbortPanair(a)
   STOP
 END Subroutine AbortPanair   ! -------------------------------------------------
 ! **deck abt2fg
-      subroutine abt2fg (iul,kedg,i1kseg,i2kseg,kzedg,kncedg,knfsg      &
+subroutine abt2fg (iul,kedg,i1kseg,i2kseg,kzedg,kncedg,knfsg      &
      &                  ,jul,ledg,i1lseg,i2lseg,lzedg,lncedg,lnfsg      &
      &                  ,nefgst,nefgsa,kptefg,  ipmx,iptr,kkvlst,wtvlst &
      &                  ,nm,nn,z,nnett,epsgeo                           &
@@ -1159,11 +1159,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       return
-      END subroutine abt2fg
-!!      subroutine abtabo (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abt2fg
+!!subroutine abtabo (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,zsv                                            & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtabo
-      subroutine abtabo (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtabo (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,zsv                                        & ! Added by Martin Hegedus, 4/21/09
      &                  ,iedgtp,  nedmpa,  kposab                       &
      &                  ,nfdseg,kfdseg,kfdkey,kfdsgn                    &
@@ -1455,11 +1455,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &' $eat ')
  9012 format (1x,i3,1h.,i1,2x,a10,1x,i2,3x,i2,3x,a8,2x,a8,4x,20i4       &
      &  ,/,(51x,20i4) )
-      END subroutine abtabo
-!!      subroutine abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtabo
+!!subroutine abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,iedgtp,icrntp,  nedmpa,  kposab                & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtaio
-      subroutine abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtaio (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,iedgtp,icrntp,  nedmpa,  kposab            & ! Added by Martin Hegedus, 4/21/09
      &                  ,nfsga,  nfdseg,kfdseg,kfdkey,kfdsgn            &
      &                  ,nabint,nmpaia,kemkey,nbraia,ifsgai,mcmpai      &
@@ -1908,11 +1908,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  9304 format (//,'  *** probable error ***  two cp''s in the following '&
      & ,' abutment intersection share common abutment ends, probably'   &
      & ,' overlapping' )
-      END subroutine abtaio
-!!      subroutine abtaip (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtaio
+!!subroutine abtaip (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                 ,iedgtp,icrntp,  nfdseg,kfdseg,kfdsgn,kposab     & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtaip
-      subroutine abtaip (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtaip (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                 ,nza,iedgtp,icrntp,  nfdseg,kfdseg,kfdsgn,kposab & ! Added by Martin Hegedus, 4/21/09
      &                 ,iabint,nbraia,ifsgai,mcmpai)
       implicit double precision (a-h,o-z)
@@ -1988,9 +1988,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &      ,2x,a )
  1000 continue
       return
-      END subroutine abtaip
+end subroutine abtaip
 ! **deck abtchk
-      subroutine abtchk(k,isd,l,jsd,nok)
+subroutine abtchk(k,isd,l,jsd,nok)
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -2087,9 +2087,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write(6,9100)
  9100 format(//1x,44hscratch point array z in abtchk is too small,//)
       stop
-      END subroutine abtchk
+end subroutine abtchk
 ! **deck abtcor
-      subroutine abtcor
+subroutine abtcor
 !
 !         abort exit routine for getcor pkg., dumps current dynamic
 !         cm tables at abort time.
@@ -2137,11 +2137,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   ,'   level-id')
  6201 format ( 3x,a,     3x,i9,   6x,i9,        3x,i11,' (d)', 6x,a)
 !
-      END subroutine abtcor
-!!      subroutine abtdab (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtcor
+!!subroutine abtdab (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,nseglo,kabut,labut,  nfsga                     & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtdab
-      subroutine abtdab (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtdab (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,nseglo,kabut,labut,  nfsga                 & ! Added by Martin Hegedus, 4/21/09
      &                  ,nfdseg,kfdseg,kfdkey,kfdpnt,kfdsgn, nabt,nedaba&
      &                  )
@@ -2389,11 +2389,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/,   '   object edge segment:  nw',i4,'  side',i2,             &
      &        '  1-st point',i4,'  last point',i4                       &
      &   )
-      END subroutine abtdab
-!!      subroutine abtdai (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtdab
+!!subroutine abtdai (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,nfdseg,kfdseg,kfdkey,  nabt,nedaba             & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtdai
-      subroutine abtdai (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtdai (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,nfdseg,kfdseg,kfdkey,  nabt,nedaba         & ! Added by Martin Hegedus, 4/21/09
      &                  ,nedmp,nedmpa                                   &
      &                  ,nmpec,nabint,nmpaia,kemkey,kempec,kptemp       &
@@ -2547,9 +2547,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nmpaia(nmpec+1) =  nedmp
       call ukysrt (nedmp,kempec,kemkey)
       return
-      END subroutine abtdai
+end subroutine abtdai
 ! **deck abtdim
-      subroutine abtdim (nnett,nm,nn,z,ntd,  diamin,diamax)
+subroutine abtdim (nnett,nm,nn,z,ntd,  diamin,diamax)
       implicit double precision (a-h,o-z)
       dimension nm(150), nn(150), z(3,4000), ntd(150)
 !         compute the smallest and largest panel diameters for the
@@ -2577,9 +2577,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           nza     =  nza + nm(k)*nn(k)
  1000 continue
       return
-      END subroutine abtdim
+end subroutine abtdim
 ! **deck abtdnc
-      subroutine abtdnc (nnett,nm,nn,z,q)
+subroutine abtdnc (nnett,nm,nn,z,q)
       implicit double precision (a-h,o-z)
       dimension nm(150), nn(150), z(3,4000), q(3,4000)
 !         scan the final geometry ( z ) and the initial geometry ( q )
@@ -2596,11 +2596,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
       if ( header ) call emark ('pnrmlmov')
       return
-      END subroutine abtdnc
-!!      subroutine abtdue (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtdnc
+!!subroutine abtdue (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,iedgtp,sdnst,  nfdseg,kfdseg,kfdkey,kfdsgn     & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtdue
-      subroutine abtdue (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtdue (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,iedgtp,sdnst,  nfdseg,kfdseg,kfdkey,kfdsgn & ! Added by Martin Hegedus, 4/21/09
      &                  ,nabt,nedaba,kposab,mtchab                      &
      &                  ,nedmp,nedmpa,kempec,kptemp,tauemp              &
@@ -3615,9 +3615,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  5400 continue
       return
-      END subroutine abtdue
+end subroutine abtdue
 ! **deck abtdzo
-      subroutine abtdzo (nnett,nm,nn,z,epsgeo,nza,zsv)
+subroutine abtdzo (nnett,nm,nn,z,epsgeo,nza,zsv)
       implicit double precision (a-h,o-z)
       dimension nm(150), nn(150), z(3,4000), nza(151), zsv(3,4000)
 !
@@ -3633,11 +3633,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6001 format (//,'  *****  no points were moved by the liberalized geome&
      &try processor (controlled by $eat)  ***** ',//)
       return
-      END subroutine abtdzo
-!!      subroutine abtecd (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtdzo
+!!subroutine abtecd (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,iedgtp,sdnst,smach,ztedg,dstedg, icrntp        & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtecd
-      subroutine abtecd (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym,   & ! Added by Martin Hegedus, 4/21/09
+subroutine abtecd (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym,   & ! Added by Martin Hegedus, 4/21/09
      &                  nza,iedgtp,sdnst,smach,ztedg,dstedg, icrntp     & ! Added by Martin Hegedus, 4/21/09
      &                  )
       implicit double precision (a-h,o-z)
@@ -3911,9 +3911,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       ,/,'      list of collapsed edge segments follows ')
  6002 format ( /,'  from edge pt # ',i3,4x,3f12.6                       &
      &        ,/,'   to  edge pt # ',i3,4x,3f12.6 )
-      END subroutine abtecd
+end subroutine abtecd
 ! **deck abtefg
-      subroutine abtefg (iabt,iul,kedg,jul,ledg                         &
+subroutine abtefg (iabt,iul,kedg,jul,ledg                         &
      &                  ,nefgst,nefgsa,kptefg, ipmx,iptr,kkvlst,wtvlst  &
      &                  ,nedaba,kfdkey,kfdseg,kfdsgn                    &
      &                  ,nm,nn,nza,z,epsgeo                             &
@@ -4042,9 +4042,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &            )
 !
       return
-      END subroutine abtefg
+end subroutine abtefg
 ! **deck abtels
-      subroutine abtels (p1,p2,  ze,ince,ne,  epsgeo,  abut,te1,te2)
+subroutine abtels (p1,p2,  ze,ince,ne,  epsgeo,  abut,te1,te2)
       implicit double precision (a-h,o-z)
       dimension  p1(3), p2(3), ze(3)
       logical  abut
@@ -4085,9 +4085,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine abtels
+end subroutine abtels
 ! **deck abtemp
-      subroutine abtemp (ne,kfds,ksgn,  z,nza,nm,nn,nedmpa,  epsgeo     &
+subroutine abtemp (ne,kfds,ksgn,  z,nza,nm,nn,nedmpa,  epsgeo     &
      &                 ,kptemp,nedmp)
       implicit double precision (a-h,o-z)
 !call limits
@@ -4349,9 +4349,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call abtend ('abtemp: more than 10% variation in edge lengths')
  8200 continue
       call abtend ('abtemp: internal data buffer overflow')
-      END subroutine abtemp
+end subroutine abtemp
 ! **deck abtend
-      subroutine abtend (msg)
+subroutine abtend (msg)
       implicit double precision (a-h,o-z)
       character*(*) msg
       character*50 xmsg
@@ -4370,9 +4370,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call remarx (xmsg)
       CALL AbortPanair('abtend')
       return
-      END subroutine abtend
+end subroutine abtend
 ! **deck abteqc
-      subroutine abteqc (kpt,ksgn,npt,  ix,jx,ijsgn)
+subroutine abteqc (kpt,ksgn,npt,  ix,jx,ijsgn)
       implicit double precision (a-h,o-z)
       dimension  kpt(npt), ksgn(npt)
 !         enter the equivalence relation   ix .=. jx   into the circulan
@@ -4437,9 +4437,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1200 continue
       call abtend ('looping error in abteqc')
       return
-      END subroutine abteqc
+end subroutine abteqc
 ! **deck abtfor
-      subroutine abtfor(k,isd,l,jsd,nok)
+subroutine abtfor(k,isd,l,jsd,nok)
       implicit double precision (a-h,o-z)
 !
 !     abtfor is identical to abtchk except that we set  nforc=1 in
@@ -4543,11 +4543,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write(6,9100)
  9100 format(//1x,44hscratch point array z in abtfor is too small,//)
       stop
-      END subroutine abtfor
-!!      subroutine abtfsd (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtfor
+!!subroutine abtfsd (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,nseglo,kabut,labut,t1abut,t2abut,klabut        & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtfsd
-      subroutine abtfsd (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtfsd (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,nseglo,kabut,labut,t1abut,t2abut,klabut    & ! Added by Martin Hegedus, 4/21/09
      &                  ,ztedg,dstedg                                   &
      &                  ,iedgtp,nfsga,nfdseg,kfdseg                     &
@@ -4882,11 +4882,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (' *** multiple abumtent *** '                             &
      &  ,2x,' nw',i3,', edge ',i1,'  may abut to'                       &
      &     ,' nw',i3,', edge ',i1,'  along more than one abutment')
-      END subroutine abtfsd
-!!      subroutine abtidn (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,jsympa   & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtfsd
+!!subroutine abtidn (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,jsympa   & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,mapn2f,mapb2n,mapn2b,mapb2f,keyb2f             & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtidn
-      subroutine abtidn (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtidn (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,jsympa,mapn2f,mapb2n,mapn2b,mapb2f,keyb2f      & ! Added by Martin Hegedus, 4/21/09
      &                  ,zsv                                            &
      &                  ,kpteqc,kmpeqc,wgteqc,nefgsa,kptefg             &
@@ -5601,9 +5601,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & )
  9114 format (2x,i3,3x,a10)
  9301 format (1h )
-      END subroutine abtidn
+end subroutine abtidn
 ! **deck abtint
-      subroutine abtint (isym,labt                                      &
+subroutine abtint (isym,labt                                      &
      &                  ,nseg,ipqseg,cseg,kseg,lseg,ndmseg,nwkseg       &
      &                  ,nnod,ipnod,lnod,knod                           &
      &                  ,nodseg,nodpos,nfail                            &
@@ -5881,9 +5881,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &   11x,'exhaustive search for a suitable ground node started for t&
      &ree no.',i3,'  nnodx =',i3)
  7002 format (11x,'node =',i4,'   ierr =',i5)
-      END subroutine abtint
+end subroutine abtint
 ! **deck abtipc
-      subroutine abtipc (iabt,icp2ab,npnmtc)
+subroutine abtipc (iabt,icp2ab,npnmtc)
       implicit double precision (a-h,o-z)
 !
 !         check that the ipot values for the networks involved in a
@@ -6064,17 +6064,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &,'networks has ',i2,' nw edges (value should be 3)' )
  9006 format(' abutment #',i3,' with total stagnation on the nonwake '  &
      &,'networks has ',i2,' nw edges (value should be 3)' )
-      END subroutine abtipc
+end subroutine abtipc
 ! **deck abtjob
-      subroutine abtjob (label,msg)
+subroutine abtjob (label,msg)
       implicit double precision (a-h,o-z)
       character*(*) label,msg
       write (6,1001) label,msg
  1001 format ('0*****  a502 terminating in module : ',a8,/,1x,a40)
       return
-      END subroutine abtjob
+end subroutine abtjob
 ! **deck abtmsg
-      subroutine abtmsg (msg)
+subroutine abtmsg (msg)
       implicit double precision (a-h,o-z)
       character*(*) msg
       character*50 xmsg
@@ -6092,10 +6092,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       xmsg(11:50)= msg
       call remarx (xmsg)
       return
-      END subroutine abtmsg
-!!      subroutine abtpos (z,epsgeo,nsymm,  kpos)                           ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtmsg
+!!subroutine abtpos (z,epsgeo,nsymm,  kpos)                           ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtpos
-      subroutine abtpos (z,epsgeo,nisym,njsym,  kpos)                     ! Added by Martin Hegedus, 4/21/09
+subroutine abtpos (z,epsgeo,nisym,njsym,  kpos)                     ! Added by Martin Hegedus, 4/21/09
       implicit double precision (a-h,o-z)
       dimension  z(3)
 !         determine if the point  z  lies near one or the other
@@ -6106,11 +6106,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( nisym.ge.2 .and. abs(z(2)).le.epsgeo ) kpos = kpos+1           ! Added by Martin Hegedus, 4/21/09
       if ( njsym.ge.2 .and. abs(z(3)).le.epsgeo ) kpos = kpos+2           ! Added by Martin Hegedus, 4/21/09
       return
-      END subroutine abtpos
-!!      subroutine abtsym (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
+end subroutine abtpos
+!!subroutine abtsym (nnett,nm,nn,z,ntd,comprs,epsgeo,nsymm,nza      & ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,nfdseg,kfdseg,kfdsgn,kfdkey, kposab            & ! Removed by Martin Hegedus, 4/21/09
 ! **deck abtsym
-      subroutine abtsym (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
+subroutine abtsym (nnett,nm,nn,z,ntd,comprs,epsgeo,nisym,njsym    & ! Added by Martin Hegedus, 4/21/09
      &                  ,nza,nfdseg,kfdseg,kfdsgn,kfdkey, kposab        & ! Added by Martin Hegedus, 4/21/09
      &                  ,nabt,nedaba                                    &
      &                  )
@@ -6226,10 +6226,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  9001 format ('0 ** warning **  plane of symmetry abutment inaccuracy.  &
      &abutment',i4,'  nw',i3,'  edge',i2,'  point',i3,/,'  point symmetr&
      &y indicator =',i2,'  abutment symmetry indicator =',i2)
-      END subroutine abtsym
+end subroutine abtsym
 
 ! **deck abvblw
-      subroutine abvblw(p1,p2,p3,cq,   intf)
+subroutine abvblw(p1,p2,p3,cq,   intf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: determine whether all points lie above
@@ -6268,9 +6268,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       intf = .true.
 !
   999 return
-      END subroutine abvblw
+end subroutine abvblw
 ! **deck addin2
-      subroutine addin2 (n,ia,  iax)
+subroutine addin2 (n,ia,  iax)
       implicit double precision (a-h,o-z)
       dimension ia(n+1)
 !         add the entry  iax  into the ordered list  ia(1:n)  of
@@ -6295,9 +6295,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       n        =  1
       ia(1)    =  iax
       return
-      END subroutine addin2
+end subroutine addin2
 ! **deck addpan
-      subroutine addpan (where,ipanno,iend                              &
+subroutine addpan (where,ipanno,iend                              &
      &                  ,iother,sginfo,ips                              &
      &                  ,numpan,nout)
       implicit double precision (a-h,o-z)
@@ -6427,10 +6427,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     subroutine end
 !
       return
-      END subroutine addpan
+end subroutine addpan
 
 ! **deck addtra
-      subroutine addtra (where,itra,iend,itcsa                          &
+subroutine addtra (where,itra,iend,itcsa                          &
      &                  ,isinfo,numtra,nout)
       implicit double precision (a-h,o-z)
 !
@@ -6553,10 +6553,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     subroutine end
 !
       return
-      END subroutine addtra
+end subroutine addtra
 
 ! **deck agpsfl
-      subroutine agpsfl (nacase, zk,nmk,nnk,npa,netwrk                  &
+subroutine agpsfl (nacase, zk,nmk,nnk,npa,netwrk                  &
      &                  ,npanfp,agpspc,pandat)
       implicit double precision (a-h,o-z)
       dimension zk(3,nmk,nnk)
@@ -6775,9 +6775,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
       return
-      END Subroutine agpsfl
+end subroutine agpsfl
 ! **deck aical
-      subroutine aical (row,rows,rhs,jci,nwrit,irwcum,dvdfs,nrhtyp)
+subroutine aical (row,rows,rhs,jci,nwrit,irwcum,dvdfs,nrhtyp)
       implicit double precision (a-h,o-z)
       dimension row(1),rows(1),rhs(1)
 ! --- real*8 row, rows, rhs
@@ -7687,9 +7687,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  1810 continue
       return
-      END Subroutine AiCal
+end subroutine AiCal
 ! **deck aicerr
-      subroutine aicerr (nzero,irow,jc,dvdfs)
+subroutine aicerr (nzero,irow,jc,dvdfs)
       implicit double precision (a-h,o-z)
       dimension dvdfs(4,1:*)
 !
@@ -7784,10 +7784,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   420 continue
 !
       return
-      END Subroutine AicErr
+end subroutine AicErr
       
 
-      subroutine aicsup (q,saic,daic)
+subroutine aicsup (q,saic,daic)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -8541,10 +8541,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !                        inside  c .    intsct =  or ( edge(k) )
 !         within    =  true if p lies inside sigma
 !         xeqzro    =  true if x (q.v.) is identically zero
-      END Subroutine AicSup
+end subroutine AicSup
 
 
-      subroutine avg2pt (za,zb,zavg)
+subroutine avg2pt (za,zb,zavg)
       implicit double precision (a-h,o-z)
       dimension za(3), zb(3), zavg(3)
 !
@@ -8554,10 +8554,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       zavg(2)  =  .5d0*( za(2) + zb(2) )
       zavg(3)  =  .5d0*( za(3) + zb(3) )
       return
-      END subroutine avg2pt
+end subroutine avg2pt
 
 
-      subroutine bconcl (mapbc,locsrt,keyloc,maps                       &
+subroutine bconcl (mapbc,locsrt,keyloc,maps                       &
      &                  ,locs,mapb,iflgsp,nedaba                        &
      &                  ,kfdseg,kfdkey,kfdsgn,iedgtp                    &
      &                  ,mtchab,kptlm,ksgnlm,isngpk                     &
@@ -9844,9 +9844,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6007 format ('0 boundary condition maps for network :',i5)
  6008 format ('0 control point map for network :',i5)
  6009 format ('0 singularity parameter maps for network :',i5)
-      END subroutine bconcl
+end subroutine bconcl
 ! **deck bcopt
-      subroutine bcopt
+subroutine bcopt
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -10456,9 +10456,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       goto 900
 !
   900 return
-      END subroutine bcopt
+end subroutine bcopt
 ! **deck binsch
-      subroutine binsch(z,x,n,il,iu)
+subroutine binsch(z,x,n,il,iu)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -10559,9 +10559,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    80 il = i
       iu = i
    90 return
-      END subroutine binsch
+end subroutine binsch
 ! **deck bkfact
-      subroutine bkfact (s,ns,n,nrhs,  lmat,lint,llu,  lprnt,nhdat,ier)
+subroutine bkfact (s,ns,n,nrhs,  lmat,lint,llu,  lprnt,nhdat,ier)
       implicit double precision (a-h,o-z)
       dimension s(ns), nhdat(6)
       logical lprnt
@@ -10717,9 +10717,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call writms (llu,nhdat,6,1,  -1,0)
       call closms (llu)
       return
-      END subroutine bkfact
+end subroutine bkfact
 ! **deck bkfclu
-      subroutine bkfclu (s,ns,n,nrhs,  pp,qq,llu,  lprnt,nhdat,ier)
+subroutine bkfclu (s,ns,n,nrhs,  pp,qq,llu,  lprnt,nhdat,ier)
       implicit double precision (a-h,o-z)
       dimension s(ns), nhdat(6)
       integer pp, qq, p
@@ -10821,9 +10821,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call writms (llu,nhdat,6,1,  -1,0)
       call closms (llu)
       return
-      END subroutine bkfclu
+end subroutine bkfclu
 ! **deck bkmove
-      subroutine bkmove         (a,b,m,n,na,nb)
+subroutine bkmove         (a,b,m,n,na,nb)
       implicit double precision (a-h,o-z)
 !
 !         move an  mxn  array from  a(na,n)  to  b(nb,n)
@@ -10833,9 +10833,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
                call dcopy(m,a(1,i),1,b(1,i),1)
   100 continue
       return
-      END subroutine bkmove
+end subroutine bkmove
 ! **deck bkslvt
-      subroutine bkslvt (s,ns,n,nrhs,llu,lrhs,lbn,lans, lprnt,nhdat,ier)
+subroutine bkslvt (s,ns,n,nrhs,llu,lrhs,lbn,lans, lprnt,nhdat,ier)
       implicit double precision (a-h,o-z)
       dimension s(ns), nhdat(6)
       logical lprnt
@@ -10984,9 +10984,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 format (' bkslvt: pp',i5,'  qq',i5,'  p',i5,'  q',i5              &
      &  ,'  nrhs',i5,'  ll',i10,'  ns',i10)
       call a502er ('bkslvt','not enough scratch memory')
-      END subroutine bkslvt
+end subroutine bkslvt
 ! **deck bksolv
-      subroutine bksolv (s,ns,n,nrhs,llu,lrhs,lbn,lans, lprnt,nhdat,ier)
+subroutine bksolv (s,ns,n,nrhs,llu,lrhs,lbn,lans, lprnt,nhdat,ier)
       implicit double precision (a-h,o-z)
       dimension s(ns), nhdat(6)
       logical lprnt
@@ -11122,9 +11122,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 format (' bksolv: pp',i5,'  qq',i5,'  p',i5,'  q',i5              &
      &  ,'  nrhs',i5,'  ll',i10,'  ns',i10)
       call a502er ('bksolv','not enough scratch memory')
-      END subroutine bksolv
+end subroutine bksolv
 ! **deck blbfun
-      subroutine blbfun (sv,tv,  bl)
+subroutine blbfun (sv,tv,  bl)
       implicit double precision (a-h,o-z)
       dimension bl(2,2)
 !
@@ -11147,9 +11147,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       bl(2,1)    =  (1.d0+sv)*(1.d0-tv)*.25d0
 !
       return
-      END subroutine blbfun
+end subroutine blbfun
 ! **deck blcal
-      subroutine blcal(blcp,bl)
+subroutine blcal(blcp,bl)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -11234,9 +11234,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       bl(8,k8)=blcp(3,i,1)
   400 continue
       return
-      END subroutine blcal
+end subroutine blcal
 ! **deck blccal
-      subroutine blccal(m,n,nm,nn,zm,z,b)
+subroutine blccal(m,n,nm,nn,zm,z,b)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -11646,9 +11646,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   850 b(3,k)=ak(1,k)
   900 continue
       return
-      END subroutine blccal
+end subroutine blccal
 ! **deck blkabi
-      subroutine blkabi (a,m,  b,n,  ip,s)
+subroutine blkabi (a,m,  b,n,  ip,s)
       implicit double precision (a-h,o-z)
       dimension a(m,1), b(n,1), ip(1), s(m,1)
 !
@@ -11670,9 +11670,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
       call dcopy (m*n,  s,1,  a,1)
       return
-      END subroutine blkabi
+end subroutine blkabi
 ! **deck blkaic
-      subroutine blkaic (irowra,aic,wic,nwic ,ityprc,nsngu,krowsa,krowta&
+subroutine blkaic (irowra,aic,wic,nwic ,ityprc,nsngu,krowsa,krowta&
      &                  ,lint,indint,llu,indllu)
       implicit double precision (a-h,o-z)
       dimension aic(1), wic(nwic)
@@ -11855,9 +11855,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   410 continue
       return
-      END subroutine blkaic
+end subroutine blkaic
 ! **deck blkans
-      subroutine blkans (n,m,  lans,lbn,  b,bpm,pp,  w,nw)
+subroutine blkans (n,m,  lans,lbn,  b,bpm,pp,  w,nw)
       implicit double precision (a-h,o-z)
       dimension w(nw)
       integer pp
@@ -11942,9 +11942,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format ('0   blkans timing and operation data '                   &
      &  ,/, (2x,i2,1h., f12.6,i14,i6,f12.6)  )
       return
-      END subroutine blkans
+end subroutine blkans
 ! **deck blkapp
-      subroutine blkapp (n,lint,llu,kpp,kqq,kp,kq,aqp,app)
+subroutine blkapp (n,lint,llu,kpp,kqq,kp,kq,aqp,app)
       implicit double precision (a-h,o-z)
       dimension aqp(1), app(kpp,kpp)
       integer pp,qq,p,q
@@ -12038,7 +12038,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END  subroutine blkapp
 ! **deck blkaqp
-      subroutine blkaqp (n,lmat,lint,pp,qq,p,q,a,aq)
+subroutine blkaqp (n,lmat,lint,pp,qq,p,q,a,aq)
       implicit double precision (a-h,o-z)
       dimension a(1), aq(1)
       integer pp,qq,p,q
@@ -12111,9 +12111,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format ('0   blkaqp timing and operation data '                   &
      &  ,/, (2x,i2,1h., f12.6,i14,i6,f12.6)  )
       return
-      END subroutine blkaqp
+end subroutine blkaqp
 ! **deck blkdcr
-      subroutine blkdcr (a,ip,n,na,ier,amin,s)
+subroutine blkdcr (a,ip,n,na,ier,amin,s)
       implicit double precision (a-h,o-z)
       dimension a(na,n), ip(n)
       dimension s(1)
@@ -12187,9 +12187,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6004 format ('0  diagonals of u:'  ,/,(2x,1p,10e12.4)  )
       ier    =  ip(k)
       return
-      END subroutine blkdcr
+end subroutine blkdcr
 ! **deck blkfac
-      subroutine blkfac (n,llu,pp,p,  a,b,c,s,  ier)
+subroutine blkfac (n,llu,pp,p,  a,b,c,s,  ier)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1), s(1)
       integer pp,p,ppl
@@ -12379,9 +12379,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format ('0   blkfac timing and operation data '                   &
      &  ,/, (2x,i2,1h., f12.6,i14,i6,f12.6)  )
       return
-      END subroutine blkfac
+end subroutine blkfac
 ! **deck blkmsw
-      subroutine blkmsw (lmat,  a,na,m,n,  nw,  irec)
+subroutine blkmsw (lmat,  a,na,m,n,  nw,  irec)
       implicit double precision (a-h,o-z)
       dimension a(1)
 !
@@ -12399,9 +12399,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   110 continue
       call writmd (lmat,a,nw,irec, -1,0)
       return
-      END subroutine blkmsw
+end subroutine blkmsw
 ! **deck blkmxw
-      subroutine blkmxw (lmat,  a,na,m,n,  nw,  irec)
+subroutine blkmxw (lmat,  a,na,m,n,  nw,  irec)
       implicit double precision (a-h,o-z)
       dimension a(1)
 !
@@ -12419,9 +12419,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   110 continue
       call blkwbx (lmat,a,nw,irec, -1,0)
       return
-      END subroutine blkmxw
+end subroutine blkmxw
 ! **deck blkrbx
-      subroutine blkrbx (lunit,a,na,irec)
+subroutine blkrbx (lunit,a,na,irec)
       implicit double precision (a-h,o-z)
       dimension a(na)
 !call cmsolv
@@ -12442,9 +12442,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iadd   =  (irec-1)*ppsv*nrhssv + 1
       call dcopy (na,  b(iadd),1,  a,1)
       return
-      END subroutine blkrbx
+end subroutine blkrbx
 ! **deck blkrhs
-      subroutine blkrhs (n,m,  lrhs,lbn,  b,bpm,pp)
+subroutine blkrhs (n,m,  lrhs,lbn,  b,bpm,pp)
       implicit double precision (a-h,o-z)
       integer pp
       dimension b(1), bpm(pp,m)
@@ -12514,9 +12514,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format ('0   blkrhs timing and operation data '                   &
      &  ,/, (2x,i2,1h., f12.6,i14,i6,f12.6)  )
       return
-      END subroutine blkrhs
+end subroutine blkrhs
 ! **deck blksit
-      subroutine blksit (n,a,ip,b)
+subroutine blksit (n,a,ip,b)
       implicit double precision (a-h,o-z)
       dimension a(n,n), ip(n), b(n)
 !
@@ -12535,9 +12535,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ukysrd (n,b,ip)
 !
       return
-      END subroutine blksit
+end subroutine blksit
 ! **deck blkslv
-      subroutine blkslv (n,m,  llu,lbn,  bpm,xpm,a,pp)
+subroutine blkslv (n,m,  llu,lbn,  bpm,xpm,a,pp)
       implicit double precision (a-h,o-z)
       integer pp
       dimension bpm(1), xpm(1), a(1)
@@ -12697,9 +12697,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (2x,i2,1h.,f12.6,i12,i6,2f12.6)
   900 continue
       return
-      END subroutine blkslv
+end subroutine blkslv
 ! **deck blkstn
-      subroutine blkstn (n,a,ip,  b,x,m)
+subroutine blkstn (n,a,ip,  b,x,m)
       implicit double precision (a-h,o-z)
       dimension a(n,n), ip(n), b(n,m), x(n,m)
 !
@@ -12755,9 +12755,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  1000 continue
       return
-      END subroutine blkstn
+end subroutine blkstn
 ! **deck blksv1
-      subroutine blksv1 (n,a,ip,b)
+subroutine blksv1 (n,a,ip,b)
       implicit double precision (a-h,o-z)
       dimension a(n,n), b(n), ip(n)
 !
@@ -12771,9 +12771,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           b(i)    =  b(i)/a(i,i)
   200 continue
       return
-      END subroutine blksv1
+end subroutine blksv1
 ! **deck blksvn
-      subroutine blksvn (n,a,ip,  b,x,m)
+subroutine blksvn (n,a,ip,  b,x,m)
       implicit double precision (a-h,o-z)
       dimension a(n,n), ip(n), b(n,m), x(n,m)
 !
@@ -12829,9 +12829,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   900 continue
  1000 continue
       return
-      END subroutine blksvn
+end subroutine blksvn
 ! **deck blksvt
-      subroutine blksvt (n,m,  llu,lbn,  bpm,xpm,a,pp)
+subroutine blksvt (n,m,  llu,lbn,  bpm,xpm,a,pp)
       implicit double precision (a-h,o-z)
       integer pp
       dimension bpm(1), xpm(1), a(1)
@@ -13036,9 +13036,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format (2x,i2,1h.,f12.6,i12,i12,2f12.6)
   900 continue
       return
-      END subroutine blksvt
+end subroutine blksvt
 ! **deck blksze
-      subroutine blksze (si,ni,nxi,  ppi,qqi,qval)
+subroutine blksze (si,ni,nxi,  ppi,qqi,qval)
       implicit double precision (a-h,o-z)
       integer si,ni,nxi,  ppi,qqi,qval(1)
 !
@@ -13168,9 +13168,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   800 continue
   900 continue
       return
-      END subroutine blksze
+end subroutine blksze
 ! **deck blkwbx
-      subroutine blkwbx (lunit,a,na,irec,  k1,k2)
+subroutine blkwbx (lunit,a,na,irec,  k1,k2)
       implicit double precision (a-h,o-z)
       dimension a(na)
 !call cmsolv
@@ -13191,9 +13191,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iadd   =  (irec-1)*ppsv*nrhssv + 1
       call dcopy (na,  a,1,  b(iadd),1)
       return
-      END subroutine blkwbx
+end subroutine blkwbx
 ! **deck block
-      subroutine block
+subroutine block
       implicit double precision (a-h,o-z)
       logical error
 !call limits
@@ -13954,17 +13954,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call icopy (mxnett,  0,0,  idsvfw,1)
       return
 !
-      END subroutine block
+end subroutine block
 ! **deck bmark
-      subroutine bmark (label)
+subroutine bmark (label)
       implicit double precision (a-h,o-z)
       character*(*) label
       write (6,6001) label
  6001 format ('0*b*',a8)
       return
-      END subroutine bmark
+end subroutine bmark
 ! **deck bqbfun
-      subroutine bqbfun (s,t,  phi,phis,phit)
+subroutine bqbfun (s,t,  phi,phis,phit)
       implicit double precision (a-h,o-z)
       dimension phi(9), phis(9), phit(9), ds(3), dt(3), bs(3), bt(3)
 !         compute biquadratic basis function  phi  for an isoparametric
@@ -14018,9 +14018,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       phit(3) =  bs(3)*dt(3)
 !
       return
-      END subroutine bqbfun
+end subroutine bqbfun
 ! **deck btrns
-      subroutine btrns(jc,bcd)
+subroutine btrns(jc,bcd)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -14110,9 +14110,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call trns(bcd,bcdq,nbdq,nsb,nrb,ntb,nib,jc)
       return
-      END subroutine btrns
+end subroutine btrns
 ! **deck btrnsf
-      subroutine btrnsf(jc,nb)
+subroutine btrnsf(jc,nb)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -14210,9 +14210,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if(nb.eq.2) call icopy (nbcd2,cu2,1,cu,1)
       nbin=nb
       return
-      END subroutine btrnsf
+end subroutine btrnsf
 ! **deck bxycal
-      subroutine bxycal (amr,zorig,zsp,  zloc,wt)
+subroutine bxycal (amr,zorig,zsp,  zloc,wt)
       implicit double precision (a-h,o-z)
       dimension amr(3,3), zorig(3), zsp(3), zloc(3)
 !
@@ -14256,9 +14256,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine bxycal
+end subroutine bxycal
 ! **deck camber
-      subroutine camber(kn,npct,nyst,ncen,ntrl)
+subroutine camber(kn,npct,nyst,ncen,ntrl)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -14458,9 +14458,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   150 continue
       return
-      END subroutine camber
+end subroutine camber
 ! **deck cbet
-      subroutine cbet(bet,nbin)
+subroutine cbet(bet,nbin)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -14562,9 +14562,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  comprs
       dimension bet(4)
       return
-      END subroutine cbet
+end subroutine cbet
 ! **deck ccaln
-      subroutine ccaln (p,ics,c,  nsidex,  ndegp1 )
+subroutine ccaln (p,ics,c,  nsidex,  ndegp1 )
       implicit double precision (a-h,o-z)
       dimension  p(3,1), c(1)
       dimension e(100)
@@ -14576,9 +14576,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 write (6,110)
   110 format ('  ndegx .gt. 8  in ccaln ')
       stop
-      END subroutine ccaln
+end subroutine ccaln
 ! **deck ccof
-      subroutine ccof(cu,cl,tu,tl,du,dl,nct,nbin)
+subroutine ccof(cu,cl,tu,tl,du,dl,nct,nbin)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -14708,9 +14708,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  comprs
       dimension tu(3),tl(3),slot(5),kwall(5)
       return
-      END subroutine ccof
+end subroutine ccof
 ! **deck chlfac
-      subroutine chlfac (n,a, s)
+subroutine chlfac (n,a, s)
       implicit double precision (a-h,o-z)
       dimension a(n,n), s(n)
 !
@@ -14726,9 +14726,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          a(i,i) = 1.d0/a(i,i)
   400 continue
       return
-      END subroutine chlfac
+end subroutine chlfac
 ! **deck chlslv
-      subroutine chlslv (n,a,  b)
+subroutine chlslv (n,a,  b)
       implicit double precision (a-h,o-z)
       dimension a(n,n), b(n)
 !
@@ -14742,9 +14742,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call daxpy (j-1,  -b(j),  a(1,j),1,  b,1)
   300 continue
       return
-      END subroutine chlslv
+end subroutine chlslv
 ! **deck circ
-      subroutine circ(k)
+subroutine circ(k)
       implicit double precision (a-h,o-z)
       character*90 qline
 !call propre
@@ -14876,9 +14876,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! *** format statements ***
  5000 format(6e10.0)
-      END subroutine circ
+end subroutine circ
 ! **deck closms
-      subroutine closms (lun)
+subroutine closms (lun)
 !
 !         close a unit that is a fake readms/writms file
 !         idea for later implementation:  reserve formal
@@ -14911,9 +14911,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       close (lun)
       return
-      END subroutine closms
+end subroutine closms
 ! **deck cmab
-      subroutine cmab (b,a,c,  n,l,m)
+subroutine cmab (b,a,c,  n,l,m)
       implicit double precision (a-h,o-z)
 !
 !         interface to hsmmp1 using the obsolete entry point, cmab
@@ -14921,9 +14921,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension a(1), b(1), c(1)
       call hsmmp1 (m,l,n,  a,1,m,  b,1,l,  c,1,m)
       return
-      END subroutine cmab
+end subroutine cmab
 ! **deck cmngrd
-      subroutine cmngrd (knet,mcp,ncp)
+subroutine cmngrd (knet,mcp,ncp)
       implicit double precision (a-h,o-z)
 !         compute the c.p. mesh limits for a (possibly) composite networ
 !         the number of c.p."s in a network is equal to  mcp*ncp
@@ -14945,9 +14945,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine cmngrd
+end subroutine cmngrd
 ! **deck cmpied
-      subroutine cmpied (kmp,  nnett,nedmpa,nza,nm,nn,  kz)
+subroutine cmpied (kmp,  nnett,nedmpa,nza,nm,nn,  kz)
       implicit double precision (a-h,o-z)
       dimension nedmpa(601), nza(151), nm(150), nn(150)
 !         given an edge mesh point index, compute its
@@ -14967,9 +14967,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       imp     =  kmp - nedmpa(kedg)
       kz      =  kzedg + (imp-1)*kncedg
       return
-      END subroutine cmpied
+end subroutine cmpied
 ! **deck cmpscl
-      subroutine cmpscl (bs,c,v,w)
+subroutine cmpscl (bs,c,v,w)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -15018,9 +15018,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &(c(1)*c(1)+c(2)*c(2)+c(3)*c(3))
       call vadd(v,f,c,w,3)
       return
-      END subroutine cmpscl
+end subroutine cmpscl
 ! **deck cnv2lo
-      subroutine cnv2lo (n,ikywrd,  lkywrd)
+subroutine cnv2lo (n,ikywrd,  lkywrd)
       implicit double precision (a-h,o-z)
       character*(*)  lkywrd, ikywrd
 !
@@ -15052,9 +15052,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
 !
       return
-      END subroutine cnv2lo
+end subroutine cnv2lo
 ! **deck cnv2lu
-      subroutine cnv2lu (n,ikywrd,  lkywrd,ukywrd)
+subroutine cnv2lu (n,ikywrd,  lkywrd,ukywrd)
       implicit double precision (a-h,o-z)
       character*(*)  ukywrd, lkywrd, ikywrd
 !
@@ -15089,9 +15089,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
 !
       return
-      END subroutine cnv2lu
+end subroutine cnv2lu
 ! **deck cnv2up
-      subroutine cnv2up (n,ikywrd,  ukywrd)
+subroutine cnv2up (n,ikywrd,  ukywrd)
       implicit double precision (a-h,o-z)
       character*(*)  ukywrd, ikywrd
 !
@@ -15123,9 +15123,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
 !
       return
-      END subroutine cnv2up
+end subroutine cnv2up
 ! **deck cnvxhl
-      subroutine cnvxhl (q,nq,ics,p,np)
+subroutine cnvxhl (q,nq,ics,p,np)
       implicit double precision (a-h,o-z)
 !         cnvxhl  computes the convex hull of a polygon given by
 !         q(1:3,j), j = 1,nq, j>ics.  it is assumed that the polygon
@@ -15195,9 +15195,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       np      =  0
       return
 !
-      END subroutine cnvxhl
+end subroutine cnvxhl
 ! **deck comfix
-      subroutine comfix (line)
+subroutine comfix (line)
       implicit double precision (a-h,o-z)
       character*80 line
 !
@@ -15221,9 +15221,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           line(j:j) = ' '
   200 continue
       return
-      END subroutine comfix
+end subroutine comfix
 ! **deck compip
-      subroutine compip(u,v,c,bs,w)
+subroutine compip(u,v,c,bs,w)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -15278,9 +15278,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &+v(3)*c(3))/(c(1)*c(1)+c(2)*c(2)+c(3)*c(3))                       &
      &+bs*(u(1)*v(1)+u(2)*v(2)+u(3)*v(3))
       return
-      END subroutine compip
+end subroutine compip
 ! **deck contrl
-      subroutine contrl (kn,nt,nm,nn,nc,nca,nbca,nmapca,npa             &
+subroutine contrl (kn,nt,nm,nn,nc,nca,nbca,nmapca,npa             &
      &                  ,mcpnet,ncpnet,zm                               &
      &                  ,za,tauemp,ia,mapbc,mapc                        &
      &                  ,locfg,iamapc,key,keyinv                        &
@@ -15755,9 +15755,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  9002 format (1x,'   jc  jc/naive'                                      &
      &       , 15x, 'zc', 17x, 14x, 'znc', 16x                          &
      &       ,'  nw panel.sp jzc ifn jfn izdc abut fseg  tau' )
-      END subroutine contrl
+end subroutine contrl
 ! **deck cost
-      subroutine cost (rtem)
+subroutine cost (rtem)
       implicit double precision (a-h,o-z)
       dimension rtem(16)
   INTRINSIC:: CPU_TIME
@@ -15765,9 +15765,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call CPU_TIME (ta)
       rtem(1) = ta
       return
-      END subroutine cost
+end subroutine cost
 ! **deck cpabt
-      subroutine cpabt (ifn,jfn,kn, kabmtc,kfsg,tauc,znc,nedg,ksd,idcpmc&
+subroutine cpabt (ifn,jfn,kn, kabmtc,kfsg,tauc,znc,nedg,ksd,idcpmc&
      &                 ,nedmpa,nfsga,kfdseg,nedaba,ifsgai,mcmpai        &
      &                 ,mtchab,kempec,nbraia,kfdsgn,tauemp,iedgtp       &
      &                 )
@@ -16077,9 +16077,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( kfsg.eq.kfsg2 ) tauc = (1-ksgn)/2
   900 continue
       return
-      END subroutine cpabt
+end subroutine cpabt
 ! **deck cpbcum
-      subroutine cpbcum (lun,inirec,increc,nwpb,mxcls,ind,a             &
+subroutine cpbcum (lun,inirec,increc,nwpb,mxcls,ind,a             &
      &                  ,b,nsngt,nrpb,  c                               &
      &                  ,npagp,nspgrp                                   &
      &                  ,kcp1,kcp2,nwv,nesum)
@@ -16166,9 +16166,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   700 continue
 !
       return
-      END subroutine cpbcum
+end subroutine cpbcum
 ! **deck cpbphx
-      subroutine cpbphx (npt,nzmpt,kcpbk,iptgrp,phxgp,phx)
+subroutine cpbphx (npt,nzmpt,kcpbk,iptgrp,phxgp,phx)
       implicit double precision (a-h,o-z)
       dimension phxgp(3,npt,kcpbk), phx(3,nzmpt,kcpbk)
       dimension iptgrp(npt)
@@ -16186,9 +16186,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200    continue
   400 continue
       return
-      END subroutine cpbphx
+end subroutine cpbphx
 ! **deck cpcal
-      subroutine cpcal (kmat,pva,f,bs,c,cp)
+subroutine cpcal (kmat,pva,f,bs,c,cp)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -16323,9 +16323,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           cp(i)  =  rfac*cp(i)
   100 continue
       return
-      END subroutine cpcal
+end subroutine cpcal
 ! **deck cpcalx
-      subroutine cpcalx (ksurf,ind,pv,cp,jacob,dcp)
+subroutine cpcalx (ksurf,ind,pv,cp,jacob,dcp)
       implicit double precision (a-h,o-z)
       logical jacob
       dimension pv(3), dcp(3)
@@ -16482,9 +16482,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   500 continue
       return
-      END subroutine cpcalx
+end subroutine cpcalx
 ! **deck cpetp
-      subroutine cpetp(k,isd,iz1,iz2,z,izm)
+subroutine cpetp(k,isd,iz1,iz2,z,izm)
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -16527,9 +16527,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       izm=iz
   100 continue
   900 return
-      END subroutine cpetp
+end subroutine cpetp
 ! **deck cpip
-      subroutine cpip (u,v,uv)
+subroutine cpip (u,v,uv)
       implicit double precision (a-h,o-z)
       dimension u(3), v(3)
 !call comprs
@@ -16541,9 +16541,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        (1.d0-betams)*(u(1)*compd(1)+u(2)*compd(2)+u(3)*compd(3)) &
      &                     * (v(1)*compd(1)+v(2)*compd(2)+v(3)*compd(3))
       return
-      END subroutine cpip
+end subroutine cpip
 ! **deck cpnor
-      subroutine cpnor(ip,zp,enp)
+subroutine cpnor(ip,zp,enp)
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -16695,9 +16695,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mxm (en,1,ar,3,enp,3)
       call uvect(enp)
       return
-      END subroutine cpnor
+end subroutine cpnor
 ! **deck cpnor2
-      subroutine cpnor2 (kc,ipc,icc,zc,en)
+subroutine cpnor2 (kc,ipc,icc,zc,en)
       implicit double precision (a-h,o-z)
       dimension zc(3), en(3)
 !
@@ -16775,9 +16775,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   250 continue
       return
-      END subroutine cpnor2
+end subroutine cpnor2
 ! **deck cptls
-      subroutine cptls(p1,p2,p,z,t)
+subroutine cptls(p1,p2,p,z,t)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -16843,9 +16843,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       t=min(max(t,0.d0),1.d0)
       call vadd(p1,t,z,z,3)
       return
-      END subroutine cptls
+end subroutine cptls
 ! **deck cross
-      subroutine cross(a,b,c)
+subroutine cross(a,b,c)
       implicit double precision (a-h,o-z)
 !***created  on 76.056    w.o. no.   0   version        ftj.01
 !
@@ -16883,9 +16883,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       c(2)=a(3)*b(1)-a(1)*b(3)
       c(3)=a(1)*b(2)-a(2)*b(1)
       return
-      END subroutine cross
+end subroutine cross
 ! **deck cscal1
-      subroutine cscal1 (x,z,n)
+subroutine cscal1 (x,z,n)
       implicit double precision (a-h,o-z)
 !         apply the matrix  g(x)(i,j) =  x*delta(i,j) + (1-x)*c(i)*c(j)
 !         to a collection of 3-vectors,  z(*,n)
@@ -16904,9 +16904,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    20     z(i,l)  =  x*z(i,l) + xc*compd(i)*s
   100 continue
       return
-      END subroutine cscal1
+end subroutine cscal1
 ! **deck cscal2
-      subroutine cscal2 (x,z,n)
+subroutine cscal2 (x,z,n)
       implicit double precision (a-h,o-z)
 !         apply the matrix h(x)(i,j) = delta(i,j) + (x-1)*c(i)*c(j)
 !         to the collection of vectors z(*,n)
@@ -16925,9 +16925,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    20     z(i,l)  = z(i,l) + xc*s*compd(i)
   100 continue
       return
-      END subroutine cscal2
+end subroutine cscal2
 ! **deck cstprt
-      subroutine cstprt (title)
+subroutine cstprt (title)
       implicit double precision (a-h,o-z)
       logical prtcst
       character*(*) title
@@ -17011,9 +17011,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       tdata(11,nc) =  ccus
       tdata(12,nc) =  dolls
       return
-      END subroutine cstprt
+end subroutine cstprt
 ! **deck cstsum
-      subroutine cstsum
+subroutine cstsum
       implicit double precision (a-h,o-z)
 !ca prnt
       common /prnt/ igeomp,   isingp,   icontp,   ibconp,   iedgep,     &
@@ -17100,10 +17100,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,910) (ttotal(i),i=2,8)
   910 format (1h0,'totals  ',30x,6f10.2,f11.2)
       return
-      END subroutine cstsum
+end subroutine cstsum
 
 ! **deck ctpack
-      subroutine ctpack (szc)
+subroutine ctpack (szc)
       implicit double precision (a-h,o-z)
       dimension szc(20)
 !         pack up the data in /cntrq/ into the 11 word data packet szc
@@ -17116,9 +17116,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !end  cntrq
       call dcopy (20,  zc,1,  szc,1)
       return
-      END subroutine ctpack
+end subroutine ctpack
 ! **deck ctrns
-      subroutine  ctrns(jc,cdq)
+subroutine  ctrns(jc,cdq)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -17209,9 +17209,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call trns(cdq,cntq,ncdq,nsc,nrc,ntc,nic,jc)
       return
-      END subroutine  ctrns
+end subroutine  ctrns
 ! **deck ctunpk
-      subroutine ctunpk (szc)
+subroutine ctunpk (szc)
       implicit double precision (a-h,o-z)
       dimension szc(20)
 !call cntrq
@@ -17224,9 +17224,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !         unpack the data packet szc into the common block /cntrq/
       call dcopy (20,  szc,1,  zc,1)
       return
-      END subroutine ctunpk
+end subroutine ctunpk
 ! **deck cublns
-      subroutine cublns (n,fz,f1,alf,t)
+subroutine cublns (n,fz,f1,alf,t)
       implicit double precision (a-h,o-z)
       dimension fz(n), f1(n)
 !
@@ -17378,10 +17378,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       return
-      END subroutine cublns
+end subroutine cublns
 
 ! **deck cvip
-      subroutine cvip (a,ia,b,ib,m,c)
+subroutine cvip (a,ia,b,ib,m,c)
       implicit double precision (a-h,o-z)
       complex*16 a(*), b(*), c
 !
@@ -17408,9 +17408,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lb = lb + ib
    10 continue
       return
-      END subroutine cvip
+end subroutine cvip
 ! **deck d2line
-      subroutine d2line (z1,z2,  dist)
+subroutine d2line (z1,z2,  dist)
       implicit double precision (a-h,o-z)
       dimension z1(6), z2(6)
 !         compute the minimum distance (squared) between two finite line
@@ -17510,9 +17510,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
       dist   =  sqrt( dsq )
       return
-      END subroutine d2line
+end subroutine d2line
 ! **deck daspl
-      subroutine daspl (knet,ntk,nm,nn,nsa,nssa,ns,nss,maps,locs,npa,zm &
+subroutine daspl (knet,ntk,nm,nn,nsa,nssa,ns,nss,maps,locs,npa,zm &
      &                 ,ia,za                                           &
      &                 ,kblc,nblc,blcp,blc,iblc)
 
@@ -18148,9 +18148,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &    write (6,'(1x,a10,1x, 4i12,f12.6)')                           &
      & 'blc stats',knet,nm,nn,kntblc,ratio
       return
-      END subroutine daspl
+end subroutine daspl
 ! **deck date
-      subroutine date (ch)
+subroutine date (ch)
       character*8 ch
       integer int(3)
 !
@@ -18164,9 +18164,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (ch,6001) (int(k),k=1,3)
  6001 format ( i2.2, '/', i2.2, '/', i2.2 )
       return
-      END subroutine date
+end subroutine date
 ! **deck daxpy
-      subroutine daxpy (n,  a,  x,ix,  y,iy)
+subroutine daxpy (n,  a,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
 !
@@ -18183,9 +18183,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine daxpy
+end subroutine daxpy
 ! **deck dcbht
-      subroutine dcbht (a,d,sa,jq,na,m,n)
+subroutine dcbht (a,d,sa,jq,na,m,n)
       implicit double precision (a-h,o-z)
 !         given a matrix  a  of dimensions (m,n) stored in an array
 !         a(na,1),  obtain the  q-r  factorization by the method of
@@ -18256,9 +18256,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50     continue
   100 continue
       return
-      END subroutine dcbht
+end subroutine dcbht
 ! **deck dcip
-      subroutine dcip (u,v,uv)
+subroutine dcip (u,v,uv)
       implicit double precision (a-h,o-z)
       dimension u(3), v(3)
 !call comprs
@@ -18270,9 +18270,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &         (betams-1.d0)*(u(1)*compd(1)+u(2)*compd(2)+u(3)*compd(3))&
      &                     *(v(1)*compd(1)+v(2)*compd(2)+v(3)*compd(3))
       return
-      END subroutine dcip
+end subroutine dcip
 ! **deck dcopy
-      subroutine dcopy (n,  x,ix,  y,iy)
+subroutine dcopy (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
 !
@@ -18296,7 +18296,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ly = ly + iy
   300 continue
       return
-      END subroutine dcopy
+end subroutine dcopy
 ! **deck ddot
       double precision function ddot (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
@@ -18320,7 +18320,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function Ddot
 ! **deck ddwspl
-      subroutine ddwspl (knet,ntk,m,n,nsa,nssa,nbasic,nnaive            &
+subroutine ddwspl (knet,ntk,m,n,nsa,nssa,nbasic,nnaive            &
      &                  ,maps,locs,npa,zm,ia,za)
       implicit double precision (a-h,o-z)
       dimension maps(1), locs(1), zm(3,m,n)
@@ -18841,9 +18841,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nnaive  =  nss
       nbasic  =  ns
       return
-      END subroutine ddwspl
+end subroutine ddwspl
 ! **deck delvca
-      subroutine delvca  (nx,nc,x,  dv,ii,in,  delv)
+subroutine delvca  (nx,nc,x,  dv,ii,in,  delv)
       implicit double precision (a-h,o-z)
       dimension x(nx,nc), dv(3,in), delv(3,nc)
       dimension ii(in)
@@ -18857,7 +18857,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100     continue
   200 continue
       return
-      END subroutine delvca
+end subroutine delvca
 ! **deck det
       function det (a,b,c)
       implicit double precision (a-h,o-z)
@@ -18869,7 +18869,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function Det
 ! **deck dfnabu
-      subroutine dfnabu (nwname,nnett                                   &
+subroutine dfnabu (nwname,nnett                                   &
      &                  ,line, k1,isd1,k2,isd2)
       implicit double precision (a-h,o-z)
       character*10 nwname(nnett)
@@ -18931,9 +18931,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('dfnabu',' program failure due to ill-formatted data')
       return
 !
-      END subroutine dfnabu
+end subroutine dfnabu
 ! **deck dfnpea
-      subroutine dfnpea (nwname,nnett                                   &
+subroutine dfnpea (nwname,nnett                                   &
      &                  ,line, kk,isd,ipt1,ipt2)
       implicit double precision (a-h,o-z)
       character*10 nwname(nnett)
@@ -18988,9 +18988,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('dfnpea',' program failure due to ill-formatted data')
       return
 !
-      END subroutine dfnpea
+end subroutine dfnpea
 ! **deck difmat
-      subroutine difmat (label,m,n,a,b)
+subroutine difmat (label,m,n,a,b)
       implicit double precision (a-h,o-z)
       dimension a(m,n), b(m,n)
       character*(*) label
@@ -19004,9 +19004,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call difmtx (label,m,n,a,b,w(llc),w(llia))
       call frecor ('difmat')
       return
-      END subroutine difmat
+end subroutine difmat
 ! **deck difmtx
-      subroutine difmtx (label,m,n,a,b,c,ia)
+subroutine difmtx (label,m,n,a,b,c,ia)
       implicit double precision (a-h,o-z)
       dimension a(m*n), b(m*n), c(m*n), ia(m*n)
       character*(*) label
@@ -19052,9 +19052,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
  6002 format ('  100 largest entries: ',2i6,e12.4)
       return
-      END subroutine difmtx
+end subroutine difmtx
 ! **deck difmvc
-      subroutine difmvc (m,n,  a,b,d)
+subroutine difmvc (m,n,  a,b,d)
       implicit double precision (a-h,o-z)
       dimension a(3,m,n), b(3,m,n), d(m,n)
       dimension c(3)
@@ -19074,9 +19074,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100    continue
   200 continue
       return
-      END subroutine difmvc
+end subroutine difmvc
 ! **deck dinflu
-      subroutine dinflu (zc,iflu,iflumx)
+subroutine dinflu (zc,iflu,iflumx)
       implicit double precision (a-h,o-z)
       dimension zc(3)
 !!      integer iflu(2,2), iflumx                                           ! Removed by Martin Hegedus, 4/21/09
@@ -19410,9 +19410,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  2100 continue
       return
-      END subroutine dinflu
+end subroutine dinflu
 ! **deck disct1
-      subroutine disct1 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine disct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       dimension ind(m)
@@ -19426,9 +19426,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine disct1
+end subroutine disct1
 ! **deck disct2
-      subroutine disct2 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine disct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       dimension ind(m)
@@ -19442,9 +19442,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine disct2
+end subroutine disct2
 ! **deck distnc
-      subroutine distnc(x,y,d)
+subroutine distnc(x,y,d)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -19490,9 +19490,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call vadd(x,-1.d0,y,z,3)
       call mag(z,d)
       return
-      END subroutine distnc
+end subroutine distnc
 ! **deck djsct1
-      subroutine djsct1 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine djsct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       dimension ind(n)
@@ -19506,9 +19506,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine djsct1
+end subroutine djsct1
 ! **deck djsct2
-      subroutine djsct2 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine djsct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       dimension ind(n)
@@ -19522,9 +19522,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine djsct2
+end subroutine djsct2
 ! **deck dlocfx
-      subroutine dlocfx (nw)
+subroutine dlocfx (nw)
 !
 !         dlocfx is a hook to modify an expression nw calculated as
 !         the difference of two loc functions.  on the cray it is
@@ -19541,9 +19541,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       nw = nw/kkloci
       return
-      END subroutine dlocfx
+end subroutine dlocfx
 ! **deck dnchek
-      subroutine dnchek (knet,m,n,z,q,header)
+subroutine dnchek (knet,m,n,z,q,header)
       implicit double precision (a-h,o-z)
       dimension z(3,m,n), q(3,m,n)
       dimension enz(3), enq(3)
@@ -19582,9 +19582,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,//,   '   nw  row  col    normal change (deg.)'  )
  9002 format (1x,i4,i5,i5,8x,f12.6)
  9003 format (60x,'*** warning ***   normal change exceeds 5 degrees')
-      END subroutine dnchek
+end subroutine dnchek
 ! **deck domvec
-      subroutine domvec (a,v)
+subroutine domvec (a,v)
       implicit double precision (a-h,o-z)
       dimension a(3,3), v(3), x(3), y(3)
       kk      =  1
@@ -19601,9 +19601,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    20 continue
       call xfera (x,v,3)
       return
-      END subroutine domvec
+end subroutine domvec
 ! **deck dpdqfv
-      subroutine dpdqfv
+subroutine dpdqfv
       implicit double precision (a-h,o-z)
 !                        dumper of panel data required in offbd/stmlne
 !call pandf
@@ -19657,9 +19657,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,'(1x,a10,1x, 3i12)')                                     &
      & 'itsf,icsf',itsf,icsf,nsff
       return
-      END subroutine dpdqfv
+end subroutine dpdqfv
 ! **deck dscal
-      subroutine dscal (n,  a,   y,iy)
+subroutine dscal (n,  a,   y,iy)
       implicit double precision (a-h,o-z)
       dimension  y(1)
 !
@@ -19673,9 +19673,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine dscal
+end subroutine dscal
 ! **deck dshell
-      subroutine dshell (n,a,key)
+subroutine dshell (n,a,key)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -19788,9 +19788,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   go on to the next value for the increment m                 *
 !
       go to 100
-      END subroutine dshell
+end subroutine dshell
 ! **deck dsnc2g
-      subroutine dsnc2g (knet,m,n,z,  lc2g,klc2g,cc2g)
+subroutine dsnc2g (knet,m,n,z,  lc2g,klc2g,cc2g)
       implicit double precision (a-h,o-z)
       dimension z(3,m,n)
       dimension lc2g(m-1,n-1), klc2g(9,m-1,n-1), cc2g(36,m-1,n-1)
@@ -19950,9 +19950,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 continue
 !
       return
-      END subroutine dsnc2g
+end subroutine dsnc2g
 ! **deck dsncdv
-      subroutine dsncdv (ipv,cpq,s,  dpv)
+subroutine dsncdv (ipv,cpq,s,  dpv)
       implicit double precision (a-h,o-z)
       dimension cpq(3,4), s(4000)
       dimension dpv(4)
@@ -20048,9 +20048,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !--      call dcopy (3,  delv,1,  dpv(2),1)
 !
       return
-      END subroutine dsncdv
+end subroutine dsncdv
 ! **deck dsnpdt
-      subroutine dsnpdt (mfn,nfn,vfg,ip,ipan,jpan)
+subroutine dsnpdt (mfn,nfn,vfg,ip,ipan,jpan)
       implicit double precision (a-h,o-z)
       dimension vfg(3,mfn,nfn,2)
 !
@@ -20146,9 +20146,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   250 continue
 !
       return
-      END subroutine dsnpdt
+end subroutine dsnpdt
 ! **deck dswap
-      subroutine dswap (n,  x,ix,  y,iy)
+subroutine dswap (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
 !
@@ -20167,9 +20167,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine dswap
+end subroutine dswap
 ! **deck duzint
-      subroutine duzint(cp,cq,pint,iflags,   insidf)
+subroutine duzint(cp,cq,pint,iflags,   insidf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: determine whether intersection does occur
@@ -20281,9 +20281,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       insidf = .true.
 !
   999 return
-      END subroutine duzint
+end subroutine duzint
 ! **deck dvcalc
-      subroutine dvcalc (zc,sc,tc,  dvsrc,dvdbl)
+subroutine dvcalc (zc,sc,tc,  dvsrc,dvdbl)
       implicit double precision (a-h,o-z)
       dimension zc(3), dvsrc(3,3), dvdbl(3,9)
 !         evaluate the velocity jump at the point  zc  (h-p coordinates
@@ -20346,9 +20346,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call xfera (enc,encp,3)
       call uvect (encp)
       return
-      END subroutine dvcalc
+end subroutine dvcalc
 ! **deck dzbchk
-      subroutine dzbchk (k,m,n,eps,z,zsv,header)
+subroutine dzbchk (k,m,n,eps,z,zsv,header)
       implicit double precision (a-h,o-z)
       character motion*8
       dimension z(3,4000), zsv(3,4000)
@@ -20453,9 +20453,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  9006 format (1h0,10x,10f12.6)
   400 continue
       return
-      END subroutine dzbchk
+end subroutine dzbchk
 ! **deck e11fmt
-      subroutine e11fmt (n,z,az)
+subroutine e11fmt (n,z,az)
       implicit double precision (a-h,o-z)
       dimension z(n)
       character*11 az(n), e11
@@ -20485,9 +20485,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           az(i)  =  e11
   100 continue
       return
-      END subroutine e11fmt
+end subroutine e11fmt
 ! **deck edg2fg
-      subroutine edg2fg (ifg,kedg,  nm,nn,zm,nza,  zz)
+subroutine edg2fg (ifg,kedg,  nm,nn,zm,nza,  zz)
       implicit double precision (a-h,o-z)
       dimension nm(150), nn(150), nza(151), zm(3,6000), zz(3)
 !
@@ -20535,9 +20535,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       l2     =  ij2 + nza(knet)
       call avg2pt (zm(1,l1),zm(1,l2),zz)
       return
-      END subroutine edg2fg
+end subroutine edg2fg
 ! **deck edg2gd
-      subroutine edg2gd (kpt,ksd,  m,n,  i,j)
+subroutine edg2gd (kpt,ksd,  m,n,  i,j)
       implicit double precision (a-h,o-z)
 !
 !     compute the (i,j) indices of a point on an (m,n) grid given that
@@ -20575,9 +20575,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 
       return
-      END subroutine edg2gd
+end subroutine edg2gd
 ! **deck edg2nw
-      subroutine edg2nw (kpt,ksd,  m,n,  ij)
+subroutine edg2nw (kpt,ksd,  m,n,  ij)
       implicit double precision (a-h,o-z)
 !
 !     compute the ij index of a point on an (m,n) grid given that
@@ -20616,9 +20616,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 
       return
-      END subroutine edg2nw
+end subroutine edg2nw
 ! **deck edgabt
-      subroutine edgabt(l,jsd,jz1,jz2,k,isd,iz1,iz2,z,nok,nch)
+subroutine edgabt(l,jsd,jz1,jz2,k,isd,iz1,iz2,z,nok,nch)
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -20713,9 +20713,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   700 continue
       nch=1
   900 return
-      END subroutine edgabt
+end subroutine edgabt
 ! **deck edgfgi
-      subroutine edgfgi (iul,kedg,ijfg,  nm,nn,nefgsa,  kkmp)
+subroutine edgfgi (iul,kedg,ijfg,  nm,nn,nefgsa,  kkmp)
       implicit double precision (a-h,o-z)
       dimension nm(1:*), nn(1:*), nefgsa(1:*)
 !
@@ -20752,9 +20752,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kkmp    =  nefgsa(kedgx) + (iul-1)*(2*np-2) + ijx
 !
       return
-      END subroutine edgfgi
+end subroutine edgfgi
 ! **deck edgind
-      subroutine edgind (isd,nmk,nnk,  kzedg,kncedg,kncint,knedg)
+subroutine edgind (isd,nmk,nnk,  kzedg,kncedg,kncint,knedg)
       implicit double precision (a-h,o-z)
 !         define edge indexing information
       go to (100,200,300,400), isd
@@ -20788,9 +20788,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine edgind
+end subroutine edgind
 ! **deck edgls
-      subroutine edgls(d,w,a)
+subroutine edgls(d,w,a)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -20873,9 +20873,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &(f*(x3-x2))
       a(4)=w4*x2*x3*(x4-x3)*(x4-x2)/f
   900 return
-      END subroutine edgls
+end subroutine edgls
 ! **deck edgmpi
-      subroutine edgmpi (kedg,imp,nedmpa,  iedmp)
+subroutine edgmpi (kedg,imp,nedmpa,  iedmp)
       implicit double precision (a-h,o-z)
       dimension  nedmpa(1:*)
 !         determine the global edge mesh point index, given the edge (ke
@@ -20894,9 +20894,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine edgmpi
+end subroutine edgmpi
 ! **deck edgseg
-      subroutine edgseg (s,  m,ds,incs,  ii,tii)
+subroutine edgseg (s,  m,ds,incs,  ii,tii)
       implicit double precision (a-h,o-z)
       dimension ds(incs*m)
 !
@@ -20917,9 +20917,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( dds.gt. 0.d0) tii = (stest-ds(ls-incs))/dds
       ii      =  iisv
       return
-      END subroutine edgseg
+end subroutine edgseg
 ! **deck edgspl
-      subroutine edgspl (x,w,a)
+subroutine edgspl (x,w,a)
       implicit double precision (a-h,o-z)
       dimension x(4), w(4), a(4)
 !
@@ -20943,9 +20943,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       a(3)    =  -x(2) * g3 /( f*( x(3)-x(2) )  )
   900 continue
       return
-      END subroutine edgspl
+end subroutine edgspl
 ! **deck edgtau
-      subroutine edgtau (ze,ince,ne,dze,  te,  taue)
+subroutine edgtau (ze,ince,ne,dze,  te,  taue)
       implicit double precision (a-h,o-z)
       dimension ze(3,1)
 !         compute the edge tau parameter  taue  for a point on an edge
@@ -20979,9 +20979,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       taue  =  1.d0
       return
 !
-      END subroutine edgtau
+end subroutine edgtau
 ! **deck edpang
-      subroutine edpang (z,mpt,npt,lsd,ind,cp,ijpan,diam)
+subroutine edpang (z,mpt,npt,lsd,ind,cp,ijpan,diam)
       implicit double precision (a-h,o-z)
       dimension z(3,mpt,npt), cp(3,4), cpz(3), w(3)
 !call comprs
@@ -21029,9 +21029,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! *** call outlin ('edpang...',8,mpt,npt,lsd,ind,ijpan,diam,ipan,jpan)
 ! *** call outmat ('cp',3,3,4,cp)
       return
-      END subroutine edpang
+end subroutine edpang
 ! **deck eivc
-      subroutine eivc (mtched,npnmts,ipnmts,nceivc                      &
+subroutine eivc (mtched,npnmts,ipnmts,nceivc                      &
      &                ,nedaba,kfdseg,kfdkey,kfdsgn,nedmpa,tauemp        &
      &                )
       implicit double precision (a-h,o-z)
@@ -21284,9 +21284,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine eivc
+end subroutine eivc
 ! **deck ellpt
-      subroutine ellpt(k)
+subroutine ellpt(k)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -21424,17 +21424,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('ellpt',' program failure due to ill-formatted data')
       return
 !
-      END subroutine ellpt
+end subroutine ellpt
 ! **deck emark
-      subroutine emark (label)
+subroutine emark (label)
       implicit double precision (a-h,o-z)
       character*(*) label
       write (6,6001) label
  6001 format ('0*e*',a8)
       return
-      END subroutine emark
+end subroutine emark
 ! **deck en2xfm
-      subroutine en2xfm (en,a)
+subroutine en2xfm (en,a)
       implicit double precision (a-h,o-z)
       dimension en(3), a(3,3)
 !
@@ -21463,9 +21463,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine en2xfm
+end subroutine en2xfm
 ! **deck enrchg
-      subroutine enrchg(k,m,n,z)
+subroutine enrchg(k,m,n,z)
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -21515,9 +21515,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       smax =  max ( s1,s2,s3,s4)
       senrch = sqrt(smax)
       return
-      END subroutine enrchg
+end subroutine enrchg
 ! **deck epoint
-      subroutine epoint (z,incz,nz,  t,zt)
+subroutine epoint (z,incz,nz,  t,zt)
       implicit double precision (a-h,o-z)
       dimension  z(3,1), zt(3)
 ! compute the point on the edge
@@ -21534,49 +21534,49 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       zt(2)   =  tauc*z(2,lz1) + tau*z(2,lz2)
       zt(3)   =  tauc*z(3,lz1) + tau*z(3,lz2)
       return
-      END subroutine epoint
+end subroutine epoint
 ! **deck errdiv
-      subroutine errdiv
+subroutine errdiv
 !
 !     error handler for:  divide checks
 !
       CALL REMARX('divide check error')
       CALL AbortPanair('errdiv')
-      END subroutine errdiv
+end subroutine errdiv
 ! **deck errinv
-      subroutine errinv
+subroutine errinv
 !
 !     error handler for:  invalid operation errors
 !
       CALL Remarx('invalid arithmetic error')
       CALL AbortPanair('errinv')
-      END subroutine errinv
+end subroutine errinv
 ! **deck errmsg
-      subroutine errmsg (l)
+subroutine errmsg (l)
       implicit double precision (a-h,o-z)
       character*(*) l
       write (6,10) l
    10 format ('  error message  ',a40)
       return
-      END subroutine errmsg
+end subroutine errmsg
 ! **deck errovf
-      subroutine errovf
+subroutine errovf
 !
 !     error handler for:  overflow errors
 !
       CALL Remarx('overflow error')
       CALL AbortPanair('errovf')
-      END subroutine errovf
+end subroutine errovf
 ! **deck errund
-      subroutine errund
+subroutine errund
 !
 !     error handler for:  underflow errors
 !
       CALL Remarx('underflow error')
       CALL AbortPanair('errund')
-      END subroutine errund
+end subroutine errund
 ! **deck etdprt
-      subroutine etdprt(n,a,h,b,c,u,v,ier)
+subroutine etdprt(n,a,h,b,c,u,v,ier)
 !
 !******
 ! etdprt finds all zeros of a real polynomial using simultaneous newton
@@ -21885,9 +21885,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       u(k+1) = 1.d38
       v(k+1) = u(k+1)
   100 return
-      END subroutine etdprt
+end subroutine etdprt
 ! **deck evalhp
-      subroutine evalhp (cp,  sv,tv,  zc)
+subroutine evalhp (cp,  sv,tv,  zc)
       implicit double precision (a-h,o-z)
       dimension cp(3,4), zc(3)
 !
@@ -21905,9 +21905,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine evalhp
+end subroutine evalhp
 ! **deck evldmz
-      subroutine evldmz (sgip,sgjp,qs,qt,qst,amz)
+subroutine evldmz (sgip,sgjp,qs,qt,qst,amz)
       implicit double precision (a-h,o-z)
       dimension qs(3), qt(3), qst(3), amz(3)
       dimension sws(9), swt(9), tws(9), twt(9)
@@ -21954,9 +21954,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   390 continue
 !
       return
-      END subroutine evldmz
+end subroutine evldmz
 ! **deck exitms
-      subroutine exitms (lun,msg)
+subroutine exitms (lun,msg)
       character*(*) msg
 
 !         issue a fatal error message from the readms/writms pkg
@@ -21966,9 +21966,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call remarx (msg)
       CALL AbortPanair('exitms')
       return
-      END subroutine exitms
+end subroutine exitms
 ! **deck exwsdn
-      subroutine exwsdn (cp,wsdn)
+subroutine exwsdn (cp,wsdn)
       implicit double precision (a-h,o-z)
       dimension cp(3,9), wsdn(3,3,8)
       dimension en(3), wp(3,9), isx(3)
@@ -22000,9 +22000,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   240    continue
   250 continue
       return
-      END subroutine exwsdn
+end subroutine exwsdn
 ! **deck f10fmt
-      subroutine f10fmt (x,chx)
+subroutine f10fmt (x,chx)
       implicit double precision (a-h,o-z)
       character*10 chx
 !
@@ -22019,9 +22019,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (temp,fmtx(ix)) x
       chx     =  temp
       return
-      END subroutine f10fmt
+end subroutine f10fmt
 ! **deck fcncpx
-      subroutine fcncpx (nxlam,xlam,  dvdlam,vic,aic                    &
+subroutine fcncpx (nxlam,xlam,  dvdlam,vic,aic                    &
      &                  ,rhs,fcnmax,  ljac,jacob,prtcp2,cp2sum          &
      &                  )
       implicit double precision (a-h,o-z)
@@ -22356,9 +22356,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       fcnmax  =  abs( rhs(imax) )
 !
       return
-      END subroutine fcncpx
+end subroutine fcncpx
 ! **deck ffdqg
-      subroutine ffdqg
+subroutine ffdqg
       implicit double precision (a-h,o-z)
 !     *   w         /skrch3/  scratch   s * subpanel normal, used in  *
 !     *                                 computing  w-moments          *
@@ -22574,9 +22574,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ifera (iidgp,iidf,indf)
   950 continue
       return
-      END subroutine ffdqg
+end subroutine ffdqg
 ! **deck ffdqgv
-      subroutine ffdqgv
+subroutine ffdqgv
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -22720,9 +22720,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call xfera (uvm,uvmv(1,1,insol),24)
  1000 continue
       return
-      END subroutine ffdqgv
+end subroutine ffdqgv
 ! **deck ffdqgx
-      subroutine ffdqgx (indpbl)
+subroutine ffdqgx (indpbl)
       implicit double precision (a-h,o-z)
 !call index
       common/index/nts(150),ntd(150),nm(150),nn(150),nza(151),npa(151), &
@@ -22806,9 +22806,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    70 continue
 !
       return
-      END subroutine ffdqgx
+end subroutine ffdqgx
 ! **deck ffgen
-      subroutine ffgen (nedaba,kfdseg,kfdkey,kfdsgn,nedmpa              &
+subroutine ffgen (nedaba,kfdseg,kfdkey,kfdsgn,nedmpa              &
      &                 ,tauemp,iskmp,scr)
       implicit double precision (a-h,o-z)
       character msg*8
@@ -23170,9 +23170,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( mtcher.gt.0 ) call a502er ('ffgen'                           &
      &                      ,'not all matching conditions found. q.v.')
       return
-      END subroutine ffgen
+end subroutine ffgen
 ! **deck ffpic
-      subroutine ffpic (zp,iflu,ne,nf,dvs,dvd)
+subroutine ffpic (zp,iflu,ne,nf,dvs,dvd)
       implicit double precision (a-h,o-z)
       dimension dvs(4,6), dvd(4,10)
       dimension                                                         &
@@ -23395,9 +23395,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! return
   950 continue
       return
-      END subroutine ffpic
+end subroutine ffpic
 ! **deck ffpiv
-      subroutine ffpiv (ivzp,zp,iflu,vphx)
+subroutine ffpiv (ivzp,zp,iflu,vphx)
       implicit double precision (a-h,o-z)
       dimension vph(8),zp(3),vphx(4)
 !
@@ -23558,9 +23558,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 800 i = 1,4
   800 vphx(i) = vph(i) + vph(i+4)
       return
-      END subroutine ffpiv
+end subroutine ffpiv
 ! **deck fhybrj
-      subroutine fhybrj (n,x,f,lunaj,naj,iflag                          &
+subroutine fhybrj (n,x,f,lunaj,naj,iflag                          &
      &                  ,dvdl,vica,vicd,aic                             &
      &                  ,alam,fv,dldx,dfdl,aj                           &
      &                  ,nsngtp,sols)
@@ -23755,9 +23755,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   900 continue
       return
-      END subroutine fhybrj
+end subroutine fhybrj
 ! **deck flgcor
-      subroutine flgcor (l1,l2,l3)
+subroutine flgcor (l1,l2,l3)
       logical l1,l2,l3
 !call dynmap
 !                     /dynmap/
@@ -23781,9 +23781,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lwsprt = l2
       sumprt = l3
       return
-      END subroutine flgcor
+end subroutine flgcor
 ! **deck flow
-      subroutine flow
+subroutine flow
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -24470,9 +24470,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *  calculate and print output                                   *
 !
       return
-      END subroutine flow
+end subroutine flow
 ! **deck fmcal
-      subroutine fmcal (pres,nrow,ncol,npa,za,npanfp,prcoef,agpspc)
+subroutine fmcal (pres,nrow,ncol,npa,za,npanfp,prcoef,agpspc)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -24973,9 +24973,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
       call emark('for-mom ')
       return
-      END subroutine fmcal
+end subroutine fmcal
 ! **deck fmcale
-      subroutine fmcale (isol,ksurf,rz,  knet,m,n,q                     &
+subroutine fmcale (isol,ksurf,rz,  knet,m,n,q                     &
      &                  ,lc2g,klc2g,cc2g                                &
      &                  ,pres,cpc                                       &
      &                  ,af,am,  aft,amt,tca                            &
@@ -25370,9 +25370,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &6x,2hfx,12x,2hfy,12x,2hfz,12x,2hmx,12x,2hmy,12x,2hmz,6x,//)
  5001 format(30x,7f14.5)
 !
-      END subroutine fmcale
+end subroutine fmcale
 ! **deck fmkal
-      subroutine fmkal  (isol,ksurf,rz,  knet,m,n,q                     &
+subroutine fmkal  (isol,ksurf,rz,  knet,m,n,q                     &
      &                  ,lc2g,klc2g,cc2g,vc                             &
      &                  ,cpc,dcpc                                       &
      &                  ,af,am,  aft,amt,  afkl,amkl                    &
@@ -25951,9 +25951,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5001 format(30x,7f14.5)
 !
 !
-      END subroutine fmkal
+end subroutine fmkal
 ! **deck fmkvav
-      subroutine fmkvav (isol,s,   zctr,pvactr,  phnw,vnw)
+subroutine fmkvav (isol,s,   zctr,pvactr,  phnw,vnw)
       implicit double precision (a-h,o-z)
 ! --- dimension s(nsngt)
       dimension s(1:*)
@@ -26202,9 +26202,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call cstprt ('fmkvav  ')
       return
-      END subroutine fmkvav
+end subroutine fmkvav
 ! **deck fmkvul
-      subroutine fmkvul (knet,mk,nk,isol,s,   pvactr,  phul,vul)
+subroutine fmkvul (knet,mk,nk,isol,s,   pvactr,  phul,vul)
       implicit double precision (a-h,o-z)
       dimension s(4000)
       dimension pvactr(4,1:*)
@@ -26385,9 +26385,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 !
       return
-      END subroutine fmkvul
+end subroutine fmkvul
 ! **deck fndpts
-      subroutine fndpts(p1,p2,p3,cp,q1,q2,q3,cq,   insidf)
+subroutine fndpts(p1,p2,p3,cp,q1,q2,q3,cq,   insidf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: find intersection points
@@ -26426,9 +26426,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call duzint(cp,cq,pint,iflags,   insidf)
 !
       return
-      END subroutine fndpts
+end subroutine fndpts
 ! **deck fngrid
-      subroutine fngrid (m,n,z,  ifn,jfn,  zfg)
+subroutine fngrid (m,n,z,  ifn,jfn,  zfg)
       implicit double precision (a-h,o-z)
       dimension z(3,m,n), zfg(3)
 !
@@ -26444,9 +26444,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &                   +z(k,i2,j1) + z(k,i2,j2) )
   100 continue
       return
-      END subroutine fngrid
+end subroutine fngrid
 ! **deck frecor
-      subroutine frecor (label)
+subroutine frecor (label)
       character*(*) label
 !
 !        deallocate the dynamic memory subsidiary to the dynamic memory
@@ -26521,9 +26521,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  '  maximum number of arrays  ',i10,2x,i10 ,/,                   &
      &  '  maximum dynamic memory    ',i10,2x,i10 ,/,                   &
      &  /,1x,100(1h*) )
-      END subroutine frecor
+end subroutine frecor
 ! **deck fsgcmp
-      subroutine fsgcmp (kmp,nedmpa,nfsga,kfdseg,nnett                  &
+subroutine fsgcmp (kmp,nedmpa,nfsga,kfdseg,nnett                  &
      &                  ,kfsg1,kfsg2)
       implicit double precision (a-h,o-z)
       dimension nedmpa(1:*), nfsga(1:*), kfdseg(1:*), ivseg(4)
@@ -26559,9 +26559,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & 'nind,l,kmp',nind,l,kmp
       call outvci ('nedmpa',nind,nedmpa)
       call abtend ('fsgcmp error:  index not found')
-      END subroutine fsgcmp
+end subroutine fsgcmp
 ! **deck fsolve
-      subroutine fsolve (n,x,f,nitmax,ns,s                              &
+subroutine fsolve (n,x,f,nitmax,ns,s                              &
      &                  ,b,scr,xnew,fnew,dphi,d                         &
      &                  ,dvdl,vica,vicd,aic                             &
      &                  ,alam,fv,dldx,dfdl,aj                           &
@@ -26869,9 +26869,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   900 continue
       call closms (nlimat)
       return
-      END subroutine fsolve
+end subroutine fsolve
 ! **deck fstmln
-      subroutine fstmln(poten,y,yp,icomp,icore,neqn,zof,pvof)
+subroutine fstmln(poten,y,yp,icomp,icore,neqn,zof,pvof)
       implicit double precision (a-h,o-z)
 !
 !          this subroutine sets up values so that potential/velocity
@@ -26975,9 +26975,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  4000 continue
       return
-      END subroutine fstmln
+end subroutine fstmln
 ! **deck fsvcal
-      subroutine fsvcal
+subroutine fsvcal
       implicit double precision (a-h,o-z)
 !
 !         fsvcal initializes information in /acase/ and /comprs/ given
@@ -27066,9 +27066,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dscal (3,  -1.d0, pvdry(1,iacase),1)
   400 continue
       return
-      END subroutine fsvcal
+end subroutine fsvcal
 ! **deck gadnet
-      subroutine gadnet(kn,nrow,ncol,ncen)
+subroutine gadnet(kn,nrow,ncol,ncen)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -27188,9 +27188,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    30 k = k + 1
    40 continue
    50 return
-      END subroutine gadnet
+end subroutine gadnet
 ! **deck gcpcal
-      subroutine gcpcal(nm,nn,zm,nma,nna,za)
+subroutine gcpcal(nm,nn,zm,nma,nna,za)
       implicit double precision (a-h,o-z)
 !***created  on 76.009    w.o. no.   0   version        ftj.00
 !
@@ -27278,9 +27278,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    98 continue
    99 continue
       return
-      END subroutine gcpcal
+end subroutine gcpcal
 ! **deck genfg
-      subroutine genfg (m,n,zm, zfg)
+subroutine genfg (m,n,zm, zfg)
       implicit double precision (a-h,o-z)
       dimension zm(3,m,n), zfg(3,2*m-1,2*n-1)
 !
@@ -27304,9 +27304,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
 !
       return
-      END subroutine genfg
+end subroutine genfg
 ! **deck genpan
-      subroutine genpan(zk,mk,nk,i,j,   avgp,r)
+subroutine genpan(zk,mk,nk,i,j,   avgp,r)
       implicit double precision (a-h,o-z)
 !
 !     purpose: generate information about panel of a network
@@ -27372,9 +27372,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       r =  max ( p1d, p2d, p3d, p4d )
 !
       return
-      END subroutine genpan
+end subroutine genpan
 ! **deck gensub
-      subroutine gensub(zk,mk,nk,i,j,   ptar)
+subroutine gensub(zk,mk,nk,i,j,   ptar)
       implicit double precision (a-h,o-z)
 !
 !     purpose: generate subpanels of a network
@@ -27462,9 +27462,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    30 continue
 !
   999 return
-      END subroutine gensub
+end subroutine gensub
 ! **deck geodtc
-      subroutine geodtc (nnett,nm,nn,zm)
+subroutine geodtc (nnett,nm,nn,zm)
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), zm(3,6000)
 !
@@ -27619,9 +27619,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6700 format (  33(2h *) ,/,'   execution terminated due to ',i5        &
      & ,'nonconvexity errors.  (see messages above) ')
 !
-      END subroutine geodtc
+end subroutine geodtc
 ! **deck geomc
-      subroutine geomc(kn,nm,nn,npa,nza,zm)
+subroutine geomc(kn,nm,nn,npa,nza,zm)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -28156,9 +28156,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   198 continue
   199 continue
       return
-      END subroutine geomc
+end subroutine geomc
 ! **deck getcor
-      subroutine getcor (label,lladdr,nw)
+subroutine getcor (label,lladdr,nw)
       character*(*) label
 !
 !        allocate  nw  words of dynamic memory, starting at the current
@@ -28248,9 +28248,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &getcor ')
  6500 format (' *****  error  *****   getcor called before inicor.  labe&
      &l  =  ',a,'    status word  =  ',a)
-      END subroutine getcor
+end subroutine getcor
 ! **deck getlim
-      subroutine getlim ( nnett, nm, nn, nza, zm )
+subroutine getlim ( nnett, nm, nn, nza, zm )
       implicit double precision (a-h,o-z)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -28358,9 +28358,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   200 continue
 !
-      END subroutine getlim
+end subroutine getlim
 ! **deck getpnt
-      subroutine getpnt(q1,q2,cp,iside,itri,   pint,iflags)
+subroutine getpnt(q1,q2,cp,iside,itri,   pint,iflags)
       implicit double precision (a-h,o-z)
 !
 !     purpose: get an intersection point
@@ -28403,9 +28403,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    20 continue
 !
   999 return
-      END subroutine getpnt
+end subroutine getpnt
 ! **deck gphplk
-      subroutine gphplk (nb,  nnode,mnod,  p,q,brnm,w,kb                &
+subroutine gphplk (nb,  nnode,mnod,  p,q,brnm,w,kb                &
      &              ,head,point,count,key,  iabtpr,nfail)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -28558,9 +28558,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 continue
       nfail   =  -1
       return
-      END subroutine gphplk
+end subroutine gphplk
 ! **deck gphscn
-      subroutine gphscn (nb,nnode,p,q,brnm,pr,kb,netwk,  ntr,nbtra      &
+subroutine gphscn (nb,nnode,p,q,brnm,pr,kb,netwk,  ntr,nbtra      &
      &              ,key,  iabtpr,nfail)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -28731,9 +28731,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 continue
       nfail   =  1
       return
-      END subroutine gphscn
+end subroutine gphscn
 ! **deck gpluck
-      subroutine gpluck (nb,nnode,mnod,igrd                             &
+subroutine gpluck (nb,nnode,mnod,igrd                             &
      &                  ,p,q,brnm,w,kb,  head,point,count,key           &
      &                  ,iabtpr,nfail)
       implicit double precision (a-h,o-z)
@@ -28868,9 +28868,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 continue
       nfail   =  -1
       return
-      END subroutine gpluck
+end subroutine gpluck
 ! **deck grdind
-      subroutine grdind(nm,nn,z,i,is)
+subroutine grdind(nm,nn,z,i,is)
       implicit double precision (a-h,o-z)
 !***created  on 76.009    w.o. no.   0   version        ftj.00
 !
@@ -28958,9 +28958,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    98 continue
    99 continue
       return
-      END subroutine grdind
+end subroutine grdind
 ! **deck gridgn
-      subroutine gridgn (ox,oy,oz,xx,xy,xz,yx,yy,yz,zx,zy,zz,dx,dy,dz   &
+subroutine gridgn (ox,oy,oz,xx,xy,xz,yx,yy,yz,zx,zy,zz,dx,dy,dz   &
      &                 ,ix,iy,iz,a)
       implicit double precision (a-h,o-z)
 !******
@@ -29047,9 +29047,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200   continue
   100 continue
       return
-      END subroutine gridgn
+end subroutine gridgn
 ! **deck gtalam
-      subroutine gtalam (c1,c2,alam)
+subroutine gtalam (c1,c2,alam)
       implicit double precision (a-h,o-z)
       dimension alam(9,4)
 !         compute  alam  array for old style subpanel doublet splines
@@ -29083,9 +29083,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50     continue
   100 continue
       return
-      END subroutine gtalam
+end subroutine gtalam
 ! **deck hcmmp1
-      subroutine hcmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hcmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       complex*16 a(1), b(1), c(1)
       complex*16 blbkj
@@ -29125,9 +29125,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hcmmp1
+end subroutine hcmmp1
 ! **deck hcmmp2
-      subroutine hcmmp2 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hcmmp2 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       complex*16 a(1), b(1), c(1)
       complex*16 blbkj
@@ -29158,9 +29158,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hcmmp2
+end subroutine hcmmp2
 ! **deck hcmmp3
-      subroutine hcmmp3 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hcmmp3 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       complex*16 a(1), b(1), c(1)
       complex*16 blbkj
@@ -29191,9 +29191,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hcmmp3
+end subroutine hcmmp3
 ! **deck hcmvp3
-      subroutine hcmvp3 (m,l,  a,ia,ja,  b,ib,  c,ic)
+subroutine hcmvp3 (m,l,  a,ia,ja,  b,ib,  c,ic)
       implicit double precision (a-h,o-z)
       complex*16 a(1), b(1), c(1), blbk
       la1k    =  1
@@ -29211,9 +29211,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lbk     =  lbk + ib
   200 continue
       return
-      END subroutine hcmvp3
+end subroutine hcmvp3
 ! **deck hsmmp1
-      subroutine hsmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hsmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
 !
@@ -29241,9 +29241,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hsmmp1
+end subroutine hsmmp1
 ! **deck hsmmp2
-      subroutine hsmmp2 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hsmmp2 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
       lc1j    =  1
@@ -29267,9 +29267,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hsmmp2
+end subroutine hsmmp2
 ! **deck hsmmp3
-      subroutine hsmmp3 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine hsmmp3 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
       lc1j    =  1
@@ -29293,9 +29293,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine hsmmp3
+end subroutine hsmmp3
 ! **deck hsmvp3
-      subroutine hsmvp3 (m,l,  a,ia,ja,  b,ib,  c,ic)
+subroutine hsmvp3 (m,l,  a,ia,ja,  b,ib,  c,ic)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
       la1k    =  1
@@ -29313,7 +29313,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lbk     =  lbk + ib
   200 continue
       return
-      END subroutine hsmvp3
+end subroutine hsmvp3
 ! **deck iandfn
       integer function iandfn (ipos,jpos)
 !
@@ -29339,7 +29339,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function iandfn
 ! **deck ibsrc2
-      subroutine ibsrc2 (locsrt,ibase,n,locind,ist)
+subroutine ibsrc2 (locsrt,ibase,n,locind,ist)
       implicit double precision (a-h,o-z)
 !c
 !
@@ -29496,9 +29496,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !djt     +       '                     locsrt        ='/
 !djt     + (1x,8i10/1x,8i10/1x,8i10/1x,8i10/1x,8i10/))
   900 return
-      END subroutine ibsrc2
+end subroutine ibsrc2
 ! **deck ibsrch
-      subroutine ibsrch (index,n,ind,ist)
+subroutine ibsrch (index,n,ind,ist)
       implicit double precision (a-h,o-z)
       dimension  index(n)
 !         using binary search, find ist such that ---
@@ -29536,9 +29536,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1200 format ( ' fatal error in ibsrch.  ist,iup,idn,ind,n =', 5i10     &
      &   ,/, (1x,10i10) )
       call uabend
-      END subroutine ibsrch
+end subroutine ibsrch
 ! **deck ibtrns
-      subroutine ibtrns(jc,bcd)
+subroutine ibtrns(jc,bcd)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -29636,9 +29636,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !---      call outvci (' ibtrns',nbdq,ctdb1a)
       call itrns(bcd,bcdq,nbdq,nsb,nrb,ntb,nib,jc)
       return
-      END subroutine ibtrns
+end subroutine ibtrns
 ! **deck icmpr
-      subroutine icmpr(msg,a,b,n,l)
+subroutine icmpr(msg,a,b,n,l)
       implicit double precision (a-h,o-z)
       integer a(n), b(n)
       character*(*) msg
@@ -29662,9 +29662,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call outvci ('b',n,b)
       endif
       return
-      END subroutine icmpr
+end subroutine icmpr
 ! **deck icopy
-      subroutine icopy (n,  x,ix,  y,iy)
+subroutine icopy (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       integer x(1), y(1)
 !
@@ -29688,9 +29688,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   300 continue
       return
-      END subroutine icopy
+end subroutine icopy
 ! **deck ictrns
-      subroutine ictrns(jc,cdq)
+subroutine ictrns(jc,cdq)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -29781,7 +29781,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call itrns(cdq,cntq,ncdq,nsc,nrc,ntc,nic,jc)
       return
-      END subroutine ictrns
+end subroutine ictrns
 ! **deck idamax
       integer function idamax (n,  y,iy)
       implicit double precision (a-h,o-z)
@@ -29806,7 +29806,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function idamax
 ! **deck idngeo
-      subroutine idngeo (z1,z2,epsgeo,  epsequ)
+subroutine idngeo (z1,z2,epsgeo,  epsequ)
       implicit double precision (a-h,o-z)
       dimension  z1(3), z2(3)
       logical  epsequ
@@ -29818,9 +29818,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &          +( z1(3) - z2(3) )**2
       if ( dzsq .le. epsgeo**2 ) epsequ = .true.
       return
-      END subroutine idngeo
+end subroutine idngeo
 ! **deck ifera
-      subroutine ifera (ia,ib,n)
+subroutine ifera (ia,ib,n)
       dimension ia(n), ib(n)
 !
 !         copy from integer array ia to integer array ib
@@ -29830,9 +29830,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ib(k) = ia(k)
   100 continue
       return
-      END subroutine ifera
+end subroutine ifera
 ! **deck igtcor
-      subroutine igtcor (label,lladdr,nw)
+subroutine igtcor (label,lladdr,nw)
       character*(*) label
 !
 !        allocate  nw  words of dynamic memory, starting at the current
@@ -29923,9 +29923,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &igtcor ')
  6500 format (' *****  error  *****   igtcor called before inicor.  labe&
      &l  =  ',a,'    status word  =  ',a)
-      END subroutine igtcor
+end subroutine igtcor
 ! **deck inbc
-      subroutine inbc(k,ica)
+subroutine inbc(k,ica)
       implicit double precision (a-h,o-z)
 !
 !
@@ -30611,9 +30611,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er ('inbc',' program failure due to ill-formatted data')
       return
 !
-      END subroutine inbc
+end subroutine inbc
 ! **deck inbc1
-      subroutine inbc1(ica,k)
+subroutine inbc1(ica,k)
       implicit double precision (a-h,o-z)
 !
 !
@@ -30715,9 +30715,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
   300 continue
       return
-      END subroutine inbc1
+end subroutine inbc1
 ! **deck inbc2
-      subroutine inbc2(ica,k)
+subroutine inbc2(ica,k)
       implicit double precision (a-h,o-z)
 !
 !
@@ -30811,9 +30811,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     formats
 !
  5070 format(6f10.5)
-      END subroutine inbc2
+end subroutine inbc2
 ! **deck incmpr
-      subroutine incmpr(i1,i2,i3,n1,n2)
+subroutine incmpr(i1,i2,i3,n1,n2)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -30911,9 +30911,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       i3(k)=-l
   500 i2(l)=iabs(i2(l))
       return
-      END subroutine incmpr
+end subroutine incmpr
 ! **deck indadd
-      subroutine indadd (ne,nind,ind,dv  ,nncp,phic  ,nnvcp,vic)
+subroutine indadd (ne,nind,ind,dv  ,nncp,phic  ,nnvcp,vic)
       implicit double precision (a-h,o-z)
 !
 !     accumulate the potential (and possibly velocity) influences
@@ -30968,9 +30968,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine indadd
+end subroutine indadd
 ! **deck indrag
-      subroutine indrag (nw,title,fsymm,sref,ar,npn,  cl,cdi,eff        &
+subroutine indrag (nw,title,fsymm,sref,ar,npn,  cl,cdi,eff        &
      &                  ,ylef,yrit, zlef,zrit, dylef,dyrit, dzlef,dzrit &
      &                  ,psi,dcd,    xil,xir                            &
      &                  )
@@ -31145,9 +31145,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    59 format (6x,'yl',14x,'zl',13x,'xil',14x,'psil',/                   &
      &        6x,'yr',14x,'zr',13x,'xir',14x,'psir',12x,'delcdi')
    60 format (1x, e13.6,3x,e13.6,3x,e13.6,3x,e13.6,3x,e13.6)
-      END subroutine indrag
+end subroutine indrag
 ! **deck inecho
-      subroutine inecho
+subroutine inecho
       implicit double precision (a-h,o-z)
       character*90 qline
 !call inp1
@@ -31393,9 +31393,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !                             error exit
 !
-      END subroutine inecho
+end subroutine inecho
 ! **deck influ
-      subroutine influ (z,iflu)
+subroutine influ (z,iflu)
       implicit double precision (a-h,o-z)
       dimension z(3)
 !
@@ -31473,9 +31473,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( dphase.lt.dph4 ) go to 1000
       iflu    =  max (4,iflu)
  1000 return
-      END subroutine influ
+end subroutine influ
 ! **deck inicor
-      subroutine inicor (nwdyn,wdyn, prtlev,prtlws,prtsum)
+subroutine inicor (nwdyn,wdyn, prtlev,prtlws,prtsum)
       double precision wdyn(nwdyn)
       logical prtlev, prtlws, prtsum
 !         initialize the dynamic memory management routines to allocate
@@ -31566,9 +31566,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine inicor
+end subroutine inicor
 ! **deck inputa
-      subroutine inputa
+subroutine inputa
 !call propre
 !c
 !*******************************************************************
@@ -33573,11 +33573,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('inputa',' program failure due to ill-formatted data')
       return
 !
-      END subroutine inputa
+end subroutine inputa
 
 
 ! **deck inside
-      subroutine inside (q,ics,anm,p,within)
+subroutine inside (q,ics,anm,p,within)
 
       implicit double precision (a-h,o-z)
 
@@ -33614,9 +33614,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   200 continue
   210 continue
       return
-      END subroutine inside
+end subroutine inside
 ! **deck insumm
-      subroutine insumm
+subroutine insumm
       implicit double precision (a-h,o-z)
 !
 !         generate a summary of the user's input data
@@ -34157,7 +34157,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       return
-      END subroutine insumm
+end subroutine insumm
 ! **deck intchk
       logical function intchk (a)
       character*4 a
@@ -34176,7 +34176,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END function intchk
 ! **deck integr
-      subroutine integr (npant,array,prcoef,isurf)
+subroutine integr (npant,array,prcoef,isurf)
       implicit double precision (a-h,o-z)
       dimension array(21,npant),prcoef(3,npant)
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -34343,9 +34343,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-      END subroutine integr
+end subroutine integr
 ! **deck intnrm
-      subroutine intnrm (z1,z2,y1,y2,  en)
+subroutine intnrm (z1,z2,y1,y2,  en)
       implicit double precision (a-h,o-z)
       dimension  z1(3), z2(3), y1(3), y2(3), en(3)
 !         compute an edge interior normal given two point along the
@@ -34359,9 +34359,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross (w,v,en)
       call uvect ( en )
       return
-      END subroutine intnrm
+end subroutine intnrm
 ! **deck intp1
-      subroutine intp1(zx,x,f,n,fx)
+subroutine intp1(zx,x,f,n,fx)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -34419,9 +34419,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    10 sm = (f(il) - f(iu))/(x(il) - x(iu))
       fx = sm*(zx - x(il)) + f(il)
    20 return
-      END subroutine intp1
+end subroutine intp1
 ! **deck intp2
-      subroutine intp2(zx,zy,x,y,f,nx,ny,nfx,nfy,fxy)
+subroutine intp2(zx,zy,x,y,f,nx,ny,nfx,nfy,fxy)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -34499,9 +34499,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       sm = (fxl - fxu)/(y(ily) - y(iuy))
       fxy = sm*(zy - y(ily)) + fxl
    50 return
-      END subroutine intp2
+end subroutine intp2
 ! **deck intpnt
-      subroutine intpnt(p,q,c,   pint,intf)
+subroutine intpnt(p,q,c,   pint,intf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: compute the point of intersection of a line segment
@@ -34599,9 +34599,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       pint(3)  = pz + tau * ( qz - pz )
 !
   999 return
-      END subroutine intpnt
+end subroutine intpnt
 ! **deck inxcmt
-      subroutine inxcmt (lun,ier,line)
+subroutine inxcmt (lun,ier,line)
       implicit double precision (a-h,o-z)
       character*80 line
 !
@@ -34635,7 +34635,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
 !
 !
-      END subroutine inxcmt
+end subroutine inxcmt
 ! **deck iorfn
       integer function iorfn (ipos,jpos)
 !
@@ -34661,7 +34661,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END function iorfn
 ! **deck iscal
-      subroutine iscal(cp,ics)
+subroutine iscal(cp,ics)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -34712,9 +34712,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   500 continue
       ics=0
   950 return
-      END subroutine iscal
+end subroutine iscal
 ! **deck ishel2
-      subroutine ishel2 (n,a,key)
+subroutine ishel2 (n,a,key)
       implicit double precision (a-h,o-z)
 !c
 !     ishel2 sorts an integer array a(n) that is actually 4*n words
@@ -34838,9 +34838,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     go on to the next value for the increment m
 !
       go to 100
-      END subroutine ishel2
+end subroutine ishel2
 ! **deck isitin
-      subroutine isitin(p1,p2,p3,c,p,   iedgef,insidf)
+subroutine isitin(p1,p2,p3,c,p,   iedgef,insidf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: is it in?  determine whether point p lies within
@@ -34933,9 +34933,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        ( q3 .gt. 0.d0 )         ) insidf = .true.
 !
   999 return
-      END subroutine isitin
+end subroutine isitin
 ! **deck istrns
-      subroutine istrns(ip,pdq)
+subroutine istrns(ip,pdq)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -35011,9 +35011,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call writms(nts,pdq,nsdq,ip,-1,0)
       return
-      END subroutine istrns
+end subroutine istrns
 ! **deck itewic
-      subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
+subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
       implicit double precision (a-h,o-z)
       dimension aint(6), aint2(6), aerr(6)
 !
@@ -35222,9 +35222,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6004 format (' level:',i3,'  ind:',i2,'  a,b:',2f12.6,'  h:',f12.6     &
      &  ,'  s,s2',2f12.9)
       CALL AbortPanair('itewic')
-      END subroutine itewic
+end subroutine itewic
 ! **deck itrns
-      subroutine itrns(q,s,nq,ns,nr,nt,ni,i)
+subroutine itrns(q,s,nq,ns,nr,nt,ni,i)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !     *                                                               *
@@ -35326,9 +35326,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call icopy (nq,  q,1,  s(1,l),1)
       nr = -k
       return
-      END subroutine itrns
+end subroutine itrns
 ! **deck ivtrns
-      subroutine ivtrns (jc,ne,dvdfs)
+subroutine ivtrns (jc,ne,dvdfs)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -35443,9 +35443,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call writmd(ntv,dvdfs,nwpr,jc,-1,0)
   900 return
-      END subroutine ivtrns
+end subroutine ivtrns
 ! **deck ixtrns
-      subroutine ixtrns (irec,iar,lth)
+subroutine ixtrns (irec,iar,lth)
       implicit double precision (a-h,o-z)
       dimension iar(1:*)
 !call xrwi
@@ -35459,9 +35459,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call writms (ntxrwi,iar,lthx,irec,-1,0)
       return
-      END subroutine ixtrns
+end subroutine ixtrns
 ! **deck iytrns
-      subroutine iytrns (irec,iar,lth)
+subroutine iytrns (irec,iar,lth)
       implicit double precision (a-h,o-z)
       dimension iar(*)
 !
@@ -35483,7 +35483,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nwyrwi(irec) = lth
       call writmd (ntyrwi,iar,lth,irec,-1,0)
       return
-      END subroutine iytrns
+end subroutine iytrns
 ! **deck izamax
       integer function izamax (n,  y,iy)
       implicit double precision (a-h,o-z)
@@ -35511,7 +35511,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function izamax
 ! **deck jshell
-      subroutine jshell (n,a,key)
+subroutine jshell (n,a,key)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -35625,9 +35625,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   go on to the next value for the increment m                 *
 !
       go to 100
-      END subroutine jshell
+end subroutine jshell
 ! **deck jzero
-      subroutine jzero (a,n)
+subroutine jzero (a,n)
       implicit double precision (a-h,o-z)
 !
 !         zero an integer array: stupid interface to be used for convers
@@ -35642,9 +35642,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 10 k = 1,n
    10 a(k) = 0
       return
-      END subroutine jzero
+end subroutine jzero
 ! **deck keysrd
-      subroutine keysrd (n,a,key)
+subroutine keysrd (n,a,key)
       implicit double precision (a-h,o-z)
 !          apply the permutation array key to the d.p. input array a
 !          so that on output:
@@ -35678,9 +35678,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *   element and go on to the next cycle                         *
       a(i)    =  asv
       go to  10
-      END subroutine keysrd
+end subroutine keysrd
 ! **deck keysrt
-      subroutine keysrt (n,a,key)
+subroutine keysrt (n,a,key)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -35777,9 +35777,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     *                                                               *
       a(i)    =  asv
       go to  10
-      END subroutine keysrt
+end subroutine keysrt
 ! **deck kmp2gd
-      subroutine kmp2gd (kmp,  nedmpa,  knet,ig,jg)
+subroutine kmp2gd (kmp,  nedmpa,  knet,ig,jg)
       implicit double precision (a-h,o-z)
       dimension nedmpa(601)
 !
@@ -35843,9 +35843,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       kpt     =  kmp - nedmpa(kedg)
       call edg2gd (kpt,ksd,  nm(knet),nn(knet),  ig,jg)
       return
-      END subroutine kmp2gd
+end subroutine kmp2gd
 ! **deck labort
-      subroutine labort (n,nmax,label)
+subroutine labort (n,nmax,label)
       implicit double precision (a-h,o-z)
       character*(*) label
       character*50 xmsg
@@ -35859,9 +35859,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       xmsg(11:50)= label
       call remarx (xmsg)
       stop
-      END subroutine labort
+end subroutine labort
 ! **deck lchvar
-      subroutine lchvar (v,x0,dx,idim,inc)
+subroutine lchvar (v,x0,dx,idim,inc)
       implicit double precision (a-h,o-z)
 !         perform a linear change of variables -  x = x0 + dx*tau - on
 !         a vector  v(0:idim) = lin. functional ( tau**i, i=0:idim )
@@ -35877,9 +35877,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           last    =  lstinc
   100 continue
       return
-      END subroutine lchvar
+end subroutine lchvar
 ! **deck legndr
-      subroutine legndr (n,x,p,pd)
+subroutine legndr (n,x,p,pd)
       implicit double precision (a-h,o-z)
 !
 !         evaluate the legendre polynomials of degrees (0:n+1) and
@@ -35903,9 +35903,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           pd(kp2)=  alf*x*pd(k+1)- beta*pd(k) + alf*p(k+1)
   100 continue
       return
-      END subroutine legndr
+end subroutine legndr
 ! **deck limval
-      subroutine limval( k, zk, nmk, nnk, icoor )
+subroutine limval( k, zk, nmk, nnk, icoor )
       implicit double precision (a-h,o-z)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -35995,9 +35995,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
           xyzlim( k,icoor,1 ) = valmin
           xyzlim( k,icoor,2 ) = valmax
-      END subroutine limval
+end subroutine limval
 ! **deck ljbf10
-      subroutine ljbf10 (a)
+subroutine ljbf10 (a)
       implicit double precision (a-h,o-z)
       character*10 a,b,c
       character*1 blk
@@ -36022,7 +36022,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! *** write (6,6001) c,a
  6001 format ('  ===ljbf10 call.  in=',a10,3x,'out=',a10)
       return
-      END subroutine ljbf10
+end subroutine ljbf10
 
 ! **deck locfcn
       FUNCTION locfcn(ia) RESULT(k)
@@ -36037,7 +36037,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function Locfcn !-----------------------------------------------------
 ! **deck lproj
-      subroutine lproj(a,r0,b,c)
+subroutine lproj(a,r0,b,c)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -36101,9 +36101,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mxm(cmag,1,d,1,c,3)
       call vadd(c,1.d0,r0,c,3)
       return
-      END subroutine lproj
+end subroutine lproj
 ! **deck lsqsf
-      subroutine lsqsf
+subroutine lsqsf
       implicit double precision (a-h,o-z)
 !***created  on 76.056    w.o. no.   0   version        ftj.01
 !
@@ -36241,9 +36241,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   450 continue
   499 continue
       return
-      END subroutine lsqsf
+end subroutine lsqsf
 ! **deck lsqsg
-      subroutine lsqsg
+subroutine lsqsg
       implicit double precision (a-h,o-z)
 !         lsqsg computes just the first row of the pseudoinverse of
 !         the matrix  c  defined by the   295  loop.  thus it is
@@ -36411,9 +36411,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 500 k = 1,npk
   500 ak(1,k) =  v(k)*wtk(k)
       return
-      END subroutine lsqsg
+end subroutine lsqsg
 ! **deck mag
-      subroutine mag(a,amag)
+subroutine mag(a,amag)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -36455,9 +36455,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dimension a(3)
       amag=sqrt(a(1)*a(1)+a(2)*a(2)+a(3)*a(3))
       return
-      END subroutine mag
+end subroutine mag
 ! **deck matvfs
-      subroutine matvfs (ttmat,tpmat,vfsair                             &
+subroutine matvfs (ttmat,tpmat,vfsair                             &
      &                  ,rmat,vfmat,wfmat,cpfmat,vfsmat)
       implicit double precision (a-h,o-z)
       dimension vfsair(3), vfsmat(3)
@@ -36520,9 +36520,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   900 continue
       return
-      END subroutine matvfs
+end subroutine matvfs
 ! **deck maxcor
-      subroutine maxcor
+subroutine maxcor
 !
 !         print current maxima for dynamic cm package
 !
@@ -36552,9 +36552,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  '  maximum dynamic memory    ',i10,2x,i10 ,/,                   &
      &  /,1x,100(1h*) )
       return
-      END subroutine maxcor
+end subroutine maxcor
 ! **deck mccopy
-      subroutine mccopy (m,n,  a,ia,ja,  b,ib,jb)
+subroutine mccopy (m,n,  a,ia,ja,  b,ib,jb)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1)
       complex*16 a, b
@@ -36590,9 +36590,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine mccopy
+end subroutine mccopy
 ! **deck mcopy
-      subroutine mcopy (m,n,  a,ia,ja,  b,ib,jb)
+subroutine mcopy (m,n,  a,ia,ja,  b,ib,jb)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1)
 !         copy the matrix a to the matrix b
@@ -36627,9 +36627,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine mcopy
+end subroutine mcopy
 ! **deck meshp
-      subroutine meshp(k,ipter,amnsw,dnsmsh)
+subroutine meshp(k,ipter,amnsw,dnsmsh)
       implicit double precision (a-h,o-z)
       character*90 qline
 !call limits
@@ -36997,9 +36997,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('meshp',' program failure due to ill-formatted data')
       return
 !
-      END subroutine meshp
+end subroutine meshp
 ! **deck mnmod
-      subroutine mnmod(i,nm,m,n)
+subroutine mnmod(i,nm,m,n)
       implicit double precision (a-h,o-z)
 !***created  on 76.056    w.o. no.   0   version        ftj.01
 !
@@ -37034,9 +37034,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       n=(i-1)/nm+1
       m=i-nm*(n-1)
       return
-      END subroutine mnmod
+end subroutine mnmod
 ! **deck mpnorm
-      subroutine mpnorm ( z1, z2, z3, z4, en)
+subroutine mpnorm ( z1, z2, z3, z4, en)
       implicit double precision (a-h,o-z)
       dimension z1(3), z2(3), z3(3), z4(3), en(3)
       dimension ps(3), pt(3)
@@ -37048,9 +37048,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross (ps,pt,en)
       call uvect (en)
       return
-      END subroutine mpnorm
+end subroutine mpnorm
 ! **deck mpnrml
-      subroutine mpnrml (z,m,n,  en)
+subroutine mpnrml (z,m,n,  en)
       implicit double precision (a-h,o-z)
       dimension z(3,m,n), en(3)
 !
@@ -37065,9 +37065,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross (u,v,en)
       call dscal (3,  .25d0,  en,1)
       return
-      END subroutine mpnrml
+end subroutine mpnrml
 ! **deck mpteqc
-      subroutine mpteqc (kpt,npt,  ix,jx)
+subroutine mpteqc (kpt,npt,  ix,jx)
       implicit double precision (a-h,o-z)
       dimension  kpt(npt)
 !         enter the equivalence relation   ix .=. jx   into the circulan
@@ -37119,9 +37119,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1200 continue
       call abtend ('looping error in mpteqc')
       return
-      END subroutine mpteqc
+end subroutine mpteqc
 ! **deck mshdns
-      subroutine mshdns(zm,nm,nn,mf,nf)
+subroutine mshdns(zm,nm,nn,mf,nf)
       implicit double precision (a-h,o-z)
       dimension zm(3,1)
       character*2 ichm, ichn
@@ -37234,9 +37234,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,/,'   no. cols input: ',i5,'   col densing factor: ',a2,i3      &
      &   ,'   no. cols output: ',i5                                     &
      &   )
-      END subroutine mshdns
+end subroutine mshdns
 ! **deck mshind
-      subroutine  mshind(isd,iz,in,nm,nn,l)
+subroutine  mshind(isd,iz,in,nm,nn,l)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -37293,9 +37293,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       n=izr*(2-misd)+izf*(misd-1)
       l=m+nm*(n-1)
       return
-      END subroutine mshind
+end subroutine mshind
 ! **deck mspnt1
-      subroutine mspnt1
+subroutine mspnt1
       implicit double precision (a-h,o-z)
 !
 !     this routine puts the network geometry on file -mspnt1-
@@ -37440,9 +37440,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5090 format(20a4)
 !
       return
-      END subroutine mspnt1
+end subroutine mspnt1
 ! **deck msrotm
-      subroutine msrotm(zm,nm,nn,m,n,amr)
+subroutine msrotm(zm,nm,nn,m,n,amr)
       implicit double precision (a-h,o-z)
 !***created  on 76.010    w.o. no.   0   version        ftj.00
 !
@@ -37564,9 +37564,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call trans(amrt,amr,3,3)
       return
-      END subroutine msrotm
+end subroutine msrotm
 ! **deck mtrxtp
-      subroutine mtrxtp (iar,m,n, l)
+subroutine mtrxtp (iar,m,n, l)
       integer iar(l,m,n)
       parameter (nscr=5000)
       integer iscr(nscr)
@@ -37591,9 +37591,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       m   = n
       n   = msv
       return
-      END subroutine mtrxtp
+end subroutine mtrxtp
 ! **deck mtrxtr
-      subroutine mtrxtr (ar,m,n, l)
+subroutine mtrxtr (ar,m,n, l)
       implicit double precision (a-h,o-z)
       dimension ar(l,m,n)
 !
@@ -37621,9 +37621,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('mtrxtr')
       return
-      END subroutine mtrxtr
+end subroutine mtrxtr
 ! **deck mul3x3
-      subroutine mul3x3 (a,b,c,  n,  na,nb,nc)
+subroutine mul3x3 (a,b,c,  n,  na,nb,nc)
       implicit double precision (a-h,o-z)
       dimension a(na,3), b(nb,1), x(3)
       dimension c(nc,1)
@@ -37637,9 +37637,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           c(3,j)  =  x(3)
   100 continue
       return
-      END subroutine mul3x3
+end subroutine mul3x3
 ! **deck mxm
-      subroutine mxm (a,m,b,l,c,n)
+subroutine mxm (a,m,b,l,c,n)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
 !
@@ -37678,9 +37678,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine mxm
+end subroutine mxm
 ! **deck mxma
-      subroutine mxma (a,ia,ja,  b,ib,jb,  c,ic,jc,  m,l,n)
+subroutine mxma (a,ia,ja,  b,ib,jb,  c,ic,jc,  m,l,n)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
 !
@@ -37708,9 +37708,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           lb1j    =  lb1j + jb
   300 continue
       return
-      END subroutine mxma
+end subroutine mxma
 ! **deck mzero
-      subroutine mzero (m,n,  a,ia,ja)
+subroutine mzero (m,n,  a,ia,ja)
       implicit double precision (a-h,o-z)
       dimension a(1)
 !
@@ -37726,9 +37726,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           la1j    =  la1j + ja
   100 continue
       return
-      END subroutine mzero
+end subroutine mzero
 ! **deck neghbr
-      subroutine neghbr( nmk, nnk, ip,      neighs)
+subroutine neghbr( nmk, nnk, ip,      neighs)
       implicit double precision (a-h,o-z)
 !
 !     purpose - find all possible neighbors ('neighs') of panel 'ip'
@@ -37823,9 +37823,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call pannum( irowb, nmk, icolr, neighs(9,1) )
 !
       return
-      END subroutine neghbr
+end subroutine neghbr
 ! **deck nftpic
-      subroutine nftpic (amach,iin,aj,arp,p,ics,ns,its,x,ne,nf,dvs,dvd)
+subroutine nftpic (amach,iin,aj,arp,p,ics,ns,its,x,ne,nf,dvs,dvd)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -37979,9 +37979,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  2100     continue
  2000 continue
   900 return
-      END subroutine nftpic
+end subroutine nftpic
 ! **deck nftpiv
-      subroutine nftpiv                                                 &
+subroutine nftpiv                                                 &
      &   (amach,iin,aj,arp,p,ics,ns,its,x,nf,nv,sc,nsc,dc,ndc,pvsd)
       implicit double precision (a-h,o-z)
 !
@@ -38144,9 +38144,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mxma (arp,3,1,  pv(2,1),1,4,  pvsd(2,1),1,4,  3,3,nv)
       call dcopy (nv,  pv(1,1),4,  pvsd(1,1),4)
   900 return
-      END subroutine nftpiv
+end subroutine nftpiv
 ! **deck norcal
-      subroutine norcal(a,b,c,en)
+subroutine norcal(a,b,c,en)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -38200,9 +38200,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cross(u,v,en)
       call uvect(en)
       return
-      END subroutine norcal
+end subroutine norcal
 ! **deck norprt
-      subroutine norprt (z,m,n,  en,mp,np)
+subroutine norprt (z,m,n,  en,mp,np)
       implicit double precision (a-h,o-z)
       dimension z(3,m,n), en(3,mp,np)
 !
@@ -38224,9 +38224,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call outmvc ('       ',mp,mp,np,en)
       return
-      END subroutine norprt
+end subroutine norprt
 ! **deck nredge
-      subroutine nredge (p, ze,ince,ne, isgn,tsgn, pe,te,de)
+subroutine nredge (p, ze,ince,ne, isgn,tsgn, pe,te,de)
       implicit double precision (a-h,o-z)
       dimension p(3), ze(3), pe(3)
 !         find the point on the edge defined by (ze,ince,ne) nearest to
@@ -38325,9 +38325,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
       de      =  sqrt(de2)
       return
-      END subroutine nredge
+end subroutine nredge
 ! **deck nrmesh
-      subroutine nrmesh (zx,  ze,ince,ne,  isgn,te,  znr,inr,dnr)
+subroutine nrmesh (zx,  ze,ince,ne,  isgn,te,  znr,inr,dnr)
       implicit double precision (a-h,o-z)
       dimension  zx(3), ze(3), znr(3)
 !         find the mesh point on the edge  (ze,ince,ne)  with
@@ -38353,9 +38353,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           znr(3)  =  ze(lzb+3)
   950 continue
       return
-      END subroutine nrmesh
+end subroutine nrmesh
 ! **deck nrpted
-      subroutine nrpted (qm,qp,p,qnear,dist,tau)
+subroutine nrpted (qm,qp,p,qnear,dist,tau)
       implicit double precision (a-h,o-z)
 !         find a point on the edge determined by endpoints  qm and qp
 !         that is closest to p in the euclidean norm.
@@ -38389,9 +38389,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call vip (delr,1,  delr,1,  3,  dist)
       dist    =  sqrt(dist)
       return
-      END subroutine nrpted
+end subroutine nrpted
 ! **deck nrpthp
-      subroutine nrpthp (ftcmpd,cp,ics,pz,  sval,tval)
+subroutine nrpthp (ftcmpd,cp,ics,pz,  sval,tval)
       implicit double precision (a-h,o-z)
       dimension cp(3,4), pz(3)
 !         find an estimate of the point on an h-p surface closest
@@ -38598,9 +38598,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       sval    =  ss
       tval    =  tt
       return
-      END subroutine nrpthp
+end subroutine nrpthp
 ! **deck ntewic
-      subroutine ntewic (gen,  ne,zc,  indkgp,phvic,  awki)
+subroutine ntewic (gen,  ne,zc,  indkgp,phvic,  awki)
       implicit double precision (a-h,o-z)
       dimension zc(3), phvic(4,12)
       dimension gen(3), genx(3)
@@ -38975,9 +38975,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( ne.eq.4 ) call mcopy (3,12,  vic,1,3,  phvic(2,1),1,4)
       indkgp  =  0
       return
-      END subroutine ntewic
+end subroutine ntewic
 ! **deck nwindx
-      subroutine nwindx (netknt,  string,knet)
+subroutine nwindx (netknt,  string,knet)
       implicit double precision (a-h,o-z)
       character*10 string
 !
@@ -39078,9 +39078,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('nwindx',' program failure due to ill-formatted data')
       return
 !
-      END subroutine nwindx
+end subroutine nwindx
 ! **deck offbdx
-      subroutine offbdx (nof,ivzof,zof,pvof)
+subroutine offbdx (nof,ivzof,zof,pvof)
       implicit double precision (a-h,o-z)
 !******
 !     purpose  to calculate potential/velocity at off body points
@@ -39330,9 +39330,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write  (ntpoff,5603)
       call emark ('off-body')
       return
-      END subroutine offbdx
+end subroutine offbdx
 ! **deck offch1
-      subroutine offch1 (nnett,npant,nm,nn,nza,npa,zm                   &
+subroutine offch1 (nnett,npant,nm,nn,nza,npa,zm                   &
      &                  ,zctr,rcsq,tctr,wctr)
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), nza(nnett+1), npa(nnett+1)
@@ -39417,11 +39417,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   800 continue
 !
       return
-      END subroutine offch1
-!!      subroutine offch2 (nof,p,ipnd,  nsymm,nnett,npant,nm,nn,nza,npa,zm& ! Removed by Martin Hegedus, 4/21/09
+end subroutine offch1
+!!subroutine offch2 (nof,p,ipnd,  nsymm,nnett,npant,nm,nn,nza,npa,zm& ! Removed by Martin Hegedus, 4/21/09
 !!     &                  ,zctr,rcsq,tctr,wctr)                             ! Removed by Martin Hegedus, 4/21/09
 ! **deck offch2
-      subroutine offch2 (nof,p,ipnd,nisym,njsym,nnett,npant,nm,nn,nza,  & ! Added by Martin Hegedus, 4/21/09
+subroutine offch2 (nof,p,ipnd,nisym,njsym,nnett,npant,nm,nn,nza,  & ! Added by Martin Hegedus, 4/21/09
      &                  npa,zm,zctr,rcsq,tctr,wctr)                       ! Added by Martin Hegedus, 4/21/09
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), nza(nnett+1), npa(nnett+1)
@@ -39532,9 +39532,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & ,3f11.5,' to:', 3f11.5,' (isymm:',i2,' jsymm:',i2                & ! Added by Martin Hegedus, 4/21/09
      & ,' nw:',i3,' row:',i3,' col:',i3,')')                              ! Added by Martin Hegedus, 4/21/09
  6101 format (' k,ip,jp:',3i5,'  ii,jj,iof,pc:',3i5,3f12.6)               ! Added by Martin Hegedus, 4/21/09
-      END subroutine offch2
+end subroutine offch2
 ! **deck offch3
-      subroutine offch3 (pc,  z1,z2,z3,z4,zctr,rsq,  isub,pcn)
+subroutine offch3 (pc,  z1,z2,z3,z4,zctr,rsq,  isub,pcn)
       implicit double precision (a-h,o-z)
       dimension pc(3), z1(3), z2(3), z3(3), z4(3), zctr(3), pcn(3)
 !
@@ -39627,10 +39627,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   300 continue
       return
-      END subroutine offch3
-!!      subroutine offchk (nof,p,  nsymm,nnett,npant,nm,nn,nza,npa,zm)      ! Removed by Martin Hegedus, 4/21/09
+end subroutine offch3
+!!subroutine offchk (nof,p,  nsymm,nnett,npant,nm,nn,nza,npa,zm)      ! Removed by Martin Hegedus, 4/21/09
 ! **deck offchk
-      subroutine offchk(nof,p,nisym,njsym,nnett,npant,nm,nn,nza,npa,zm)   ! Added by Martin Hegedus, 4/21/09
+subroutine offchk(nof,p,nisym,njsym,nnett,npant,nm,nn,nza,npa,zm)   ! Added by Martin Hegedus, 4/21/09
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), nza(nnett+1), npa(nnett+1)
       dimension p(3,nof), zm(3,6000)
@@ -39661,9 +39661,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('offchk')
       return
-      END subroutine offchk
+end subroutine offchk
 ! **deck openms
-      subroutine openms (lun,index,nind,istat)
+subroutine openms (lun,index,nind,istat)
       integer index(1:nind)
 !
 !         open a unit as a fake readms/writms file
@@ -39757,9 +39757,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
 !
       return
-      END subroutine openms
+end subroutine openms
 ! **deck oscale
-      subroutine oscale
+subroutine oscale
       implicit double precision (a-h,o-z)
       character*90 qline
 !call propre
@@ -39860,9 +39860,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! *** format statements ***
  5000 format (6e10.0)
-      END subroutine oscale
+end subroutine oscale
 ! **deck outmat
-      subroutine outmat (label,na,m,n,a)
+subroutine outmat (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(na,n)
@@ -39912,9 +39912,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmat
+end subroutine outmat
 ! **deck outmt
-      subroutine outmt (label,na,m,n,a)
+subroutine outmt (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(na,n)
@@ -39964,9 +39964,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmt
+end subroutine outmt
 ! **deck outmti
-      subroutine outmti (label,na,m,n,a)
+subroutine outmti (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       character*10 outlab
@@ -39985,9 +39985,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
     2 format (5x,i4,1h.,i4,1h.,20i5)
     3 format (10x,i4,1h.,20i5)
       return
-      END subroutine outmti
+end subroutine outmti
 ! **deck outmtx
-      subroutine outmtx (label,na,m,n,a)
+subroutine outmtx (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(na,n)
@@ -40037,9 +40037,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmtx
+end subroutine outmtx
 ! **deck outmty
-      subroutine outmty (label,na,m,n,a)
+subroutine outmty (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(na,n)
@@ -40089,9 +40089,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmty
+end subroutine outmty
 ! **deck outmtz
-      subroutine outmtz (label,na,m,n,a)
+subroutine outmtz (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(na,n)
@@ -40141,9 +40141,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmtz
+end subroutine outmtz
 ! **deck outmvc
-      subroutine outmvc (label,na,m,n,a)
+subroutine outmvc (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(3,na,n)
@@ -40197,9 +40197,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmvc
+end subroutine outmvc
 ! **deck outmvx
-      subroutine outmvx (label,na,m,n,a)
+subroutine outmvx (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(3,na,n)
@@ -40253,9 +40253,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmvx
+end subroutine outmvx
 ! **deck outmvy
-      subroutine outmvy (label,na,m,n,a)
+subroutine outmvy (label,na,m,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(3,na,n)
@@ -40309,9 +40309,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outmvy
+end subroutine outmvy
 ! **deck outpkv
-      subroutine outpkv (label,n,v)
+subroutine outpkv (label,n,v)
       implicit double precision (a-h,o-z)
       character*(*) label
       integer v(1)
@@ -40321,9 +40321,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 write (6,200) 4*i-3, (v(j),j=4*i-3,4*i)
   200 format (1x,i4,'. ',4i6)
       return
-      END subroutine outpkv
+end subroutine outpkv
 ! **deck output
-      subroutine output (mxxpan,mxxdbl,mxxfg                            &
+subroutine output (mxxpan,mxxdbl,mxxfg                            &
      &                  ,dvdfs,pres,za,s                                &
      &                  ,scase,smat,dmat,dblmat                         &
      &                  ,rv                                             &
@@ -42297,9 +42297,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('output')
       return
-      END subroutine output
+end subroutine output
 ! **deck outvc
-      subroutine outvc  (label,n,a)
+subroutine outvc  (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(n)
@@ -42346,9 +42346,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvc
+end subroutine outvc
 ! **deck outvci
-      subroutine outvci (label,n,a)
+subroutine outvci (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       integer a(1:n)
@@ -42390,9 +42390,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvci
+end subroutine outvci
 ! **deck outvcx
-      subroutine outvcx (label,n,a)
+subroutine outvcx (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(n)
@@ -42439,9 +42439,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvcx
+end subroutine outvcx
 ! **deck outvcy
-      subroutine outvcy (label,n,a)
+subroutine outvcy (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(n)
@@ -42488,9 +42488,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvcy
+end subroutine outvcy
 ! **deck outvcz
-      subroutine outvcz (label,n,a)
+subroutine outvcz (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(n)
@@ -42537,9 +42537,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvcz
+end subroutine outvcz
 ! **deck outvec
-      subroutine outvec (label,n,a)
+subroutine outvec (label,n,a)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension a(n)
@@ -42586,9 +42586,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine outvec
+end subroutine outvec
 ! **deck pakims
-      subroutine pakims (lblock,nbk,indx)
+subroutine pakims (lblock,nbk,indx)
       integer indx(2)
 !
 !         build a packed index (indx) entry from a block
@@ -42599,9 +42599,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       indx(1)    =  lblock
       indx(2)    =  nbk
       return
-      END subroutine pakims
+end subroutine pakims
 ! **deck pakpsp
-      subroutine pakpsp (md,m,  npsp,kkpsp,iipsp,bpsp,  ns,s)
+subroutine pakpsp (md,m,  npsp,kkpsp,iipsp,bpsp,  ns,s)
       implicit double precision (a-h,o-z)
       dimension npsp(md,2), kkpsp(md,2), iipsp(6,md,2), bpsp(6,md,2)
       dimension s(m,*)
@@ -42645,9 +42645,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !+++  call outmat ('bpsp',6,6,m,bpsp(1,1,jx))
   100 continue
       return
-      END subroutine pakpsp
+end subroutine pakpsp
 ! **deck panmom
-      subroutine panmom (nside,ics,p,n,c,np1,e,np2)
+subroutine panmom (nside,ics,p,n,c,np1,e,np2)
       implicit double precision (a-h,o-z)
       dimension  p(3,1), c(np1,1), e(np2,1)
       call zero (c,np1**2)
@@ -42670,9 +42670,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    30 c(i,j)  =  c(i,j) + aiinv*e(i+1,j)
   100 continue
       return
-      END subroutine panmom
+end subroutine panmom
 ! **deck pannum
-      subroutine pannum( irow, maxrow, icol,   ipanel)
+subroutine pannum( irow, maxrow, icol,   ipanel)
       implicit double precision (a-h,o-z)
 !
 !     purpose - given the row number, maximum number of rows,
@@ -42681,9 +42681,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       ipanel = irow + (maxrow-1)*(icol-1)
       return
-      END subroutine pannum
+end subroutine pannum
 ! **deck panpwm
-      subroutine panpwm (ics,cp  ,ens,as,ajs,ws                         &
+subroutine panpwm (ics,cp  ,ens,as,ajs,ws                         &
      &                  ,wmc,wscc,almc,almscc                           &
      &                  ,qd)
       implicit double precision (a-h,o-z)
@@ -42772,9 +42772,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   180    continue
   200 continue
       return
-      END subroutine panpwm
+end subroutine panpwm
 ! **deck panuni
-      subroutine panuni(art,r0,y,x)
+subroutine panuni(art,r0,y,x)
       implicit double precision (a-h,o-z)
 !***created  on 76.010    w.o. no.   0   version        ftj.00
 !
@@ -42831,9 +42831,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       x(2)    =  w(2) + r0(2)
       x(3)    =  w(3) + r0(3)
       return
-      END subroutine panuni
+end subroutine panuni
 ! **deck pcnews
-      subroutine pcnews
+subroutine pcnews
       implicit double precision (a-h,o-z)
 !
       character buf*80,news*4
@@ -42852,9 +42852,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1000 continue
       close (unit=88)
       return
-      END subroutine pcnews
+end subroutine pcnews
 ! **deck peaabo
-      subroutine peaabo (nnett,nm,nn,nza,z,zorig,  ipea,movusr          &
+subroutine peaabo (nnett,nm,nn,nza,z,zorig,  ipea,movusr          &
      &                  ,ne,kfds,ksgn)
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), nza(nnett)
@@ -42957,9 +42957,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,6002)
  6002 format (' ')
       return
-      END subroutine peaabo
+end subroutine peaabo
 ! **deck peadue
-      subroutine peadue (nnett,nm,nn,nza,z,zorig  ,epspea,iopfor,movusr &
+subroutine peadue (nnett,nm,nn,nza,z,zorig  ,epspea,iopfor,movusr &
      &                  ,ne,kfds,ksgn ,nedmp,nedmpa,kempec,kptemp,dzcrit&
      &                  ,zpt,iept                                       &
      &                  )
@@ -43443,9 +43443,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   920     continue
   950 continue
       return
-      END subroutine peadue
+end subroutine peadue
 ! **deck peaidn
-      subroutine peaidn (nnett,nm,nn,z,ntd, comprs,epsgeo,mthfrc,movusr &
+subroutine peaidn (nnett,nm,nn,z,ntd, comprs,epsgeo,mthfrc,movusr &
      &                  ,npea,netpea,nedges,peatol,nza                  &
      &                  ,zorig,dzcrit,kptemp,kempec,kptpea              &
      &                  ,nedmpa,iedgtp)
@@ -43716,9 +43716,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6002 format ( /,'  from edge pt # ',i3,4x,3f12.6                       &
      &        ,/,'   to  edge pt # ',i3,4x,3f12.6 )
  6003 format ( 1h , 78(1h-) )
-      END subroutine peaidn
+end subroutine peaidn
 ! **deck peainp
-      subroutine peainp (ipea,nwname  ,movusr                           &
+subroutine peainp (ipea,nwname  ,movusr                           &
      &                  ,mthfrc,peatol,nedges,netpea)
       implicit double precision (a-h,o-z)
       character*10 nwname(*)
@@ -43849,9 +43849,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call a502er('peainp',' program failure due to ill-formatted data')
       return
 !
-      END subroutine peainp
+end subroutine peainp
 ! **deck pealim
-      subroutine pealim (nnett,nm,nn,z,nza,nedmpa   ,dzcrit)
+subroutine pealim (nnett,nm,nn,z,nza,nedmpa   ,dzcrit)
       implicit double precision (a-h,o-z)
       dimension nm(nnett), nn(nnett), z(3,*), nza(nnett+1)
       dimension nedmpa(4*nnett+1), dzcrit(*)
@@ -43901,9 +43901,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 continue
   500 continue
       return
-      END subroutine pealim
+end subroutine pealim
 ! **deck peapos
-      subroutine peapos (npt,zpt,epspea,jsym)
+subroutine peapos (npt,zpt,epspea,jsym)
       implicit double precision (a-h,o-z)
       dimension zpt(3,npt)
 !
@@ -43941,9 +43941,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( njsym.ge.2 ) jsym = jsym + j2                                  ! Added by Martin Hegedus, 4/21/09
 !
       return
-      END subroutine peapos
+end subroutine peapos
 ! **deck peasgn
-      subroutine peasgn (z,nza,nm,nn,nedmpa,nnett,peatol,iedgtp         &
+subroutine peasgn (z,nza,nm,nn,nedmpa,nnett,peatol,iedgtp         &
      &              ,ier,ipea,movusr,  ne,kfds,ksgn)
       implicit double precision (a-h,o-z)
       dimension z(3,1:*), nza(*), nm(*), nn(*), nedmpa(*), iedgtp(*)
@@ -44242,9 +44242,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   900 continue
 !
       return
-      END subroutine peasgn
+end subroutine peasgn
 ! **deck pident
-      subroutine pident (p,q,ident)
+subroutine pident (p,q,ident)
       implicit double precision (a-h,o-z)
       logical ident
       dimension p(3),q(3)
@@ -44255,9 +44255,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &        ((scale*delta)**2)
       if (scale.le.delta) ident = .true.
       return
-      END subroutine pident
+end subroutine pident
 ! **deck pifcal
-      subroutine pifcal(z,ksymm,ne,dvs,dvd)
+subroutine pifcal(z,ksymm,ne,dvs,dvd)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -44573,9 +44573,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
   400 continue
   900 return
-      END subroutine pifcal
+end subroutine pifcal
 ! **deck pivc
-      subroutine pivc (ne  ,nncp,phic  ,nnvcp,vic  ,npt,phix            &
+subroutine pivc (ne  ,nncp,phic  ,nnvcp,vic  ,npt,phix            &
      &                ,ifluar,iflumx,astcpx)
       implicit double precision (a-h,o-z)
 ! /timing/
@@ -44928,11 +44928,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! timcum/10
   950 continue
       return
-      END subroutine pivc
+end subroutine pivc
 
 
 ! **deck pivv
-      subroutine pivv (isol,ipc,zc,pv)
+subroutine pivv (isol,ipc,zc,pv)
       implicit double precision (a-h,o-z)
       dimension pv(4,1)
       dimension zc(3)
@@ -45164,7 +45164,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call hsmmp2 (4,3,nv, phvic(1,10),1,4, amuxz(1,iv),1,3, pv,1,4)
       endif
       return
-      END subroutine pivv
+end subroutine pivv
 ! **deck pplcnt
       integer function pplcnt (int)
 !
@@ -45181,7 +45181,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
       END Function pplcnt
 ! **deck pppdq
-      subroutine pppdq (nsngtp,sngv)
+subroutine pppdq (nsngtp,sngv)
       implicit double precision (a-h,o-z)
       dimension sngv(nsngtp,4)
 !call limits
@@ -45343,16 +45343,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call cstprt ('pppdq   ')
       return
-      END subroutine pppdq
+end subroutine pppdq
 ! **deck price
-      subroutine price (result)
+subroutine price (result)
       implicit double precision (a-h,o-z)
       dimension result(128)
       call dcopy (128,  0.d0,0,   result,1)
       return
-      END subroutine price
+end subroutine price
 ! **deck proj
-      subroutine proj(a,b,c)
+subroutine proj(a,b,c)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -45403,9 +45403,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       alam=-ab/bb
       call vadd(a,alam,b,c,3)
       return
-      END subroutine proj
+end subroutine proj
 ! **deck psddq5
-      subroutine psddq5
+subroutine psddq5
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -45573,9 +45573,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if(ics.ne.0) return
   940 continue
       return
-      END subroutine psddq5
+end subroutine psddq5
 ! **deck psddq6
-      subroutine psddq6
+subroutine psddq6
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -45704,9 +45704,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 continue
 !
       return
-      END subroutine psddq6
+end subroutine psddq6
 ! **deck psddqg
-      subroutine psddqg
+subroutine psddqg
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -45831,9 +45831,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !   get intermediate data second
       call psddq5
       return
-      END subroutine psddqg
+end subroutine psddqg
 ! **deck psintp
-      subroutine psintp (nr,m,n,a,d,z,sa)
+subroutine psintp (nr,m,n,a,d,z,sa)
       implicit double precision (a-h,o-z)
       dimension sa(n)
       dimension a(nr,1),d(1), z(nr,1)
@@ -45873,9 +45873,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call hsmmp3 (m-k+1,1,n, a(k,k),1,m-k+1 ,sa,1,1 ,z(k,1),1,nr)
  1000 continue
       return
-      END subroutine psintp
+end subroutine psintp
 ! **deck pvcal
-      subroutine pvcal (ivzof,zof,pvof,nof,tpval)
+subroutine pvcal (ivzof,zof,pvof,nof,tpval)
       implicit double precision (a-h,o-z)
       dimension ivzof(1)
 !call limits
@@ -46040,9 +46040,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   450 continue
   900 continue
       return
-      END subroutine pvcal
+end subroutine pvcal
 ! **deck pvinfc
-      subroutine pvinfc
+subroutine pvinfc
       implicit double precision (a-h,o-z)
 !ca limits
 !     maximum number of control points
@@ -46356,9 +46356,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       endif
       call frecor ('pvinfc')
       return
-      END subroutine pvinfc
+end subroutine pvinfc
 ! **deck qcof
-      subroutine qcof(ar,cp,q)
+subroutine qcof(ar,cp,q)
       implicit double precision (a-h,o-z)
       double precision kses,kset,ksest
       dimension z(3,3),c(6,6),ar(3,3),cp(3,9),q(6,9),pc(3,3)
@@ -46411,9 +46411,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       q(k,9)=c(k,1)-2.d0*c(k,4)-2.d0*c(k,6)
   700 continue
       return
-      END subroutine qcof
+end subroutine qcof
 ! **deck qffcal
-      subroutine qffcal (z,ne,nf,dvs,dvd)
+subroutine qffcal (z,ne,nf,dvs,dvd)
       implicit double precision (a-h,o-z)
 !call comprs
       common/comprs/amach,betams,betam,sbetam,abetms,alpc,betc,         &
@@ -46506,9 +46506,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine qffcal
+end subroutine qffcal
 ! **deck qnfcal
-      subroutine qnfcal(z,iflun,ksymm,ne,dvs,dvd)
+subroutine qnfcal(z,iflun,ksymm,ne,dvs,dvd)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -46875,9 +46875,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iflun=5
       if((amach.gt.1.d0).and.(test.gt.testm)) iflun=6
   950 return
-      END subroutine qnfcal
+end subroutine qnfcal
 ! **deck qtewic
-      subroutine qtewic (ltewic)
+subroutine qtewic (ltewic)
       implicit double precision (a-h,o-z)
       logical ltewic
 !
@@ -46972,9 +46972,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine qtewic
+end subroutine qtewic
 ! **deck quadnt
-      subroutine quadnt(kn,nrow,ncol)
+subroutine quadnt(kn,nrow,ncol)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -47142,9 +47142,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    40 continue
    50 continue
       return
-      END subroutine quadnt
+end subroutine quadnt
 ! **deck qudlxl
-      subroutine qudlxl (a,b, q)
+subroutine qudlxl (a,b, q)
       implicit double precision (a-h,o-z)
       dimension a(3), b(3), q(6)
 !
@@ -47159,9 +47159,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       q(6)    =  2.d0*a(3)*b(3)
 !
       return
-      END subroutine qudlxl
+end subroutine qudlxl
 ! **deck quikck
-      subroutine quikck(p1,p2,p3,q1,q2,q3,   intf)
+subroutine quikck(p1,p2,p3,q1,q2,q3,   intf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: do a quick check to eliminate impossible intersections
@@ -47216,9 +47216,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( ( r1 + r2 ) .ge. avgd )  intf = .true.
 !
       return
-      END subroutine quikck
+end subroutine quikck
 ! **deck rcmmp1
-      subroutine rcmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
+subroutine rcmmp1 (m,l,n,  a,ia,ja,  b,ib,jb,  c,ic,jc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(2), c(2)
 !
@@ -47231,9 +47231,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call hsmmp1 (m,l,n,  a,ia,ja,  b(2),2*ib,2*jb,  c(2),2*ic,2*jc)
 !
       return
-      END subroutine rcmmp1
+end subroutine rcmmp1
 ! **deck readmd
-      subroutine readmd (lun,ia,n,irec)
+subroutine readmd (lun,ia,n,irec)
       dimension ia(n)
 !ca locinf
 !                        /locinf/
@@ -47245,9 +47245,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call readms (lun,ia,n*kklr2i,irec)
       return
-      END subroutine readmd
+end subroutine readmd
 ! **deck readms
-      subroutine readms (lun,a,na,irec)
+subroutine readms (lun,a,na,irec)
       dimension a(na)
 !
 !         read a fake readms/writms record
@@ -47286,9 +47286,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           call icopy (nw,  buffms,1,  a(la),1)
   100 continue
       return
-      END subroutine readms
+end subroutine readms
 ! **deck refloc
-      subroutine refloc  (en,sfac,gen,  a,jac,rpntyp,  ai)
+subroutine refloc  (en,sfac,gen,  a,jac,rpntyp,  ai)
       implicit double precision (a-h,o-z)
       dimension gen(3), gp(3)
       dimension  en(3), a(3,3)
@@ -47402,9 +47402,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  1100 format ('  fatal error in refloc.  en, enb, ggit =',/(3e24.16))
       call uabend
       stop
-      END subroutine refloc
+end subroutine refloc
 ! **deck remarx
-      subroutine remarx(ch)
+subroutine remarx(ch)
       character*(*) ch
 !
 ! write a character string to standard error file, a502.err
@@ -47413,9 +47413,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (7, '(1X,A)' ) ch
       write (6, '(1X,A)' ) ch
       return
-      END subroutine remarx
+end subroutine remarx
 ! **deck remcor
-      subroutine remcor (nrem)
+subroutine remcor (nrem)
 !
 !         report back amount of dynamic cm remaining
 !
@@ -47440,9 +47440,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nwtot   =  maplev(2,levdyn) + maplev(1,levdyn) - maplev(1,1)
       nrem    =  maxdyn - nwtot
       return
-      END subroutine remcor
+end subroutine remcor
 ! **deck rot1
-      subroutine rot1
+subroutine rot1
       implicit double precision (a-h,o-z)
       character*90 qline
 !call propre
@@ -47577,9 +47577,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! *** format statements ***
  5000 format (6e10.0)
-      END subroutine rot1
+end subroutine rot1
 ! **deck rot2
-      subroutine rot2
+subroutine rot2
       implicit double precision (a-h,o-z)
       character*90 qline
 !call propre
@@ -47742,9 +47742,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 ! *** format statements ***
  5000 format (6e10.0)
-      END subroutine rot2
+end subroutine rot2
 ! **deck rotate
-      subroutine rotate(rot,alpha,beta)
+subroutine rotate(rot,alpha,beta)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -47809,9 +47809,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       rot(8) =  0.d0
       rot(9) =  cosa
       return
-      END subroutine rotate
+end subroutine rotate
 ! **deck rrsax
-      subroutine rrsax (a,x,y,  m,n,  na,nx,ny)
+subroutine rrsax (a,x,y,  m,n,  na,nx,ny)
       implicit double precision (a-h,o-z)
       dimension  a(na,1), x(nx,1), y(ny,1)
       if ( m.le.0  .or.  n.le.0 ) return
@@ -47821,23 +47821,23 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50     continue
   100 continue
       return
-      END subroutine rrsax
+end subroutine rrsax
 ! **deck rrzab
-      subroutine rrzab (a,b,c,  m,l,n,  na,nb,nc)
+subroutine rrzab (a,b,c,  m,l,n,  na,nb,nc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
       call mxma (a,1,na,  b,1,nb,  c,1,nc,  m,l,n)
       return
-      END subroutine rrzab
+end subroutine rrzab
 ! **deck rrzatb
-      subroutine rrzatb (a,b,c,  m,l,n,  na,nb,nc)
+subroutine rrzatb (a,b,c,  m,l,n,  na,nb,nc)
       implicit double precision (a-h,o-z)
       dimension a(1), b(1), c(1)
       call mxma (a,na,1,  b,1,nb,  c,1,nc,  m,l,n)
       return
-      END subroutine rrzatb
+end subroutine rrzatb
 ! **deck rtpack
-      subroutine rtpack (nsngtp,sngv)
+subroutine rtpack (nsngtp,sngv)
       implicit double precision (a-h,o-z)
       dimension sngv(nsngtp,4)
 !call limits
@@ -48102,9 +48102,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call xfera (amdv(1,1,isol), amdvr4,   9)
   900 continue
       return
-      END subroutine rtpack
+end subroutine rtpack
 ! **deck rtunpk
-      subroutine rtunpk
+subroutine rtunpk
       implicit double precision (a-h,o-z)
 !call rrwi
       common /rrwi/ nrdq, ntr, npanr
@@ -48407,9 +48407,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call dpdqfv
       call outmat ('hm',10,10,6,hm)
       return
-      END subroutine rtunpk
+end subroutine rtunpk
 ! **deck saical
-      subroutine saical (scr,dvdfs,s,jcnbu,bbeta,brhs)
+subroutine saical (scr,dvdfs,s,jcnbu,bbeta,brhs)
       implicit double precision (a-h,o-z)
       dimension scr(1:*), dvdfs(4,1:*), s(1:*), jcnbu(1:*)
 ! --- dimension bbeta(nsngt), brhs(nsngt)
@@ -48782,9 +48782,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cstprt ('aic cost')
       call frecor ('saical')
       return
-      END subroutine saical
+end subroutine saical
 ! **deck samep
-      subroutine samep(p1,p2,p3,cp,q1,q2,q3,cq,   insidf)
+subroutine samep(p1,p2,p3,cp,q1,q2,q3,cq,   insidf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: compute intersection when triangles planar
@@ -48852,9 +48852,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   888 insidf = .true.
 !
   999 return
-      END subroutine samep
+end subroutine samep
 ! **deck sbcncl
-      subroutine sbcncl
+subroutine sbcncl
       implicit double precision (a-h,o-z)
 !call irwi
       common /irwi/ nidq(21), nsi, nri, nti, nni, nii(21)
@@ -48967,9 +48967,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('sbcncl')
       return
-      END subroutine sbcncl
+end subroutine sbcncl
 ! **deck sbcond
-      subroutine sbcond
+subroutine sbcond
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -49083,9 +49083,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( i502er.gt.0 ) call a502er ('sbcond'                          &
      &                      ,'job aborted due to previous errors. q.v.')
       return
-      END subroutine sbcond
+end subroutine sbcond
 ! **deck scmpkt
-      subroutine scmpkt(a,i,m,n)
+subroutine scmpkt(a,i,m,n)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -49162,9 +49162,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   800 continue
       n=j
       return
-      END subroutine scmpkt
+end subroutine scmpkt
 ! **deck scntrl
-      subroutine scntrl
+subroutine scntrl
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -49260,9 +49260,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cstprt ('cntrl pt')
       return
 !---  return
-      END subroutine scntrl
+end subroutine scntrl
 ! **deck sdcopy
-      subroutine sdcopy (n,  s,is,  d,id)
+subroutine sdcopy (n,  s,is,  d,id)
       real s(1)
       double precision d(1)
       ls = 1
@@ -49275,9 +49275,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ls = ls + is
   100 continue
       return
-      END subroutine sdcopy
+end subroutine sdcopy
 ! **deck sectnp
-      subroutine sectnp (zm,isrnt,isrsr,iduser                          &
+subroutine sectnp (zm,isrnt,isrsr,iduser                          &
      &                  ,ips,ipvf,array,prcoef                          &
      &                  ,mxgrpn,mxgrnt,mxntpn,indtrc                    &
      &                  ,itcsa,ntrnet,isinfo,ntrstr,netind              &
@@ -50191,9 +50191,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-      END subroutine sectnp
+end subroutine sectnp
 ! **deck setcor
-      subroutine setcor (label)
+subroutine setcor (label)
       character*(*) label
 !
 !        establish a new level of dynamic memory, associated with the
@@ -50246,9 +50246,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  6200 format ('  setcor call : ',a)
 !--- 6200 format ('  setcor call : ',a8)
-      END subroutine setcor
+end subroutine setcor
 ! **deck setup
-      subroutine setup(maxarr, ihmnst, neqn, ihmxst, mxorp1, mxorp2,    &
+subroutine setup(maxarr, ihmnst, neqn, ihmxst, mxorp1, mxorp2,    &
      &    itout, ireler, iabser, iphimx, iipos, ieps, irelps, iabsps,   &
      &    iptseq, icore, iy, it, iiflag, iyy, ip, iyp, iphi, ialpha,    &
      &    ibeta, isig, iv, iw, ig, iaphse, ipsi, ix, ih, ihold,         &
@@ -50449,9 +50449,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3300 format(1h1)
 !**
       return
-      END subroutine setup
+end subroutine setup
 ! **deck setup1
-      subroutine setup1(neqn, y, t, tout, relerr, abserx, iflag, yy,    &
+subroutine setup1(neqn, y, t, tout, relerr, abserx, iflag, yy,    &
      &     p, yp,  phi, alpha, beta, sig, v, w, g, aphase,              &
      &    psi, x, h, hold, astart, told, delsgn, ns, ifail, k, kold,    &
      &     icomp, ipts1, ipts2, phimax,  icore,                         &
@@ -50843,9 +50843,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       ' streamline ***',/,5x,' *** hmin/abserr too',             &
      &       ' restrictive',24x,3h***,/,5x,' *** successful',           &
      &       ' integration step not possible',12x,3h***)
-      END subroutine setup1
+end subroutine setup1
 ! **deck sffgen
-      subroutine sffgen
+subroutine sffgen
       implicit double precision (a-h,o-z)
 !ca limits
 !     maximum number of control points
@@ -50903,9 +50903,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &           ,w(lltaue), w(lliskp), w(llscr))
       call frecor ('sffgen')
       return
-      END subroutine sffgen
+end subroutine sffgen
 ! **deck sgeomc
-      subroutine sgeomc
+subroutine sgeomc
       implicit double precision (a-h,o-z)
 !call xcntrl
       common /xcntrl/ icntrl,jcntrl
@@ -50932,9 +50932,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cstprt ('geometry')
 !---  return
       return
-      END subroutine sgeomc
+end subroutine sgeomc
 ! **deck sginvx
-      subroutine sginvx (a,na,nx,m,n,x)
+subroutine sginvx (a,na,nx,m,n,x)
       implicit double precision (a-h,o-z)
       dimension a(na,1), x(nx,1)
       dimension sa(33), d(33), jq(33)
@@ -50949,10 +50949,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 100 j = 1,n
   100 x(jq(j),i)=  a(i,j)
       return
-      END subroutine sginvx
+end subroutine sginvx
 
 ! **deck shftic
-      subroutine shftic (z,nz,deg,x,y)
+subroutine shftic (z,nz,deg,x,y)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -51094,9 +51094,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    30     continue
    40 continue
       return
-      END subroutine shftic
+end subroutine shftic
 ! **deck shlsr2
-      subroutine shlsr2 (n,a)
+subroutine shlsr2 (n,a)
       implicit double precision (a-h,o-z)
 !c
 !     shlsr2 is a variation of routine shlsrt in which the 4 integers
@@ -51130,9 +51130,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   160 continue
   200 continue
       go to 100
-      END subroutine shlsr2
+end subroutine shlsr2
 ! **deck shlsrt
-      subroutine shlsrt (n,a)
+subroutine shlsrt (n,a)
       implicit double precision (a-h,o-z)
       integer a(1), asv
       if ( n.le.0 ) return
@@ -51155,9 +51155,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ia.gt.0 ) go to 150
   200 continue
       go to 100
-      END subroutine shlsrt
+end subroutine shlsrt
 ! **deck sincd
-      subroutine sincd(z,ds,ic)
+subroutine sincd(z,ds,ic)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -51300,9 +51300,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call mxm (dsp,4,qq(1,1,ic),6,ds,9)
       return
-      END subroutine sincd
+end subroutine sincd
 ! **deck sincs
-      subroutine sincs(z,ds)
+subroutine sincs(z,ds)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -51374,9 +51374,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ds(2)=x
       ds(3)=y
       return
-      END subroutine sincs
+end subroutine sincs
 ! **deck sinfcc
-      subroutine sinfcc(z,icc,dsdfs,dddfs)
+subroutine sinfcc(z,icc,dsdfs,dddfs)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -51512,9 +51512,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call mxm (ds,1,asts,ncs,dsdfs,ins)
   900 return
-      END subroutine sinfcc
+end subroutine sinfcc
 ! **deck sinflu
-      subroutine sinflu (nndc,indc,  zb,iflb)
+subroutine sinflu (nndc,indc,  zb,iflb)
       implicit double precision (a-h,o-z)
       dimension indc(nndc), zb(3,1:*), iflb(1:*)
 !
@@ -51808,9 +51808,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       return
-      END subroutine sinflu
+end subroutine sinflu
 ! **deck sing
-      subroutine sing (knet,ntk,nm,nn,nsa,nssa,ns,nss                   &
+subroutine sing (knet,ntk,nm,nn,nsa,nssa,ns,nss                   &
      &                ,maps,locs,npa,zm,ia,za)
       implicit double precision (a-h,o-z)
       dimension zm(3,nm,nn),maps(1)
@@ -52209,9 +52209,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       ns=nia
       return
-      END subroutine sing
+end subroutine sing
 ! **deck sinput
-      subroutine sinput
+subroutine sinput
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -52367,9 +52367,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  5081 format(//,2x,23hgeometry input complete,//)
       call emark('input-da')
       return
-      END subroutine sinput
+end subroutine sinput
 ! **deck sinver
-      subroutine sinver (nsngtp,sols)
+subroutine sinver (nsngtp,sols)
       implicit double precision (a-h,o-z)
       dimension sols(nsngtp,4)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -52933,9 +52933,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call cstprt ('mtrxsoln')
       return
-      END subroutine sinver
+end subroutine sinver
 ! **deck sloft
-      subroutine sloft
+subroutine sloft
       implicit double precision (a-h,o-z)
 !call lofdat
       common/lofdat/nloft,nslof,loft1,loft2,loft3
@@ -52944,9 +52944,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call remarx ('no lofting package available yet')
  1000 format(1h1,50x,17hloft computations,////,17h network number =,i5)
       return
-      END subroutine sloft
+end subroutine sloft
 ! **deck sngcal
-      subroutine sngcal(z,s,tsc)
+subroutine sngcal(z,s,tsc)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -53084,9 +53084,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call mxm (dsdfs,1,sip,ins,tsc,1)
   900 return
-      END subroutine sngcal
+end subroutine sngcal
 ! **deck sngdel
-      subroutine sngdel (nedaba,kfdseg,kfdkey,kfdsgn                    &
+subroutine sngdel (nedaba,kfdseg,kfdkey,kfdsgn                    &
      &                  ,locsrt,keyloc,maps,iflgsp                      &
      &                  ,kptlm,ksgnlm)
       implicit double precision (a-h,o-z)
@@ -53390,9 +53390,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & 'sngdel/abt',izdc,nedg,nct1,nlopt1,nct2,nlopt2                   &
      &     ,naicbc,nactbc,jcn,ier
       CALL AbortPanair('sngdel-3')
-      END subroutine sngdel
+end subroutine sngdel
 ! **deck soffbd
-      subroutine soffbd
+subroutine soffbd
       implicit double precision (a-h,o-z)
 !
 !     evaluate the off-body velocities and generate appropriate
@@ -53576,9 +53576,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   500 continue
       call cstprt ('soffbd  ')
       return
-      END subroutine soffbd
+end subroutine soffbd
 ! **deck sortak
-      subroutine sortak (n,a,key)
+subroutine sortak (n,a,key)
       implicit double precision (a-h,o-z)
       integer a(1), asv
       integer key(1)
@@ -53605,9 +53605,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           if ( ia.gt.0 ) go to 150
   200 continue
       go to 100
-      END subroutine sortak
+end subroutine sortak
 ! **deck sortpn
-      subroutine sortpn(netgl,netgp,nmk,nnk,npak,epssec,ipvf,           &
+subroutine sortpn(netgl,netgp,nmk,nnk,npak,epssec,ipvf,           &
      &                  itcsa,ips,array,numtra,ntrnet,netind,           &
      &                  nout)
       implicit double precision (a-h,o-z)
@@ -53843,9 +53843,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     subroutine end
 !
       return
-      END subroutine sortpn
+end subroutine sortpn
 ! **deck sortsp
-      subroutine sortsp (nmk,nnk,npak,    is,ips,ipvf,  npanfp,array)
+subroutine sortsp (nmk,nnk,npak,    is,ips,ipvf,  npanfp,array)
       implicit double precision (a-h,o-z)
       dimension array(21,npanfp)
 !
@@ -54070,9 +54070,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
 !
       return
-      END subroutine sortsp
+end subroutine sortsp
 ! **deck sorttr
-      subroutine sorttr (epssec,itcsa,ips,array,itvf,ntra,ntrstr,numstr &
+subroutine sorttr (epssec,itcsa,ips,array,itvf,ntra,ntrstr,numstr &
      &                  ,isinfo,nout)
       implicit double precision (a-h,o-z)
 !
@@ -54288,9 +54288,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !     subroutine end
 !
       return
-      END subroutine sorttr
+end subroutine sorttr
 ! **deck spbsc
-      subroutine spbsc (kc,ifn,jfn,isd,  kbasic,  locsrt,keyloc,maps)
+subroutine spbsc (kc,ifn,jfn,isd,  kbasic,  locsrt,keyloc,maps)
       implicit double precision (a-h,o-z)
       dimension locsrt(1), keyloc(1), maps(1)
 !
@@ -54339,9 +54339,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! return kl value as kloc to sngdel
       kloc    =  kl
       return
-      END subroutine spbsc
+end subroutine spbsc
 ! **deck srchol
-      subroutine srchol (ia,n,ialx,lx)
+subroutine srchol (ia,n,ialx,lx)
       implicit double precision (a-h,o-z)
 !         search an ordered list  ia(1:n)  and return the value  lx
 !         for which  ia(lx) = ialx.   if  ialx  does not appear,  l = 0
@@ -54390,9 +54390,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &  ,/, (2x,20i6) )
       CALL AbortPanair('srchol')
       stop
-      END subroutine srchol
+end subroutine srchol
 ! **deck ssing
-      subroutine ssing
+subroutine ssing
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -54443,9 +54443,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cstprt ('singular')
       return
 !---  return
-      END subroutine ssing
+end subroutine ssing
 ! **deck stedge
-      subroutine stedge (ksd,t,svar,tvar)
+subroutine stedge (ksd,t,svar,tvar)
       implicit double precision (a-h,o-z)
 !
       go to (100,200,300,400), ksd
@@ -54468,9 +54468,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   500 continue
       return
-      END subroutine stedge
+end subroutine stedge
 ! **deck step
-      subroutine step(neqn,t,relerr,abserx,iflag,                       &
+subroutine step(neqn,t,relerr,abserx,iflag,                       &
      &   y,  p, yp,  phi, alpha, beta, sig, v, w, g,                    &
      &   phase1, psi, x, h, hold, start, told, delsgn, ns,              &
      &    k, kold, ifail, icomp, stiff, crash, phimax,                  &
@@ -55017,9 +55017,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !**
 !**
       return
-      END subroutine step
+end subroutine step
 ! **deck stmln2
-      subroutine stmln2 (iwrk,arr1,zof,pzof)
+subroutine stmln2 (iwrk,arr1,zof,pzof)
       implicit double precision (a-h,o-z)
       dimension iwrk(100), arr1(10000)
       dimension zof(3000), pzof(4000)
@@ -55095,9 +55095,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !**
 !**
       return
-      END subroutine stmln2
+end subroutine stmln2
 ! **deck stmlne
-      subroutine stmlne
+subroutine stmlne
       implicit double precision (a-h,o-z)
 !call limits
 !     maximum number of control points
@@ -55199,9 +55199,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call frecor ('stmlne')
       call cstprt ('s-l sort')
       return
-      END subroutine stmlne
+end subroutine stmlne
 ! **deck stmout
-      subroutine stmout
+subroutine stmout
       implicit double precision (a-h,o-z)
 !call limabt
 !     maximum number of networks
@@ -55500,9 +55500,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  4000 format (2f10.4,50x,a10)
  4001 format (6f10.4)
       return
-      END subroutine stmout
+end subroutine stmout
 ! **deck strmfn
-      subroutine strmfn
+subroutine strmfn
       implicit double precision (a-h,o-z)
 !
 !     streamfunction due to single panel
@@ -55557,9 +55557,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       psip    = -(xiil*psic + (xiir - xiil)*psil/c)/(4.d0*pi)
 !
       return
-      END subroutine strmfn
+end subroutine strmfn
+
+
 ! **deck strns
-      subroutine  strns(ip,pdq)
+subroutine  strns(ip,pdq)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -55635,9 +55637,12 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call readms(nts,pdq,nsdq,ip)
       return
-      END subroutine strns
+end subroutine strns
+
+      
 ! **deck stunpk
-      subroutine stunpk (strbuf)
+subroutine stunpk (strbuf)
+
       implicit double precision (a-h,o-z)
       dimension strbuf(1)
 !call comprs
@@ -55687,10 +55692,14 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       indrqf =  0
 !
       return
-      END subroutine stunpk
+end subroutine stunpk
+
+
 ! **deck subpqr
-      subroutine subpqr(cp,ar,p,alam,pp,qq,rr,ic)
+subroutine subpqr(cp,ar,p,alam,pp,qq,rr,ic)
+
       implicit double precision (a-h,o-z)
+
       common/skrch4/d(10,7),e(3,3),f(6,9),g(3,3),h(6,6)
       dimension pp(3,3),rr(3,3),qq(6,9),alam(9),ar(9),cp(3,9),p(3,4)
       icp0=mod(ic+3,4)+1
@@ -55755,9 +55764,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call mxm (g,3,e,3,rr,3)
       call mxm (h,6,f,6,qq,9)
   900 return
-      END subroutine subpqr
+end subroutine subpqr
+
+
 ! **deck subpwm
-      subroutine subpwm (ics,is,cp  ,ens,as,ajs,ws  ,enm,am             &
+subroutine subpwm (ics,is,cp  ,ens,as,ajs,ws  ,enm,am             &
      &                  ,wsm,wscc,almsm,almscc                          &
      &                  ,qd)
       implicit double precision (a-h,o-z)
@@ -56105,10 +56116,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   900 continue
       return
-      END subroutine subpwm
+end subroutine subpwm
 
 
-      subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
+subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             ! Computes the influence from a subinclined panel in subsonic flow
             ! p subpanel vertices
             ! ics information regarding number of subpanel edges
@@ -56375,10 +56386,10 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   800   continue
   900   continue
       return
-      END subroutine subsbi
+end subroutine subsbi
 
 
-      subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
+subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Calculate the influence from a subinclined, supersonic panel
             ! p subpanel vertices
             ! ics information regarding number of subpanel edges
@@ -56680,11 +56691,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   800 continue
   900 return
 
-      END subroutine supsbi
+end subroutine supsbi
 
 
 
-      subroutine supspi (pn,ics,ns,its,xp,sfac,ne,nfx,dvs,dvd)
+subroutine supspi (pn,ics,ns,its,xp,sfac,ne,nfx,dvs,dvd)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -56885,11 +56896,11 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         dvs(4,i)=dvsp(1,i)*sgnx
   500   dvs(1,i)=dvsp(4,i)
       return
-      END subroutine supspi
+end subroutine supspi
       
 
 
-      subroutine surfit(cp,ar,art)
+subroutine surfit(cp,ar,art)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -56976,9 +56987,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ar(8)=af*(art(7)*art(2)-art(8)*art(1))
       ar(9)=af*artm*art(9)
       return
-      END subroutine surfit
+end subroutine surfit
 ! **deck surpro
-      subroutine surpro(z,zp,ic)
+subroutine surpro(z,zp,ic)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -57102,9 +57113,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call panuni(aqi,cp(1,9),zp,zp)
       return
-      END subroutine surpro
+end subroutine surpro
 ! **deck sutput
-      subroutine sutput
+subroutine sutput
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -57187,9 +57198,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call cstprt ('output  ')
       call frecor ('sutput')
       return
-      END subroutine sutput
+end subroutine sutput
 ! **deck svinfc
-      subroutine svinfc
+subroutine svinfc
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -57359,9 +57370,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call frecor ('svinfc')
       call cstprt ('pic cost')
       return
-      END subroutine svinfc
+end subroutine svinfc
 ! **deck tcntrl
-      subroutine tcntrl (za,tauemp,ia,mapbc,mapc                        &
+subroutine tcntrl (za,tauemp,ia,mapbc,mapc                        &
      &                  ,locfg,iamapc,key,keyinv                        &
      &                  ,nedmpa,nfsga,kfdseg,nedaba,ifsgai              &
      &                  ,mcmpai,mtchab,kempec,nbraia,kfdsgn,iedgtp)
@@ -57568,9 +57579,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call ixtrns (31,mapbc,nctrn)
       call ixtrns (32,mapc,nctrnx)
       return
-      END subroutine tcntrl
+end subroutine tcntrl
 ! **deck tcof
-      subroutine tcof(p,b,c,d)
+subroutine tcof(p,b,c,d)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -57713,9 +57724,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 d(i,j+3)=-2.d0*d(i,7)/9.d0
   500 continue
       return
-      END subroutine tcof
+end subroutine tcof
 ! **deck tgeomc
-      subroutine tgeomc
+subroutine tgeomc
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -58179,9 +58190,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       '   total no. of panels = ',i6,/,                          &
      &       '   exceeds max. allowable (',i6,' )',/,36(2h *))
   400 stop
-      END subroutine tgeomc
+end subroutine tgeomc
 ! **deck trace
-      subroutine trace (zk,nmk,nnk,npa,npagp,array                      &
+subroutine trace (zk,nmk,nnk,npa,npagp,array                      &
      &                 ,xcn,ycn,zcn,pdist,intsec)
       implicit double precision (a-h,o-z)
 !
@@ -58648,9 +58659,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       return
 !
-      END subroutine trace
+end subroutine trace
 ! **deck tran
-      subroutine tran
+subroutine tran
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -58734,9 +58745,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
 ! *** format statements ***
  5000 format (6e10.0)
-      END subroutine tran
+end subroutine tran
 ! **deck trans
-      subroutine trans(a,at,m,n)
+subroutine trans(a,at,m,n)
       implicit double precision (a-h,o-z)
 !***created  on 76.056    w.o. no.   0   version        ftj.01
 !
@@ -58775,9 +58786,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    50 continue
   100 continue
       return
-      END subroutine trans
+end subroutine trans
 ! **deck trfftz
-      subroutine trfftz (nw,nwsymm,nwlst,s,misym,mjsym,  cl,cdi,eff     &
+subroutine trfftz (nw,nwsymm,nwlst,s,misym,mjsym,  cl,cdi,eff     &
      &                  ,title,fsymm,sref,asprat,npn                    &
      &                  ,ylef,yrit, zlef,zrit, dylef,dyrit, dzlef,dzrit &
      &                  ,psi,dcd,    xil,xir                            &
@@ -58959,9 +58970,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &            )
 !
       return
-      END subroutine trfftz
+end subroutine trfftz
 ! **deck triint
-      subroutine triint (nnett,nm,nn,nza,zm,   intcnt)
+subroutine triint (nnett,nm,nn,nza,zm,   intcnt)
       implicit double precision (a-h,o-z)
 !
 !     purpose: given networks of panels, subdivide the panels into
@@ -59407,9 +59418,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   999 continue
       write(6,9000)
       return
-      END subroutine triint
+end subroutine triint
 ! **deck trns
-      subroutine trns(q,s,nq,ns,nr,nt,ni,i)
+subroutine trns(q,s,nq,ns,nr,nt,ni,i)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !     *                                                               *
@@ -59534,9 +59545,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  6000 format (1h ,5hblock,i3,14hdoes not exist,/                        &
      & 1h ,25hsequence number of block ,i3,/                            &
      & 1h ,21hnumber of data block ,i3)
-      END subroutine trns
+end subroutine trns
 ! **deck trwake
-      subroutine trwake (kn,xwake,twake)
+subroutine trwake (kn,xwake,twake)
       implicit double precision (a-h,o-z)
 !call propre
 !c
@@ -59686,9 +59697,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nn(kn) = nte
       nza(kn+1) = nza(kn) + nm(kn)*nn(kn)
       return
-      END subroutine trwake
+end subroutine trwake
 ! **deck tsing
-      subroutine tsing (keyloc,maps,locs)
+subroutine tsing (keyloc,maps,locs)
       implicit double precision (a-h,o-z)
 ! --- dimension keyloc(mxsngt), maps(mxsngt), locs(4*mxsngt)
       dimension keyloc(1:*),    maps(1:*),    locs(1:*)
@@ -59926,9 +59937,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('tsing')
       return
-      END subroutine tsing
+end subroutine tsing
 ! **deck twopts
-      subroutine twopts (p1,p2,p3,c,qfirst,qsecnd,   insidf)
+subroutine twopts (p1,p2,p3,c,qfirst,qsecnd,   insidf)
       implicit double precision (a-h,o-z)
 !
 !     purpose: compute intersections for two points in plane of p
@@ -60030,9 +60041,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   888 continue
   999 return
-      END subroutine twopts
+end subroutine twopts
 ! **deck uabend
-      subroutine uabend
+subroutine uabend
       implicit double precision (a-h,o-z)
       data  ifail /10/
 ! on cray, force traceback via call to
@@ -60048,9 +60059,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       ifail   = ifail+2
    30 continue
       return
-      END subroutine uabend
+end subroutine uabend
 ! **deck ukysr2
-      subroutine ukysr2 (n,iar,key)
+subroutine ukysr2 (n,iar,key)
       implicit double precision (a-h,o-z)
 !c
 !     ukysr2 is a variation on routine ukysrt.
@@ -60163,9 +60174,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
    65 iar(4*if-4+then) = it(then)
       go to 10
    70 return
-      END subroutine ukysr2
+end subroutine ukysr2
 ! **deck ukysrd
-      subroutine ukysrd (n,a,key)
+subroutine ukysrd (n,a,key)
       implicit double precision (a-h,o-z)
 !
 !         perform the inverse of the keysrt operation
@@ -60208,9 +60219,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       a(if) =  at
       go to 10
    70 return
-      END subroutine ukysrd
+end subroutine ukysrd
 ! **deck ukysrt
-      subroutine ukysrt (n,iar,key)
+subroutine ukysrt (n,iar,key)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -60315,9 +60326,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       iar(if) =  it
       go to 10
    70 return
-      END subroutine ukysrt
+end subroutine ukysrt
 ! **deck unipan
-      subroutine unipan(ar,r0,x,y)
+subroutine unipan(ar,r0,x,y)
       implicit double precision (a-h,o-z)
 !***created  on 76.011    w.o. no.   0   version        ftj.00
 !
@@ -60387,9 +60398,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       y(2)    =  ar(2,1)*w(1) + ar(2,2)*w(2) + ar(2,3)*w(3)
       y(3)    =  ar(3,1)*w(1) + ar(3,2)*w(2) + ar(3,3)*w(3)
       return
-      END subroutine unipan
+end subroutine unipan
 ! **deck upkims
-      subroutine upkims (lblock,nbk,indx)
+subroutine upkims (lblock,nbk,indx)
       integer indx(2)
 !
 !         return the two parts of a packed index (indx) to the caller.
@@ -60400,9 +60411,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       nbk     =  indx(2)
 !
       return
-      END subroutine upkims
+end subroutine upkims
 ! **deck upkpsp
-      subroutine upkpsp (md,m,  npsp,kkpsp,iipsp,bpsp,  ns,s)
+subroutine upkpsp (md,m,  npsp,kkpsp,iipsp,bpsp,  ns,s)
       implicit double precision (a-h,o-z)
       dimension npsp(md,2), kkpsp(md,2), iipsp(6,md,2), bpsp(6,md,2)
       dimension s(m,*)
@@ -60451,16 +60462,16 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call outmat ('bpsp',6,6,m,bpsp(1,1,jx))
   100 continue
       return
-      END subroutine upkpsp
+end subroutine upkpsp
 ! **deck upt
-      subroutine upt (ch1,ch2)
+subroutine upt (ch1,ch2)
       character*(*) ch1,ch2
       write (6,6001) ch1,ch2
  6001 format ('  upt called with:',a,'   and:', a)
       return
-      END subroutine upt
+end subroutine upt
 ! **deck uvect
-      subroutine uvect(a)
+subroutine uvect(a)
       implicit double precision (a-h,o-z)
 !***created  on 76.056    w.o. no.   0   version        ftj.01
 !
@@ -60500,18 +60511,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 10 i=1,3
    10 a(i)=a(i)/z
       return
-      END subroutine uvect
+end subroutine uvect
 ! **deck vadd
-      subroutine vadd(a,d,b,c,n)
+subroutine vadd(a,d,b,c,n)
       implicit double precision (a-h,o-z)
       dimension a(n),b(n),c(n)
       do 100 i=1,n
           c(i) = d*b(i) + a(i)
   100 continue
       return
-      END subroutine vadd
+end subroutine vadd
 ! **deck valnet
-      subroutine valnet( k, zk, nmk, nnk, icoor )
+subroutine valnet( k, zk, nmk, nnk, icoor )
       implicit double precision (a-h,o-z)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -60573,9 +60584,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       bndlim( k, icoor, 1 ) = valmin
       bndlim( k, icoor, 2 ) = valmax
-      END subroutine valnet
+end subroutine valnet
 ! **deck velcor
-      subroutine velcor (iv,f,fm,c,amach,w,v)
+subroutine velcor (iv,f,fm,c,amach,w,v)
       implicit double precision (a-h,o-z)
       dimension f(3), c(3), w(3), v(3), pv(3)
 !         apply a velocity correction formula to v, the velocity vector.
@@ -60712,9 +60723,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       go to 950
 !
   950 continue
-      END subroutine velcor
+end subroutine velcor
 ! **deck vffkrn
-      subroutine vffkrn (nncp,nnvcp,ncnsym,za,rsqa,ifla                 &
+subroutine vffkrn (nncp,nnvcp,ncnsym,za,rsqa,ifla                 &
      &                  ,hk,gk  ,hkph,gkph                              &
      &                  ,indb,rsqb,zb  ,hkb,gkb                         &
      &                  ,p1,p2   ,ps0,ps1,ps2,ps3                       &
@@ -61039,9 +61050,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   290 continue
 !
       return
-      END subroutine vffkrn
+end subroutine vffkrn
 ! **deck vffmat
-      subroutine vffmat (label,kind,nnvcp,ncnsym,nj,vb)
+subroutine vffmat (label,kind,nnvcp,ncnsym,nj,vb)
       implicit double precision (a-h,o-z)
       character*(*) label
       dimension vb(nnvcp,ncnsym,nj,3)
@@ -61061,9 +61072,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call outmtx (label,3,3,nj,vx)
   100 continue
       return
-      END subroutine vffmat
+end subroutine vffmat
 ! **deck vffpev
-      subroutine vffpev (nncp,jca  ,iflc  ,gkph,hkph                    &
+subroutine vffpev (nncp,jca  ,iflc  ,gkph,hkph                    &
      &                  ,phs,phd  ,phic,astcpx)
       implicit double precision (a-h,o-z)
       logical astcpx
@@ -61214,9 +61225,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine vffpev
+end subroutine vffpev
 ! **deck vffpin
-      subroutine vffpin (nncp,phs,phd,ph,phic)
+subroutine vffpin (nncp,phs,phd,ph,phic)
       implicit double precision (a-h,o-z)
       dimension phs(nncp,3), phd(nncp,6), ph(nncp,30), phic(nncp,*)
 ! +++ complex phs, phd, ph, phic
@@ -61275,9 +61286,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 ! --- 100  continue
 !
       return
-      END subroutine vffpin
+end subroutine vffpin
 ! **deck vffvel
-      subroutine vffvel (nncp,nnvcp,ncnsym                              &
+subroutine vffvel (nncp,nnvcp,ncnsym                              &
      &                  ,hk,za,ifla,indv,iflva,iflvb                    &
      &                  ,vsa,vda,sna                                    &
      &                  ,indva,indvb,indb,zvb,hkv  ,hbv,hv              &
@@ -61463,9 +61474,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
 !
       return
-      END subroutine vffvel
+end subroutine vffvel
 ! **deck vffvin
-      subroutine vffvin (nnvcp,vsa,vda,va,vic,astcpx)
+subroutine vffvin (nnvcp,vsa,vda,va,vic,astcpx)
       implicit double precision (a-h,o-z)
       logical astcpx
       dimension vsa(3,nnvcp,3), vda(3,nnvcp,5), va(3,nnvcp,30)
@@ -61539,9 +61550,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !--- 100  continue
 !
       return
-      END subroutine vffvin
+end subroutine vffvin
 ! **deck vffvs1
-      subroutine vffvs1 (ncnsym,nnvcp,nvb,nnkv   ,indvb,zvb,hv,hbv      &
+subroutine vffvs1 (ncnsym,nnvcp,nvb,nnkv   ,indvb,zvb,hv,hbv      &
      &                  ,vsourc,vsa,vsb,vsc  ,vdblet,vda,vdb,vdc        &
      &                  ,vsens ,sna,snb,snc,  nncp,jca,indv)
       implicit double precision (a-h,o-z)
@@ -61726,9 +61737,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
 !
       return
-      END subroutine vffvs1
+end subroutine vffvs1
 ! **deck vffvs2
-      subroutine vffvs2 (nvb,nnvcp,nj,ncnsym,indvb,sgijk                &
+subroutine vffvs2 (nvb,nnvcp,nj,ncnsym,indvb,sgijk                &
      &                  ,vc,vb,va,  kx)
       implicit double precision (a-h,o-z)
       dimension vc(nvb,nj*3), vb(nnvcp*ncnsym,nj*3), va(3,nnvcp,nj)
@@ -61793,9 +61804,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   500 continue
 !
       return
-      END subroutine vffvs2
+end subroutine vffvs2
 ! **deck vinchk
-      subroutine vinchk (nncp,ncnsym,za,rsqa,ifla,iflb,iflc,jca)
+subroutine vinchk (nncp,ncnsym,za,rsqa,ifla,iflb,iflc,jca)
       implicit double precision (a-h,o-z)
       dimension za(3,nncp,ncnsym), rsqa(nncp,ncnsym), ifla(nncp,ncnsym) &
      &        , iflb(nncp,ncnsym), iflc(nncp), jca(nncp)
@@ -61915,9 +61926,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call frecor ('vinchk')
       return
-      END subroutine vinchk
+end subroutine vinchk
 ! **deck vinfcc
-      subroutine vinfcc (nwvx)
+subroutine vinfcc (nwvx)
       implicit double precision (a-h,o-z)
       dimension nwvx(1:*)
 !---      dimension nwvx(4*nctrt)
@@ -62737,9 +62748,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call frecor ('vinfcc')
 !
       return
-      END subroutine vinfcc
+end subroutine vinfcc
 ! **deck vinflu
-      subroutine vinflu (nncp,ncnsym,za,rsqa,ifla,iflb,iflc)
+subroutine vinflu (nncp,ncnsym,za,rsqa,ifla,iflb,iflc)
       implicit double precision (a-h,o-z)
       dimension za(3,nncp,ncnsym)                                       &
      &        ,  ifla(nncp,ncnsym), rsqa(nncp,ncnsym)                   &
@@ -62927,9 +62938,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call frecor ('vinflu')
 !
       return
-      END subroutine vinflu
+end subroutine vinflu
 ! **deck vinicp
-      subroutine vinicp (nncp,ncnsym,ifla,  iszc,ltewic,  ifluar,iflumx)
+subroutine vinicp (nncp,ncnsym,ifla,  iszc,ltewic,  ifluar,iflumx)
       implicit double precision (a-h,o-z)
       dimension ifla(nncp,4), ifluar(4)
       logical ltewic
@@ -62975,9 +62986,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 continue
       return
 !
-      END subroutine vinicp
+end subroutine vinicp
 ! **deck vinsb2
-      subroutine vinsb2 (ndex,index,  za,rsqa,ifla,rhsqa                &
+subroutine vinsb2 (ndex,index,  za,rsqa,ifla,rhsqa                &
      &                  ,zb,rhosq,dmnsq,iflb                            &
      &                     ,rhocc,dmncc,indcc                           &
      &                  )
@@ -63051,9 +63062,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ifla( index(idex) ) = iflb(idex)
   500 continue
       return
-      END subroutine vinsb2
+end subroutine vinsb2
 ! **deck vinsp1
-      subroutine vinsp1 (n,  za,xa,  indb,nndb)
+subroutine vinsp1 (n,  za,xa,  indb,nndb)
       implicit double precision (a-h,o-z)
       dimension za(3,n), xa(n)
       dimension indb(1:*)
@@ -63091,9 +63102,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call whenfge (n,  xa,1,  0.d0,  indb,nndb)
 !
       return
-      END subroutine vinsp1
+end subroutine vinsp1
 ! **deck vinsp2
-      subroutine vinsp2 (za,  indb,nndb,  zb)
+subroutine vinsp2 (za,  indb,nndb,  zb)
       implicit double precision (a-h,o-z)
       dimension za(3,1:*),  indb(nndb),  zb(3,nndb)
 !
@@ -63108,9 +63119,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   300 continue
 !
       return
-      END subroutine vinsp2
+end subroutine vinsp2
 ! **deck vinsub
-      subroutine vinsub (n,  za,rsqa,ifla                               &
+subroutine vinsub (n,  za,rsqa,ifla                               &
      &                  ,index,rhsqa,zb)
       implicit double precision (a-h,o-z)
       dimension za(3,n), rsqa(n), ifla(n)                               &
@@ -63216,9 +63227,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   400 continue
       call frecor ('vinsub')
       return
-      END subroutine vinsub
+end subroutine vinsub
 ! **deck vinsup
-      subroutine vinsup (nncp,ncnsym,za,rsqa,ifla                       &
+subroutine vinsup (nncp,ncnsym,za,rsqa,ifla                       &
      &                  ,nndb,indb,zb                                   &
      &                  ,zc,zd   ,zx,dmn,dc,anfl,bnfl                   &
      &                  ,iflb,iflc,ifld    ,indc,indd                   &
@@ -63471,9 +63482,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   780 continue
 !
       return
-      END subroutine vinsup
+end subroutine vinsup
 ! **deck vip
-      subroutine vip (a,ia,b,ib,m,c)
+subroutine vip (a,ia,b,ib,m,c)
       implicit double precision (a-h,o-z)
       dimension a(*), b(*)
 !
@@ -63500,9 +63511,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lb = lb + ib
    10 continue
       return
-      END subroutine vip
+end subroutine vip
 ! **deck vips
-      subroutine vips (a,ia,b,ib,m,c)
+subroutine vips (a,ia,b,ib,m,c)
       implicit double precision (a-h,o-z)
       dimension a(*), b(*)
 !
@@ -63529,18 +63540,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       lb = lb + ib
    10 continue
       return
-      END subroutine vips
+end subroutine vips
 ! **deck vmul
-      subroutine vmul(a,x,b,n)
+subroutine vmul(a,x,b,n)
       implicit double precision (a-h,o-z)
       dimension a(n),b(n)
       do 100 i=1,n
           b(i) = x*a(i)
   100 continue
       return
-      END subroutine vmul
+end subroutine vmul
 ! **deck vtrns
-      subroutine  vtrns(jc,dvdfs)
+subroutine  vtrns(jc,dvdfs)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -63675,9 +63686,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       dvdfs(ir4+4)=0.d0
   500 continue
   900 return
-      END subroutine  vtrns
+end subroutine  vtrns
 ! **deck wheneq
-      subroutine wheneq (n,  a,ia,  ac,  ind,nind)
+subroutine wheneq (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       integer a(1:*), ac
       dimension ind(1:*)
@@ -63694,9 +63705,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine wheneq
+end subroutine wheneq
 ! **deck whenfge
-      subroutine whenfge (n,  a,ia,  ac,  ind,nind)
+subroutine whenfge (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       dimension a(1:*)
       dimension ind(1:*)
@@ -63713,9 +63724,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine whenfge
+end subroutine whenfge
 ! **deck whenfgt
-      subroutine whenfgt (n,  a,ia,  ac,  ind,nind)
+subroutine whenfgt (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       dimension a(1:*)
       dimension ind(1:*)
@@ -63732,9 +63743,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine whenfgt
+end subroutine whenfgt
 ! **deck whenfle
-      subroutine whenfle (n,  a,ia,  ac,  ind,nind)
+subroutine whenfle (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       dimension a(1:*)
       dimension ind(1:*)
@@ -63751,9 +63762,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine whenfle
+end subroutine whenfle
 ! **deck whenilt
-      subroutine whenilt (n,  a,ia,  ac,  ind,nind)
+subroutine whenilt (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       integer a(1:*), ac
       dimension ind(1:*)
@@ -63770,9 +63781,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine whenilt
+end subroutine whenilt
 ! **deck whenne
-      subroutine whenne (n,  a,ia,  ac,  ind,nind)
+subroutine whenne (n,  a,ia,  ac,  ind,nind)
       implicit double precision (a-h,o-z)
       integer a(1:*), ac
       dimension ind(1:*)
@@ -63789,9 +63800,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          la      =  la + ia
   100 continue
       return
-      END subroutine whenne
+end subroutine whenne
 ! **deck wopen
-      subroutine wopen (lun,nblk,istat,ier)
+subroutine wopen (lun,nblk,istat,ier)
 !
 !         stub for wopen calls
 !
@@ -63800,9 +63811,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      &       ,'   status:',i6)
       ier     =  0
       return
-      END subroutine wopen
+end subroutine wopen
 ! **deck writmd
-      subroutine writmd (lun,ia,n,irec, i1,i2)
+subroutine writmd (lun,ia,n,irec, i1,i2)
       dimension ia(n)
 !ca locinf
 !                        /locinf/
@@ -63814,9 +63825,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
       call writms (lun,ia,n*kklr2i,irec,  i1,i2)
       return
-      END subroutine writmd
+end subroutine writmd
 ! **deck writms
-      subroutine writms (lun,a,na,irec  ,irewrt,istat)
+subroutine writms (lun,a,na,irec  ,irewrt,istat)
       dimension a(na)
 !
 !         write a fake readms/writms record
@@ -63880,17 +63891,17 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           write (lun,rec=jrec) buffms
   700 continue
       return
-      END subroutine writms
+end subroutine writms
 ! **deck wtbuf
-      subroutine wtbuf (lun,a,n)
+subroutine wtbuf (lun,a,n)
       implicit double precision (a-h,o-z)
       dimension a(n)
       if ( n.le.0 ) return
       write (lun) (a(i),i=1,n)
       return
-      END subroutine wtbuf
+end subroutine wtbuf
 ! **deck wxtrct
-      subroutine wxtrct (ipotm,jc,ip ,zc,tsc,anx,any,anz                &
+subroutine wxtrct (ipotm,jc,ip ,zc,tsc,anx,any,anz                &
      &                  ,amachm,wm,vm,cpm                               &
      &                  ,amachu,wu,vu,cpu,pheu  ,wnu,pwnu,vtu,pvtu      &
      &                  ,amachl,wl,vl,cpl,phel  ,wnl,pwnl,vtl,pvtl      &
@@ -64019,9 +64030,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
  3600 format (12a11)
 !
       return
-      END subroutine wxtrct
+end subroutine wxtrct
 ! **deck xbcncl
-      subroutine xbcncl (nbdq,wa,bca,wb,bcb)
+subroutine xbcncl (nbdq,wa,bca,wb,bcb)
       implicit double precision (a-h,o-z)
 !         set the b.c. data for an extra control point given the b.c.
 !         data for the two nearest regular edge control points, a and b,
@@ -64075,9 +64086,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   950 continue
       return
-      END subroutine xbcncl
+end subroutine xbcncl
 ! **deck xdasin
-      subroutine xdasin (astd,iid,ind,  indx,iidx,astx,  iprnt)
+subroutine xdasin (astd,iid,ind,  indx,iidx,astx,  iprnt)
       implicit double precision (a-h,o-z)
       dimension astd(9,25), iid(25), astx(4,4), iidx(4,4), indx(4)
 !
@@ -64131,9 +64142,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( iprx.ge.1 ) call outvci ('iid/b-4',ind,iid)
       if ( iprx.ge.2 ) call outmat ('astd/b-4',9,9,ind,astd)
       return
-      END subroutine xdasin
+end subroutine xdasin
 ! **deck xdaspl
-      subroutine xdaspl (knet,ipan,jpan,  indx,iidx,astx,  nssax,iprnt)
+subroutine xdaspl (knet,ipan,jpan,  indx,iidx,astx,  nssax,iprnt)
       implicit double precision (a-h,o-z)
       dimension indx(4), iidx(4,4), astx(4,4)
 ! compute any special edge splines when
@@ -64332,18 +64343,18 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
   410 continue
       return
-      END subroutine xdaspl
+end subroutine xdaspl
 ! **deck xfera
-      subroutine xfera (a,b,n)
+subroutine xfera (a,b,n)
       implicit double precision (a-h,o-z)
       dimension a(n), b(n)
       if ( n.le.0 ) return
       do 10 i = 1,n
    10 b(i) = a(i)
       return
-      END subroutine xfera
+end subroutine xfera
 ! **deck xsgcmp
-      subroutine xsgcmp (kmp,nedmpa,nfsga,kfdseg,nnett                  &
+subroutine xsgcmp (kmp,nedmpa,nfsga,kfdseg,nnett                  &
      &                  ,kfsg1,kfsg2)
       implicit double precision (a-h,o-z)
       dimension  nedmpa(601), nfsga(601), kfdseg(3200), ivseg(4)
@@ -64378,9 +64389,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
      & 'nind,l,kmp',nind,l,kmp
       call outvci ('nedmpa',nind,nedmpa)
       call abtend ('xsgcmp error:  index not found')
-      END subroutine xsgcmp
+end subroutine xsgcmp
 ! **deck xtrns
-      subroutine xtrns (irec,iar,lth)
+subroutine xtrns (irec,iar,lth)
       implicit double precision (a-h,o-z)
       dimension iar(1:*)
 !call xrwi
@@ -64390,9 +64401,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( lth.le.0 ) return
       call readms (ntxrwi,iar,lth,irec)
       return
-      END subroutine xtrns
+end subroutine xtrns
 ! **deck xxadj
-      subroutine xxadj(p0,p1,p2,al,z)
+subroutine xxadj(p0,p1,p2,al,z)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -64454,9 +64465,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       do 100 i=1,3
   100 z(i)=p0(i)+al*(v2m*v1(i)+v1m*v2(i))/(v1m+v2m)
       return
-      END subroutine xxadj
+end subroutine xxadj
 ! **deck ytrns
-      subroutine ytrns (irec,iar,lth)
+subroutine ytrns (irec,iar,lth)
       implicit double precision (a-h,o-z)
       dimension iar(*)
 !
@@ -64479,9 +64490,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       if ( lth.le.0 ) return
       call readmd (ntyrwi,iar,lth,irec)
       return
-      END subroutine ytrns
+end subroutine ytrns
 ! **deck zaxpy
-      subroutine zaxpy (n,  a,  x,ix,  y,iy)
+subroutine zaxpy (n,  a,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       complex*16 x(1), y(1), a
 !
@@ -64498,9 +64509,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine zaxpy
+end subroutine zaxpy
 ! **deck zcadj
-      subroutine zcadj
+subroutine zcadj
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
@@ -64681,9 +64692,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       call xxadj(cp(1,isave),cp(1,isp4),cp(1,isp7),deltac,zc)
   500 continue
       return
-      END subroutine zcadj
+end subroutine zcadj
 ! **deck zcmpr
-      subroutine zcmpr(msg,a,b,n,l)
+subroutine zcmpr(msg,a,b,n,l)
       implicit double precision (a-h,o-z)
       dimension a(n), b(n)
       character*(*) msg
@@ -64709,9 +64720,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          call outvec ('b',n,b)
       endif
       return
-      END subroutine zcmpr
+end subroutine zcmpr
 ! **deck zcopy
-      subroutine zcopy (n,  x,ix,  y,iy)
+subroutine zcopy (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
       complex*16 x, y
@@ -64736,9 +64747,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
          ly = ly + iy
   300 continue
       return
-      END subroutine zcopy
+end subroutine zcopy
 ! **deck zero
-      subroutine zero (a,n)
+subroutine zero (a,n)
       implicit double precision (a-h,o-z)
       dimension a(n)
 !
@@ -64748,9 +64759,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           a(k) = 0.d0
   100 continue
       return
-      END subroutine zero
+end subroutine zero
 ! **deck zisct1
-      subroutine zisct1 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine zisct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       complex*16 a, b
@@ -64765,9 +64776,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine zisct1
+end subroutine zisct1
 ! **deck zisct2
-      subroutine zisct2 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine zisct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       complex*16 a, b
@@ -64782,9 +64793,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine zisct2
+end subroutine zisct2
 ! **deck zjsct1
-      subroutine zjsct1 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine zjsct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       complex*16 a, b
@@ -64799,9 +64810,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine zjsct1
+end subroutine zjsct1
 ! **deck zjsct2
-      subroutine zjsct2 (m,n  ,a,na  ,ind  ,b,nb)
+subroutine zjsct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
       complex*16 a, b
@@ -64816,9 +64827,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   100 continue
 !
       return
-      END subroutine zjsct2
+end subroutine zjsct2
 ! **deck zmerge
-      subroutine zmerge (npt,zpt,zavg)
+subroutine zmerge (npt,zpt,zavg)
       implicit double precision (a-h,o-z)
       dimension zpt(3,npt), zavg(3)
 !         compute a representative point for a number of closely
@@ -64836,9 +64847,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       zavg(2) =  f*zavg(2)
       zavg(3) =  f*zavg(3)
       return
-      END subroutine zmerge
+end subroutine zmerge
 ! **deck zmproj
-      subroutine zmproj (z1,z2,  x,taux)
+subroutine zmproj (z1,z2,  x,taux)
       implicit double precision (a-h,o-z)
       dimension z1(3), z2(3), x(3), dz(3), xmz(3)
 !         project  x  onto the line  (z1,z2)  and report back the value
@@ -64859,9 +64870,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       x(2)    =  z1(2) + taux*dz(2)
       x(3)    =  z1(3) + taux*dz(3)
       return
-      END subroutine zmproj
+end subroutine zmproj
 ! **deck zscal
-      subroutine zscal (n,  a,   y,iy)
+subroutine zscal (n,  a,   y,iy)
       implicit double precision (a-h,o-z)
       dimension  y(1)
       complex*16 a, y
@@ -64876,9 +64887,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine zscal
+end subroutine zscal
 ! **deck zswap
-      subroutine zswap (n,  x,ix,  y,iy)
+subroutine zswap (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
       complex*16 x, y, xsv
@@ -64898,9 +64909,9 @@ END Subroutine AbortPanair   ! -------------------------------------------------
           ly    =  ly + iy
   100 continue
       return
-      END subroutine zswap
+end subroutine zswap
 ! **deck zwindg
-      subroutine zwindg (n,x,y,zc,izc,ierr)
+subroutine zwindg (n,x,y,zc,izc,ierr)
       implicit double precision (a-h,o-z)
 !         compute the product
 !                      n
@@ -65036,4 +65047,4 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       write (6,6000)
  6000 format ('  zwindg error ')
       stop
-      END subroutine zwindg
+end subroutine zwindg
