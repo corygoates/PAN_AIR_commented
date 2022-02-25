@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# PAN AIR-generated files
+f*
+rwms*
+*.err
+agps
+fort.88
+n*

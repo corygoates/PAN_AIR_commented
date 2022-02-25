@@ -33574,9 +33574,13 @@ END Subroutine AbortPanair   ! -------------------------------------------------
       return
 !
       END subroutine inputa
+
+
 ! **deck inside
       subroutine inside (q,ics,anm,p,within)
+
       implicit double precision (a-h,o-z)
+
       dimension q(3,4), anm(3), p(3)
 !         given a vector anm that determines a plane passing through
 !         the origin, inside determines if the projection of  p  on
@@ -44925,6 +44929,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
   950 continue
       return
       END subroutine pivc
+
+
 ! **deck pivv
       subroutine pivv (isol,ipc,zc,pv)
       implicit double precision (a-h,o-z)
@@ -55474,7 +55480,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 !
  6001 format                                                            &
      & (/,1x,a10,' streamline number',i3,' for case',i2,6x              &
-     & ,'forward/back =',f6.2, 29x, a16, 'local' )
+     & ,'forward/back =',f6.2, 29x, a16, 'local' /)
  6002 format                                                            &
      &  (                                                               &
      &    '  int.    indep.          streamline location         dire'  &
@@ -56410,6 +56416,8 @@ END Subroutine AbortPanair   ! -------------------------------------------------
 
         ! Get end vertex index
         isp1=mod(is,ns)+1
+        
+        ! Skip over collapsed edge
         if(isp1.eq.ics) isp1=mod(isp1,ns)+1
 
         ! Displacement geometry
@@ -56424,7 +56432,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         drm=sqrt(dks*dks+det*det)
         drmi=1.d0/drm
 
-        ! Edge normal
+        ! Edge normal (at the same time calculating the edge tangent, recognizing one is a rotation of the other)
         ank=drmi*det
         ane=-drmi*dks
 
@@ -56433,6 +56441,7 @@ END Subroutine AbortPanair   ! -------------------------------------------------
         aa=a*a
 
         ! b from Eq. (E14) in Ehlers
+        ! Somehow, this code seems to operate under the assumption that b is an integer. It makes no sense to me.
         bet=(ank-ane)*(ank+ane)
 
         ! Perpendicular distance
