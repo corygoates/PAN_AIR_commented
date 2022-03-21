@@ -56371,7 +56371,7 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         if(nf.le.6) go to 800
         if ( its.eq.1 ) goto 800
 
-        ! Apply origin shift?
+        ! Apply origin shift
         do 799 i = 1,ne
             dvy=dv(i,3)-y3*dv(i,1)
             dvx=dv(i,2)-x3*dv(i,1)
@@ -56391,11 +56391,11 @@ end subroutine subsbi
 
 subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Calculate the influence from a subinclined, supersonic panel
-            ! p subpanel vertices
-            ! ics information regarding number of subpanel edges
-            ! ns number of edges?
-            ! its singularities present on panel
-            ! x field point
+            ! p subpanel vertices expressed in local coords
+            ! ics index of collapsed edge
+            ! ns number of edges
+            ! its information about singularities present on panel
+            ! x field point expressed in local coords
             ! aj subpanel area jacobian
             ! ne number of potential-velocity components needed
             ! nf order of doublet distribution
