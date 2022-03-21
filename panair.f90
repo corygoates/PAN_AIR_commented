@@ -56371,7 +56371,7 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         if(nf.le.6) go to 800
         if ( its.eq.1 ) goto 800
 
-        ! Apply origin shift?
+        ! Apply origin shift
         do 799 i = 1,ne
             dvy=dv(i,3)-y3*dv(i,1)
             dvx=dv(i,2)-x3*dv(i,1)
@@ -56391,11 +56391,11 @@ end subroutine subsbi
 
 subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Calculate the influence from a subinclined, supersonic panel
-            ! p subpanel vertices
-            ! ics information regarding number of subpanel edges
-            ! ns number of edges?
-            ! its singularities present on panel
-            ! x field point
+            ! p subpanel vertices expressed in local coords
+            ! ics index of collapsed edge
+            ! ns number of edges
+            ! its information about singularities present on panel
+            ! x field point expressed in local coords
             ! aj subpanel area jacobian
             ! ne number of potential-velocity components needed
             ! nf order of doublet distribution
@@ -56422,7 +56422,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       ! Loop through edges
       do 600 is=1,ns
 
-        ! Skip collapsed edges
+        ! Skip collapsed edge
         if(is.eq.ics) go to 600
 
         ! Get end vertex index
@@ -56478,11 +56478,13 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Check for at least one endpoint in DoD
         if((r1.gt.0.d0).or.(r2.gt.0.d0)) go to 300
 
-        ! If this check is true, then this edge is skipped
-        ! First condition: b is non-positive
-        ! Second: l1 and l1 are same sign; point is outside edge
-        ! Third: g^2 is non-positive
-        ! Fourth: a*v_xi is non-negative
+        ! At this point, neither endpoint is in the DoD, so we need to see if the edge intersects the DoD.
+        ! Any of these conditions reveal that the edge doesn't intersect the DoD and it may be skipped.
+        ! First condition: subsonic edge (if neither endpoint is in on a subsonic edge, then the edge cannot intersect)
+        ! Second: point is outside edge
+        ! Third: g^2 is non-positive; not sure what this corresponds to
+        ! Fourth: use the edge-based coordinate system (where x_m = -a/v_xi (Ehlers Eq. (E28))) to determine if the point is inside the Mach cone
+        ! This fourth condition is alluded to in Davis Section 4.5.1
         if ( bet <= 0. .or. el1*el2 >= 0. .or. gg <= 0. .or. a*ank >= 0.d0) go to 600
 
      ! Neither endpoint is in the DoD
@@ -56506,9 +56508,8 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! At least one endpoint is in the DoD
   300   continue
 
-        ! These are very odd.
-        ! These seem to come from the fact that R^2 = g^2 - l^2?
-  ! So if R=0, then g and l will be equal in magnitude? But why do we need to recompute this?
+        ! These come from the fact that R^2 = g^2 - l^2.
+        ! Implementing this correction ensures that F2**2 + b*F**2 = 1 (Ehlers Eq. (E21)) remains true even when either R has been set to zero.
         gg=abs(gg)
         g=sqrt(gg)
         if(r1.eq.0.d0) el1=-g
