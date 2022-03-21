@@ -56552,17 +56552,23 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
   400   continue
 
   ! Middle two conditions of Ehlers Eq. (E22)
-        if(bet.lt.0.d0) f111=                                             &
-     &  -sign(1.d0,ane)*log((sbet*r1+abs(el1))/(sbet*r2+abs(el2)))/sbet
-        if(bet.gt.0.d0) f111=                                             &
-     &  -atan2(sbet*fact1,fact2)/sbet
+        if(bet < 0.d0) then
+            f111 = -sign(1.d0,ane)*log((sbet*r1+abs(el1))/(sbet*r2+abs(el2)))/sbet
+        end if
+
+        if(bet > 0.d0) then
+            f111 = -atan2(sbet*fact1,fact2)/sbet
+        end if
+
+        ! Calculate other F integrals
         f121=-(ank*(r2-r1)+a*ane*f111)/bet
         f211=ank*(a*f111-2.d0*ane*f121)-ane*(r2-r1)
         f221=(3.d0*a*(ank*f121-ane*f211)+ane*(r2*aet2-r1*aet1)            &
      &  -ank*(r2*aks2-r1*aks1)+2.d0*hh*ank*ane*f111)/(4.d0*bet)
+
   500   continue
 
-        ! Update integrals
+        ! Sum integrals
         b(1) = b(1)+hh113
         b(2) = b(2)+ank*f111
         b(3) = b(3)+ane*f111
@@ -56572,12 +56578,12 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         b(7) = b(7)+a*f211
         b(8) = b(8)+a*f121
 
-        if(nf.le.6) go to 600
+        if(nf <= 6) go to 600
 
         b(9) = b(9)+ank*f221
         b(10) = b(10)+ane*f221
 
-        if(its.eq.2) go to 600
+        if(its == 2) go to 600
 
         fact1 = (aa+.5d0*gg)*f111-4.d0*ank*ane*f221-.5d0*(el2*r2-el1*r1)
         fact2 = a*(ank*f211-ane*f121)
@@ -56585,7 +56591,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         b(12) = b(12)+a*(ank*ank*fact1-fact2)
         b(13) = b(13)+a*f221
 
-  600 continue
+  600 continue ! End of loop over edges
 
         ! Update influence coefficients
       du(1,1)=-b(4)-h*b(1)
