@@ -56452,10 +56452,9 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         aa=a*a
 
         ! b from Eq. (E14) in Ehlers
-        ! Somehow, this code seems to operate under the assumption that b is an integer. It makes no sense to me.
         bet=(ank-ane)*(ank+ane)
 
-        ! Perpendicular distance
+        ! Perpendicular distance (Ehlers (E14))
         gg=aa-bet*hh
         sbet=sqrt(abs(bet))
 
@@ -56473,14 +56472,18 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Hyperbolic radii to the edge endpoints
         r1=0.d0
         r2=0.d0
-
-        ! Check for outside DoD
         if((rr1.gt.0.d0).and.(aks1.lt.0.d0)) r1=sqrt(rr1)
         if((rr2.gt.0.d0).and.(aks2.lt.0.d0)) r2=sqrt(rr2)
+
+        ! Check for at least one endpoint in DoD
         if((r1.gt.0.d0).or.(r2.gt.0.d0)) go to 300
-        if ( (bet.le.0.d0)  .or.  (el1*el2.ge.0.d0)  .or.                 &
-     &       (gg.le.0.d0)   .or.  (a*ank.ge.0.d0)  )                      &
-     &  go to 600
+
+        ! If this check is true, then this edge is skipped
+        ! First condition: b is non-positive
+        ! Second: l1 and l1 are same sign; point is outside edge
+        ! Third: g^2 is non-positive
+        ! Fourth: a*v_xi is non-negative
+        if ( bet <= 0. .or. el1*el2 >= 0. .or. gg <= 0. .or. a*ank >= 0.d0) go to 600
 
      ! Neither endpoint is in the DoD
 
@@ -56502,6 +56505,10 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
 
         ! At least one endpoint is in the DoD
   300   continue
+
+        ! These are very odd.
+        ! These seem to come from the fact that R^2 = g^2 - l^2?
+  ! So if R=0, then g and l will be equal in magnitude? But why do we need to recompute this?
         gg=abs(gg)
         g=sqrt(gg)
         if(r1.eq.0.d0) el1=-g
@@ -56556,23 +56563,27 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
   500   continue
 
         ! Update integrals
-        b(1)=b(1)+hh113
-        b(2)=b(2)+ank*f111
-        b(3)=b(3)+ane*f111
-        b(4)=b(4)+a*f111
-        b(5)=b(5)+ank*f121
-        b(6)=b(6)+ane*f121
-        b(7)=b(7)+a*f211
-        b(8)=b(8)+a*f121
+        b(1) = b(1)+hh113
+        b(2) = b(2)+ank*f111
+        b(3) = b(3)+ane*f111
+        b(4) = b(4)+a*f111
+        b(5) = b(5)+ank*f121
+        b(6) = b(6)+ane*f121
+        b(7) = b(7)+a*f211
+        b(8) = b(8)+a*f121
+
         if(nf.le.6) go to 600
-        b(9)=b(9)+ank*f221
-        b(10)=b(10)+ane*f221
+
+        b(9) = b(9)+ank*f221
+        b(10) = b(10)+ane*f221
+
         if(its.eq.2) go to 600
-        fact1=(aa+.5d0*gg)*f111-4.d0*ank*ane*f221-.5d0*(el2*r2-el1*r1)
-        fact2=a*(ank*f211-ane*f121)
-        b(11)=b(11)+a*(ane*ane*fact1+fact2)
-        b(12)=b(12)+a*(ank*ank*fact1-fact2)
-        b(13)=b(13)+a*f221
+
+        fact1 = (aa+.5d0*gg)*f111-4.d0*ank*ane*f221-.5d0*(el2*r2-el1*r1)
+        fact2 = a*(ank*f211-ane*f121)
+        b(11) = b(11)+a*(ane*ane*fact1+fact2)
+        b(12) = b(12)+a*(ank*ank*fact1-fact2)
+        b(13) = b(13)+a*f221
 
   600 continue
 
@@ -56657,36 +56668,53 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       y2=.5d0*x(2)
       x3=x(1)/3.d0
       y3=x(2)/3.d0
+
+      ! Loop through edges
       do 800 i=1,ne
-      if(its.eq.2) go to 750
-      du(i,1)=pi2aj*du(i,1)
-      du(i,2)=pi2aj*du(i,2)+x(1)*du(i,1)
-      du(i,3)=pi2aj*du(i,3)+x(2)*du(i,1)
-      if(nf.le.6) go to 750
-      dux=du(i,2)-x2*du(i,1)
-      duy=du(i,3)-y2*du(i,1)
-      du(i,4)=pi4aj*du(i,4)+x(1)*dux
-      du(i,5)=pi2aj*du(i,5)+x(1)*duy+x(2)*dux
-      du(i,6)=pi4aj*du(i,6)+x(2)*duy
-  750 if(its.eq.1) go to 800
-      dv(i,1)= pi2i*dv(i,1)
-      dv(i,2)= pi2i*dv(i,2)+x(1)*dv(i,1)
-      dv(i,3)= pi2i*dv(i,3)+x(2)*dv(i,1)
-      dvx=dv(i,2)-x2*dv(i,1)
-      dvy=dv(i,3)-y2*dv(i,1)
-      dv(i,4)=pi4i*dv(i,4)+x(1)*dvx
-      dv(i,5)= pi2i*dv(i,5)+x(1)*dvy+x(2)*dvx
-      dv(i,6)=pi4i*dv(i,6)+x(2)*dvy
-      if(nf.le.6) go to 800
-      dvx=dv(i,2)-x3*dv(i,1)
-      dvy=dv(i,3)-y3*dv(i,1)
-      dvxx=dv(i,4)-x2*dvx
-      dvxy=dv(i,5)-x2*dvy-y2*dvx
-      dvyy=dv(i,6)-y2*dvy
-      dv(i,7)=pi12i*dv(i,7)+x(1)*dvxx
-      dv(i,8)=pi4i*dv(i,8)+x(1)*dvxy+x(2)*dvxx
-      dv(i,9)=pi4i*dv(i,9)+x(1)*dvyy+x(2)*dvxy
-      dv(i,10)=pi12i*dv(i,10)+x(2)*dvyy
+
+            if(its.eq.2) go to 750
+
+            du(i,1)=pi2aj*du(i,1)
+
+            ! Apply origin shift
+            du(i,2)=pi2aj*du(i,2)+x(1)*du(i,1)
+            du(i,3)=pi2aj*du(i,3)+x(2)*du(i,1)
+
+            if(nf.le.6) go to 750
+
+            dux=du(i,2)-x2*du(i,1)
+            duy=du(i,3)-y2*du(i,1)
+
+            du(i,4)=pi4aj*du(i,4)+x(1)*dux
+            du(i,5)=pi2aj*du(i,5)+x(1)*duy+x(2)*dux
+            du(i,6)=pi4aj*du(i,6)+x(2)*duy
+
+  750       if(its.eq.1) go to 800
+
+            dv(i,1)= pi2i*dv(i,1)
+            
+            ! Apply origin shift
+            dv(i,2)= pi2i*dv(i,2)+x(1)*dv(i,1)
+            dv(i,3)= pi2i*dv(i,3)+x(2)*dv(i,1)
+
+            dvx=dv(i,2)-x2*dv(i,1)
+            dvy=dv(i,3)-y2*dv(i,1)
+
+            dv(i,4)=pi4i*dv(i,4)+x(1)*dvx
+            dv(i,5)= pi2i*dv(i,5)+x(1)*dvy+x(2)*dvx
+            dv(i,6)=pi4i*dv(i,6)+x(2)*dvy
+
+            if(nf.le.6) go to 800
+
+            dvx=dv(i,2)-x3*dv(i,1)
+            dvy=dv(i,3)-y3*dv(i,1)
+            dvxx=dv(i,4)-x2*dvx
+            dvxy=dv(i,5)-x2*dvy-y2*dvx
+            dvyy=dv(i,6)-y2*dvy
+            dv(i,7)=pi12i*dv(i,7)+x(1)*dvxx
+            dv(i,8)=pi4i*dv(i,8)+x(1)*dvxy+x(2)*dvxx
+            dv(i,9)=pi4i*dv(i,9)+x(1)*dvyy+x(2)*dvxy
+            dv(i,10)=pi12i*dv(i,10)+x(2)*dvyy
 
   800 continue
   900 return
