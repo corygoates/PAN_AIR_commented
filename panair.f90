@@ -18165,7 +18165,8 @@ subroutine date (ch)
  6001 format ( i2.2, '/', i2.2, '/', i2.2 )
       return
 end subroutine date
-! **deck daxpy
+
+
 subroutine daxpy (n,  a,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
@@ -37824,7 +37825,8 @@ subroutine neghbr( nmk, nnk, ip,      neighs)
 !
       return
 end subroutine neghbr
-! **deck nftpic
+
+
 subroutine nftpic (amach,iin,aj,arp,p,ics,ns,its,x,ne,nf,dvs,dvd)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -37980,7 +37982,8 @@ subroutine nftpic (amach,iin,aj,arp,p,ics,ns,its,x,ne,nf,dvs,dvd)
  2000 continue
   900 return
 end subroutine nftpic
-! **deck nftpiv
+
+
 subroutine nftpiv                                                 &
      &   (amach,iin,aj,arp,p,ics,ns,its,x,nf,nv,sc,nsc,dc,ndc,pvsd)
       implicit double precision (a-h,o-z)
@@ -44256,7 +44259,8 @@ subroutine pident (p,q,ident)
       if (scale.le.delta) ident = .true.
       return
 end subroutine pident
-! **deck pifcal
+
+
 subroutine pifcal(z,ksymm,ne,dvs,dvd)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -44574,7 +44578,8 @@ subroutine pifcal(z,ksymm,ne,dvs,dvd)
   400 continue
   900 return
 end subroutine pifcal
-! **deck pivc
+
+
 subroutine pivc (ne  ,nncp,phic  ,nnvcp,vic  ,npt,phix            &
      &                ,ifluar,iflumx,astcpx)
       implicit double precision (a-h,o-z)
@@ -56522,10 +56527,12 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         if(bet.le.0.d0) fact2=(gg-el1*el1-el2*el2)/(bet*r1*r2-el1*el2)
 
         ! Ehlers Eq. (E18)
-        if(h.ne.0.d0) hh113=atan2(h*a*fact1,r1*r2+hh*fact2)
+        if(h /= 0.d0) hh113=atan2(h*a*fact1,r1*r2+hh*fact2)
 
         ! Check for last condition of Ehlers Eq. (E22)
-        if(abs(fact2).lt.dltmch*abs(sbet*fact1)) go to 400
+        if(abs(fact2) < dltmch*abs(sbet*fact1)) go to 400
+
+        ! Calculate series solution
         sig=fact1/fact2
         sigs=sig*sig
         seris = sig*sigs*                                                 &
@@ -56594,7 +56601,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
 
   600 continue ! End of loop over edges
 
-        ! Update influence coefficients
+        ! Update  source potential influence coefficients
       du(1,1)=-b(4)-h*b(1)
       du(1,2)=-.5d0*(b(7)-hh*b(2))
       du(1,3)=-.5d0*(b(8)+hh*b(3))
@@ -56602,7 +56609,10 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       du(1,4)=-(hh*(b(6)+h*b(1))+b(11))/3.d0
       du(1,5) = (hh*b(5)-b(13))/3.d0
       du(1,6)=-(hh*(b(6)-h*b(1)-b(4))+b(12))/3.d0
+
   625 if(its.eq.1) go to 650
+
+        ! Update doublet potential influence coefficients
       dv(1,1)=-b(1)
       dv(1,2)=h*b(2)
       dv(1,3)=-h*b(3)
@@ -56614,7 +56624,10 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       dv(1,8)=h*(b(9)+du(1,3))
       dv(1,9)=-h*(b(10)+du(1,2))
       dv(1,10)=h*(b(9)+hh*b(3))
+
   650 if(ne.eq.1) go to 700
+
+        ! Update source velocity coefficients
       du(2,1)=b(2)
       du(2,2)=-b(6)-h*b(1)
       du(2,3)=b(5)
@@ -56624,7 +56637,9 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       du(4,1)=-b(1)
       du(4,2)=h*b(2)
       du(4,3)=-h*b(3)
+
       if(nf.le.6) go to 675
+
       du(2,4)=hh*b(2)-b(10)
       du(2,5)=b(9)+du(1,3)
       du(2,6)=-b(10)-du(1,2)
@@ -56634,7 +56649,10 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       du(4,4) = h*du(2,2)
       du(4,5)=h*b(5)
       du(4,6)=-h*du(3,3)
+
   675 if(its.eq.1)  go to 700
+
+        ! Update doublet velocity components
       dv(2,1)=0.d0
       dv(2,2)=-b(1)
       dv(2,3)=0.d0
@@ -56667,28 +56685,35 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       dv(4,9)=-3.d0*du(3,5)
       dv(4,10)=-3.d0*du(3,6)
   700 continue
+
+        ! Necessary constants
       pi2i=2.d0*pi4i
       pi2aj=pi2i*aj
       pi4aj=pi4i*aj
       pi12i=pi4i/3.d0
+
+      ! Offset factors based on eval point location
       x2=.5d0*x(1)
       y2=.5d0*x(2)
       x3=x(1)/3.d0
       y3=x(2)/3.d0
 
-      ! Loop through edges
+      ! Loop through potential/velocity components
+      ! No, I don't totally understand what's going on here
       do 800 i=1,ne
 
-            if(its.eq.2) go to 750
+            if(its == 2) go to 750
 
+            ! Apply 1/2pi and area Jacobian to source influence
             du(i,1)=pi2aj*du(i,1)
 
-            ! Apply origin shift
+            ! Apply origin shift to linear source terms
             du(i,2)=pi2aj*du(i,2)+x(1)*du(i,1)
             du(i,3)=pi2aj*du(i,3)+x(2)*du(i,1)
 
             if(nf.le.6) go to 750
 
+            ! Apply origin shift to quadratic source terms?...
             dux=du(i,2)-x2*du(i,1)
             duy=du(i,3)-y2*du(i,1)
 
@@ -56696,14 +56721,16 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             du(i,5)=pi2aj*du(i,5)+x(1)*duy+x(2)*dux
             du(i,6)=pi4aj*du(i,6)+x(2)*duy
 
-  750       if(its.eq.1) go to 800
+  750       if(its == 1) go to 800
 
+            ! Apply 1/2pi to constant doublet influence
             dv(i,1)= pi2i*dv(i,1)
             
-            ! Apply origin shift
+            ! Apply origin shift to linear doublet terms
             dv(i,2)= pi2i*dv(i,2)+x(1)*dv(i,1)
             dv(i,3)= pi2i*dv(i,3)+x(2)*dv(i,1)
 
+            ! Quadratic doublet terms
             dvx=dv(i,2)-x2*dv(i,1)
             dvy=dv(i,3)-y2*dv(i,1)
 
@@ -56713,6 +56740,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
 
             if(nf.le.6) go to 800
 
+            ! Cubic doublet terms?...
             dvx=dv(i,2)-x3*dv(i,1)
             dvy=dv(i,3)-y3*dv(i,1)
             dvxx=dv(i,4)-x2*dvx
@@ -56723,11 +56751,11 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             dv(i,9)=pi4i*dv(i,9)+x(1)*dvyy+x(2)*dvxy
             dv(i,10)=pi12i*dv(i,10)+x(2)*dvyy
 
-  800 continue
-  900 return
+  800 continue ! End of looping through coomponents
+
+  900 return ! Seems unnecessary...
 
 end subroutine supsbi
-
 
 
 subroutine supspi (pn,ics,ns,its,xp,sfac,ne,nfx,dvs,dvd)
