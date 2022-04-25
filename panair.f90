@@ -1,10 +1,16 @@
-! **deck a502
-      program a502
+program a502
+
+      ! Some notes - CDG
+      ! cmpscl scales a vector in the compressibility direction
+      ! supsbi calculates supersonic subinclined influence coefs
+      ! supspi calculates supersonic superinclined influence coefs
+      ! surfit calculates the global/reference -> panel coordinate transformation
+
 !***created  on 78.060    w.o. no.   0   version        fee.01
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !     *                                                               *
-!c    *                   * * * p u r p o s e * * *                   *
+!     *                   * * * p u r p o s e * * *                   *
 !     *                         - - - - - - -                         *
 !     *                                                               *
 !     *  to solve linear potential flow boundary value problems in    *
@@ -23,7 +29,7 @@
 !
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-!c    *                    * * * m e t h o d * * *                    *
+!     *                    * * * m e t h o d * * *                    *
 !     *                         - - - - - - -                         *
 !     *                                                               *
 !     *  the theory is presented in the engineering document          *
@@ -6555,7 +6561,8 @@ subroutine addtra (where,itra,iend,itcsa                          &
       return
 end subroutine addtra
 
-! **deck agpsfl
+
+
 subroutine agpsfl (nacase, zk,nmk,nnk,npa,netwrk                  &
      &                  ,npanfp,agpspc,pandat)
       implicit double precision (a-h,o-z)
@@ -14968,7 +14975,8 @@ subroutine cmpied (kmp,  nnett,nedmpa,nza,nm,nn,  kz)
       kz      =  kzedg + (imp-1)*kncedg
       return
 end subroutine cmpied
-! **deck cmpscl
+
+
 subroutine cmpscl (bs,c,v,w)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -14989,7 +14997,7 @@ subroutine cmpscl (bs,c,v,w)
 !c    *                    * * * m e t h o d * * *                    *
 !     *                          - - - - - -                          *
 !     *                                                               *
-!     *  obvious                                                      *
+!     *  obvious (well that's a little sassy, don't you think? XD CDG)*
 !     *                                                               *
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
@@ -15014,12 +15022,14 @@ subroutine cmpscl (bs,c,v,w)
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !
       dimension c(3),v(3),w(3)
+      
       f=(bs-1.d0)*(v(1)*c(1)+v(2)*c(2)+v(3)*c(3))/                      &
      &(c(1)*c(1)+c(2)*c(2)+c(3)*c(3))
       call vadd(v,f,c,w,3)
       return
 end subroutine cmpscl
-! **deck cnv2lo
+
+
 subroutine cnv2lo (n,ikywrd,  lkywrd)
       implicit double precision (a-h,o-z)
       character*(*)  lkywrd, ikywrd
@@ -18149,7 +18159,8 @@ subroutine daspl (knet,ntk,nm,nn,nsa,nssa,ns,nss,maps,locs,npa,zm &
      & 'blc stats',knet,nm,nn,kntblc,ratio
       return
 end subroutine daspl
-! **deck date
+
+
 subroutine date (ch)
       character*8 ch
       integer int(3)
@@ -18185,7 +18196,8 @@ subroutine daxpy (n,  a,  x,ix,  y,iy)
   100 continue
       return
 end subroutine daxpy
-! **deck dcbht
+
+
 subroutine dcbht (a,d,sa,jq,na,m,n)
       implicit double precision (a-h,o-z)
 !         given a matrix  a  of dimensions (m,n) stored in an array
@@ -20036,7 +20048,7 @@ subroutine dsncdv (ipv,cpq,s,  dpv)
       do 300 i = 1,3
          dpv(i+1) =  bs(i)*dphs + bt(i)*dpht + ensg(i)*sgctr
   300 continue
-! DEBUG: call dsncvj and get it right
+! DEBUG: call dsncvj and get it right ! Yeah, get it right man.
 !--      call dsncvj (ipv,cpq,  nvjds,ivjds,dvjds)
 !--      call dcopy (3,  0.d0,0,  delv,1)
 !--      do 400 j = 1,nvjds
@@ -20050,7 +20062,9 @@ subroutine dsncdv (ipv,cpq,s,  dpv)
 !
       return
 end subroutine dsncdv
-! **deck dsnpdt
+
+
+
 subroutine dsnpdt (mfn,nfn,vfg,ip,ipan,jpan)
       implicit double precision (a-h,o-z)
       dimension vfg(3,mfn,nfn,2)
@@ -46362,8 +46376,10 @@ subroutine pvinfc
       call frecor ('pvinfc')
       return
 end subroutine pvinfc
-! **deck qcof
+
+
 subroutine qcof(ar,cp,q)
+      ! This looks like it has to do with spline matrices
       implicit double precision (a-h,o-z)
       double precision kses,kset,ksest
       dimension z(3,3),c(6,6),ar(3,3),cp(3,9),q(6,9),pc(3,3)
@@ -56481,13 +56497,13 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         if((rr2.gt.0.d0).and.(aks2.lt.0.d0)) r2=sqrt(rr2)
 
         ! Check for at least one endpoint in DoD
-        if((r1.gt.0.d0).or.(r2.gt.0.d0)) go to 300
+        if( (r1 > 0.d0) .or. (r2 > 0.d0) ) go to 300
 
         ! At this point, neither endpoint is in the DoD, so we need to see if the edge intersects the DoD.
         ! Any of these conditions reveal that the edge doesn't intersect the DoD and it may be skipped.
         ! First condition: subsonic edge (if neither endpoint is in on a subsonic edge, then the edge cannot intersect)
         ! Second: point is outside edge
-        ! Third: g^2 is non-positive; not sure what this corresponds to
+        ! Third: g^2 is non-positive; above or below Mach wedge
         ! Fourth: use the edge-based coordinate system (where x_m = -a/v_xi (Ehlers Eq. (E28))) to determine if the point is inside the Mach cone
         ! This fourth condition is alluded to in Davis Section 4.5.1
         if ( bet <= 0. .or. el1*el2 >= 0. .or. gg <= 0. .or. a*ank >= 0.d0) go to 600
@@ -56495,7 +56511,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
      ! Neither endpoint is in the DoD
 
      ! Ehlers Eq. (E18)
-        if(h.ne.0.d0) hh113=sign(pi,h*ank)
+        if (h /= 0.d0) hh113=sign(pi,h*ank)
 
         ! Ehlers Eq. (E22)
         f111=pi/sbet
@@ -56506,7 +56522,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! Ehlers Eq. (E24)
         f211=a*ank*f111/bet
 
-        ! Not sure where this one comes from
+            ! I have no reference for this one
         f221=-ank*ane*f111*(gg+2.d0*aa)/(2.d0*bet*bet)
         go to 500
 
@@ -56514,17 +56530,21 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
   300   continue
 
         ! These come from the fact that R^2 = g^2 - l^2.
-        ! Implementing this correction ensures that F2**2 + b*F**2 = 1 (Ehlers Eq. (E21)) remains true even when either R has been set to zero.
+        ! Implementing this correction ensures that F2**2 + b*F1**2 = 1 (Ehlers Eq. (E21)) remains true even when either R has been set to zero.
+        ! I think this is meant to properly handle the case of one endpoint out of the DoD
         gg=abs(gg)
         g=sqrt(gg)
-        if(r1.eq.0.d0) el1=-g
-        if(r2.eq.0.d0) el2=g
+        if(r1 == 0.d0) el1=-g
+        if(r2 == 0.d0) el2=g
 
         ! Ehlers Eqs. (E19-20)
-        if(bet.gt.0.d0) fact1=(el1*r2-el2*r1)/gg
-        if(bet.gt.0.d0) fact2=(bet*r1*r2+el1*el2)/gg
-        if(bet.le.0.d0) fact1=(r2-r1)*(r2+r1)/(el1*r2+el2*r1)
-        if(bet.le.0.d0) fact2=(gg-el1*el1-el2*el2)/(bet*r1*r2-el1*el2)
+        ! Supersonic edge
+        if(bet >= 0.d0) fact1=(el1*r2-el2*r1)/gg
+        if(bet >= 0.d0) fact2=(bet*r1*r2+el1*el2)/gg
+
+        ! Subsonic edge
+        if(bet <= 0.d0) fact1=(r2-r1)*(r2+r1)/(el1*r2+el2*r1)
+        if(bet <= 0.d0) fact2=(gg-el1*el1-el2*el2)/(bet*r1*r2-el1*el2)
 
         ! Ehlers Eq. (E18)
         if(h /= 0.d0) hh113=atan2(h*a*fact1,r1*r2+hh*fact2)
@@ -56962,7 +56982,6 @@ subroutine supspi (pn,ics,ns,its,xp,sfac,ne,nfx,dvs,dvd)
 end subroutine supspi
       
 
-
 subroutine surfit(cp,ar,art)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -57040,6 +57059,8 @@ subroutine surfit(cp,ar,art)
       art(8)=artmi*art(8)
       art(9)=artmi*art(9)
       af=artmi**3
+
+      ! Calculate global to panel transformation matrix
       ar(1)=af*(art(5)*art(9)-art(6)*art(8))
       ar(2)=af*(art(8)*art(3)-art(9)*art(2))
       ar(3)=af*artm*art(7)
@@ -57049,9 +57070,14 @@ subroutine surfit(cp,ar,art)
       ar(7)=af*(art(4)*art(8)-art(5)*art(7))
       ar(8)=af*(art(7)*art(2)-art(8)*art(1))
       ar(9)=af*artm*art(9)
-      return
+
+      ! This doesn't seem to take the compressiblity scaling into account
+      ! Nor does it seem to care that the xi direction be aligned with the
+      ! freestream
+
 end subroutine surfit
-! **deck surpro
+
+
 subroutine surpro(z,zp,ic)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -57177,7 +57203,8 @@ subroutine surpro(z,zp,ic)
       call panuni(aqi,cp(1,9),zp,zp)
       return
 end subroutine surpro
-! **deck sutput
+
+
 subroutine sutput
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -57262,7 +57289,8 @@ subroutine sutput
       call frecor ('sutput')
       return
 end subroutine sutput
-! **deck svinfc
+
+
 subroutine svinfc
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -60390,7 +60418,8 @@ subroutine ukysrt (n,iar,key)
       go to 10
    70 return
 end subroutine ukysrt
-! **deck unipan
+
+
 subroutine unipan(ar,r0,x,y)
       implicit double precision (a-h,o-z)
 !***created  on 76.011    w.o. no.   0   version        ftj.00
@@ -60462,7 +60491,8 @@ subroutine unipan(ar,r0,x,y)
       y(3)    =  ar(3,1)*w(1) + ar(3,2)*w(2) + ar(3,3)*w(3)
       return
 end subroutine unipan
-! **deck upkims
+
+
 subroutine upkims (lblock,nbk,indx)
       integer indx(2)
 !
@@ -60475,7 +60505,8 @@ subroutine upkims (lblock,nbk,indx)
 !
       return
 end subroutine upkims
-! **deck upkpsp
+
+
 subroutine upkpsp (md,m,  npsp,kkpsp,iipsp,bpsp,  ns,s)
       implicit double precision (a-h,o-z)
       dimension npsp(md,2), kkpsp(md,2), iipsp(6,md,2), bpsp(6,md,2)
@@ -64465,7 +64496,8 @@ subroutine xtrns (irec,iar,lth)
       call readms (ntxrwi,iar,lth,irec)
       return
 end subroutine xtrns
-! **deck xxadj
+
+
 subroutine xxadj(p0,p1,p2,al,z)
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -64529,7 +64561,8 @@ subroutine xxadj(p0,p1,p2,al,z)
   100 z(i)=p0(i)+al*(v2m*v1(i)+v1m*v2(i))/(v1m+v2m)
       return
 end subroutine xxadj
-! **deck ytrns
+
+
 subroutine ytrns (irec,iar,lth)
       implicit double precision (a-h,o-z)
       dimension iar(*)
@@ -64554,7 +64587,8 @@ subroutine ytrns (irec,iar,lth)
       call readmd (ntyrwi,iar,lth,irec)
       return
 end subroutine ytrns
-! **deck zaxpy
+
+
 subroutine zaxpy (n,  a,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       complex*16 x(1), y(1), a
@@ -64573,7 +64607,8 @@ subroutine zaxpy (n,  a,  x,ix,  y,iy)
   100 continue
       return
 end subroutine zaxpy
-! **deck zcadj
+
+
 subroutine zcadj
       implicit double precision (a-h,o-z)
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -64756,7 +64791,8 @@ subroutine zcadj
   500 continue
       return
 end subroutine zcadj
-! **deck zcmpr
+
+
 subroutine zcmpr(msg,a,b,n,l)
       implicit double precision (a-h,o-z)
       dimension a(n), b(n)
@@ -64784,7 +64820,8 @@ subroutine zcmpr(msg,a,b,n,l)
       endif
       return
 end subroutine zcmpr
-! **deck zcopy
+
+
 subroutine zcopy (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
@@ -64811,7 +64848,8 @@ subroutine zcopy (n,  x,ix,  y,iy)
   300 continue
       return
 end subroutine zcopy
-! **deck zero
+
+
 subroutine zero (a,n)
       implicit double precision (a-h,o-z)
       dimension a(n)
@@ -64823,7 +64861,8 @@ subroutine zero (a,n)
   100 continue
       return
 end subroutine zero
-! **deck zisct1
+
+
 subroutine zisct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
@@ -64840,7 +64879,8 @@ subroutine zisct1 (m,n  ,a,na  ,ind  ,b,nb)
 !
       return
 end subroutine zisct1
-! **deck zisct2
+
+
 subroutine zisct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
@@ -64857,7 +64897,8 @@ subroutine zisct2 (m,n  ,a,na  ,ind  ,b,nb)
 !
       return
 end subroutine zisct2
-! **deck zjsct1
+
+
 subroutine zjsct1 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
@@ -64874,7 +64915,8 @@ subroutine zjsct1 (m,n  ,a,na  ,ind  ,b,nb)
 !
       return
 end subroutine zjsct1
-! **deck zjsct2
+
+
 subroutine zjsct2 (m,n  ,a,na  ,ind  ,b,nb)
       implicit double precision (a-h,o-z)
       dimension a(na,n), b(nb,n)
@@ -64891,7 +64933,8 @@ subroutine zjsct2 (m,n  ,a,na  ,ind  ,b,nb)
 !
       return
 end subroutine zjsct2
-! **deck zmerge
+
+
 subroutine zmerge (npt,zpt,zavg)
       implicit double precision (a-h,o-z)
       dimension zpt(3,npt), zavg(3)
@@ -64911,7 +64954,8 @@ subroutine zmerge (npt,zpt,zavg)
       zavg(3) =  f*zavg(3)
       return
 end subroutine zmerge
-! **deck zmproj
+
+
 subroutine zmproj (z1,z2,  x,taux)
       implicit double precision (a-h,o-z)
       dimension z1(3), z2(3), x(3), dz(3), xmz(3)
@@ -64934,7 +64978,8 @@ subroutine zmproj (z1,z2,  x,taux)
       x(3)    =  z1(3) + taux*dz(3)
       return
 end subroutine zmproj
-! **deck zscal
+
+
 subroutine zscal (n,  a,   y,iy)
       implicit double precision (a-h,o-z)
       dimension  y(1)
@@ -64951,7 +64996,8 @@ subroutine zscal (n,  a,   y,iy)
   100 continue
       return
 end subroutine zscal
-! **deck zswap
+
+
 subroutine zswap (n,  x,ix,  y,iy)
       implicit double precision (a-h,o-z)
       dimension x(1), y(1)
@@ -64973,7 +65019,8 @@ subroutine zswap (n,  x,ix,  y,iy)
   100 continue
       return
 end subroutine zswap
-! **deck zwindg
+
+
 subroutine zwindg (n,x,y,zc,izc,ierr)
       implicit double precision (a-h,o-z)
 !         compute the product
