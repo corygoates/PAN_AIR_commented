@@ -8066,7 +8066,7 @@ subroutine aicsup (q,saic,daic)
    30 continue
 
 ! set some constants
-      xeqzro  =  x.eq.0.d0
+      xeqzro  =  x == 0.d0
       xsq     =  x*x
 
 ! initialize aic"s to zero
@@ -8081,11 +8081,11 @@ subroutine aicsup (q,saic,daic)
       call zero (daic,4*nf)
 
 ! check for null integral
-      if ( x.lt.0.d0 ) go to 3000
-      if ( n.lt.3 ) go to 3000
+      if ( x < 0.d0 ) go to 3000 ! Point is upstream of the panel, so go ahead and exit
+      if ( n < 3 ) go to 3000
 
-! check for too many corners
-      if ( n.gt.20 ) go to 7000
+! check for too many corners (Huh?)
+      if ( n > 20 ) go to 7000
 
 ! determine panel orientation
       area    =  0.d0
@@ -21523,11 +21523,11 @@ subroutine enrchg(k,m,n,z)
       l4=m2+nm(k)*(n2-1)+nza(k)
       do 100 i=1,3
   100 z(i)=.25d0*(zm(i,l1)+zm(i,l2)+zm(i,l3)+zm(i,l4))
-      s1 = zm(1,l1)**2 + zm(2,l1)**2 + zm(3,l1)**2
-      s2 = zm(1,l2)**2 + zm(2,l2)**2 + zm(3,l2)**2
+      R1 = zm(1,l1)**2 + zm(2,l1)**2 + zm(3,l1)**2
+      R2 = zm(1,l2)**2 + zm(2,l2)**2 + zm(3,l2)**2
       s3 = zm(1,l3)**2 + zm(2,l3)**2 + zm(3,l3)**2
       s4 = zm(1,l4)**2 + zm(2,l4)**2 + zm(3,l4)**2
-      smax =  max ( s1,s2,s3,s4)
+      smax =  max ( R1,R2,s3,s4)
       senrch = sqrt(smax)
       return
 end subroutine enrchg
@@ -35068,7 +35068,7 @@ subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
       parameter (levmax=15)
 !
       dimension a(levmax), b(levmax), h(levmax), ind(levmax)
-      dimension x(5,levmax), f(6,5,levmax), s(6), s2(6)
+      dimension x(5,levmax), f(6,5,levmax), s(6), R2(6)
       dimension phi(3)
 !call ktewic
       common /ktewic/ cpl(3), dcpl(3), zl(3)
@@ -35134,13 +35134,13 @@ subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
      &                       +p66  *f(i,3,lev)                          &
      &                       +p166 *f(i,5,lev) )
 !
-          s2(i)   =  h(lev)*( p0833*f(i,1,lev)                          &
+          R2(i)   =  h(lev)*( p0833*f(i,1,lev)                          &
      &                       +p33  *f(i,2,lev)                          &
      &                       +p166 *f(i,3,lev)                          &
      &                       +p33  *f(i,4,lev)                          &
      &                       +p0833*f(i,5,lev) )
-          dsnm    =   max ( dsnm, abs(s(i)-s2(i))  )
-!----     write (6,6004) lev,ind(lev),a(lev),b(lev),h(lev),s(i),s2(i)
+          dsnm    =   max ( dsnm, abs(s(i)-R2(i))  )
+!----     write (6,6004) lev,ind(lev),a(lev),b(lev),h(lev),s(i),R2(i)
   110 continue
 ! if error budget not met, go deeper (3
       if ( lev.eq.levmax ) then
@@ -35153,7 +35153,7 @@ subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
   115 continue
 ! looks good: accumulate
           do 120 i = 1,6
-               aint2(i)=  aint2(i) + s2(i)
+               aint2(i)=  aint2(i) + R2(i)
                aint(i) =  aint(i) + s(i)
   120     continue
 ! increment loop index at current level
@@ -35235,7 +35235,7 @@ subroutine itewic (tol,aa,bb,  aint,aint2,aerr,nfcn)
       write (6,6001) aa,bb
  6001 format (' level count exceeds levmax in itewic.  aa,bb:',2f12.6)
  6004 format (' level:',i3,'  ind:',i2,'  a,b:',2f12.6,'  h:',f12.6     &
-     &  ,'  s,s2',2f12.9)
+     &  ,'  s,R2',2f12.9)
       CALL AbortPanair('itewic')
 end subroutine itewic
 ! **deck itrns
@@ -56143,7 +56143,7 @@ end subroutine subpwm
 subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             ! Computes the influence from a subinclined panel in subsonic flow
             ! p subpanel vertices
-            ! ics information regarding number of subpanel edges
+            ! ics which edge is collapsed
             ! ns number of edges?
             ! its singularities present on panel
             ! x field point
@@ -56174,18 +56174,18 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
       hh=h*h
       hm=abs(h)
 
-      ! Wipe b (whatever it is)
+      ! Wipe integral storage
       call zero(b,13)
 
       ! Loop through edges
       do 600 is=1,ns
 
             ! Skip collapsed edge
-            if(is.eq.ics) go to 600
+            if(is == ics) go to 600
 
             ! Get index of end index
             isp1=mod(is,ns)+1
-            if(isp1.eq.ics) isp1=mod(isp1,ns)+1
+            if(isp1 == ics) isp1=mod(isp1,ns)+1
 
             ! Get displacements
             aks1=p(1,is)-x(1)
@@ -56222,30 +56222,48 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             el2s=el2*el2
 
             ! Radii to each vertex
-            s1=sqrt(el1s+gg)
-            s2=sqrt(el2s+gg)
-            s12=s1*s2
-            s1p2=s1+s2
-            s=drm*(el1+el2)/s1p2
-            si=-s/s12
+            R1=sqrt(el1s+gg)
+            R2=sqrt(el2s+gg)
+            R12=R1*R2
+            R1p2=R1+R2
+            s=drm*(el1+el2)/R1p2
+            si=-s/R12
 
             ! Perform intermediate calculations to get to hH(1,1,3)
-            if(el12.gt.0.d0) go to 530
-            els=el2*s1-el1*s2
-            elsp=el2*s2-el1*s1
-            elgs=els/(gg*s12)
+            if(el12 > 0.d0) go to 530
+
+            ! Calculations for l1 and l2 having different signs
+            els=el2*R1-el1*R2
+            elsp=el2*R2-el1*R1
+            elgs=els/(gg*R12)
+
+            ! Get components for atan calculation
             sina=a*(gg*drm+hm*els)
-            cosa=(gg+hm*s1)*(gg+hm*s2)+aa*el12
-            ratio=(s1-el1)*(s2+el2)/gg
+            cosa=(gg+hm*R1)*(gg+hm*R2)+aa*el12
+
+            ! Get ratio for F111 calculation
+            ratio=(R1-el1)*(R2+el2)/gg
+
             go to 550
-  530       elgs=-si*s1p2/(el2*s1+el1*s2)
-            elsp=drm*(el1+el2)*(gg+el1s+el2s)/(el2*s2+el1*s1)
-            sina=a*(drm+hm*s12*elgs)
-            cosa=gg+hm*s1p2+el12+hh*(gg+el1s+el2s)/(s12+el12)
-            if(el2.gt.0.d0) go to 540
-            ratio=(s1-el1)/(s2-el2)
+
+            ! Calculations for l1 and l2 having the same sign
+  530       elgs=-si*R1p2/(el2*R1+el1*R2)
+            elsp=drm*(el1+el2)*(gg+el1s+el2s)/(el2*R2+el1*R1)
+
+            ! Components for atan calculation
+            sina=a*(drm+hm*R12*elgs)
+            cosa=gg+hm*R1p2+el12+hh*(gg+el1s+el2s)/(R12+el12)
+
+            if(el2 > 0.d0) go to 540
+
+            ! For F111 when l2 < 0
+            ratio=(R1-el1)/(R2-el2)
+
             go to 550
-  540       ratio=(s2+el2)/(s1+el1)
+            
+            ! For F111 when l2 > 0
+  540       ratio=(R2+el2)/(R1+el1)
+
   550       continue
 
             ! Compute hH(1,1,3)
@@ -57707,13 +57725,13 @@ subroutine tcof(p,b,c,d)
 !     *  triangle coordinates el1,el2,and el3 where el1 is 1 at the   *
 !     *  first vertex and zero at the other two, and similarly for    *
 !     *  el2,el3. for a linear distribution s we have                 *
-!     *  s=el1*s1+el2*s2+el3*s3 where s1,s2 and s3 are the values of  *
+!     *  s=el1*R1+el2*R2+el3*s3 where R1,R2 and s3 are the values of  *
 !     *  s at the vertices respectively. for a quadratic distribution *
-!     *  s we have s=el1*el1*s1+el2*el2*s2+el3*el3(s3+                *
+!     *  s we have s=el1*el1*R1+el2*el2*R2+el3*el3(s3+                *
 !     *  2.*el2*el3*lamda1+2.*el3*el1*lamda2+2.*el1*el2*lamda3 where  *
 !     *  lamda1,lamda2 and lamda3 are the edge lamdas of s            *
 !     *  respectively. for the cubic distribution s we have s=        *
-!     *  quadratic distribution + 27.*el1*el2*el3*(s4-(s1+s2+s3)/9.   *
+!     *  quadratic distribution + 27.*el1*el2*el3*(s4-(R1+R2+s3)/9.   *
 !     *  -2.*(lamda1+lamda2+lamda3)/9.) , where s4 is the value of s  *
 !     *  at the triangle center. the taylor series coefficients in    *
 !     *  terms of the vertex values, edge lamdas and center value can *
