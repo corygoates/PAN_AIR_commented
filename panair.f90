@@ -7969,7 +7969,7 @@ subroutine aicsup (q,saic,daic)
 !     *                                                               *
 !     *   psix      local     - - - -   psi*x                         *
 !     *                                                               *
-!     *   psixx2    local     - - - -   osi*x*x/2                     *
+!     *   psixx2    local     - - - -   psi*x*x/2                     *
 !     *                                                               *
 !     *   q         /supdta/  input     panel corner points           *
 !     *                                                               *
@@ -8095,7 +8095,7 @@ subroutine aicsup (q,saic,daic)
           km1     =  mod(km1,n)+1
   250 continue
 
-      if ( area.gt.0.d0 ) go to 270 ! This is so bad....why would you do it this way?...
+      if ( area > 0.d0 ) go to 270 ! This is so bad....why would you do it this way?...
           go to 3000
   270 continue
 
@@ -8111,11 +8111,12 @@ subroutine aicsup (q,saic,daic)
           rho(2,k)=  q(2,k) - p(2)
 
 ! rhosq(k) Magnitude of the displacement vector (this works because rs = 1)
+          ! from the center of the DoD projection.
           rhosq(k)=  rho(1,k)**2 + rho(2,k)**2
 
 ! corner(k) (whether corner k is in the Mach cone)
           corner(k) = .true.
-          if ( xeqzro .or. rhosq(k).ge.xsq ) corner(k) = .false.
+          if ( xeqzro .or. rhosq(k) >= xsq ) corner(k) = .false. ! Corner falls outside DoD
 
 ! tangent to edge k,  tg(*,k)
           dy      =  q(1,k) - q(1,km1)
@@ -8160,8 +8161,9 @@ subroutine aicsup (q,saic,daic)
           ! This is a far simpler procedure than E&M give in Section J.3.4.1... Jerks.
           edge(k) =  corner(km1) .or. corner(k)
           vpvm    =  vp(k)*vm(k)
-          if ( abs(d(k)).lt.x  .and.  x.ne.0.d0  .and.  vpvm.le.0.d0 )  &
-     &         edge(k) = .true.
+          if ( abs(d(k)) < x  .and.  x /= 0.d0  .and.  vpvm <= 0.d0 ) then
+            edge(k) = .true.
+          end if
 
 ! update intsct
           intsct  =  intsct .or. edge(k)
@@ -8186,18 +8188,23 @@ subroutine aicsup (q,saic,daic)
           if ( d(km1).lt.0.d0)  ikm1 = -1
           if ( ik*ikm1 .lt. 0 ) ic2 = ic2 - isgn
       km1    =  mod(km1,n)+1
+
   400 continue
-      within  =  ic2.eq.2
+
+      within  =  ic2 == 2
+
       if ( convex .or. subset ) go to 415
-          go to 7000
+          go to 7000 ! This is the worst
   415 continue
-      if ( area .le. 0.d0 ) go to 3000
+
+      if ( area <= 0.d0 ) go to 3000
 
 !              if the boundary of sigma has a point lying within c
 !              (intsct =.t. ) or if the center of c lies within sigma
 !              (within =.t. ) their intersection is non-null and we
 !              must compute aic"s
-      if (.not.intsct  .and.  .not.within ) go to 3000 ! No influence need be calculated
+
+      if (.not. intsct  .and.  .not. within ) go to 3000 ! No influence need be calculated
 
     ! get functions  r, qprm
             ! This calculates J using E&M Eq. (J.8.109)
@@ -8283,7 +8290,7 @@ subroutine aicsup (q,saic,daic)
     ! Skip doublet terms
     if (.not.doublt) go to 700
 
-    ! check for doublet terms
+    ! Set doublet terms
     daic(1,4)=                   psix
     daic(1,6)=                             psix
     
