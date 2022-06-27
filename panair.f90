@@ -2,8 +2,10 @@ program a502
 
       ! Some notes - CDG
       ! cmpscl scales a vector in the compressibility direction
+      ! subsbi calculates supersonic subinclined influence coefs
       ! supsbi calculates supersonic subinclined influence coefs
       ! supspi calculates supersonic superinclined influence coefs
+      ! aicsup calculates supersonic superinclined influence coefs
       ! surfit calculates the global/reference -> panel coordinate transformation
 
 !***created  on 78.060    w.o. no.   0   version        fee.01
@@ -7820,10 +7822,10 @@ subroutine aicsup (q,saic,daic)
 !     *                                                               *
 !     *   -(2*pi) * beta * s(0) =                                     *
 !     *                                                               *
-!     *         ( 1  0  0 )                                           *
-!     *   psi * ( 0  x  0 )                                           *
-!     *         ( 0  0  x )                                           *
-!     *         ( x  0  0 )                                           *
+!     *         ( 1  0  0 )  potential                                *
+!     *   psi * ( 0  x  0 )  x-velocity                               *
+!     *         ( 0  0  x )  y-velocity                               *
+!     *         ( x  0  0 )  z-velocity                               *
 !     *                                                               *
 !     *                   (  0      x*ny             x*nz         )   *
 !     *  + sum   phi(k) * ( ny    -d*ty*ty         -d*ty*tz       )   *
@@ -7866,7 +7868,7 @@ subroutine aicsup (q,saic,daic)
 !     *               upper    lower                                  *
 !     *                                                               *
 !     *   x      =   radius of mach cone, local coords                *
-!     *                                                               *
+!     *                                                              *
 !     *   (ny,nz)=   edge unit normal                                 *
 !     *                                                               *
 !     *   (ty,tz)=   edge unit tangent                                *
@@ -8036,6 +8038,8 @@ subroutine aicsup (q,saic,daic)
 
       ! Throughout a go to 3000 will simply exit the function
       ! A go to 7000 will print an error function and stop execution
+      ! Note that edge k begins at vertex k-1 and ends at vertex k
+      ! Not the way I do things
 !
       dimension  q(2,16), saic(4,6), daic(4,10)
 ! input data
@@ -8065,29 +8069,28 @@ subroutine aicsup (q,saic,daic)
      &    (2x,i2,1h.,3x,e16.8,6x,4e16.8))
    30 continue
 
-! set some constants
+      ! set some constants
       xeqzro  =  x == 0.d0
       xsq     =  x*x
 
-! initialize aic"s to zero
+      ! initialize aic"s to zero
       call zero (hb,14)
       aipsrr(1,1) =  0.d0
       aipsrr(1,2) =  0.d0
       aipsrr(2,1) =  0.d0
       aipsrr(2,2) =  0.d0
-!
       ng      =  3*( 1 + nf/10 )
       call zero ( saic, 4*ng)
       call zero (daic,4*nf)
 
-! check for null integral
+      ! check for null integral
       if ( x < 0.d0 ) go to 3000 ! Point is upstream of the panel, so go ahead and exit
       if ( n < 3 ) go to 3000
 
-! check for too many corners (Huh?)
+      ! check for too many corners (Huh?)
       if ( n > 20 ) go to 7000
 
-! determine panel orientation
+      ! Calculate panel area
       area    =  0.d0
       km1     =  n
       do 250 k = 1,n
@@ -8099,65 +8102,65 @@ subroutine aicsup (q,saic,daic)
           go to 3000
   270 continue
 
-! get  rho(*,k), rhosq(k), corner(k)
-! and  tg(*,k), nm(*,k), d(k)
+      ! get  rho(*,k), rhosq(k), corner(k), tg(*,k), nm(*,k), d(k)
       km1     =  n
 
       ! Loop through sides
       do 300 k = 1,n
 
-! rho(*,k) Displacement vector
+            ! rho(*,k) Displacement vector
           rho(1,k)=  q(1,k) - p(1)
           rho(2,k)=  q(2,k) - p(2)
 
-! rhosq(k) Magnitude of the displacement vector (this works because rs = 1)
+            ! rhosq(k) Magnitude of the displacement vector (this works because rs = 1)
           ! from the center of the DoD projection.
           rhosq(k)=  rho(1,k)**2 + rho(2,k)**2
 
-! corner(k) (whether corner k is in the Mach cone)
+            ! corner(k) (whether corner k is in the Mach cone)
           corner(k) = .true.
           if ( xeqzro .or. rhosq(k) >= xsq ) corner(k) = .false. ! Corner falls outside DoD
 
-! tangent to edge k,  tg(*,k)
+            ! tangent to edge k,  tg(*,k)
           dy      =  q(1,k) - q(1,km1)
           dz      =  q(2,k) - q(2,km1)
           dnm     =  sqrt( dy*dy + dz*dz ) ! Normalizing denominator
           tg(1,k) =  dy/dnm
           tg(2,k) =  dz/dnm
 
-! normal to edge k,  nm(*,k)
+            ! normal to edge k,  nm(*,k)
           nm(1,k) =  tg(2,k)
           nm(2,k) = -tg(1,k)
 
-! in-plane perpendicular distance to edge k, d(k); this is a
+            ! in-plane perpendicular distance to edge k, d(k)
+          ! this is the quantity a elsewhere
           d(k)    =  rho(1,k)*nm(1,k) + rho(2,k)*nm(2,k)
 
-! update  km1
+      ! update  km1
       km1     =  mod(km1,n) + 1
   300 continue
 
-! output partial results
-! get  vp(k), vm(k), intsct, within, ar
-!      edge(k), convex
-      intsct  =  .false.
-      within  = .true.
-      convex  =  .true.
+      ! output partial results
+      ! get  vp(k), vm(k), intsct, within, ar
+      !      edge(k), convex
+      intsct  =  .false. ! stores whether the panel intersects the dod
+      within  = .true. ! stores whether the control point in local coords is in the panel
+      convex  =  .true. ! stores whether the panel is convex
       area    =  0.d0
       km1     =  n
-      subset  =  .true.
+      subset  =  .true. ! stores whether the panel is a subset of the dod
       ic2     =  2
       do 400 k = 1,n
 
-! update subset
+            ! If the corner is out, the panel is not a subset of the dod
           subset  =  subset .and. corner(k)
           
-! vp(k) = ( tg(k), rho(k)) edge integration distance
+            ! vp(k) = ( tg(k), rho(k)) edge integration distance
           vp(k)   =  tg(1,k)*rho(1,k  ) + tg(2,k)*rho(2,k  )
 
-! vm(k) = ( tg(k), rho(k-1) )
+            ! vm(k) = ( tg(k), rho(k-1) )
           vm(k)   =  tg(1,k)*rho(1,km1) + tg(2,k)*rho(2,km1)
 
-! edge(k) whether the edge intersects the Mach cone
+            ! edge(k) whether the edge intersects the Mach cone
           ! This is a far simpler procedure than E&M give in Section J.3.4.1... Jerks.
           edge(k) =  corner(km1) .or. corner(k)
           vpvm    =  vp(k)*vm(k)
@@ -8165,19 +8168,19 @@ subroutine aicsup (q,saic,daic)
             edge(k) = .true.
           end if
 
-! update intsct
+            ! update intsct
           intsct  =  intsct .or. edge(k)
 
-! update area
+            ! update area
           areak   =  rho(1,km1)*rho(2,k) - rho(2,km1)*rho(1,k)
           area    =  area + areak
 
-! update convex.  the sine of the
-! turning angle alpha is given
-! sin(alpha) = tg(k-1) x tg(k)
-!            = tg(k-1) . nm(k)
-! if sin(alpha) .ge. 0, corner  k-1
-! is convex
+            ! update convex.  the sine of the
+            ! turning angle alpha is given
+            ! sin(alpha) = tg(k-1) x tg(k)
+            !            = tg(k-1) . nm(k)
+            ! if sin(alpha) .ge. 0, corner  k-1
+            ! is convex
           snalfa  =  tg(1,km1)*nm(1,k) + tg(2,km1)*nm(2,k)
           if ( snalfa .lt. 0.d0 ) convex = .false.
           isgn    =  1
@@ -8191,8 +8194,11 @@ subroutine aicsup (q,saic,daic)
 
   400 continue
 
+          ! Determine whether the center of the DoD passes through the panel
       within  =  ic2 == 2
 
+      ! If the panel is not convex and not a subset of the DOD, then
+      ! we really can't tell anything about it.
       if ( convex .or. subset ) go to 415
           go to 7000 ! This is the worst
   415 continue
@@ -8207,7 +8213,8 @@ subroutine aicsup (q,saic,daic)
       if (.not. intsct  .and.  .not. within ) go to 3000 ! No influence need be calculated
 
     ! get functions  r, qprm
-            ! This calculates J using E&M Eq. (J.8.109)
+    ! This calculates J using E&M Eq. (J.8.109)
+      ! This is a panel function; I believe it is roughly equivalent to H(1,1,3)
     kp1     =  2
     psi     =  pi2
     do 500 k = 1,n
@@ -8384,7 +8391,7 @@ subroutine aicsup (q,saic,daic)
 
 ! check for cubic terms
   900     continue
-          if (  nf.lt.10 ) go to 990
+          if (  nf < 10 ) go to 990
 ! coefficients for  n(*)n(*),
 ! ( n(*)t(*)+t(*)n(*) ),  t(*)t(*)
           cnn     =  -phi(k)*d(k)*d(k)
@@ -56290,6 +56297,7 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             b(6)=b(6)+ane*f121
             b(7)=b(7)+a*f211
             b(8)=b(8)+a*f121
+
             if(nf.le.6) go to 600
             f221=.5d0*ank*ane*(gg+2.d0*aa)*f111+a*(ank+ane)*(ank-ane)*s       &
      &      -.5d0*ank*ane*elsp
@@ -56304,26 +56312,33 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
   600   continue
 
         ! Update influence integrals
+            ! Source influences
         du(1,1)=-b(4)+h*b(1)
         du(1,2)=-.5d0*(b(7)+hh*b(2))
         du(1,3)=-.5d0*(b(8)+hh*b(3))
+
         if((nf.le.6).or.(its.eq.2)) go to 625
         du(1,4)=-(hh*(h*b(1)-b(6))+b(11))/3.d0
         du(1,5)=-(hh*b(5)+b(13))/3.d0
         du(1,6)=-(hh*(h*b(1)-b(4)+b(6))+b(12))/3.d0
   625   if(its.eq.1) go to 650
-        dv(1,1)=b(1)
-        dv(1,2)=-h*b(2)
-        dv(1,3)=-h*b(3)
-        dv(1,4)=h*(b(6)-h*b(1))
-        dv(1,5)=-h*b(5)
-        dv(1,6)=-h*(b(6)+du(1,1))
+
+            ! Doublet influences
+        dv(1,1)=b(1) ! hH(1,1,3)
+        dv(1,2)=-h*b(2) ! -h*sum(v_xi*F111)
+        dv(1,3)=-h*b(3) ! -h*sum(v_eta*F111)
+        dv(1,4)=h*(b(6)-h*b(1)) ! h*(sum(v_eta*F121) - h^2 H(1,1,3))
+        dv(1,5)=-h*b(5) ! -h*sum(v_xi*F121)
+        dv(1,6)=-h*(b(6)+du(1,1)) ! -h*(sum(v_eta*F121) - H(1,1,1))
+
         if(nf.le.6) go to 650
         dv(1,7)=h*(b(10)+hh*b(2))
         dv(1,8)=-h*(b(9)+du(1,3))
         dv(1,9)=-h*(b(10)+du(1,2))
         dv(1,10)=h*(b(9)+hh*b(3))
   650   if(ne.eq.1) go to 700
+
+            ! Velocity influences
         du(2,1)=b(2)
         du(2,2)=h*b(1)-b(6)
         du(2,3)=b(5)
@@ -56376,6 +56391,8 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         dv(4,9)=-3.d0*du(3,5)
         dv(4,10)=-3.d0*du(3,6)
   700   continue
+
+  ! Apply scaling factors and offsets
         pi8i=.5d0*pi4i
         pi4aj=pi4i*aj
         pi8aj=pi8i*aj
@@ -56389,22 +56406,26 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         if (nf.eq.10) ng=6
         neg=ne*ng
         call vmul (du,pi4aj,du,neg)
-        if ( ng.lt.6 ) goto 731
-        do 730 i = 1,ne
-        du(i,4)=.5*du(i,4) + x(1)*(   x2*du(i,1) + du(i,2) )
-        du(i,5)=du(i,5) + x(2)*( x(1)*du(i,1) + du(i,2) ) + x(1)*du(i,3)
-        du(i,6)=.5*du(i,6) + x(2)*(   y2*du(i,1) + du(i,3) )
-  730   continue
-  731   continue
+
+        if (.not. ng < 6) then
+            do i = 1,ne
+                du(i,4)=.5*du(i,4) + x(1)*(   x2*du(i,1) + du(i,2) )
+                du(i,5)=du(i,5) + x(2)*( x(1)*du(i,1) + du(i,2) ) + x(1)*du(i,3)
+                du(i,6)=.5*du(i,6) + x(2)*(   y2*du(i,1) + du(i,3) )
+            end do
+        end if
+
         do 740 i = 1,ne
             du(i,2) = du(i,2) + x(1)*du(i,1)
             du(i,3) = du(i,3) + x(2)*du(i,1)
   740   continue
+
   750   continue
+
         if (its.eq.1) go to 790
         ne6 = ne * 6
         call vmul (dv,pi4i,dv,ne6)
-        do 780 i = 1,ne
+        do i = 1,ne
             dv(i,2) = dv(i,2) + x(1)*dv(i,1)
             dv(i,3) = dv(i,3) + x(2)*dv(i,1)
             dvx     = dv(i,2) - x2  *dv(i,1)
@@ -56412,13 +56433,15 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             dvy     = dv(i,3) -y2   *dv(i,1)
             dv(i,6) = 0.5d0*dv(i,6) + x(2)*dvy
             dv(i,5) = dv(i,5) + x(1)*dvy + x(2)*dvx
-  780   continue
+        end do
+
   790   continue
-        if(nf.le.6) go to 800
-        if ( its.eq.1 ) goto 800
+
+        if (nf <= 6) go to 800
+        if (its == 1) goto 800
 
         ! Apply origin shift
-        do 799 i = 1,ne
+        do i = 1,ne
             dvy=dv(i,3)-y3*dv(i,1)
             dvx=dv(i,2)-x3*dv(i,1)
             dvxx=dv(i,4)-x2*dvx
@@ -56428,10 +56451,11 @@ subroutine subsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
             dv(i,8)=pi8i*dv(i,8)+x(1)*dvxy+x(2)*dvxx
             dv(i,9)=pi8i*dv(i,9)+x(1)*dvyy+x(2)*dvxy
             dv(i,10)=pi24i*dv(i,10)+x(2)*dvyy
-  799   continue ! I hate Fortran 77....
+        end do
   800   continue
   900   continue
       return
+
 end subroutine subsbi
 
 
@@ -56991,14 +57015,14 @@ subroutine supspi (pn,ics,ns,its,xp,sfac,ne,nfx,dvs,dvd)
 !     *   rearrange answers and apply sign factors                    *
 !
       do 400 i = 1,nf
-        if(ne.eq.1) go to 400
+        if(ne == 1) go to 400
         dvd(2,i)=dvdp(2,i)*sgnx
         dvd(3,i)=dvdp(3,i)*sgnx
         dvd(4,i)=dvdp(1,i)
   400   dvd(1,i)=dvdp(4,i)*sgnx
       ng      =  3*(1+nf/10)
       do 500 i = 1,ng
-        if(ne.eq.1) go to 500
+        if(ne == 1) go to 500
         dvs(2,i)=dvsp(2,i)
         dvs(3,i)=dvsp(3,i)
         dvs(4,i)=dvsp(1,i)*sgnx
