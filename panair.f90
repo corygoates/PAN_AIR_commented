@@ -2,9 +2,9 @@ program a502
 
       ! Some notes - CDG
       ! cmpscl scales a vector in the compressibility direction
-      ! subsbi calculates supersonic subinclined influence coefs
+      ! subsbi calculates subsonic subinclined influence coefs
       ! supsbi calculates supersonic subinclined influence coefs
-      ! supspi calculates supersonic superinclined influence coefs
+      ! supspi parses results from aicsup
       ! aicsup calculates supersonic superinclined influence coefs
       ! surfit calculates the global/reference -> panel coordinate transformation
 
@@ -7801,7 +7801,7 @@ subroutine aicsup (q,saic,daic)
 !
 !     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 !     *                                                               *
-!c    *                   * * * p u r p o s e * * *                   *
+!     *                   * * * p u r p o s e * * *                   *
 !     *                         - - - - - - -                         *
 !     *                                                               *
 !     *   aicsup computes near field aic-s for superinclined panels   *
@@ -8024,7 +8024,10 @@ subroutine aicsup (q,saic,daic)
 !     *                                 tion lies inside panel        *
 !     *                                                               *
 !     *   x         /supdta/  input     radius of mach cone, local    *
-!     *                                 coordinates                   *
+!     *                                 coordinates, or the height    *
+!     *                                 above the panel, since in     *
+!     *                                 local coordinates, the Mach   *
+!     *                                 cone is an isoceles triangle  *
 !     *                                                               *
 !     *   xeqzro    local     - - - -   true if  x = 0                *
 !     *                                                               *
@@ -8073,19 +8076,19 @@ subroutine aicsup (q,saic,daic)
       xeqzro  =  x == 0.d0
       xsq     =  x*x
 
-      ! initialize aic"s to zero
+      ! initialize aic's to zero
       call zero (hb,14)
       aipsrr(1,1) =  0.d0
       aipsrr(1,2) =  0.d0
       aipsrr(2,1) =  0.d0
       aipsrr(2,2) =  0.d0
       ng      =  3*( 1 + nf/10 )
-      call zero ( saic, 4*ng)
-      call zero (daic,4*nf)
+      call zero (saic, 4*ng)
+      call zero (daic, 4*nf)
 
       ! check for null integral
       if ( x < 0.d0 ) go to 3000 ! Point is upstream of the panel, so go ahead and exit
-      if ( n < 3 ) go to 3000
+      if ( n < 3 ) go to 3000 ! Degenerate panel
 
       ! check for too many corners (Huh?)
       if ( n > 20 ) go to 7000
@@ -8142,13 +8145,16 @@ subroutine aicsup (q,saic,daic)
       ! output partial results
       ! get  vp(k), vm(k), intsct, within, ar
       !      edge(k), convex
-      intsct  =  .false. ! stores whether the panel intersects the dod
+      intsct  =  .false. ! stores whether the panel boundary intersects the dod
       within  = .true. ! stores whether the control point in local coords is in the panel
       convex  =  .true. ! stores whether the panel is convex
       area    =  0.d0
       km1     =  n
-      subset  =  .true. ! stores whether the panel is a subset of the dod
+      subset  =  .true. ! stores whether the panel is a subset of the dod (i.e. completely inside)
       ic2     =  2
+
+      ! Loop through edges
+      ! PAN AIR follows the convention that edge i begins at vertex i-1 and ends at vertex i
       do 400 k = 1,n
 
             ! If the corner is out, the panel is not a subset of the dod
@@ -8199,6 +8205,7 @@ subroutine aicsup (q,saic,daic)
 
       ! If the panel is not convex and not a subset of the DOD, then
       ! we really can't tell anything about it.
+      ! This highlights an advantage to using traingular panels: they are always convex
       if ( convex .or. subset ) go to 415
           go to 7000 ! This is the worst
   415 continue
@@ -8206,9 +8213,9 @@ subroutine aicsup (q,saic,daic)
       if ( area <= 0.d0 ) go to 3000
 
 !              if the boundary of sigma has a point lying within c
-!              (intsct =.t. ) or if the center of c lies within sigma
-!              (within =.t. ) their intersection is non-null and we
-!              must compute aic"s
+!              (intsct =.true. ) or if the center of c lies within sigma
+!              (within =.true. ) their intersection is non-null and we
+!              must compute aic's
 
       if (.not. intsct  .and.  .not. within ) go to 3000 ! No influence need be calculated
 
@@ -8256,7 +8263,7 @@ subroutine aicsup (q,saic,daic)
         phi(k)  =  0.d0
 
         ! Skip non-influencing edge
-        if ( .not.edge(k) ) go to 540
+        if (.not. edge(k) ) go to 540
 
         ! Add in edge contribution
         ! This will get overwritten if at least one endpoint is in
@@ -8265,11 +8272,10 @@ subroutine aicsup (q,saic,daic)
         ! Check at least one endpoint is in
         if ( .not.corner(k) .and. .not.corner(km1) ) go to 540
 
-        ! Get v_p(k)
+        ! Update edge integration lengths for corners not in the DoD
         vpk     =  vp(k)
         if ( .not.corner(k))  vpk = 1.d0
 
-        ! Get v_m(k)
         vmk     =  vm(k)
         if ( .not.corner(km1)) vmk =-1.d0
 
@@ -8286,10 +8292,11 @@ subroutine aicsup (q,saic,daic)
     psix    =  psi*x
     psixx2  =  .5d0 * x * psix
 
-    ! initialize  s  and  d
+    ! Initialize source and doublet AIC matrices
     ! This is a very interesting way to show which elements of the array you're setting.
     ! Nicely visual. Shows off the advantage to not making whitespace meaningful as far as code syntax goes.
-    saic(1,1)=    psi
+    ! Yes Python, I'm talking to you.
+    saic(1,1)=    psi ! Potential term
     saic(2,2)=         psix
     saic(3,3)=              psix
     saic(4,1)=    psix
@@ -8337,7 +8344,7 @@ subroutine aicsup (q,saic,daic)
       saic(3,2)=saic(3,2) +        phdmns*tg(2,k)*tg(1,k)
       saic(3,3)=saic(3,3) +             phdmns*tg(2,k)*tg(2,k)
 !
-      saic(4,1)=saic(4,1) +   phdmns
+      saic(4,1)=saic(4,1) +   phdmns ! This finishes off the calculation of H(1,1,1)
       saic(4,2)=saic(4,2) +        phvsqh*nm(1,k)
       saic(4,3)=saic(4,3) +             phvsqh*nm(2,k)
 
@@ -8348,7 +8355,7 @@ subroutine aicsup (q,saic,daic)
       saic(3,2)=saic(3,2) +        delr*tg(2,k)*nm(1,k)
       saic(3,3)=saic(3,3) +             delr*tg(2,k)*nm(2,k)
 !
-      saic(4,2)=saic(4,2) +        drdmn2*tg(1,k)
+      saic(4,2)=saic(4,2) +        drdmn2*tg(1,k) ! H(2,1,1) = 0.5*(F(1,1,1)*(h^2-a^2)*v_xi - dR*a*t_hat_x)
       saic(4,3)=saic(4,3) +             drdmn2*tg(2,k)
 
 ! check for phi(k) doublet terms
@@ -39283,9 +39290,9 @@ subroutine offbdx (nof,ivzof,zof,pvof)
      & ,//,' soln','   pt' ,4x ,8x,'x',2x ,8x,'y',2x ,8x,'z',2x         &
      & ,4x  ,7x,a1,'x',2x  ,7x,a1,'y',2x   ,7x,a1,'z '                  &
      & ,3x  ,6x,' ppot',1x  ,2x  ,4x,'cp/',a3,1x  ,6x,'mach',1x  )
- 1001 format (1x,i4,i5     ,4x ,3f11.4                                  &
-     & ,4x  ,3f11.4                                                     &
-     & ,2x  ,f11.4          ,2x  ,f11.4           ,f11.4)
+ 1001 format (1x,i4,i5     ,4x ,3f13.8                                  &
+     & ,4x  ,3f13.8                                                     &
+     & ,2x  ,f13.8          ,2x  ,f13.8    ,1x       ,f13.8)
 !
       write (ntpoff,5600)  (title1(i),i=1,18), (title2(i),i=1,18)
  5600 format ( '(f5.0,9e12.5)'                                          &
@@ -51130,6 +51137,8 @@ subroutine shftic (z,nz,deg,x,y)
    40 continue
       return
 end subroutine shftic
+
+
 ! **deck shlsr2
 subroutine shlsr2 (n,a)
       implicit double precision (a-h,o-z)
@@ -56557,7 +56566,7 @@ subroutine supsbi(p,ics,ns,its,x,aj,ne,nf,du,dv)
         ! This fourth condition is alluded to in Davis Section 4.5.1
         if ( bet <= 0. .or. el1*el2 >= 0. .or. gg <= 0. .or. a*ank >= 0.d0) go to 600
 
-     ! Neither endpoint is in the DoD
+            ! We are in the Mach wedge
 
      ! Ehlers Eq. (E18)
         if (h /= 0.d0) hh113=sign(pi,h*ank)
