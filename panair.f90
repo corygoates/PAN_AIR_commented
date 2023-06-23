@@ -42043,7 +42043,7 @@ subroutine output (mxxpan,mxxdbl,mxxfg                            &
       write(iflfm, 6030) iacase, alpha(iacase), beta(iacase),           &
      &                   actcl, actcd, actcy, actfx, actfy, actfz,      &
      &                   actmx, actmy, actmz, actar
- 6030 format(i7,2f10.4,6f14.5,/,69x,3f14.5,f16.5,/)
+ 6030 format(i7,2f10.3,6f14.8,/,69x,3f14.8,f16.8,/)
 !
       clfac = 1.d0
       cdfac = 1.d0
